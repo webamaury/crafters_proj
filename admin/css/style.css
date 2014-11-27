@@ -8,7 +8,15 @@ padding-bottom: 30px;
 textarea {
 	resize:none;
 }
-
+select:focus, a:focus, button:focus {
+	outline: none;
+}
+textarea:focus, input:focus {
+	border:1px solid #66afe9 !important;
+	outline:none;
+	-webkit-box-shadow:inset 0 1px 1px rgba(0,0,0,.075),0 0 3px rgba(102,175,233,.6);
+	box-shadow:inset 0 1px 1px rgba(0,0,0,.075),0 0 3px rgba(102,175,233,.6)
+}
 /*****************************************
 ** GÉNÉRAL			 					**
 *****************************************/
@@ -18,6 +26,16 @@ textarea {
 }
 .margin-top-20 {
 	margin-top: 20px;
+}
+.margin-top-50 {
+	margin-top: 50px;
+}
+.font-09em {
+	font-size: 0.9em;
+}
+.display-inline {
+	display:inline-block;
+	width: 100%;
 }
 
 /*****************************************
@@ -33,4 +51,11 @@ a, a:hover {
 #admin_index .modules_button .thumbnail h3 {
 	margin-top: 10px;
 	line-height: 0.6;
+}
+.avatar_header {
+	width: 20px;
+	margin-right: 5px;
+	margin-top: -2px;
+	border-radius: 4px;
+	box-shadow: 0px 0px 1px #DDD;
 }

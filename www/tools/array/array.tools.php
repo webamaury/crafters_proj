@@ -7,7 +7,8 @@ $array_tools = array(
 	'jquery.ui' => 'tools/jQueryUI-1.11.1/jquery-ui.min.js',
 	'jquery.datepicker' => 'tools/plugin_jquery/jquery-ui.datepicker-fr.js',
 	'jquery.fancybox' => 'tools/plugin_jquery/jquery.fancybox-2.1.5.pack.js',
-
+	'datatable-css' => '<link href="' . _WWW_PATH . 'tools/plugin_jquery/DataTables-1.10.3/media/css/jquery.dataTables.min.css" rel="stylesheet">',
+	'datatable-js' => '<script type="text/javascript" src="' . _WWW_PATH . 'tools/plugin_jquery/DataTables-1.10.3/media/js/jquery.dataTables.min.js"></script>'
 	);
 
 //var_dump($array_tools);

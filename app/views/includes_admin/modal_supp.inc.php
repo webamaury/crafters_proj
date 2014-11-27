@@ -10,7 +10,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Non</button>
-        <a href="" type="button" id="yes_button" class="btn btn-primary">Oui</a>
+        <a href="" id="yes_button" class="btn btn-primary">Oui</a>
       </div>
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->

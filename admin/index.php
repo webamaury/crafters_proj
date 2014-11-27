@@ -14,38 +14,22 @@ DEFINE('_WWW_PATH', '../www/');
 ##############################################################
 require_once(_APP_PATH . 'config/admin_init.php');
 
+require_once _APP_PATH . 'models/class.notices.php';
+$notices = new classNotices();
+
 session_name(_SES_NAME);
 
 //Dispatching des modules
 if (isset($_GET['module'])) 
 {
-	$module = $_GET["module"];
+	$class = $_GET["module"].'Controller';
+	$module = 'admin_'.$_GET["module"];
 }
 else 
 {
 	//Module par défaut
-	$module = 'index';
+	$class = 'indexController';
+	$module = 'admin_index';
 }
-//Dispatching des actions
-if (isset($_GET['display'])) 
-{
-	$display = $_GET["display"];
-}
-else 
-{
-	//Action par défaut
-	$display = 'index';
-}
-//Constitution de l'URL
-$url = '../app/controlers/admin_'.$module.'/'.$display.'.php';
-//Dispatching vers controleur / action ou bien redirection 404
-if (file_exists($url)) 
-{
-	include_once($url);
-}
-else
-{
-	include_once('../app/controlers/admin_autres/404.php');
-}
-
+include_once _APP_PATH . 'app.php';
 ?>

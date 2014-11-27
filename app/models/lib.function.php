@@ -24,7 +24,7 @@ function load_modules() {
 
 	$modules_to_exclude = array('index', 'login', 'traces');
 
-	$path_to_modules = _APP_PATH . 'controlers';
+	$path_to_modules = _APP_PATH . 'controllers';
 	if ($handle = opendir( $path_to_modules ))
 	{
 	    while (($item = readdir($handle)) !== false )
@@ -86,34 +86,146 @@ function display_notice() {
 }
 
 
-function send_mail($tpl, $fromfirstname, $fromname, $frommail, $tomail, $subject) {
+function send_mail($text, $name_expe, $email_expe, $email_desti, $subject, $reply = null, $file = null)
+{
 	
-	// On remplace les infos de la signature
-	$from = stripslashes($fromfirstname . ' ' . $fromname);
-	$from_mail = $frommail;
 	
-	// Envoi du mail
-	$to = $tomail;
-	$from = '"' . $from . '"' . ' <'.$from_mail.'>';
-	$subject = $subject;
-	$content = $tpl;
 	
-	$headers = 'From: '. $from . "\n";
-	$headers .= 'Reply-to: '. $from . "\n";
-	$headers .= 'MIME-Version: 1.0' . "\n";
-	$headers .= 'Return-Path: <'.$from_mail.'>' . "\n";
-	$headers .= 'Content-type: text/html; charset=utf-8' . "\n";
-	$headers .= 'X-Sender: <monsite.com>' ." \n";
-	$headers .= 'X-Mailer: PHP/'.phpversion() . "\n";
+	//------------------------------------------------------
+	//VARIABLES
+	//------------------------------------------------------
+	$email_expediteur=$email_expe;
+	//$email_reply=$email_expe;
+	//$message_text='Bonjour'."\n\n".'Voici un message au format texte';
 	
-	if(mail($to, $subject, $content, $headers)) {
+	$destinataire=$email_desti;
+	$sujet=$subject;
+	
+	$message_html=$text;
+	
+	
+	//------------------------------------------------------
+	//FRONTIERE
+	//------------------------------------------------------
+	$frontiere=md5(uniqid(mt_rand()));
+	
+	
+	//------------------------------------------------------
+	//HEADERS DU MAIL
+	//------------------------------------------------------
+	$headers = 'From: "'.$name_expe.'" <'.$email_expediteur.'>'."\n";
+	$headers .= 'Return-Path: <'.$email_reply.'>'."\n";
+	$headers .= 'MIME-Version: 1.0'."\n"; 
+	$headers .= 'Content-Type: multipart/mixed; boundary="'.$frontiere.'"';
+	/*
+	//------------------------------------------------------
+	//MESSAGE TEXTE
+	//------------------------------------------------------
+	$message = 'This is a multi-part message in MIME format.'."\n\n";
+	
+	$message .='--'.$frontiere."\n";
+	$message .= 'Content-Type: text/plain; charset="iso-8859-1"'."\n";
+	$message .= 'Content-Transfer-Encoding: 8bit'."\n\n";
+	$message .= $message_text."\n\n";
+	*/
+	//------------------------------------------------------
+	//MESSAGE HTML
+	//------------------------------------------------------
+	$message .='--'.$frontiere."\n";
+	
+	$message .= 'Content-Type: text/html; charset="iso-8859-1"'."\n";
+	$message .= 'Content-Transfer-Encoding: 8bit'."\n\n";
+	$message .= $message_html."\n\n";
+	/*
+	//------------------------------------------------------
+	//PIECE JOINTE
+	//------------------------------------------------------
+	$message .='--'.$frontiere."\n";
+	
+	$message .= 'Content-Type: image/jpeg; name="image.jpg"'."\n";
+	$message .= 'Content-Transfer-Encoding: base64'."\n";
+	$message .= 'Content-Disposition:attachement; filename="image.jpg"'."\n\n";
+	 
+	$message .= chunk_split(base64_encode(file_get_contents('image.jpg')))."\n";
+	*/
+	//------------------------------------------------------
+	//ENVOI DU MAIL
+	//------------------------------------------------------
+	if(mail($destinataire, $sujet, $message, $headers))
+	{
 		return true;
 	}
+	else
+	{
+		return false;
+	}
 }
+/*
+function upload_image($_POST) {
+	$valid_exts = array('jpeg', 'jpg', 'png', 'gif');
+	$max_file_size = 100000 * 1024; #200kb
+	$nwLR = $nhLR = 200; # image with # height LR
+	//$nwHR = $nhHR = 600; # image with # height HR
+	
+	if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+		if ( isset($_FILES['image']) ) {
+			if (! $_FILES['image']['error'] && $_FILES['image']['size'] < $max_file_size) {
+				$ext = strtolower(pathinfo($_FILES['image']['name'], PATHINFO_EXTENSION));
+				$file = md5(uniqid(rand(), true));
+	
+				if (in_array($ext, $valid_exts)) {
+						$pathLR = '../photos/LR/' . $file . '.' . $ext;
+						//$pathHR = '../photos/HR/' . $file . '.' . $ext;
+						$size = getimagesize($_FILES['image']['tmp_name']);
+	
+						$x = (int) $_POST['x'];
+						$y = (int) $_POST['y'];
+						$w = (int) $_POST['w'] ? $_POST['w'] : $size[0];
+						$h = (int) $_POST['h'] ? $_POST['h'] : $size[1];
+	
+						$data = file_get_contents($_FILES['image']['tmp_name']);
+						$vImg = imagecreatefromstring($data);
+						$dstImgLR = imagecreatetruecolor($nwLR, $nhLR);
+						//$dstImgHR = imagecreatetruecolor($nwHR, $nhHR);
+						imagecopyresampled($dstImgLR, $vImg, 0, 0, $x, $y, $nwLR, $nhLR, $w, $h);
+						//imagecopyresampled($dstImgHR, $vImg, 0, 0, $x, $y, $nwHR, $nhHR, $w, $h);
+						imagejpeg($dstImgLR, $pathLR);
+						//imagejpeg($dstImgHR, $pathHR);
+						imagedestroy($dstImgLR);
+						//imagedestroy($dstImgHR);
+	
+						//echo "<img src='$pathLR' /><br/>";
+						//echo "<img src='$pathHR' />";
+			
+						
+						/*
+						insert_post($file, $ext);
+						
+						$postid = recup_postid($file, $ext);
+	
+						if($_POST["descr"]!='')
+						{
+						insert_descr($postid->POS_ID, $_POST["descr"]);	
+						}				
+						*//*
+						header("location:");
+	
+						
+					} else {
+						echo 'unknown problem!';
+					} 
+			} else {
+				echo 'file is too small or large';
+			}
+		} else {
+			echo 'file not set';
+		}
+	} else {
+		echo 'bad request!';
+	}
 
-
-
-
+}
+*/
 
 
 

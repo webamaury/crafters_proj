@@ -11,7 +11,7 @@
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="index.php"><span class="glyphicon glyphicon-home"></span> Accueil</a></li>
+            <li><a href="index.php"><span class="glyphicon glyphicon-home"></span> Home</a></li>
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-list"></span> Modules <span class="caret"></span></a>
               <ul class="dropdown-menu" role="menu">
@@ -30,7 +30,11 @@
               </ul>
             </li>
             <?php echo (_DEBUG == true) ? '<li><a href="index.php?module=traces" target="_blank"><span class="glyphicon glyphicon-file"></span> Trace</a></li>' : '' ; ?>
-            <li><a href="index.php?module=admin_users&display=fiche&id=<?php echo $_SESSION['ADMIN-USER']['id'] ; ?>"><span class="glyphicon glyphicon-user"></span> Profile</a></li>
+            <li>
+            	<a href="index.php?module=adminUsers&amp;action=form&amp;id=<?php echo $_SESSION['ADMIN-USER']['id'] ; ?>">
+	            	<img class="avatar_header" src="<?php echo (file_exists(_ADMIN_PATH . 'img/photo_' . $_SESSION['ADMIN-USER']['id'] . '.jpg')) ? _ADMIN_PATH . 'img/photo_' . $_SESSION['ADMIN-USER']['id'] . '.jpg' : _ADMIN_PATH . 'img/avatar.jpg' ; ?>" alt="avatar"/> <?php echo $_SESSION['ADMIN-USER']['firstname'] ; ?>
+	            </a>
+	        </li>
             <li><a href="index.php?action=logout"><span class="glyphicon glyphicon-off"></span> Logout</a></li>
             <?php include_once(_APP_PATH . "views/includes_admin/modal_conf.inc.php"); ?>
           </ul>

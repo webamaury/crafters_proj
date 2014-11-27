@@ -9,6 +9,7 @@ require_once(_APP_PATH . 'models/config.php');
 ##	NOM DE SESSION						##
 ##############################################################
 DEFINE('_SES_NAME', 'nomduprojet_admin');
+DEFINE('_SITE_NAME', 'Nom du site');
 
 ##############################################################
 ##	RECUPERATION DE LA PAGE ACTUELLE						##
@@ -26,10 +27,12 @@ require_once(_WWW_PATH . 'tools/array/array.tools.php');
 $connexion = new PDO ('mysql:host='._DB_HOST.';port='._DB_PORT.';dbname='._DB_NAME, _DB_USER, _DB_PASS);
 $connexion->exec("SET CHARACTER SET utf8");
 
-require_once(_APP_PATH . 'models/lib.sql.php'); //connection(_DB_HOST, _DB_PORT, _DB_NAME, _DB_USER, _DB_PASS); 
-require_once(_APP_PATH . 'models/lib.session.php'); session(); 
-require_once(_APP_PATH . 'models/lib.function.php'); 
+//require_once(_APP_PATH . 'models/lib.sql.php'); //connection(_DB_HOST, _DB_PORT, _DB_NAME, _DB_USER, _DB_PASS); 
+//require_once(_APP_PATH . 'models/lib.session.php'); session(); 
+require_once(_APP_PATH . 'models/lib.function.php');
 
+require_once(_APP_PATH . 'models/class.session.php'); $session = new Session();
+require_once(_APP_PATH . 'models/class.admin_adminUsers.php'); $user = new classAdminUsers();
 //var_dump($_COOKIE);
 
 ##############################################################
@@ -56,9 +59,13 @@ elseif ($config->site_maintenance == 0 && $current_page == 'index.php?module=mai
 ##############################################################
 if ((isset($_POST['action']) && $_POST['action'] == 'login') || (isset($_POST['subaction']) && $_POST['subaction'] == 'login'))
 {
-	attempt_admin_login($_POST['mail'], md5($_POST['password']));
+	
+	$user->mail = $_POST['mail'];
+	$user->password = md5($_POST['password']);
+	
+	$user->login();
 
-	if (is_admin_authed())
+	if ($user->is_authed())
 	{
 		header('Location: index.php');
 		exit();
@@ -76,7 +83,7 @@ if ((isset($_POST['action']) && $_POST['action'] == 'login') || (isset($_POST['s
 ##############################################################
 if (isset($_GET['action']) && $_GET['action'] == 'logout')
 {
-	destroy_admin_session();
+	$user->logout();
 	header('Location: index.php');
 	exit();
 }
@@ -84,8 +91,8 @@ if (isset($_GET['action']) && $_GET['action'] == 'logout')
 ##############################################################
 ## TEST DE SESSION											##
 ##############################################################
-$pages_allowed_without_session = array('index.php?module=login', 'password.retrieve.php' );
-if (!is_admin_authed() && !in_array( $current_page, $pages_allowed_without_session))
+$pages_allowed_without_session = array('index.php?module=login');
+if (!$user->is_authed() && !in_array( $current_page, $pages_allowed_without_session))
 {
 	header('Location: index.php?module=login');
 	exit();

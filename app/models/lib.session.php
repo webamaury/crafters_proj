@@ -73,6 +73,7 @@ function attempt_admin_login($mail, $password) {
 			$_SESSION["ADMIN-USER"]["authed"] 		= $session_authed;
 			$_SESSION["ADMIN-USER"]["id"] 			= $accounts[0]->id;
 			$_SESSION["ADMIN-USER"]["mail"] 		= $accounts[0]->mail;
+			$_SESSION["ADMIN-USER"]["password"] 	= $accounts[0]->password;
 			$_SESSION["ADMIN-USER"]["firstname"] 	= $accounts[0]->firstname;
 			$_SESSION["ADMIN-USER"]["name"] 		= $accounts[0]->name;
 			$_SESSION["ADMIN-USER"]["statut"] 		= $accounts[0]->statut;

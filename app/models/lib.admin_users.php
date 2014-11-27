@@ -34,9 +34,9 @@ function create_admin($mail, $firstname, $name, $phone, $statut) {
 	$cursor->bindValue(':phone', $phone, PDO::PARAM_STR);
 	$cursor->bindValue(':statut', $statut, PDO::PARAM_INT);
 
-	$cursor->execute();
+	$return = $cursor->execute();
 	$cursor->closeCursor();
-	return true ;
+	return $return ;
 }
 
 function update_admin($mail, $firstname, $name, $phone, $id) {
@@ -58,9 +58,9 @@ function update_admin($mail, $firstname, $name, $phone, $id) {
 	$cursor->bindValue(':phone', $phone, PDO::PARAM_STR);
 	$cursor->bindValue(':id', $id, PDO::PARAM_STR);
 
-	$cursor->execute();
+	$return = $cursor->execute();
 	$cursor->closeCursor();
-	return true ;
+	return $return ;
 }
 
 function delete_admin($id) {
