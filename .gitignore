@@ -1,0 +1,3 @@
+*.tmp
+app/models/connect.php
+.DS_Store

@@ -1,0 +1,36 @@
+body {
+padding-top: 70px;
+padding-bottom: 30px;
+}
+/*****************************************
+** INIT				 					**
+*****************************************/
+textarea {
+	resize:none;
+}
+
+/*****************************************
+** GÉNÉRAL			 					**
+*****************************************/
+.colum_action {
+	width:120px;
+	text-align: center;
+}
+.margin-top-20 {
+	margin-top: 20px;
+}
+
+/*****************************************
+** PAGE ADMIN INDEX 					**
+*****************************************/
+a, a:hover {
+	text-decoration: none;
+}
+#admin_index .modules_button .thumbnail span {
+	font-size: 50px;
+	margin-top: 15px;
+}
+#admin_index .modules_button .thumbnail h3 {
+	margin-top: 10px;
+	line-height: 0.6;
+}
