@@ -8,6 +8,7 @@ error_reporting(E_ALL);
 DEFINE('_ADMIN_PATH', '');
 DEFINE('_APP_PATH', '../app/');
 DEFINE('_WWW_PATH', '../www/');
+DEFINE('_CORE_PATH', '../core/');
 
 ##############################################################
 ##	INIT													##
@@ -16,8 +17,6 @@ require_once(_APP_PATH . 'config/admin_init.php');
 
 require_once _APP_PATH . 'models/class.notices.php';
 $notices = new classNotices();
-
-session_name(_SES_NAME);
 
 //Dispatching des modules
 if (isset($_GET['module'])) 

@@ -1,11 +1,7 @@
 <?php
-include_once _APP_PATH . 'models/class.sql.php';
-
-class classAdminUsers extends classSql {
-	
-	function __construct() {
-	}
-	
+//parent::__construct()
+class classAdminUsers extends CoreModels {
+		
 	function login() {
 
 		$accounts = $this->get_array_from_query("SELECT * FROM " . _TABLE__ADMIN_USERS . " WHERE mail = :mail AND password = :mdp", 
@@ -74,11 +70,8 @@ class classAdminUsers extends classSql {
 	}
 	function get_one_array() {
 		$query = "SELECT U.id, U.firstname, U.name, U.mail, U.phone, S.nom FROM " . _TABLE__ADMIN_USERS . " as U," . _TABLE__ADMIN_STATUTS . " as S WHERE U.id = :id AND S.type = 'admin' AND S.statut = U.statut";
-	
-		global $connexion;
-	
-	
-		$cursor = $connexion->prepare($query);
+		
+		$cursor = $this->connexion->prepare($query);
 	
 		$cursor->bindValue(':id', $this->id, PDO::PARAM_INT);
 	
@@ -90,10 +83,11 @@ class classAdminUsers extends classSql {
 	
 		return $return[0] ;	
 	}
-	function get_list($orderby = 'id asc') {
-		$query = "SELECT id, firstname, name, mail FROM " . _TABLE__ADMIN_USERS . " ORDER BY " . $orderby;
+	function get_list() {
+		$orderby = 'id asc';
+		$this->query = "SELECT id, firstname, name, mail FROM " . _TABLE__ADMIN_USERS . " ORDER BY " . $orderby;
 			
-		$list = $this->select_no_param($query);
+		$list = $this->select_no_param();
 		
 		return $list ;
 	}
@@ -103,10 +97,8 @@ class classAdminUsers extends classSql {
 		(mail, password, firstname, name, phone, statut) 
 		VALUES 
 		(:mail, :password, :firstname, :name, :phone, :statut)";
-	
-		global $connexion;
-	
-		$cursor = $connexion->prepare($query);
+		
+		$cursor = $this->connexion->prepare($this->query);
 	
 		$cursor->bindValue(':mail', $this->mail, PDO::PARAM_STR);
 		$cursor->bindValue(':password', $this->password, PDO::PARAM_STR);
@@ -125,10 +117,8 @@ class classAdminUsers extends classSql {
 	
 		if($_SESSION['ADMIN-USER']['statut'] = 1) {
 			$query = "DELETE FROM nomduprojet_admin_users WHERE id = :id";
-			
-			global $connexion;
-	
-			$cursor = $connexion->prepare($query);
+				
+			$cursor = $this->connexion->prepare($query);
 	
 			$cursor->bindValue(':id', $this->id, PDO::PARAM_INT);
 			$cursor->execute();
@@ -145,10 +135,8 @@ class classAdminUsers extends classSql {
 		phone = :phone,
 		statut = :statut 
 		WHERE id = :id";
-		
-		global $connexion;
-			
-		$cursor = $connexion->prepare($query);
+					
+		$cursor = $this->connexion->prepare($query);
 			
 		$cursor->bindValue(':mail', $this->mail, PDO::PARAM_STR);
 		$cursor->bindValue(':firstname', $this->firstname, PDO::PARAM_STR);
@@ -166,10 +154,8 @@ class classAdminUsers extends classSql {
 		$query = "UPDATE " . _TABLE__ADMIN_USERS . " 
 		SET password = :password
 		WHERE id = :id";
-
-		global $connexion;
 			
-		$cursor = $connexion->prepare($query);
+		$cursor = $this->connexion->prepare($query);
 			
 		$cursor->bindValue(':password', $this->password, PDO::PARAM_STR);
 		$cursor->bindValue(':id', $this->id, PDO::PARAM_INT);
