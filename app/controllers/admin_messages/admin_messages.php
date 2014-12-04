@@ -8,14 +8,14 @@
 			$messages = new classMessages();
 			
 			if(isset($_GET['action']) && $_GET['action'] == "delete") {
-				$adminUsers->id = $_GET['id'];
-				if($adminUsers->delete_admin()) {
+				$messages->message_id = $_GET['message_id'];
+				if($messages->delete_admin()) {
 					$notices->create_notice('success', 'Admin deleted');
-					header('location:index.php?module=adminUsers');exit();
+					header('location:index.php?module=messages');exit();
 				}
 				else {
 					$notices->create_notice('danger', 'Impossible to delete !');
-					header('location:index.php?module=adminUsers');exit();
+					header('location:index.php?module=messages');exit();
 				}
 			}
 			else if(isset($_POST['action']) && $_POST['action'] == "send_mail") {
@@ -32,31 +32,22 @@
 			
 				if(send_mail($tpl, $_SESSION['ADMIN-USER']['firstname'].$_SESSION['ADMIN-USER']['name'], $_SESSION['ADMIN-USER']['mail'], $_POST['input_mail'], $_POST['subject'])) {
 					$notices->create_notice('success', 'Message sent');
-					header('location:index.php?module=adminUsers');exit();
+					header('location:index.php?module=messages');exit();
 				}
 				else {
 					$notices->create_notice('danger', 'Error while sending the message !');
-					header('location:index.php?module=adminUsers');exit();
+					header('location:index.php?module=messages');exit();
 				}
 			}
 			else if(isset($_GET['action']) && $_GET['action'] == 'form') {
-				if((isset($_GET['id']) && $_GET['id'] == $_SESSION['ADMIN-USER']['id']) || (isset($_GET['id']) && $_SESSION['ADMIN-USER']['statut'] == 1)) {
-					$adminUsers->id = $_GET['id'];
-					$item = $adminUsers->get_one();
+					$messages->message_id = $_GET['id'];
+					$item = $messages->get_one();
+					//var_dump($item); exit();
 					if(empty($item)) {
-						$notices->create_notice('danger', 'Unknown user !');
-						header('location:index.php?module=adminUsers');exit();
+						$notices->create_notice('danger', 'Unknown message !');
+						header('location:index.php?module=messages');exit();
 					}
-					else if ($_SESSION['ADMIN-USER']['statut'] == $item->statut && $_SESSION['ADMIN-USER']['id'] != $item->id) {
-						$notices->create_notice('danger', 'Impossible action bis !');
-						header('location:index.php?module=adminUsers');exit();					
-					}
-				}
-				else if (isset($_GET['id'])) {
-						$notices->create_notice('danger', 'Impossible action !');
-						header('location:index.php?module=adminUsers');exit();					
-				}
-				$statuts = $adminUsers->get_statuts();
+					$statuts = $messages->get_statuts();
 
 				##############################################################
 				##	APPEL TOOLS												##
@@ -73,7 +64,7 @@
 				##############################################################
 				##	VUE														##
 				##############################################################
-				include_once('../app/views/admin_admin_users/form.php');
+				include_once('../app/views/admin_messages/form.php');
 			}
 			else if((!isset($_GET['action']) && !isset($_POST['action'])) || (isset($_GET['action']) && $_GET['action'] == 'list')) {
 				$items = $messages->get_list();

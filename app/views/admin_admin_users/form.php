@@ -82,7 +82,7 @@
 				</div>
 			</div>
 			<div class="form-group">
-				<label for="mail" class="col-md-2 control-label">Statut</label>
+				<label for="statut" class="col-md-2 control-label">Statut</label>
 				<div class="col-lg-10 col-md-8">
 					<?php if(($_SESSION['ADMIN-USER']['statut'] == 1 && isset($item->statut) && $item->statut != 1) || (!isset($item->statut))){ ?>
 					<select name="statut" class="form-control">

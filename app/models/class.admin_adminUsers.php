@@ -93,7 +93,7 @@ class classAdminUsers extends CoreModels {
 	}
 	
 	function create_admin() {
-		$query = "INSERT INTO nomduprojet_admin_users 
+		$query = "INSERT INTO " . _TABLE__ADMIN_USERS . " 
 		(mail, password, firstname, name, phone, statut) 
 		VALUES 
 		(:mail, :password, :firstname, :name, :phone, :statut)";
