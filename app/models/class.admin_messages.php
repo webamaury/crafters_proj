@@ -4,6 +4,7 @@ class classMessages extends CoreModels {
 		
 	function get_one() {
 		$query = "SELECT M.message_id, M.message_firstname, M.message_name, M.message_mail, M.message_title, M.message_message, M.message_creation, S.nom, S.statut FROM " . _TABLE__MESSAGE . " as M," . _TABLE__ADMIN_STATUTS . " as S WHERE M.message_id = :id AND S.type = 'message' AND S.statut = M.message_status";
+		
 	
 		$champs = ':id';
 		$values = $this->message_id; 
@@ -36,15 +37,15 @@ class classMessages extends CoreModels {
 	}
 	
 	
-	function delete_admin() {
-		$admin = $this->get_one();
+	function delete_message() {
+		$messages = $this->get_one();
 	
 		if($_SESSION['ADMIN-USER']['statut'] = 1) {
-			$query = "DELETE FROM nomduprojet_admin_users WHERE id = :id";
-				
+			$query = "DELETE FROM " . _TABLE__MESSAGE . " WHERE message_id = :id";
+		
 			$cursor = $this->connexion->prepare($query);
 	
-			$cursor->bindValue(':id', $this->id, PDO::PARAM_INT);
+			$cursor->bindValue(':id', $this->message_id, PDO::PARAM_INT);
 			$cursor->execute();
 			$cursor->closeCursor();
 			return true ;

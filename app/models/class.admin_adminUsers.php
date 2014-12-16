@@ -116,7 +116,7 @@ class classAdminUsers extends CoreModels {
 		$admin = $this->get_one();
 	
 		if($_SESSION['ADMIN-USER']['statut'] = 1) {
-			$query = "DELETE FROM nomduprojet_admin_users WHERE id = :id";
+			$query = "DELETE FROM " . _TABLE__ADMIN_USERS . " WHERE id = :id";
 				
 			$cursor = $this->connexion->prepare($query);
 	

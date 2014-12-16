@@ -8,9 +8,9 @@
 			$messages = new classMessages();
 			
 			if(isset($_GET['action']) && $_GET['action'] == "delete") {
-				$messages->message_id = $_GET['message_id'];
-				if($messages->delete_admin()) {
-					$notices->create_notice('success', 'Admin deleted');
+				$messages->message_id = $_GET['id'];
+				if($messages->delete_message()) {
+					$notices->create_notice('success', 'Message deleted');
 					header('location:index.php?module=messages');exit();
 				}
 				else {

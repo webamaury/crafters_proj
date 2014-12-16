@@ -77,7 +77,7 @@ class CoreModels {
 		$cursor->setFetchMode(PDO::FETCH_OBJ);		
 		$return=$cursor->fetchAll();
 		$cursor->closeCursor();
-	
+
 		return $return[0] ;	
 	}
 }
