@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+
+	<title>Class SSP</title>
+
+	<link rel="stylesheet" href="resources/style.css?331665766">
+
+</head>
+
+<body>
+<div id="left">
+	<div id="menu">
+		<a href="index.html" title="Overview"><span>Overview</span></a>
+
+
+		<div id="groups">
+		</div>
+
+
+
+		<div id="elements">
+			<h3>Classes</h3>
+			<ul>
+				<li><a href="class-adminUsersController.html">adminUsersController</a></li>
+				<li><a href="class-classAdminUsers.html">classAdminUsers</a></li>
+				<li><a href="class-classMessages.html">classMessages</a></li>
+				<li><a href="class-classNotices.html">classNotices</a></li>
+				<li><a href="class-CoreModels.html">CoreModels</a></li>
+				<li><a href="class-indexController.html">indexController</a></li>
+				<li><a href="class-loginController.html">loginController</a></li>
+				<li><a href="class-messagesController.html">messagesController</a></li>
+				<li><a href="class-Session.html">Session</a></li>
+				<li class="active"><a href="class-SSP.html">SSP</a></li>
+			</ul>
+
+
+
+
+
+			<h3>Functions</h3>
+			<ul>
+				<li><a href="function-array_sort_by_column.html">array_sort_by_column</a></li>
+				<li><a href="function-clear_notice.html">clear_notice</a></li>
+				<li><a href="function-create_notice.html">create_notice</a></li>
+				<li><a href="function-display_notice.html">display_notice</a></li>
+				<li><a href="function-load_css.html">load_css</a></li>
+				<li><a href="function-load_modules.html">load_modules</a></li>
+				<li><a href="function-load_tools.html">load_tools</a></li>
+				<li><a href="function-send_mail.html">send_mail</a></li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+<div id="splitter"></div>
+
+<div id="right">
+<div id="rightInner">
+	<form id="search">
+		<input type="hidden" name="cx" value="">
+		<input type="hidden" name="ie" value="UTF-8">
+		<input type="text" name="q" class="text" placeholder="Search">
+	</form>
+
+	<div id="navigation">
+		<ul>
+			<li>
+				<a href="index.html" title="Overview"><span>Overview</span></a>
+			</li>
+			<li class="active">
+<span>Class</span>			</li>
+		</ul>
+		<ul>
+			<li>
+				<a href="tree.html" title="Tree view of classes, interfaces, traits and exceptions"><span>Tree</span></a>
+			</li>
+		</ul>
+		<ul>
+		</ul>
+	</div>
+
+<div id="content" class="class">
+	<h1>Class SSP</h1>
+
+
+	<div class="description">
+	
+
+	</div>
+
+
+
+
+
+
+
+
+
+	<div class="info">
+		
+		
+		
+		
+
+		<b>Located at</b> <a href="source-class-SSP.html#26-389" title="Go to source code">www/tools/plugin_jquery/DataTables-1.10.3/examples/server_side/scripts/ssp.class.php</a><br>
+	</div>
+
+
+
+	<table class="summary methods" id="methods">
+	<caption>Methods summary</caption>
+	<tr data-order="data_output" id="_data_output">
+
+		<td class="attributes"><code>
+			 public static
+
+			array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_data_output">#</a>
+		<code><a href="source-class-SSP.html#27-57" title="Go to source code">data_output</a>( <span>array <var>$columns</var></span>, <span>array <var>$data</var></span> )</code>
+
+		<div class="description short">
+			<p>Create the data output array for the DataTables rows</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Create the data output array for the DataTables rows</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$columns</var></dt>
+					<dd>Column information array
+</dd>
+					<dt><var>$data</var></dt>
+					<dd>Data from the SQL get
+</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>array</code><br>Formatted data in a row based format
+
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="limit" id="_limit">
+
+		<td class="attributes"><code>
+			 public static
+
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_limit">#</a>
+		<code><a href="source-class-SSP.html#60-78" title="Go to source code">limit</a>( <span>array <var>$request</var></span>, <span>array <var>$columns</var></span> )</code>
+
+		<div class="description short">
+			<p>Paging</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Paging</p>
+
+<p>Construct the LIMIT clause for server-side processing SQL query</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$request</var></dt>
+					<dd>Data sent to server by DataTables
+</dd>
+					<dt><var>$columns</var></dt>
+					<dd>Column information array
+</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string</code><br>SQL limit clause
+
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="order" id="_order">
+
+		<td class="attributes"><code>
+			 public static
+
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_order">#</a>
+		<code><a href="source-class-SSP.html#81-119" title="Go to source code">order</a>( <span>array <var>$request</var></span>, <span>array <var>$columns</var></span> )</code>
+
+		<div class="description short">
+			<p>Ordering</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Ordering</p>
+
+<p>Construct the ORDER BY clause for server-side processing SQL query</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$request</var></dt>
+					<dd>Data sent to server by DataTables
+</dd>
+					<dt><var>$columns</var></dt>
+					<dd>Column information array
+</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string</code><br>SQL order by clause
+
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="filter" id="_filter">
+
+		<td class="attributes"><code>
+			 public static
+
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_filter">#</a>
+		<code><a href="source-class-SSP.html#122-191" title="Go to source code">filter</a>( <span>array <var>$request</var></span>, <span>array <var>$columns</var></span>, <span>array <var>&amp; $bindings</var></span> )</code>
+
+		<div class="description short">
+			<p>Searching / Filtering</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Searching / Filtering</p>
+
+<p>Construct the WHERE clause for server-side processing SQL query.</p>
+
+<p>NOTE this does not match the built-in DataTables filtering which does it
+word by word on any field. It's possible to do here performance on large
+databases would be very poor</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$request</var></dt>
+					<dd>Data sent to server by DataTables
+</dd>
+					<dt><var>$columns</var></dt>
+					<dd>Column information array
+</dd>
+					<dt><var>$bindings</var></dt>
+					<dd>&lt;p&gt;Array of values for PDO bindings, used in the
+   sql_exec() function&lt;/p&gt;
+</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string</code><br>SQL where clause
+
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="simple" id="_simple">
+
+		<td class="attributes"><code>
+			 public static
+
+			array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_simple">#</a>
+		<code><a href="source-class-SSP.html#194-250" title="Go to source code">simple</a>( <span>array <var>$request</var></span>, <span>array <var>$sql_details</var></span>, <span>string <var>$table</var></span>, <span>string <var>$primaryKey</var></span>, <span>array <var>$columns</var></span> )</code>
+
+		<div class="description short">
+			<p>Perform the SQL queries needed for an server-side processing requested,
+utilising the helper functions of this class, limit(), order() and
+filter() among others. The returned array is ready to be encoded as JSON
+in response to an SSP request, or can be modified if needed before
+sending back to the client.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Perform the SQL queries needed for an server-side processing requested,
+utilising the helper functions of this class, limit(), order() and
+filter() among others. The returned array is ready to be encoded as JSON
+in response to an SSP request, or can be modified if needed before
+sending back to the client.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$request</var></dt>
+					<dd>Data sent to server by DataTables
+</dd>
+					<dt><var>$sql_details</var></dt>
+					<dd>SQL connection details - see sql_connect()
+</dd>
+					<dt><var>$table</var></dt>
+					<dd>SQL table to query
+</dd>
+					<dt><var>$primaryKey</var></dt>
+					<dd>Primary key of the table
+</dd>
+					<dt><var>$columns</var></dt>
+					<dd>Column information array
+</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>array</code><br>Server-side processing response array
+
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="sql_connect" id="_sql_connect">
+
+		<td class="attributes"><code>
+			 public static
+
+			resource
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_sql_connect">#</a>
+		<code><a href="source-class-SSP.html#253-282" title="Go to source code">sql_connect</a>( <span>array <var>$sql_details</var></span> )</code>
+
+		<div class="description short">
+			<p>Connect to the database</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Connect to the database</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$sql_details</var></dt>
+					<dd>&lt;p&gt;SQL server connection details array, with the
+  properties:
+    * host - host name
+    * db   - database name
+    * user - user name
+    * pass - user password&lt;/p&gt;
+</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>resource</code><br>Database connection handle
+
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="sql_exec" id="_sql_exec">
+
+		<td class="attributes"><code>
+			 public static
+
+			array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_sql_exec">#</a>
+		<code><a href="source-class-SSP.html#285-323" title="Go to source code">sql_exec</a>( <span>resource <var>$db</var></span>, <span>array <var>$bindings</var></span>, <span>string <var>$sql</var> = <span class="php-keyword1">null</span> </span> )</code>
+
+		<div class="description short">
+			<p>Execute an SQL query on the database</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Execute an SQL query on the database</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$db</var></dt>
+					<dd>Database handler
+</dd>
+					<dt><var>$bindings</var></dt>
+					<dd>&lt;p&gt;Array of PDO binding values from bind() to be
+  used for safely escaping strings. Note that this can be given as the
+  SQL query string if no bindings are required.&lt;/p&gt;
+</dd>
+					<dt><var>$sql</var></dt>
+					<dd>SQL query to execute.
+</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>array</code><br>Result from the query (all rows)
+
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="fatal" id="_fatal">
+
+		<td class="attributes"><code>
+			 public static
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_fatal">#</a>
+		<code><a href="source-class-SSP.html#330-345" title="Go to source code">fatal</a>( <span>string <var>$msg</var></span> )</code>
+
+		<div class="description short">
+			<p>Throw a fatal error.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Throw a fatal error.</p>
+
+<p>This writes out an error message in a JSON string which DataTables will
+see and show to the user in the browser.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$msg</var></dt>
+					<dd>Message to send to the client
+</dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="bind" id="_bind">
+
+		<td class="attributes"><code>
+			 public static
+
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_bind">#</a>
+		<code><a href="source-class-SSP.html#347-368" title="Go to source code">bind</a>( <span>array <var>&amp; $a</var></span>, <span>* <var>$val</var></span>, <span>integer <var>$type</var></span> )</code>
+
+		<div class="description short">
+			<p>Create a PDO binding key which can be used for escaping variables safely
+when executing a query with sql_exec()</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Create a PDO binding key which can be used for escaping variables safely
+when executing a query with sql_exec()</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$a</var></dt>
+					<dd>$a    Array of bindings
+</dd>
+					<dt><var>$val</var></dt>
+					<dd>Value to bind
+</dd>
+					<dt><var>$type</var></dt>
+					<dd>PDO field type
+</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string</code><br><p>Bound key to be used in the SQL where this parameter
+  would be used.</p>
+
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="pluck" id="_pluck">
+
+		<td class="attributes"><code>
+			 public static
+
+			array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_pluck">#</a>
+		<code><a href="source-class-SSP.html#371-388" title="Go to source code">pluck</a>( <span>array <var>$a</var></span>, <span>string <var>$prop</var></span> )</code>
+
+		<div class="description short">
+			<p>Pull a particular property from each assoc. array in a numeric array,
+returning and array of the property values from each item.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Pull a particular property from each assoc. array in a numeric array,
+returning and array of the property values from each item.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$a</var></dt>
+					<dd>Array to get data from
+</dd>
+					<dt><var>$prop</var></dt>
+					<dd>Property to read
+</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>array</code><br>Array of property values
+
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+
+	<div id="footer">
+		 API documentation generated by <a href="http://apigen.org">ApiGen</a>
+	</div>
+</div>
+</div>
+<script src="resources/combined.js?721046668"></script>
+<script src="elementlist.js?4203193677"></script>
+</body>
+</html>

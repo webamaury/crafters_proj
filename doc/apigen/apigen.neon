@@ -1,0 +1,4 @@
+source:
+	- /Applications/MAMP/htdocs/crafters_proj
+	
+destination: /Applications/MAMP/htdocs/crafters_proj/doc/apigen
