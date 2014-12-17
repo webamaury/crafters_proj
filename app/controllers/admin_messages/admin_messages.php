@@ -18,27 +18,6 @@
 					header('location:index.php?module=messages');exit();
 				}
 			}
-			else if(isset($_POST['action']) && $_POST['action'] == "send_mail") {
-	
-				$tpl = file_get_contents(_APP_PATH . 'mail_templates/mails.header.htm');
-				$tpl .= file_get_contents(_APP_PATH . 'mail_templates/mails.contact.htm');
-				$tpl .= file_get_contents(_APP_PATH . 'mail_templates/mails.footer.htm');
-				
-				// On remplace les infos personnelles
-				$tpl = str_replace("%CONTENT%", 	stripslashes($_POST['content']),		 		$tpl);
-				$tpl = str_replace("%SITE_NAME%", 	_SITE_NAME, 									$tpl);
-			
-			
-			
-				if(send_mail($tpl, $_SESSION['ADMIN-USER']['firstname'].$_SESSION['ADMIN-USER']['name'], $_SESSION['ADMIN-USER']['mail'], $_POST['input_mail'], $_POST['subject'])) {
-					$notices->create_notice('success', 'Message sent');
-					header('location:index.php?module=messages');exit();
-				}
-				else {
-					$notices->create_notice('danger', 'Error while sending the message !');
-					header('location:index.php?module=messages');exit();
-				}
-			}
 			else if(isset($_GET['action']) && $_GET['action'] == 'form') {
 					$messages->message_id = $_GET['id'];
 					$item = $messages->get_one();
@@ -58,8 +37,8 @@
 				##############################################################
 				##	VARIABLES LAYOUT										##
 				##############################################################
-				DEFINE("_METATITLE", "Admin user");
-				DEFINE("_METADESCRIPTION", "Admin user");
+				DEFINE("_METATITLE", "Admin message");
+				DEFINE("_METADESCRIPTION", "Admin message");
 				
 				##############################################################
 				##	VUE														##
@@ -79,16 +58,19 @@
 				##############################################################
 				##	VARIABLES LAYOUT										##
 				##############################################################
-				DEFINE("_METATITLE", "Admin users");
-				DEFINE("_METADESCRIPTION", "Admin users");
+				DEFINE("_METATITLE", "Admin message");
+				DEFINE("_METADESCRIPTION", "Admin message");
 				
 				##############################################################
 				##	VUE														##
 				##############################################################
 				include_once('../app/views/admin_messages/display.php');
 			}
-			else {
-				
+			else if (isset($_POST['action']) && $_POST['action'] == 'ajax_display_message_fiche') {
+					$messages->message_id = $_POST['id'];
+					$ajax_item = $messages->get_one_array();
+					$ajax_item = json_encode($ajax_item);
+					echo $ajax_item;
 			}
 
 
