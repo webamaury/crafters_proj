@@ -30,9 +30,6 @@
 					<td><?php echo $item->message_title ; ?></td>
 					<td><?php echo substr($item->message_message, 0,100) ; ?> ...</td>
 					<td class="colum_action">
-						<a href="index.php?module=messages&amp;action=form&amp;id=<?php echo $item->message_id ; ?>" class="tips-trigger" data-toggle="tooltip" data-placement="bottom" title="More details">
-							<span class="glyphicon glyphicon-eye-open"></span>
-						</a>&nbsp;
 						<a href="#" onclick="return false" class="tips-trigger"  data-toggle="tooltip" data-placement="bottom" title="see details">
 							<span data-toggle="modal" data-target=".modal_fiche_message" data-id="<?php echo $item->message_id ; ?>" class="glyphicon glyphicon-eye-open modal-fiche-message-trigger"></span>
 						</a>&nbsp;
