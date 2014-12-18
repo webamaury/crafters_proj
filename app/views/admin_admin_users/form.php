@@ -20,7 +20,6 @@
 	
 	
 	
-	<?php echo $notices->display_notice(); $notices->clear_notice(); ?>
 	<form class="form-horizontal" method="post" enctype="multipart/form-data" action="index.php?module=adminUsers&action=form<?php echo (isset($_GET['id'])) ? '&id='.$_GET['id'] : '' ; ?>" role="form">
 		<div class="col-xs-12 col-md-6 margin-top-20 text-center">
 			<div class="col-xs-12">

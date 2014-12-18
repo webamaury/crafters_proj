@@ -1,4 +1,3 @@
-
 <?php include(_APP_PATH . "views/includes_admin/head.inc.php"); ?>
     <div class="container" role="main">
 
