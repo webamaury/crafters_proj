@@ -10,7 +10,7 @@
 ##############################################################################
 
 $module_details = array(
-	'name' 					=> 'Message', 
+	'name' 					=> 'Messages', 
 	'description' 			=> 'Manage messages',
 	'icon' 					=> 'glyphicon-envelope', 
 	'path' 					=> 'messages', 
