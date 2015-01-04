@@ -8,12 +8,13 @@ require_once(_APP_PATH . 'models/config.php');
 ##############################################################
 ##	NOM DE SESSION						##
 ##############################################################
-DEFINE('_SES_NAME', 'nomduprojet');
+DEFINE('_SES_NAME', 'TPVitrine_CG');
+DEFINE('_SITE_NAME', 'TPVitrine_CG');
 
 ##############################################################
 ##	RECUPERATION DE LA PAGE ACTUELLE						##
 ##############################################################
-$current_page = basename($_SERVER['SCRIPT_FILENAME']);
+$current_page = basename($_SERVER['REQUEST_URI']);
 
 ##############################################################
 ##	CHARGEMENT DES TABLEAUX TOOLS							##
@@ -23,53 +24,9 @@ require_once(_WWW_PATH . 'tools/array/array.tools.php');
 ##############################################################
 ##	APPELS CLASS											##
 ##############################################################
-require_once(_APP_PATH . 'models/class.sql.php'); $sql = new Sql(); 
-require_once(_APP_PATH . 'models/class.session.php'); $session = new Session(); 
+require_once _APP_PATH . 'models/class.notices.php'; $notices = new classNotices();
+require_once(_CORE_PATH . 'coreModels.php'); new CoreModels();
 
-//var_dump($_COOKIE);
+require_once(_APP_PATH . 'models/lib.function.php');
 
-/*
-##############################################################
-## GESTION DE LA MAINTENANCE								##
-##############################################################
-if ($config->site_maintenance == 1 && $current_page != 'index.php?module=maintenance')
-{
-	header('Location: index.php?module=maintenance');
-	exit();
-}
-elseif ($config->site_maintenance == 0 && $current_page == 'index.php?module=maintenance')
-{
-	header('Location: index.php');
-	exit();
-}
-
-##############################################################
-## OUVERTURE DE SESSION										##
-##############################################################
-if ((isset($_POST['action']) && $_POST['action'] == 'login') || (isset($_POST['subaction']) && $_POST['subaction'] == 'login'))
-{
-	$session->attempt_login($_POST['mail'], md5($_POST['password']));
-	if ($session->is_authed())
-	{
-		header('Location: index.php');
-		exit();
-	}
-	else
-	{
-		
-		header('Location: index.php?module=login');
-		exit();
-	}
-}
-
-##############################################################
-## FERMETURE DE SESSION										##
-##############################################################
-if (isset($_GET['action']) && $_GET['action'] == 'logout')
-{
-	$session->destroy_session();
-	header('Location: index.php');
-	exit();
-}
-*/
 ?>	

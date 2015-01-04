@@ -3,18 +3,21 @@
 ##	TRAITEMENT PHP											##
 ##############################################################
 
-
-
 ##############################################################
 ##	APPEL TOOLS												##
 ##############################################################
-$tools_to_load = array();
+$tools_to_load = array("bootstrap-css", "jquery", "bootstrap-js", "admin-script");
+$styles_to_load = array("style");
 
+##############################################################
+##	VARIABLES LAYOUT										##
+##############################################################
+DEFINE("_METATITLE", "Admin 404");
+DEFINE("_METADESCRIPTION", "Admin 404");
 
 ##############################################################
 ##	VUE														##
 ##############################################################
-include_once('../app/views/contact/display.php');
-
+include_once('../app/views/autres/404.php');
 
 ?>

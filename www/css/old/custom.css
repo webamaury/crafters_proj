@@ -1,0 +1,87 @@
+
+
+@font-face {
+    font-family: 'latolight';
+    src: url('../../fonts/lato-light-webfont.eot');
+    src: url('../../fonts/lato-light-webfont.eot?#iefix') format('embedded-opentype'),
+    url('../../fonts/lato-light-webfont.woff2') format('woff2'),
+    url('../../fonts/lato-light-webfont.woff') format('woff'),
+    url('../../fonts/lato-light-webfont.ttf') format('truetype'),
+    url('../../fonts/lato-light-webfont.svg#latolight') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+body {background-color: #f8f8f8;
+    font-family: latolight;}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: latolight, "Times New Roman", Georgia, Serif;;
+}
+p, div {
+    font-family: "latolight", "Impact", Sans-Serif;
+}
+
+.btn-primary {background-color: #cdb9b6;
+              border-color: #cdb9b6;
+                color: white;}
+
+.btn-primary:hover {background-color: #a98c88;
+    border-color: #a98c88;
+    color: white;}
+.btn-primary:focus {background-color: #a98c88;
+    border-color: #a98c88;
+    color: white;}
+
+
+
+.small p {font-family: "latolight", sans-serif;}
+
+
+a {font-family: "Lato", sans-serif; color: black;}
+a:hover {color: black;}
+
+nav li{padding-top: 15px;}
+nav li a {color: white; text-transform: uppercase; }
+nav li a:hover {color: white;}
+
+.navbar a { font-weight: 100;}
+
+
+
+
+.login-or {
+    position: relative;
+    font-size: 18px;
+    color: #aaa;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+.span-or {
+    display: block;
+    position: absolute;
+    left: 50%;
+    top: -2px;
+    margin-left: -25px;
+    background-color: white;
+    width: 50px;
+    text-align: center;
+}
+.hr-or {
+    background-color: #cdcdcd;
+    height: 1px;
+    margin-top: 0px !important;
+    margin-bottom: 0px !important;
+}
+
+
+.new-signup a{text-transform: uppercase; color: white }
+
+
+.new-signup a:hover{
+    text-decoration: underline;
+    color: white
+}

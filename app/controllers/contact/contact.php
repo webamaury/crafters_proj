@@ -1,10 +1,8 @@
 <?php
-class indexController {
+class contactController {
 	
 	function __construct($array_tools, $notices) {
 
-	
-	
 		##############################################################
 		##	TRAITEMENT PHP											##
 		##############################################################
@@ -16,21 +14,14 @@ class indexController {
 		##############################################################
 		$tools_to_load = array();
 		
-		##############################################################
-		##	VARIABLES LAYOUT										##
-		##############################################################
-		DEFINE("_METATITLE", "Accueil");
-		DEFINE("_METADESCRIPTION", "Accueil");
-		
 		
 		##############################################################
 		##	VUE														##
 		##############################################################
-		include_once('../app/views/index/display.php');
-
-
+		include_once('../app/views/contact/display.php');
+		
 	}
-
 }
+
 
 ?>
