@@ -26,7 +26,7 @@ require_once(_WWW_PATH . 'tools/array/array.tools.php');
 ##############################################################
 require_once _APP_PATH . 'models/class.notices.php'; $notices = new classNotices();
 require_once(_CORE_PATH . 'coreModels.php'); new CoreModels();
-
+require_once(_CORE_PATH . 'coreControlers.php'); new CoreControlers();
 require_once(_APP_PATH . 'models/lib.function.php');
 
 ?>	
