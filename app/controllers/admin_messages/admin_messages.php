@@ -43,7 +43,7 @@
 				##############################################################
 				##	VUE														##
 				##############################################################
-				include_once('../app/views/admin_messages/form.php');
+				include_once( _APP_PATH . 'views/admin_messages/form.php');
 			}
 			else if((!isset($_GET['action']) && !isset($_POST['action'])) || (isset($_GET['action']) && $_GET['action'] == 'list')) {
 				$items = $messages->get_list();
@@ -64,7 +64,7 @@
 				##############################################################
 				##	VUE														##
 				##############################################################
-				include_once('../app/views/admin_messages/display.php');
+				include_once( _APP_PATH . 'views/admin_messages/display.php');
 			}
 			else if (isset($_POST['action']) && $_POST['action'] == 'ajax_display_message_fiche') {
 					$messages->message_id = $_POST['id'];

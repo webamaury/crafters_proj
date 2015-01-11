@@ -24,7 +24,7 @@
 		##############################################################
 		##	VUE														##
 		##############################################################
-		include_once('../app/views/admin_index/display.php');
+		include_once( _APP_PATH . 'views/admin_index/display.php');
 				
 		}
 		

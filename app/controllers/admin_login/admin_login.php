@@ -25,7 +25,7 @@ class loginController {
 		##############################################################
 		##	VUE														##
 		##############################################################
-		include_once('../app/views/admin_login/display.php');
+		include_once( _APP_PATH . 'views/admin_login/display.php');
 	
 	}
 }

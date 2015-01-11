@@ -112,7 +112,7 @@
 				##############################################################
 				##	VUE														##
 				##############################################################
-				include_once('../app/views/admin_admin_users/form.php');
+				include_once( _APP_PATH . 'views/admin_admin_users/form.php');
 			}
 			else if((!isset($_GET['action']) && !isset($_POST['action'])) || (isset($_GET['action']) && $_GET['action'] == 'list')) {
 				$items = $adminUsers->get_list();
@@ -133,7 +133,7 @@
 				##############################################################
 				##	VUE														##
 				##############################################################
-				include_once('../app/views/admin_admin_users/display.php');
+				include_once( _APP_PATH . 'views/admin_admin_users/display.php');
 			}
 			else if(isset($_POST['action']) && $_POST['action'] == 'ajax_display_admin_fiche') {
 					$adminUsers->id = $_POST['id'];

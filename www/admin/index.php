@@ -6,9 +6,9 @@ error_reporting(E_ALL);
 ##	CHEMINS													##
 ##############################################################
 DEFINE('_ADMIN_PATH', '');
-DEFINE('_APP_PATH', '../app/');
-DEFINE('_WWW_PATH', '../www/');
-DEFINE('_CORE_PATH', '../core/');
+DEFINE('_APP_PATH', '../../app/');
+DEFINE('_WWW_PATH', '../');
+DEFINE('_CORE_PATH', '../../core/');
 
 ##############################################################
 ##	INIT													##
