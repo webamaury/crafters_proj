@@ -28,7 +28,7 @@
 					<td><?php echo $item->message_firstname ; ?></td>
 					<td><?php echo $item->message_mail ; ?></td>
 					<td><?php echo $item->message_title ; ?></td>
-					<td><?php echo substr($item->message_message, 0,100) ; ?> ...</td>
+					<td><?php echo substr($item->message_message, 0,60) ; ?></td>
 					<td class="colum_action">
 						<a href="#" onclick="return false" class="tips-trigger"  data-toggle="tooltip" data-placement="bottom" title="see details">
 							<span data-toggle="modal" data-target=".modal_fiche_message" data-id="<?php echo $item->message_id ; ?>" class="glyphicon glyphicon-eye-open modal-fiche-message-trigger"></span>
