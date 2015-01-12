@@ -1,6 +1,6 @@
 <?php
 
-/*function load_css($styles_to_load) {
+function load_css($styles_to_load) {
 	$html_style = '';
 	foreach ($styles_to_load as $style_to_load) {
 		$html_style .= '
@@ -18,7 +18,7 @@ function load_tools($tools_to_load, $array_tools) {
 	}
 	return $html_tools;
 }
-*/
+
 function load_modules() {
 	$modules = array();
 
