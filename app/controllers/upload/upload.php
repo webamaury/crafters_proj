@@ -10,10 +10,10 @@ class uploadController extends CoreControlers {
 			$method = $_POST['action'];
 		}
 
-		$this->$method() ;
+		$this->$method($array_tools, $notices) ;
 	}
 	
-	function main() {
+	function main($array_tools, $notices) {
 	
 		##############################################################
 		##	TRAITEMENT PHP											##
@@ -24,7 +24,7 @@ class uploadController extends CoreControlers {
 		##############################################################
 		##	APPEL TOOLS												##
 		##############################################################
-		$tools_to_load = array();
+		$tools_to_load = array('bootstrap-css', 'font-awesome');
 		
 		##############################################################
 		##	VARIABLES LAYOUT										##
@@ -40,7 +40,7 @@ class uploadController extends CoreControlers {
 
 	}
 	
-	function upload_ajax() {
+	function upload_ajax($array_tools, $notices) {
 		if(!empty($_FILES['upload_file'])){
 			$max_size = 10000000 ;
 			$authorized_extension = array('jpg', 'jpeg', 'png');

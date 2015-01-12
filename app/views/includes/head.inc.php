@@ -11,14 +11,12 @@
 
     <link rel="icon" href="../../favicon.ico">
 
+	<?php echo $this->load_tools($tools_to_load, $array_tools) ; ?>
+
     <!-- Bootstrap core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/custom2.css" rel="stylesheet">
     <link href="css/old/custom.min.css" rel="stylesheet">
 
-
-    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
 
 
 
