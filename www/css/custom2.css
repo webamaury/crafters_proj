@@ -286,7 +286,7 @@ a {color: black;}
 .contact_bloc { margin-top: 50px;}
 
 
-.form-upload {width: 200px; margin-top: -10px; border-radius: 0px;}
+.form-upload {width: 200px; margin-top: -10px; border-radius: 0px; resize: none;}
 
 .form-upload-description {width: 200px; margin-top: -10px; border-radius: 0px; height: 70px;}
 

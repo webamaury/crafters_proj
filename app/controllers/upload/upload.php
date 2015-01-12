@@ -2,7 +2,6 @@
 class uploadController extends CoreControlers {
 	
 	function __construct($array_tools, $notices) {
-
 		if(!isset($_GET['action']) && !isset($_POST['action'])) {
 			$method = 'main' ;
 		}
@@ -44,7 +43,7 @@ class uploadController extends CoreControlers {
 	
 		############ Configuration ##############
 		$thumb_square_size 		= 360; //Thumbnails will be cropped to 360x360 pixels
-		$max_image_size 		= 500; //Maximum image size (height and width)
+		$max_image_size 		= 800; //Maximum image size (height and width)
 		$thumb_prefix			= "thumb_"; //Normal thumb Prefix
 		$destination_folder		= '/Applications/MAMP/htdocs/crafters_proj/www/uploads/'; //upload directory ends with / (slash)
 		$jpeg_quality 			= 90; //jpeg quality
@@ -78,8 +77,6 @@ class uploadController extends CoreControlers {
 			switch($image_type){
 				case 'image/png':
 					$image_res =  imagecreatefrompng($image_temp); break;
-				case 'image/gif':
-					$image_res =  imagecreatefromgif($image_temp); break;			
 				case 'image/jpeg': case 'image/pjpeg':
 					$image_res = imagecreatefromjpeg($image_temp); break;
 				default:
@@ -111,7 +108,7 @@ class uploadController extends CoreControlers {
 					/* We have succesfully resized and created thumbnail image
 					We can now output image to user's browser or store information in the database*/
 					echo '<div align="center">';
-					echo '<img src="uploads/'.$thumb_prefix . $new_file_name.'" alt="Thumbnail">';
+					echo '<img id="img_output" src="uploads/'.$thumb_prefix . $new_file_name.'" alt="Thumbnail">';
 					echo '</div>';
 				}
 				
@@ -121,6 +118,22 @@ class uploadController extends CoreControlers {
 		
 	}
 	
+	function submit_pay() {
+		
+	}
+	
+	function submit_save() {
+		var_dump($_POST);
+		include_once _APP_PATH . 'models/class.product.php';
+		$product = new classProduct();
+		
+		$product->name 			= $_POST['name'];
+		$product->descr 		= $_POST['description'];
+		$product->name = $_POST['name'];
+		$product->name = $_POST['name'];
+		$product->name = $_POST['name'];
+		
+	}
 }
 
 ?>

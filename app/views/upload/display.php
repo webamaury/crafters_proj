@@ -7,19 +7,18 @@
 
 <div class="container">
     <div class="row">
-         <div class="col-md-4 col-md-offset-2">
-           <h3 style="text-align: right" class="title_upload">UPLOAD YOUR AWESOME WORK</h3>
-             <form action="index.php?module=upload" method="post" class="form_upload_ajax" enctype="multipart/form-data" id="js-upload-form">
-                 <div class="form-inline">
-                     <a onclick="ga('send','event','Upload ACTION','Clique');" href="#"><div class="form-group">
-                             <input type="file" name="image_file" id="js-upload-files"/>
-                         </div></a>
-                     <button type="submit" class="btn btn-sm btn-danger" id="js-upload-submit">Upload files</button>
-                                      </div>
-                 <input type="hidden" name="action" value="upload_ajax"/>
-             </form>
-                <br/>
-                <br/>
+        <div class="col-md-4 col-md-offset-2">
+        	<h3 style="text-align: right" class="title_upload">UPLOAD YOUR AWESOME WORK</h3>
+            	<form action="index.php?module=upload" method="post" class="form_upload_ajax" enctype="multipart/form-data" id="js-upload-form">
+                	<div class="form-inline">
+	                    	<div class="form-group">
+                            	<input type="file" name="image_file" id="js-upload-files"/>
+                        	</div>
+						<button type="submit" class="btn btn-sm btn-danger" id="js-upload-submit">Upload file</button>
+                	</div>
+					<input type="hidden" name="action" value="upload_ajax"/>
+            	</form>
+             <br/>
              <br/>
 			 <img src="img/ajax-loader.gif" id="loading-img" style="display:none;" alt="Please Wait"/>
              <div id="output"></div>
@@ -28,55 +27,56 @@
         <div class="col-md-4">
             <h3 class="title_upload">WHAT IS IT ?</h3>
             <br/>
-                <div class="col-md-6">
-                    <form role="form">
-                        <div class="form-group">
-                            <a onclick="ga('send','event','Formulaire Infos','Clique');" href="#"><input type="text" placeholder="Name of your work" class="form-control form-upload"></a>
-                            <br/>
-                            <a onclick="ga('send','event','Formulaire Infos','Clique');" href="#"><input type="text" placeholder="Description" class="form-control form-upload-description"></a>
-                        </div>
-                    </form>
-                </div>
-            <div class="col-md-12">
-                <br/>
-                <span class="modalities">Can anyone can see your upload ?</span>
-                <br/>
-                <input type="radio" name="radio_dark" id="radio4" class="css-checkbox" checked="checked" />
-                <label for="radio4" class="css-label radGroup2">Public</label>
-                <input type="radio" name="radio_dark" id="radio5" class="css-checkbox" />
-                <label for="radio5" class="css-label radGroup2">Private</label>
-                <br/>
-            </div>
-            <div class="col-md-12">
-                <br/>
-                <span class="modalities">Choose your medium ?</span>
-                <br/>
-                <input type="radio" name="radiog_dark" id="radio4" class="css-checkbox" checked="checked" />
-                <label for="radio4" class="css-label2 radGroup2">Tattoo</label>
-                <input type="radio" name="radiog_dark" id="radio5" class="css-checkbox" />
-                <label for="radio5" class="css-label2 radGroup2">Stickers</label>
-            </div>
-            <div class="col-md-12">
-                <br/>
-                <span class="modalities">Choose your size</span>
-                <br/>
-                <div class="btn-group " role="group" aria-label="...">
-                    <button type="button" class="btn btn-default size">S</button>
-                    <button type="button" class="btn btn-default size">M</button>
-                    <button type="button" class="btn btn-default size">L</button>
-                </div>
-                <br/>
-                <br/>
-                <span class="modalities">How many ?</span>
-                <br/>
-                <input type="number" placeholder="Max: 1000" class="form-control form-quantity">
-            </div>
-            <div class="col-md-12">
-                <br/>
-                <btn class="btn btn-sm btn-danger"><a href="summary.php">Save and pay</a></btn>
-                <btn class="btn btn-sm btn-danger"><a href="dashboard.html">Just save</a></btn>
-            </div>
-
+            <form method="post" action="index.php?module=upload" role="form">
+	            <div class="col-md-6">
+	                <div class="form-group">
+	                    <input required type="text" placeholder="Name your work" name="name" class="form-control form-upload">
+	                    <br/>
+	                    <textarea name="description" rows="3" placeholder="Description" required class="form-control form-upload"></textarea>
+	                </div>
+	            </div>
+	            <div class="col-md-12">
+	                <span class="modalities">Can anyone can see your upload ?</span>
+	                <br/>
+	                <input type="radio" name="radio_public_private" value="1" id="radio4" class="css-checkbox" checked="checked"/>
+	                <label for="radio4" class="css-label radGroup2">Public</label>
+	                <input type="radio" name="radio_public_private" value="0" id="radio5" class="css-checkbox" />
+	                <label for="radio5" class="css-label radGroup2">Private</label>
+	                <br/>
+	            </div>
+	            <div class="col-md-12">
+	                <br/>
+	                <span class="modalities">Choose your medium ?</span>
+	                <br/>
+	                <input type="radio" name="radio_tatoo_stickers" value="tatoo" id="radio2" class="css-checkbox" checked="checked" />
+	                <label for="radio2" class="css-label2 radGroup2">Tattoo</label>
+	                <input type="radio" name="radio_tatoo_stickers" value="stickers" id="radio3" class="css-checkbox" />
+	                <label for="radio3" class="css-label2 radGroup2">Stickers</label>
+	            </div>
+	            <div class="col-md-12">
+	                <br/>
+	                <span class="modalities">Choose your size</span>
+	                <br/>
+	                <div class="btn-group " role="group" aria-label="...">
+	                    <button type="button" id="size_s" class="btn btn-default size">S</button>
+	                    <button type="button" id="size_m" class="btn btn-default size">M</button>
+	                    <button type="button" id="size_l" class="btn btn-default size">L</button>
+	                </div>
+	                <br/>
+	                <br/>
+	                <span class="modalities">How many ?</span>
+	                <br/>
+	                <input type="number" min="0" name="quantity" max="1000" placeholder="Max: 1000" class="form-control form-quantity">
+	            </div>
+	            <div class="col-md-12">
+	                <br/>
+	                <input type="hidden" name="img" id="img_url" value="" />
+	                <input type="hidden" name="size" id="product_size" value=""/>
+	                <input type="hidden" name="action" id="submit_action" value="" />
+	                <button type="submit" id="submit_pay" class="btn btn-sm btn-danger submit_form">Save and pay</button>
+	                <button type="submit" id="submit_save" class="btn btn-sm btn-danger submit_form">Just save</button>
+	            </div>
+            </form>
         </div>
     </div>
 
@@ -297,6 +297,21 @@
 <script type="text/javascript" src="tools/plugin_jquery/jquery.form.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function() { 
+	
+	$('.size').on("click", function(){
+		var size = $(this).attr('id');
+		$('#product_size').val(size);
+	});
+	$('.submit_form').on("click", function(){
+		if($('#img_url').val() == ''){
+			$('#output').html('no image to load!');
+			return false;
+		}
+		var val = $(this).attr('id');
+		$('#submit_action').val(val)
+	});
+	
+	
 	var options = { 
 			target: '#output',   // target element(s) to be updated with server response 
 			beforeSubmit: beforeSubmit,  // pre-submit callback 
@@ -316,6 +331,8 @@ function afterSuccess()
 {
 	$('#js-upload-submit').show(); //hide submit button
 	$('#loading-img').hide(); //hide submit button
+	var img_url = $('#img_output').attr('src'); //input type hidden img url
+	$('#img_url').val(img_url);
 
 }
 
