@@ -12,16 +12,17 @@
              <form action="index.php?module=upload" method="post" class="form_upload_ajax" enctype="multipart/form-data" id="js-upload-form">
                  <div class="form-inline">
                      <a onclick="ga('send','event','Upload ACTION','Clique');" href="#"><div class="form-group">
-                             <input type="file" name="upload_file" id="js-upload-files"/>
+                             <input type="file" name="image_file" id="js-upload-files"/>
                          </div></a>
                      <button type="submit" class="btn btn-sm btn-danger" id="js-upload-submit">Upload files</button>
-                 </div>
+                                      </div>
                  <input type="hidden" name="action" value="upload_ajax"/>
              </form>
                 <br/>
                 <br/>
              <br/>
-             <img src="illu/12.jpg" class="img-responsive">
+			 <img src="img/ajax-loader.gif" id="loading-img" style="display:none;" alt="Please Wait"/>
+             <div id="output"></div>
 
          </div>
         <div class="col-md-4">
@@ -293,35 +294,85 @@
 
 <script src="js/jquery-1.11.1.min.js"></script>
 <script src="js/bootstrap.js"></script>
-<script>
-	
-	
-	$(document).ready(function(){
-		/*$('.form_upload_ajax').on("submit", function(e) {
+<script type="text/javascript" src="tools/plugin_jquery/jquery.form.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function() { 
+	var options = { 
+			target: '#output',   // target element(s) to be updated with server response 
+			beforeSubmit: beforeSubmit,  // pre-submit callback 
+			success: afterSuccess,  // post-submit callback 
+			resetForm: true        // reset the form after successful submit 
+		}; 
+		
+	 $('#js-upload-form').submit(function(e) { 
 			e.preventDefault();
-			$.ajax({
-				// URL du traitement sur le serveur
-				url : 'index.php?module=upload',
-				//Type de requête
-				type: 'post',
-				//parametres envoyés
-				data: $(this).serialize(),
+			$(this).ajaxSubmit(options);  			
+			// always return false to prevent standard browser submit and page navigation 
+			return false; 
+		}); 
+}); 
+
+function afterSuccess()
+{
+	$('#js-upload-submit').show(); //hide submit button
+	$('#loading-img').hide(); //hide submit button
+
+}
+
+//function to check file size before uploading.
+function beforeSubmit(){
+    //check whether browser fully supports all File API
+   if (window.File && window.FileReader && window.FileList && window.Blob)
+	{
+		
+		if( !$('#js-upload-files').val()) //check empty input filed
+		{
+			$("#output").html("Are you kidding me?");
+			return false
+		}
+		
+		var fsize = $('#js-upload-files')[0].files[0].size; //get file size
+		var ftype = $('#js-upload-files')[0].files[0].type; // get file type
+		
+
+		//allow only valid image file types 
+		switch(ftype)
+        {
+            case 'image/png': case 'image/jpeg': case 'image/pjpeg':
+                break;
+            default:
+                $("#output").html("<b>"+ftype+"</b> Unsupported file type!");
+				return false
+        }
+		
+		//Allowed file size is less than 1 MB (1048576)
+		if(fsize>1048576) 
+		{
+			$("#output").html("<b>"+bytesToSize(fsize) +"</b> Too big Image file! <br />Please reduce the size of your photo using an image editor.");
+			return false
+		}
 				
-				dataType: 'json',
-				//on precise le type de flux
-				//Traitement en cas de succes
-				success: function(data) {
-					console.log("flux : " + data);
-					alert(data);
-				},
-				error: function(jqXHR, textStatus, errorThrown) {
-					console.log(textStatus + " " + errorThrown);
-					console.log("Erreur execution requete ajax");
-				}
-			});
-		});*/
-	});
-	
+		$('#js-upload-submit').hide(); //hide submit button
+		$('#loading-img').show(); //hide submit button
+		$("#output").html("");  
+	}
+	else
+	{
+		//Output error to older browsers that do not support HTML5 File API
+		$("#output").html("Please upgrade your browser, because your current browser lacks some new features we need!");
+		return false;
+	}
+}
+
+//function to format bites bit.ly/19yoIPO
+function bytesToSize(bytes) {
+   var sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB'];
+   if (bytes == 0) return '0 Bytes';
+   var i = parseInt(Math.floor(Math.log(bytes) / Math.log(1024)));
+   return Math.round(bytes / Math.pow(1024, i), 2) + ' ' + sizes[i];
+}
+
 </script>
+
 </body>
 </html>
