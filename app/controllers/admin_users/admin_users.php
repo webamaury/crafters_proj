@@ -46,7 +46,8 @@
 				$users->user_firstname 		= $_POST['firstname'];
 				$users->user_name 			= $_POST['name'];
 				$users->user_phone 			= $_POST['phone'];
-				if(isset($_POST['statut'])){ $users->user_status = $_POST['statut'];}else{$users->user_status = 1;}
+				$users->user_birthday		= $_POST['birthday'];
+				$users->user_status 		= $_POST['statut'];
 				
 	//						echo $_POST['statut']."<br>";
 	//						echo $adminUsers->statut ; exit();	

@@ -70,21 +70,23 @@ class classUsers extends CoreModels {
 	
 	function update_user() {
 		$query = "UPDATE " . _TABLE__USERS . " 
-		SET mail = :mail,
-		firstname = :firstname,
-		name = :name,
-		phone = :phone,
-		statut = :statut 
-		WHERE id = :id";
-					
+		SET user_mail = :mail,
+		user_firstname = :firstname,
+		user_name = :name,
+		user_phone = :phone,
+		user_birthday = :birthday,
+		user_status = :statut 
+		WHERE user_id = :id";
+		
 		$cursor = $this->connexion->prepare($query);
 			
-		$cursor->bindValue(':mail', $this->mail, PDO::PARAM_STR);
-		$cursor->bindValue(':firstname', $this->firstname, PDO::PARAM_STR);
-		$cursor->bindValue(':name', $this->name, PDO::PARAM_STR);
-		$cursor->bindValue(':phone', $this->phone, PDO::PARAM_STR);
-		$cursor->bindValue(':statut', $this->statut, PDO::PARAM_INT);
-		$cursor->bindValue(':id', $this->id, PDO::PARAM_INT);
+		$cursor->bindValue(':mail', $this->user_mail, PDO::PARAM_STR);
+		$cursor->bindValue(':firstname', $this->user_firstname, PDO::PARAM_STR);
+		$cursor->bindValue(':name', $this->user_name, PDO::PARAM_STR);
+		$cursor->bindValue(':phone', $this->user_phone, PDO::PARAM_STR);
+		$cursor->bindValue(':birthday', $this->user_birthday, PDO::PARAM_STR);
+		$cursor->bindValue(':statut', $this->user_status, PDO::PARAM_INT);
+		$cursor->bindValue(':id', $this->user_id, PDO::PARAM_INT);
 
 		$return = $cursor->execute();
 
