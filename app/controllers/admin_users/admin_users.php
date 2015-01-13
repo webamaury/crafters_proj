@@ -60,24 +60,6 @@
 					header('location:index.php?module=user&action=form&id='.$_GET['id']);exit();
 				}
 			}
-			else if(isset($_POST['action']) && $_POST['action'] == 'ajouter') {
-
-				$adminUsers->mail 			= $_POST['mail'];
-				$adminUsers->password 		= md5($_POST['password']);
-				$adminUsers->firstname 		= $_POST['firstname'];
-				$adminUsers->name 			= $_POST['name'];
-				$adminUsers->phone 			= $_POST['phone'];
-				$adminUsers->statut			= $_POST['statut'];				
-				
-				if($adminUsers->create_admin()) {
-					$notices->create_notice('success', 'Admin added');
-					header('location:index.php?module=adminUsers');exit();
-				}
-         		else {
-                	$notices->create_notice("danger", "error while adding new admin");
-                	header("location:index.php?module=adminUsers");
-                }
-			}
 			else if(isset($_GET['action']) && $_GET['action'] == 'form') {
 					$users->user_id = $_GET['id'];
 					$item = $users->get_one();
@@ -85,10 +67,7 @@
 						$notices->create_notice('danger', 'Unknown user !');
 						header('location:index.php?module=users');exit();
 					}
-					else if ($_SESSION['ADMIN-USER']['statut'] == $item->user_status && $_SESSION['ADMIN-USER']['id'] != $item->user_id) {
-						$notices->create_notice('danger', 'Impossible action bis !');
-						header('location:index.php?module=users');exit();					
-					}
+
 				$statuts = $users->get_statuts();
 
 				##############################################################
@@ -143,39 +122,6 @@
 						echo false;
 					}
 			}
-			else if(isset($_POST['action']) && $_POST['action'] == 'ajax_update_password') {
-					if($_SESSION['ADMIN-USER']['id'] == $_POST['admin°id']){
-						if($_POST['new_password'] == $_POST['confirm_password']) {
-							if($_SESSION['ADMIN-USER']['password'] == md5($_POST['current_password'])) {
-								$adminUsers->id = $_POST['admin_id'];
-								$adminUsers->password = md5($_POST['new_password']);
-								$myreturn = $adminUsers->update_password();
-								if($myreturn) {
-									$_SESSION['ADMIN-USER']['password'] = md5($_POST['new_password']);
-									echo true;
-								}
-								else {
-									echo "error_sql";
-								}
-							}
-							else {
-								echo "wrong_current";
-							}
-						}
-						else {
-							echo "wrong_confirm";
-						}
-					}
-					else {
-						echo "modif_impo";
-					}
-			}
-			else {
-				
-			}
-
-
-
 		}
 	}
 ?>

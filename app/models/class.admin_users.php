@@ -68,8 +68,8 @@ class classUsers extends CoreModels {
 			return true ;
 	}
 	
-	function update_admin() {
-		$query = "UPDATE " . _TABLE__ADMIN_USERS . " 
+	function update_user() {
+		$query = "UPDATE " . _TABLE__USERS . " 
 		SET mail = :mail,
 		firstname = :firstname,
 		name = :name,
@@ -95,8 +95,14 @@ class classUsers extends CoreModels {
 	function get_statuts() {
 		$query = "SELECT * FROM " . _TABLE__STATUTS . " WHERE type = 'user'";
 	
-		$list = $this->select_no_param($query);
+		$cursor = $this->connexion->prepare($query);
 	
+		$cursor->execute();
+	
+		$cursor->setFetchMode(PDO::FETCH_OBJ);		
+		$list=$cursor->fetchAll();
+		$cursor->closeCursor();
+
 		return $list ;
 	}
 

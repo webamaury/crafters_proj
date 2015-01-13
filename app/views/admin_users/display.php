@@ -4,7 +4,6 @@
 <div class="container" id="admin_users">
 	<div class="col-xs-12">
 	<h1 class="pull-left">Users</h1>
-	<a href="index.php?module=users&amp;action=form" class="btn btn-primary pull-right margin-top-20"><span class="glyphicon glyphicon-plus font-09em"></span> Add new</a>
 	</div>
 
 	<?php echo display_notice(); clear_notice(); ?>
@@ -29,9 +28,11 @@
 					<td><?php echo $item->user_name ; ?></td>
 					<td><?php echo $item->user_mail ; ?></td>
 					<td class="colum_action">
-						<a href="#" onclick="return false" class="tips-trigger" data-toggle="tooltip" data-placement="bottom" title="send a mail">
+						<!--
+<a href="#" onclick="return false" class="tips-trigger" data-toggle="tooltip" data-placement="bottom" title="send a mail">
 							<span data-toggle="modal" data-target=".modal_mail" data-mail="<?php echo $item->user_mail ; ?>" class="glyphicon glyphicon-send modal-supp-trigger"></span>
 						</a>&nbsp;&nbsp;
+-->
 						<a href="#" onclick="return false" class="tips-trigger"  data-toggle="tooltip" data-placement="bottom" title="see details">
 							<span data-toggle="modal" data-target=".modal_fiche_user" data-id="<?php echo $item->user_id ; ?>" class="glyphicon glyphicon-eye-open modal-fiche-trigger"></span>
 						</a>&nbsp;&nbsp;

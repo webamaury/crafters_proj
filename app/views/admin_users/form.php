@@ -4,8 +4,8 @@
 <div class="container" id="admin_user">
 	<?php //if(isset($item)) var_dump("<pre>",$item,"</pre>"); ?>
 	<div class="col-xs-12">
-		<h1 class="pull-left">Admin user</h1>
-		<a href="index.php?module=adminUsers" class="btn btn-primary pull-right margin-top-20">Back to list</a>
+		<h1 class="pull-left">User</h1>
+		<a href="index.php?module=users" class="btn btn-primary pull-right margin-top-20">Back to list</a>
 	</div>
 	
 	
@@ -20,7 +20,7 @@
 	
 	
 	
-	<form class="form-horizontal" method="post" enctype="multipart/form-data" action="index.php?module=adminUsers&action=form<?php echo (isset($_GET['id'])) ? '&id='.$_GET['id'] : '' ; ?>" role="form">
+	<form class="form-horizontal" method="post" enctype="multipart/form-data" action="index.php?module=users&action=form<?php echo (isset($_GET['id'])) ? '&id='.$_GET['id'] : '' ; ?>" role="form">
 		<div class="col-xs-12 col-md-6 margin-top-20 text-center">
 			<div class="col-xs-12">
 				<img class="img_avatar" src="<?php echo (isset($item->id) && file_exists(_ADMIN_PATH . 'img/photo_' . $item->id . '.jpg')) ? _ADMIN_PATH . 'img/photo_' . $item->id . '.jpg' : _ADMIN_PATH . 'img/avatar.jpg' ; ?>" alt="avatar"/>
@@ -44,70 +44,51 @@
 			<div class="form-group">
 				<label for="firstname" class="col-md-2 control-label">Firstname</label>
 				<div class="col-lg-10 col-md-8">
-					<input type="text" name="firstname" class="form-control" id="firstname" value="<?php echo (isset($item->firstname)) ? $item->firstname : '' ; ?>">
+					<input type="text" name="firstname" class="form-control" id="firstname" value="<?php echo (isset($item->user_firstname)) ? $item->user_firstname : '' ; ?>">
 				</div>
 			</div>
 			<div class="form-group">
 				<label for="name" class="col-md-2 control-label">Name</label>
 				<div class="col-lg-10 col-md-8">
-					<input type="text" name="name" class="form-control" id="name" value="<?php echo (isset($item->name)) ? $item->name : '' ; ?>">
+					<input type="text" name="name" class="form-control" id="name" value="<?php echo (isset($item->user_name)) ? $item->user_name : '' ; ?>">
 				</div>
 			</div>
 			<div class="form-group">
 				<label for="mail" class="col-md-2 control-label">E-Mail</label>
 				<div class="col-lg-10 col-md-8">
-					<input type="email" required name="mail" class="form-control" id="mail" value="<?php echo (isset($item->mail)) ? $item->mail : '' ; ?>">
+					<input type="email" required name="mail" class="form-control" id="mail" value="<?php echo (isset($item->user_mail)) ? $item->user_mail : '' ; ?>">
 				</div>
 			</div>
-			<?php if(!isset($item)){ ?>
-			<div class="form-group">
-				<label for="password" class="col-md-2 control-label">Password</label>
-				<div class="col-lg-10 col-md-8">
-					<input type="password" required name="password" required class="form-control" id="password" value="">
-				</div>
-			</div>
-			<div class="form-group">
-				<label for="password_confirm" class="col-md-2 control-label">Confirm</label>
-				<div class="col-lg-10 col-md-8">
-					<input type="password" required name="password_confirm" required class="form-control" id="password_confirm" value="">
-				</div>
-			</div>
-
-			<?php } ?>
 			<div class="form-group">
 				<label for="phone" class="col-md-2 control-label">Phone</label>
 				<div class="col-lg-10 col-md-8">
-					<input type="text" name="phone" class="form-control" id="phone" value="<?php echo (isset($item->phone)) ? $item->phone : '' ; ?>">
+					<input type="text" name="phone" class="form-control" id="phone" value="<?php echo (isset($item->user_phone)) ? $item->user_phone : '' ; ?>">
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="phone" class="col-md-2 control-label">Birthday</label>
+				<div class="col-lg-10 col-md-8">
+					<input type="text" name="birthday" class="form-control" id="birthday" value="<?php echo (isset($item->user_birthday)) ? $item->user_birthday : '' ; ?>">
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="phone" class="col-md-2 control-label">Creation</label>
+				<div class="col-lg-10 col-md-8">
+					<input type="text" name="creation" class="form-control" id="creation" readonly value="<?php echo (isset($item->user_creation)) ? $item->user_creation : '' ; ?>">
 				</div>
 			</div>
 			<div class="form-group">
 				<label for="statut" class="col-md-2 control-label">Statut</label>
 				<div class="col-lg-10 col-md-8">
-					<?php if(($_SESSION['ADMIN-USER']['statut'] == 1 && isset($item->statut) && $item->statut != 1) || (!isset($item->statut))){ ?>
 					<select name="statut" class="form-control">
 						<?php
 						foreach($statuts as $statut) {
-							if($statut->statut != 1) {
 							?>
 						<option <?php echo (isset($item->statut) && $statut->statut == $item->statut) ? 'selected' : '' ; ?> value="<?php echo $statut->statut ; ?>"><?php echo $statut->nom ; ?></option>
-							<?php
-							}
+						<?php
 						}
 						?>
 					</select>
-					<?php 
-					}
-					else {
-						?>
-						<p class="form-control-static"><?php echo (isset($item->nom)) ? $item->nom : '' ; ?></p>
-						<?php 
-					}			
-					if(!(($_SESSION['ADMIN-USER']['statut'] == 1 && isset($item->statut) && $item->statut != 1) || (!isset($item->statut)))){
-						?>
-						<input type="hidden" name="statut" value="<?php echo $item->statut ; ?>">
-						<?php
-					}
- 					?>
 				</div>
 			</div>
 
@@ -116,9 +97,6 @@
 				<input type="hidden" name="action" value="<?php echo (isset($_GET['id'])) ? 'modifier' : 'ajouter' ; ?>">
 				
 				<button type="submit" class="btn btn-primary"><?php echo (isset($_GET['id'])) ? 'Update Admin' : '<span class="glyphicon glyphicon-plus font-09em"></span> Add new' ; ?></button>
-				<?php if(isset($item) && $_SESSION['ADMIN-USER']['id'] == $item->id){ ?>
-					<button onclick="return false" data-toggle="modal" data-target=".modal-update-password" class="btn btn-primary pull-right">Update password</button>
-				<?php } ?>
 		</div>
 	</form>
 
@@ -218,7 +196,7 @@
 </script>
 <?php 
 	}
-	if(isset($item) && $_SESSION['ADMIN-USER']['id'] == $item->id){
+	if(isset($item) && $_SESSION['ADMIN-USER']['id'] == $item->user_id){
 		include_once(_APP_PATH . 'views/includes_admin/modal_password.inc.php') ;
 	}
 ?>
