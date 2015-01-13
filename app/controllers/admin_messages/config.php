@@ -15,6 +15,6 @@ $module_details = array(
 	'icon' 					=> 'glyphicon-envelope', 
 	'path' 					=> 'messages', 
 	'allowed_levels' 		=> array(1, 2), 
-	'position' 				=> 2
+	'position' 				=> 3
 );
 ?>

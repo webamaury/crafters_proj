@@ -3,7 +3,7 @@
 class classMessages extends CoreModels {
 		
 	function get_one() {
-		$query = "SELECT M.message_id, M.message_firstname, M.message_name, M.message_mail, M.message_title, M.message_message, M.message_creation, S.nom, S.statut FROM " . _TABLE__MESSAGE . " as M," . _TABLE__ADMIN_STATUTS . " as S WHERE M.message_id = :id AND S.type = 'message' AND S.statut = M.message_status";
+		$query = "SELECT M.message_id, M.message_firstname, M.message_name, M.message_mail, M.message_title, M.message_message, M.message_creation, S.nom, S.statut FROM " . _TABLE__MESSAGE . " as M," . _TABLE__STATUTS . " as S WHERE M.message_id = :id AND S.type = 'message' AND S.statut = M.message_status";
 		
 	
 		$champs = ':id';
@@ -14,7 +14,7 @@ class classMessages extends CoreModels {
 		return $item;
 	}
 	function get_one_array() {
-		$query = "SELECT M.message_id, M.message_firstname, M.message_name, M.message_mail, M.message_title, M.message_message, M.message_creation, S.nom FROM " . _TABLE__MESSAGE . " as M," . _TABLE__ADMIN_STATUTS . " as S WHERE M.message_id = :id AND S.type = 'message' AND S.statut = M.message_status";
+		$query = "SELECT M.message_id, M.message_firstname, M.message_name, M.message_mail, M.message_title, M.message_message, M.message_creation, S.nom FROM " . _TABLE__MESSAGE . " as M," . _TABLE__STATUTS . " as S WHERE M.message_id = :id AND S.type = 'message' AND S.statut = M.message_status";
 		
 		$cursor = $this->connexion->prepare($query);
 	
@@ -38,9 +38,7 @@ class classMessages extends CoreModels {
 	
 	
 	function delete_message() {
-		$messages = $this->get_one();
-	
-		if($_SESSION['ADMIN-USER']['statut'] = 1) {
+
 			$query = "DELETE FROM " . _TABLE__MESSAGE . " WHERE message_id = :id";
 		
 			$cursor = $this->connexion->prepare($query);
@@ -49,12 +47,11 @@ class classMessages extends CoreModels {
 			$cursor->execute();
 			$cursor->closeCursor();
 			return true ;
-		}
 	}
 	
 
 	function get_statuts() {
-		$query = "SELECT * FROM " . _TABLE__ADMIN_STATUTS . " WHERE type = 'message'";
+		$query = "SELECT * FROM " . _TABLE__STATUTS . " WHERE type = 'message'";
 	
 		$list = $this->select_no_param($query);
 	
