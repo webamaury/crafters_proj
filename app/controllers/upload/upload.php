@@ -119,20 +119,34 @@ class uploadController extends CoreControlers {
 	}
 	
 	function submit_pay() {
-		
-	}
-	
-	function submit_save() {
-		var_dump($_POST);
 		include_once _APP_PATH . 'models/class.product.php';
 		$product = new classProduct();
 		
 		$product->name 			= $_POST['name'];
 		$product->descr 		= $_POST['description'];
-		$product->name = $_POST['name'];
-		$product->name = $_POST['name'];
-		$product->name = $_POST['name'];
+		$product->status		= $_POST['radio_public_private'];
+		$product->type			= $_POST['radio_tatoo_stickers'];
+		$product->img_url		= $_POST['img'];
+
+		$product->insert_new();
 		
+		header('location:index.php?module=summary');
+	}
+	
+	function submit_save() {
+
+		include_once _APP_PATH . 'models/class.product.php';
+		$product = new classProduct();
+		
+		$product->name 			= $_POST['name'];
+		$product->descr 		= $_POST['description'];
+		$product->status		= $_POST['radio_public_private'];
+		$product->type			= $_POST['radio_tatoo_stickers'];
+		$product->img_url		= $_POST['img'];
+
+		$product->insert_new();
+
+		header('location:index.php?module=dashboard');
 	}
 }
 

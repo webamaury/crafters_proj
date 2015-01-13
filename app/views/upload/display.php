@@ -30,9 +30,9 @@
             <form method="post" action="index.php?module=upload" role="form">
 	            <div class="col-md-6">
 	                <div class="form-group">
-	                    <input required type="text" placeholder="Name your work" name="name" class="form-control form-upload">
+	                    <input required type="text" maxlength="20" placeholder="Name your work" name="name" class="form-control form-upload">
 	                    <br/>
-	                    <textarea name="description" rows="3" placeholder="Description" required class="form-control form-upload"></textarea>
+	                    <textarea name="description" maxlength="400" rows="3" placeholder="Description" required class="form-control form-upload"></textarea>
 	                </div>
 	            </div>
 	            <div class="col-md-12">
