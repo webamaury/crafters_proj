@@ -24,13 +24,11 @@ require_once(_WWW_PATH . 'tools/array/array.tools.php');
 ##############################################################
 ##	APPELS CLASS											##
 ##############################################################
-$connexion = new PDO ('mysql:host='._DB_HOST.';port='._DB_PORT.';dbname='._DB_NAME, _DB_USER, _DB_PASS);
-$connexion->exec("SET CHARACTER SET utf8");
 
 //require_once(_APP_PATH . 'models/lib.sql.php'); //connection(_DB_HOST, _DB_PORT, _DB_NAME, _DB_USER, _DB_PASS); 
 require_once(_APP_PATH . 'models/class.session.php'); $session = new Session();
 
-require_once(_CORE_PATH . 'coreModels.php'); new CoreModels();
+require_once(_CORE_PATH . 'coreModels.php');
 require_once(_APP_PATH . 'models/lib.function.php');
 
 require_once(_APP_PATH . 'models/class.adminUsers.php'); $user = new classAdminUsers();

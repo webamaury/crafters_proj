@@ -52,7 +52,7 @@
 	//						echo $adminUsers->statut ; exit();	
 				
 				if($adminUsers->update_admin()) {
-					$notices->create_notice('success', 'User modifié');
+					$notices->create_notice('success', 'Admin modifié');
 					header('location:index.php?module=adminUsers&action=form&id='.$_GET['id']);exit();
 				}
 				else {

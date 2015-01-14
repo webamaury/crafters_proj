@@ -13,9 +13,20 @@
 		                    <iframe id="ytplayer" type="text/html" width="354" height="199"
 		                            src="https://www.youtube.com/embed/hzbq6XM9zTU?autoplay=1&controls=0&fs=0&modestbranding=1&rel=0&showinfo=0&autohide=1&color=white&theme=light"
 		                            frameborder="0" allowfullscreen>
-		                    </iframe>                    <br>
-		                   <button onclick="ga('send','event','Upload','Clique');" class="btn upload-2 upload-2c star"><a href="index.php?module=upload">Start uploading your work</a></button>
-		
+		                    </iframe>                  
+		                    <br>
+		                    <?php
+			                    if(isset($_SESSION["CRAFTERS-USER"]["authed"]) && $_SESSION["CRAFTERS-USER"]["authed"] == true){
+				            	?>
+							<a href="index.php?module=upload" onclick="ga('send','event','Upload','Clique');" class="btn upload-2 upload-2c star">Start uploading your work</a>
+								<?php
+			                    }
+			                    else {
+				                ?>
+							<a href="#" onclick="ga('send','event','Upload','Clique');" data-toggle="modal" data-target="#modal-login" class="btn upload-2 upload-2c star">Start uploading your work</a>
+				                <?php
+			                    }
+		                    ?>
 		                    <br>
 		                    <br/>
 		                    <br/>
@@ -110,14 +121,14 @@
 		
 		
 		    <div class="container big-gallery">
-		        <div class="col-sm-5 col-md-5">
-		            <ol class="breadcrumb">
-		                <li class="active"><a onclick="ga('send','event','Onglets','Clique');" href="#">Tattoo</a></li>
-		                <li> <a onclick="ga('send','event','Onglets','Clique');" href="#">Stickers</a></li>
-		                <li> <a onclick="ga('send','event','Onglets','Clique');" href="#">Popular</a></li>
-		                <li> <a onclick="ga('send','event','Onglets','Clique');" href="#">Newest</a></li>
-		                <li> <a onclick="ga('send','event','Onglets','Clique');" href="#">All</a></li>
-		            </ol>
+		        <div class="col-sm-8 col-md-8 big-container">
+		            <span class="title-gallery">CRaFTERS LaST UPLOaD</span>
+		            <!--<form class="navbar-form navbar-right" role="search">
+		                <div class="form-group">
+		                    <input type="text" class="form-control" placeholder="Search">
+		                </div>
+		                <button type="submit" class="btn btn-default">Submit</button>
+		            </form>-->
 		        </div>
 		
 		        <div class="col-sm-6 col-md-8">
@@ -379,7 +390,7 @@
 		
 		
 		<div class="modal" id="modal-login" tabindex="-1" role="dialog" aria-labelledby="modal-login-label" aria-hidden="true" style="padding-top: 100px;">
-		    <div class="modal-dialog">
+		    <div class="modal-dialog modal-sm">
 		        <div class="modal-content">
 		            <div class="modal-header">
 		                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -391,26 +402,26 @@
 		
 		                        <h3>Please Log In, or <a href="#" data-toggle="modal" data-target="#modal-new-signup">Sign Up</a></h3>
 		
-		                        <form role="form">
+		                        <form role="form" method="post" action="#">
 		                            <div class="form-group">
-		                                <input type="text" placeholder="Username or Email" class="form-control">
+		                                <input type="text" name="email" placeholder="Username or Email" class="form-control" required>
 		                                <br/>
-		                                <input type="password" placeholder="Password" class="form-control">
+		                                <input type="password" name="password" placeholder="Password" class="form-control" required>
 		                            </div>
-		                            <a class="pull-right" href="#">Forgot password?</a>
-		
+		                            <!--<a class="pull-right" href="#">Forgot password?</a>-->
+									<input type="hidden" name="action" value="login"/>
 		                            <button type="submit" class="btn btn btn-primary">
 		                                Log In
 		                            </button>
 		                        </form>
-		                        <div class="login-or">
+		                        <!--<div class="login-or">
 		                            <hr class="hr-or">
 		                            <span class="span-or">or</span>
-		                        </div>
+		                        </div>-->
 		                        <div class="row">
-		                            <div class="col-xs-12 col-sm-12 col-md-12">
+		                            <!--<div class="col-xs-12 col-sm-12 col-md-12">
 		                                <a href="#" class="btn btn-lg btn-block" style="background-color: #3b5998; border-color: #3b5998; color: white">Facebook</a>
-		                            </div>
+		                            </div>-->
 		                            <div class="col-xs-12 col-sm-12 col-md-12 text-center">
 		                                <br/>
 		                                <a href="#" class="new-signup">New on Crafters ? Subscribe</a>
@@ -556,9 +567,8 @@
 		
 		
 		<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-		<script src="js/jquery.js"></script>
-		<script src="js/jquery-1.11.1.min.js"></script>
-		<script src="js/bootstrap.js"></script>
+		<script type="text/javascript" src="tools/jQuery/jquery-2.1.1.min.js"></script>
+		<script type="text/javascript" src="tools/bootstrap-3.2.0/js/bootstrap.min.js"></script>
 		<script>
 		  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 		  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),

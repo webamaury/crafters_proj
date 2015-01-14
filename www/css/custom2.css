@@ -56,8 +56,8 @@
 
 
 h1 {font-family: "oneerregular";
-    text-transform: uppercase;
     font-size: 56px;}
+
 h1 a:hover {text-decoration: none; color: black;}
 
 h2 {font-family: "latolight";
@@ -82,7 +82,7 @@ a {color: black;}
 
 /** ////////// PAGE HOME ////////// **/
 
-
+.logo-mini {text-transform: lowercase;}
 
 .breadcrumb:hover{
 	text-decoration: none;
@@ -103,25 +103,39 @@ a {color: black;}
 .seemore a:hover{font-size: 11px; color: black; text-decoration: none;}
 
 
+
+
+/** NAVBAR **/
+
+
+.nav .open>a, .nav .open>a:hover, .nav .open>a:focus, .nav .open>a:active  {background-color: white;
+                                                       color: black;}
+.nav-pills li a, .nav-pills li a:active, .nav-pills li a:hover, .nav-pills li a:visited {background-color: white;
+                                                                                            color: black;
+                                                                                            text-transform: uppercase;}
+
+.title-gallery {font-family: 'oneerregular';
+                float: left;
+                font-size: 35px;
+                color: black;
+                }
+.big-container {padding-bottom: 20px;}
+
+
 /**  Bouton upload **/
 
-.btn a {color: white;}
+.btn a {color: white;
+}
 .btn a:hover {text-decoration: none; color: white;}
 
-.upload {background-color: white;
-         font-family: 'latobold';
-         font-size: 20px;
-         text-transform: uppercase;
-         padding-bottom: 5px;
-        border-bottom: 8px #ff6347 solid;
-        border-radius: 0px;
-}
-.upload:hover {border-bottom: 8px darkred solid;
-           padding-bottom: 5px;
+
+.btn-gray {background-color: gray;}
+
+
 }
 
 .upload a:hover{text-decoration: none;
-                color: #000000;
+                color: white;
 }
 
 .upload-2 {
@@ -136,11 +150,16 @@ a {color: black;}
 .upload-2c {
     background: #cb4e4e;
     border-radius: 5px;
+    width: 354px;
+    text-transform: UPPERCASE;
+    font-weight: 500;
+
 }
 
 .upload-2c:hover {
     box-shadow: 0 4px #ab3c3c;
     top: 2px;
+    color: white;
 }
 
 .upload-2c:active {
@@ -207,6 +226,9 @@ a {color: black;}
 
 
 
+
+.ol.li.a:hover {color: black;
+                text-decoration: none;}
 
 /** ////////// PAGE UPLOAD ////////// **/
 
@@ -286,7 +308,7 @@ a {color: black;}
 .contact_bloc { margin-top: 50px;}
 
 
-.form-upload {width: 200px; margin-top: -10px; border-radius: 0px; resize: none;}
+.form-upload {width: 200px; margin-top: -10px; border-radius: 0px;}
 
 .form-upload-description {width: 200px; margin-top: -10px; border-radius: 0px; height: 70px;}
 
@@ -374,3 +396,5 @@ label.css-label2 {
     -ms-user-select: none;
     user-select: none;
 }
+
+

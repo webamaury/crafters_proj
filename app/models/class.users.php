@@ -1,7 +1,60 @@
 <?php
 //parent::__construct()
 class classUsers extends CoreModels {
+	
+	function login() {
 
+		$accounts = $this->get_array_from_query("SELECT * FROM crafters_user WHERE user_mail = :mail AND user_password = :mdp", 
+		$this->mail, $this->password);
+						
+		// No account found
+		if(sizeof($accounts) == 0) {
+			return false;
+		}
+		// More than one account found
+		elseif(sizeof($accounts) > 1) {
+			return false;
+		}
+		// One account found - login
+		else {
+			
+			if($accounts[0]->user_status != 0) {
+				$session_authed = true;
+				
+				$_SESSION["CRAFTERS-USER"]["authed"] 		= $session_authed;
+				$_SESSION["CRAFTERS-USER"]["verif"] 		= md5($_SERVER['HTTP_USER_AGENT']);
+				
+				$_SESSION["CRAFTERS-USER"]["id"] 			= $accounts[0]->user_id;
+				$_SESSION["CRAFTERS-USER"]["mail"] 		= $accounts[0]->user_mail;
+				$_SESSION["CRAFTERS-USER"]["password"] 	= $accounts[0]->user_password;
+				$_SESSION["CRAFTERS-USER"]["firstname"] 	= $accounts[0]->user_firstname;
+				$_SESSION["CRAFTERS-USER"]["name"] 		= $accounts[0]->user_name;
+				$_SESSION["CRAFTERS-USER"]["statut"] 		= $accounts[0]->user_status;
+					
+				return true;
+			}
+			else {
+				return false;
+			}
+			
+		}
+		
+	}
+	function is_authed() {
+		if(isset($_SESSION["CRAFTERS-USER"]["authed"])) {
+			return $_SESSION["CRAFTERS-USER"]["authed"];
+		}
+		else {
+			return false;
+		}
+	}
+	
+	function logout() {
+	    unset($_SESSION['CRAFTERS-USER']);
+		
+		//setcookie(COOKIE_NAME . "[admin_login]", '', time() - 3600);
+		//setcookie(COOKIE_NAME . "[admin_password]", '', time() - 3600);
+	}
 	function get_one() {
 		$query = "SELECT U.user_id, U.user_firstname, U.user_name, U.user_mail, U.user_birthday, U.user_phone, U.user_creation, S.nom, S.statut FROM " . _TABLE__USERS . " as U," . _TABLE__STATUTS . " as S WHERE U.user_id = :id AND S.type = 'user' AND S.statut = U.user_status";
 	
@@ -35,27 +88,7 @@ class classUsers extends CoreModels {
 		
 		return $list ;
 	}
-	
-	function create_admin() {
-		$query = "INSERT INTO " . _TABLE__ADMIN_USERS . " 
-		(mail, password, firstname, name, phone, statut) 
-		VALUES 
-		(:mail, :password, :firstname, :name, :phone, :statut)";
 		
-		$cursor = $this->connexion->prepare($this->query);
-	
-		$cursor->bindValue(':mail', $this->mail, PDO::PARAM_STR);
-		$cursor->bindValue(':password', $this->password, PDO::PARAM_STR);
-		$cursor->bindValue(':firstname', $this->firstname, PDO::PARAM_STR);
-		$cursor->bindValue(':name', $this->name, PDO::PARAM_STR);
-		$cursor->bindValue(':phone', $this->phone, PDO::PARAM_STR);
-		$cursor->bindValue(':statut', $this->statut, PDO::PARAM_INT);
-	
-		$return = $cursor->execute();
-		$cursor->closeCursor();
-		return $return ;
-	}
-	
 	function delete_user() {
 	
 			$query = "DELETE FROM " . _TABLE__USERS . " WHERE user_id = :id";

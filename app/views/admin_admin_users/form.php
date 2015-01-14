@@ -9,7 +9,7 @@
 	</div>
 	
 	
-	
+	<?php echo display_notice(); clear_notice(); ?>
 	<div class="col-xs-12">
 		<div class="alert alert-dismissible" id="ajax_alert" role="alert">
 			<button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>

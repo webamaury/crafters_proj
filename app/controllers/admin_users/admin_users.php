@@ -54,11 +54,11 @@
 				
 				if($users->update_user()) {
 					$notices->create_notice('success', 'User modifié');
-					header('location:index.php?module=user&action=form&id='.$_GET['id']);exit();
+					header('location:index.php?module=users&action=form&id='.$_GET['id']);exit();
 				}
 				else {
 					$notices->create_notice('danger', 'erreur modif');
-					header('location:index.php?module=user&action=form&id='.$_GET['id']);exit();
+					header('location:index.php?module=users&action=form&id='.$_GET['id']);exit();
 				}
 			}
 			else if(isset($_GET['action']) && $_GET['action'] == 'form') {
