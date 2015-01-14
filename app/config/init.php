@@ -8,7 +8,11 @@ require_once(_APP_PATH . 'models/config.php');
 ##############################################################
 ##	NOM DE SESSION						##
 ##############################################################
+<<<<<<< HEAD
 DEFINE('_SES_NAME', 'crafters');
+=======
+DEFINE('_SES_NAME', 'Crafters');
+>>>>>>> baa167bc2824df0a41395cf188b10089bfe7bec3
 DEFINE('_SITE_NAME', 'Crafters');
 
 ##############################################################

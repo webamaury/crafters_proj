@@ -3,7 +3,7 @@
 		<div class="modal-content">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-				<h4 class="modal-title" id="myModalLabel">Details about <span class="ajax_firstname"></span></h4>
+				<h4 class="modal-title" id="myModalLabel">Details about <span class="ajax_firstname"></span>'s message</h4>
 			</div>
 			<div class="modal-body display-inline">
 				<div class="col-md-7">
@@ -42,6 +42,12 @@
 							<label class="col-md-4 control-label">Message : </label>
 							<div class="col-md-8">
 								<p class="form-control-static ajax_message"></p>
+							</div>
+						</div>
+						<div class="display-inline">
+							<label class="col-md-4 control-label">Status : </label>
+							<div class="col-md-8">
+								<p class="form-control-static ajax_status"></p>
 							</div>
 						</div>
 

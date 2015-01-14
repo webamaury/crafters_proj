@@ -78,6 +78,7 @@
 		$(".ajax_phone").text(obj.user_phone);
 		$(".ajax_birthday").text(obj.user_birthday);
 		$(".ajax_creation").text(obj.user_creation);
+		$(".ajax_status").text(obj.nom);
 
 		//alert( obj.name );
 		//var obj = jQuery.parseJSON(flux);
