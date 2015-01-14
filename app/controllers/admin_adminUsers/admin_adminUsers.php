@@ -4,7 +4,7 @@
 		
 		function __construct($array_tools, $notices, $modules) {
 			//include_once(_APP_PATH . 'models/lib.admin_users.php');
-			include_once _APP_PATH . 'models/class.admin_adminUsers.php';
+			include_once _APP_PATH . 'models/class.adminUsers.php';
 			$adminUsers = new classAdminUsers();
 			
 			if(isset($_GET['action']) && $_GET['action'] == "delete") {

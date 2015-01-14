@@ -33,7 +33,7 @@ require_once(_APP_PATH . 'models/class.session.php'); $session = new Session();
 require_once(_CORE_PATH . 'coreModels.php'); new CoreModels();
 require_once(_APP_PATH . 'models/lib.function.php');
 
-require_once(_APP_PATH . 'models/class.admin_adminUsers.php'); $user = new classAdminUsers();
+require_once(_APP_PATH . 'models/class.adminUsers.php'); $user = new classAdminUsers();
 //var_dump($_COOKIE);
 
 ##############################################################
