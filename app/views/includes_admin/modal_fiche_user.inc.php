@@ -47,6 +47,12 @@
 								<p class="form-control-static ajax_creation"></p>
 							</div>
 						</div>
+						<div class="display-inline">
+							<label class="col-md-4 control-label">Status : </label>
+							<div class="col-md-8">
+								<p class="form-control-static ajax_status"></p>
+							</div>
+						</div>
 
 					</form>
 				</div>

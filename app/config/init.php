@@ -8,8 +8,8 @@ require_once(_APP_PATH . 'models/config.php');
 ##############################################################
 ##	NOM DE SESSION						##
 ##############################################################
-DEFINE('_SES_NAME', 'TPVitrine_CG');
-DEFINE('_SITE_NAME', 'TPVitrine_CG');
+DEFINE('_SES_NAME', 'Crafters');
+DEFINE('_SITE_NAME', 'Crafters');
 
 ##############################################################
 ##	RECUPERATION DE LA PAGE ACTUELLE						##
