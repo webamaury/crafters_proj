@@ -1,5 +1,5 @@
 <?php
-class indexController extends CoreControlers {
+class ficheController extends CoreControlers {
 		
 	function __construct($array_tools, $notices) {
 
@@ -9,7 +9,6 @@ class indexController extends CoreControlers {
 		else if(isset($_POST['action'])) {
 			$method = $_POST['action'];
 		}
-		$this->nb_by_page = 8;
 
 		$this->$method($array_tools, $notices) ;
 
@@ -21,14 +20,8 @@ class indexController extends CoreControlers {
 		##	TRAITEMENT PHP											##
 		##############################################################
 		include_once(_APP_PATH . 'models/class.product.php'); $ClassProduct = new classProducts();
-		$ClassProduct->limit = '0,'.$this->nb_by_page;
-		$products = $ClassProduct->get_list_front();
-		foreach($products as $product) {
-			$ClassProduct->product_id = $product->product_id;
-			$nb_like = $ClassProduct->number_of_like();
-			$product->nb_like = $nb_like->nb_like;
-		}
-		
+		$ClassProduct->product_id = $_GET['product'];
+		$product = $ClassProduct->get_one();
 		##############################################################
 		##	APPEL TOOLS												##
 		##############################################################
@@ -43,27 +36,7 @@ class indexController extends CoreControlers {
 		##############################################################
 		##	VUE														##
 		##############################################################
-		include_once('../app/views/index/display.php');
-	}
-	function ajax_more($array_tools, $notices) {
-		include_once(_APP_PATH . 'models/class.product.php'); $ClassProduct = new classProducts();
-		$min = ($_POST['page'] - 1) * $this->nb_by_page ;
-		$ClassProduct->limit = $min.','.$this->nb_by_page;
-		//echo $ClassProduct->limit;exit();
-		$products = $ClassProduct->get_list_front();
-		if(!empty($products)){
-			foreach($products as $product) {
-				$ClassProduct->product_id = $product->product_id;
-				$nb_like = $ClassProduct->number_of_like();
-				$product->nb_like = $nb_like->nb_like;
-			}
-
-			$json = json_encode($products);			
-			echo $json; exit();
-		}
-		else {
-			echo 'no more';
-		}
+		include_once('../app/views/fiche/display.php');
 	}
 }
 
