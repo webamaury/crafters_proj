@@ -10,7 +10,7 @@ if (file_exists($url))
 }
 else
 {
-	include_once('../app/controllers/autres/404.php');
+	include_once('../app/controllers/autres/404.php'); new autreController($array_tools, $notices);
 }
 
 	

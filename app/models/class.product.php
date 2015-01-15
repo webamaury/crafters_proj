@@ -4,9 +4,9 @@ class classProducts extends CoreModels {
 
 	function insert_new() {
 		$query = "INSERT INTO " . _TABLE__PRODUCTS . " 
-		(product_name, product_description, product_status, product_type, product_img_url) 
+		(product_name, product_description, product_status, product_type, product_img_url, user_id_product) 
 		VALUES 
-		(:name, :descr, :status, :type, :img_url)";
+		(:name, :descr, :status, :type, :img_url, :user_id)";
 		$cursor = $this->connexion->prepare($query);
 	
 		$cursor->bindValue(':name', $this->name, PDO::PARAM_STR);
@@ -14,11 +14,12 @@ class classProducts extends CoreModels {
 		$cursor->bindValue(':status', $this->status, PDO::PARAM_STR);
 		$cursor->bindValue(':type', $this->type, PDO::PARAM_STR);
 		$cursor->bindValue(':img_url', $this->img_url, PDO::PARAM_STR);
+		$cursor->bindValue(':user_id', $_SESSION["CRAFTERS-USER"]["id"], PDO::PARAM_STR);
 	
 		$return = $cursor->execute();
 		
 		$cursor->closeCursor();
-		
+
 		return $return ;
 	}
 	
@@ -50,11 +51,37 @@ class classProducts extends CoreModels {
 	
 		$cursor->execute();
 	
-		//$cursor->setFetchMode(PDO::FETCH_ARR);
 		$return=$cursor->fetchAll();
 		$cursor->closeCursor();
 	
 		return $return[0] ;	
+	}
+	function get_list_front() {
+		$query = "SELECT P.product_id, P.product_name, P.product_img_url, U.user_username FROM " . _TABLE__PRODUCTS . " as P, " . _TABLE__USERS . " as U WHERE P.user_id_product = U.user_id ORDER BY product_id desc LIMIT ".$this->limit;
+		$cursor = $this->connexion->prepare($query);
+		
+		$cursor->execute();
+
+		$cursor->setFetchMode(PDO::FETCH_OBJ);		
+		$return=$cursor->fetchAll();
+		$cursor->closeCursor();
+	
+		return $return ;	
+	
+	}
+	function number_of_like() {
+		$query = "SELECT count(like_id) as nb_like from " . _TABLE__LIKE . " WHERE crafters_product_product_id = :id";
+		$cursor = $this->connexion->prepare($query);
+		$cursor->bindValue(':id', $this->product_id, PDO::PARAM_INT);
+
+		$cursor->execute();
+
+		$cursor->setFetchMode(PDO::FETCH_OBJ);		
+		$return=$cursor->fetchAll();
+		$cursor->closeCursor();
+	
+		return $return[0] ;	
+	
 	}
 
 }

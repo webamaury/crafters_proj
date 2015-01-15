@@ -14,5 +14,6 @@ DEFINE( '_TABLE__USERS', 						_DB_PREFIX."user");
 DEFINE( '_TABLE__PRODUCTS', 					_DB_PREFIX."product");
 DEFINE( '_TABLE__MESSAGE',		 				_DB_PREFIX."message" );
 DEFINE( '_TABLE__STATUTS', 						_DB_PREFIX."statuts");
+DEFINE( '_TABLE__LIKE', 						_DB_PREFIX."like");
 
 ?>

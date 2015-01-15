@@ -11,7 +11,7 @@
 		            <div class="row">
 		                <div class="col-md-4 header_video">
 		                    <iframe id="ytplayer" type="text/html" width="354" height="199"
-		                            src="https://www.youtube.com/embed/hzbq6XM9zTU?autoplay=1&controls=0&fs=0&modestbranding=1&rel=0&showinfo=0&autohide=1&color=white&theme=light"
+		                            src="https://www.youtube.com/embed/hzbq6XM9zTU?autoplay=0&controls=0&fs=0&modestbranding=1&rel=0&showinfo=0&autohide=1&color=white&theme=light"
 		                            frameborder="0" allowfullscreen>
 		                    </iframe>                  
 		                    <br>
@@ -132,13 +132,17 @@
 		        </div>
 		
 		        <div class="col-sm-6 col-md-8">
-		            <div class="row">
+		            <div id="display_load_more" class="row">
+		                
+		                <?php
+			                foreach($products as $product) {
+				            ?>
 		                <div class="col-sm-6 col-md-4 col-xs-6 col-lg-3">
 		                    <div class="thumbnail">
-		                        <a <a onclick="ga('send','event','Gallery','Clique');" href="#"><img src="illu/9.jpg" class="img-responsive"></a>
+		                        <a onclick="ga('send','event','Gallery','Clique');" href="index.php?module=fiche&product=<?php echo $product->product_id ; ?>"><img src="<?php echo $product->product_img_url ; ?>" class="img-responsive"></a>
 		                        <div class="caption">
-		                            <h4>La Marina</h4>
-		                            <p><small><em>By Katie Johnson</em></small></p>
+		                            <h4><?php echo $product->product_name ; ?></h4>
+		                            <p><small><em>By <?php echo $product->user_username ; ?></em></small></p>
 		                            <div class="btn-group " style="float: left">
 		                                <button type="button" class="btn btn-xs btn-default"><i class="fa fa-search"></i></button>
 		                                <button type="button" class="btn btn-xs btn-default"><i class="fa fa-shopping-cart"></i></button>
@@ -146,241 +150,20 @@
 		                            </div>
 		                            <div class="text-right">
 		                                <button type="button" class="btn btn-xs btn-default like">
-		                                    765 <i class="fa fa-heart" style="color: tomato"></i>
+		                                    <?php echo $product->nb_like ; ?> <i class="fa fa-heart" style="color: tomato"></i>
 		                                </button>
 		                            </div>
 		                        </div>
 		                    </div>
 		                </div>
-		                <div class="col-sm-6 col-md-4 col-xs-6 col-lg-3">
-		                    <div class="thumbnail">
-		                        <a <a onclick="ga('send','event','Gallery','Clique');" href="#"><img src="illu/6.jpg" class="img-responsive"></a>
-		                        <div class="caption">
-		                            <h4>Geometric</h4>
-		                            <p><small><em>By Faye Reagan</em></small></p>
-		                            <div class="btn-group " style="float: left">
-		                                <button type="button" class="btn btn-xs btn-default"><i class="fa fa-search"></i></button>
-		                                <button type="button" class="btn btn-xs btn-default"><i class="fa fa-shopping-cart"></i></button>
-		                                <button type="button" class="btn btn-xs btn-default btn-primary like2"><i class="fa fa-heart-o"></i></button>
-		                            </div>
-		                            <div class="text-right">
-		                                <button type="button" class="btn btn-xs btn-default like">
-		                                    765 <i class="fa fa-heart" style="color: tomato"></i>
-		                                </button>
-		                            </div>
-		                        </div>
-		                    </div>
-		                </div>
-		                <div class="col-sm-6 col-md-4 col-xs-6 col-lg-3">
-		                    <div class="thumbnail">
-		                        <a <a onclick="ga('send','event','Gallery','Clique');" href="#"><img src="illu/16.jpg" class="img-responsive"></a>
-		                        <div class="caption">
-		                            <h4>Pizza my love</h4>
-		                                <p><small><em>By Ilovepizza</em></small></p>
-		                                    <div class="btn-group " style="float: left">
-		                                        <button type="button" class="btn btn-xs btn-default"><i class="fa fa-search"></i></button>
-		                                        <button type="button" class="btn btn-xs btn-default"><i class="fa fa-shopping-cart"></i></button>
-		                                        <button type="button" class="btn btn-xs btn-default btn-primary like2"><i class="fa fa-heart-o"></i></button>
-		                                    </div>
-		                            <div class="text-right">
-		                                <button type="button" class="btn btn-xs btn-default like">
-		                                    765 <i class="fa fa-heart" style="color: tomato"></i>
-		                                </button>
-		                            </div>
-		                        </div>
-		                    </div>
-		                </div>
-		                <div class="col-sm-6 col-md-4 col-xs-6 col-lg-3">
-		                    <div class="thumbnail">
-		                        <a <a onclick="ga('send','event','Gallery','Clique');" href="#"><img src="illu/8.jpg" class="img-responsive"></a>
-		                        <div class="caption">
-		                            <h4>Haters Gonna Hate</h4>
-		                            <p><small><em>By Fat Joe</em></small></p>
-		                            <div class="btn-group " style="float: left">
-		                                <button type="button" class="btn btn-xs btn-default"><i class="fa fa-search"></i></button>
-		                                <button type="button" class="btn btn-xs btn-default"><i class="fa fa-shopping-cart"></i></button>
-		                                <button type="button" class="btn btn-xs btn-default btn-primary like2"><i class="fa fa-heart-o"></i></button>
-		                            </div>
-		                            <div class="text-right">
-		                                <button type="button" class="btn btn-xs btn-default like">
-		                                    765 <i class="fa fa-heart" style="color: tomato"></i>
-		                                </button>
-		                            </div>
-		                        </div>
-		                    </div>
-		                </div>
-		            </div>
-		            <div class="row">
-		                <div class="col-sm-6 col-md-4 col-xs-6 col-lg-3">
-		                    <div class="thumbnail">
-		                        <a <a onclick="ga('send','event','Gallery','Clique');" href="#"><img src="illu/11.jpg" class="img-responsive"></a>
-		                        <div class="caption">
-		                            <h4>Astro fish</h4>
-		                            <p><small><em>By Alie Mc Bill</em></small></p>
-		                            <div class="btn-group " style="float: left">
-		                                <button type="button" class="btn btn-xs btn-default"><i class="fa fa-search"></i></button>
-		                                <button type="button" class="btn btn-xs btn-default"><i class="fa fa-shopping-cart"></i></button>
-		                                <button type="button" class="btn btn-xs btn-default btn-primary like2"><i class="fa fa-heart-o"></i></button>
-		                            </div>
-		                            <div class="text-right">
-		                                <button type="button" class="btn btn-xs btn-default like">
-		                                    465 <i class="fa fa-heart" style="color: tomato"></i>
-		                                </button>
-		                            </div>
-		                        </div>
-		                    </div>
-		                </div>
-		                <div class="col-sm-6 col-md-4 col-xs-6 col-lg-3">
-		                    <div class="thumbnail">
-		                        <a <a onclick="ga('send','event','Gallery','Clique');" href="#"><img src="illu/12.jpg" class="img-responsive"></a>
-		                        <div class="caption">
-		                            <h4>Super Circus</h4>
-		                            <p><small><em>By Mehdi Tah</em></small></p>
-		                            <div class="btn-group " style="float: left">
-		                                <button type="button" class="btn btn-xs btn-default"><i class="fa fa-search"></i></button>
-		                                <button type="button" class="btn btn-xs btn-default"><i class="fa fa-shopping-cart"></i></button>
-		                                <button type="button" class="btn btn-xs btn-default btn-primary like2"><i class="fa fa-heart-o"></i></button>
-		                            </div>
-		                            <div class="text-right">
-		                                <button type="button" class="btn btn-xs btn-default like">
-		                                    565 <i class="fa fa-heart" style="color: tomato"></i>
-		                                </button>
-		                            </div>
-		                        </div>
-		                    </div>
-		                </div>
-		                <div class="col-sm-6 col-md-4 col-xs-6 col-lg-3">
-		                    <div class="thumbnail">
-		                        <a <a onclick="ga('send','event','Gallery','Clique');" href="#"><img src="illu/13.jpg" class="img-responsive"></a>
-		                        <div class="caption">
-		                            <h4>Geometric Illusion</h4>
-		                            <p><small><em>By Jeremy Lion</em></small></p>
-		                            <div class="btn-group " style="float: left">
-		                                <button type="button" class="btn btn-xs btn-default"><i class="fa fa-search"></i></button>
-		                                <button type="button" class="btn btn-xs btn-default"><i class="fa fa-shopping-cart"></i></button>
-		                                <button type="button" class="btn btn-xs btn-default btn-primary like2"><i class="fa fa-heart-o"></i></button>
-		                            </div>
-		                            <div class="text-right">
-		                                <button type="button" class="btn btn-xs btn-default like">
-		                                    754 <i class="fa fa-heart" style="color: tomato"></i>
-		                                </button>
-		                            </div>
-		                        </div>
-		                    </div>
-		                </div>
-		                <div class="col-sm-6 col-md-4 col-xs-6 col-lg-3">
-		                    <div class="thumbnail">
-		                        <a <a onclick="ga('send','event','Gallery','Clique');" href="#"><img src="illu/14.jpg" class="img-responsive"></a>
-		                        <div class="caption">
-		                            <h4>Fake Casio</h4>
-		                            <p><small><em>By Fat Mike</em></small></p>
-		                            <div class="btn-group " style="float: left">
-		                                <button type="button" class="btn btn-xs btn-default"><i class="fa fa-search"></i></button>
-		                                <button type="button" class="btn btn-xs btn-default"><i class="fa fa-shopping-cart"></i></button>
-		                                <button type="button" class="btn btn-xs btn-default btn-primary like2"><i class="fa fa-heart-o"></i></button>
-		                            </div>
-		                            <div class="text-right">
-		                                <button type="button" class="btn btn-xs btn-default like">
-		                                    335 <i class="fa fa-heart" style="color: tomato"></i>
-		                                </button>
-		                            </div>
-		                        </div>
-		                    </div>
-		                </div>
-		            </div>
-		            <div class="row">
-		                <div class="col-sm-6 col-md-4 col-xs-6 col-lg-3">
-		                    <div class="thumbnail">
-		                        <a <a onclick="ga('send','event','Gallery','Clique');" href="#"><img src="illu/15.jpg" class="img-responsive"></a>
-		                        <div class="caption">
-		                            <h4>Childish Party</h4>
-		                            <p><small><em>By Baby Lily</em></small></p>
-		                            <div class="btn-group " style="float: left">
-		                                <button type="button" class="btn btn-xs btn-default"><i class="fa fa-search"></i></button>
-		                                <button type="button" class="btn btn-xs btn-default"><i class="fa fa-shopping-cart"></i></button>
-		                                <button type="button" class="btn btn-xs btn-default btn-primary like2"><i class="fa fa-heart-o"></i></button>
-		                            </div>
-		                            <div class="text-right">
-		                                <button type="button" class="btn btn-xs btn-default like">
-		                                    777 <i class="fa fa-heart" style="color: tomato"></i>
-		                                </button>
-		                            </div>
-		                        </div>
-		                    </div>
-		                </div>
-		                <div class="col-sm-6 col-md-4 col-xs-6 col-lg-3">
-		                    <div class="thumbnail">
-		                        <a <a onclick="ga('send','event','Gallery','Clique');" href="#"><img src="illu/16.jpg" class="img-responsive"></a>
-		                        <div class="caption">
-		                            <h4>Pizza my love</h4>
-		                            <p><small><em>By Ilovepizza</em></small></p>
-		                            <div class="btn-group " style="float: left">
-		                                <button type="button" class="btn btn-xs btn-default"><i class="fa fa-search"></i></button>
-		                                <button type="button" class="btn btn-xs btn-default"><i class="fa fa-shopping-cart"></i></button>
-		                                <button type="button" class="btn btn-xs btn-default btn-primary like2"><i class="fa fa-heart-o"></i></button>
-		                            </div>
-		                            <div class="text-right">
-		                                <button type="button" class="btn btn-xs btn-default like">
-		                                    965 <i class="fa fa-heart" style="color: tomato"></i>
-		                                </button>
-		                            </div>
-		                        </div>
-		                    </div>
-		                </div>
-		                <div class="col-sm-6 col-md-4 col-xs-6 col-lg-3">
-		                    <div class="thumbnail">
-		                        <a <a onclick="ga('send','event','Gallery','Clique');" href="#"><img src="illu/17.jpg" class="img-responsive"></a>
-		                        <div class="caption">
-		                            <h4>Super boat</h4>
-		                            <p><small><em>By Captain Hadock</em></small></p>
-		                            <div class="btn-group " style="float: left">
-		                                <button type="button" class="btn btn-xs btn-default"><i class="fa fa-search"></i></button>
-		                                <button type="button" class="btn btn-xs btn-default"><i class="fa fa-shopping-cart"></i></button>
-		                                <button type="button" class="btn btn-xs btn-default btn-primary like2"><i class="fa fa-heart-o"></i></button>
-		                            </div>
-		                            <div class="text-right">
-		                                <button type="button" class="btn btn-xs btn-default like">
-		                                    215 <i class="fa fa-heart" style="color: tomato"></i>
-		                                </button>
-		                            </div>
-		                        </div>
-		                    </div>
-		                </div>
-		                <div class="col-sm-6 col-md-4 col-xs-6 col-lg-3">
-		                    <div class="thumbnail">
-		                        <a <a onclick="ga('send','event','Gallery','Clique');" href="#"><img src="illu/18.jpg" class="img-responsive"></a>
-		                        <div class="caption">
-		                            <h4>Basquiat x quote</h4>
-		                            <p><small><em>King Crown</em></small></p>
-		                            <div class="btn-group " style="float: left">
-		                                <button type="button" class="btn btn-xs btn-default"><i class="fa fa-search"></i></button>
-		                                <button type="button" class="btn btn-xs btn-default"><i class="fa fa-shopping-cart"></i></button>
-		                                <button type="button" class="btn btn-xs btn-default btn-primary like2"><i class="fa fa-heart-o"></i></button>
-		                            </div>
-		                            <div class="text-right">
-		                                <button type="button" class="btn btn-xs btn-default like">
-		                                    365 <i class="fa fa-heart" style="color: tomato"></i>
-		                                </button>
-		                            </div>
-		                        </div>
-		                    </div>
-		                </div>
+				            <?php
+			                }
+		                ?>
+		                
 		            </div>
 		            <div class="row ">
-		                <div class="col-md-6 col-md-offset-4 ">
-		                    <nav>
-		                        <div class="pagination">
-		                            <ul class="pagination">
-		                                <li><a href="#"><span aria-hidden="true">&laquo;</span><span class="sr-only">Previous</span></a></li>
-		                                <li><a href="#">1</a></li>
-		                                <li><a href="#">2</a></li>
-		                                <li><a href="#">3</a></li>
-		                                <li><a href="#">4</a></li>
-		                                <li><a href="#">5</a></li>
-		                                <li><a href="#"><span aria-hidden="true">&raquo;</span><span class="sr-only">Next</span></a></li>
-		                            </ul>
-		                        </div>
-		                    </nav>
+		                <div class="col-md-12 text-center">
+		                    <a id="load_more" data-num="1" href="#">load more...</a>
 		                </div>
 		            </div>
 		        </div>
@@ -578,6 +361,75 @@
 		  ga('create', 'UA-56403954-1', 'auto');
 		  ga('send', 'pageview');
 		
+		</script>
+		<script>
+			function traiterFlux(flux) {
+				var obj = jQuery.parseJSON( flux );
+				/*obj.forEach(function(){
+					alert(obj[0].product_name);
+				});*/
+					var html = " ";
+				for (var key in obj){
+					html += '<div class="col-sm-6 col-md-4 col-xs-6 col-lg-3"><div class="thumbnail"><a href="index.php?module=fiche&product=' + obj[key].product_id + '"><img src="' + obj[key].product_img_url + '" class="img-responsive"></a><div class="caption"><h4>' + obj[key].product_name + '</h4><p><small><em>By ' + obj[key].user_username + '</em></small></p><div class="btn-group " style="float: left"><button type="button" class="btn btn-xs btn-default"><i class="fa fa-search"></i></button><button type="button" class="btn btn-xs btn-default"><i class="fa fa-shopping-cart"></i></button><button type="button" class="btn btn-xs btn-default btn-primary like2"><i class="fa fa-heart-o"></i></button></div><div class="text-right"><button type="button" class="btn btn-xs btn-default like">765 <i class="fa fa-heart" style="color: tomato"></i></button></div></div></div></div>';
+				}
+				$('#display_load_more').append(html);
+
+				/*var img_url = 'img/photo_' + obj.id + '.jpg';
+				ImageExist(img_url);
+				
+				$(".ajax_firstname").text(obj.firstname);
+				$(".ajax_name").text(obj.name);
+				$(".ajax_mail").text(obj.mail);
+				$(".ajax_statut").text(obj.nom);
+				$(".ajax_phone").text(obj.phone);*/		
+		
+				//alert( obj.name );
+				//var obj = jQuery.parseJSON(flux);
+				//alert(obj.name);
+				/*$.each(flux, function(key,value) {
+					if(key == 'name') {
+					$('.ajax_name').text(value);
+					}
+					//contenu += "<li>Key : "+key+" - Value : "+value+"</li>";
+				});*/
+				//$(affichage).html(contenu);
+		
+			}
+
+			
+			$(document).ready(function(){
+				$("#load_more").on("click", function(e){
+					e.preventDefault();
+					$(this).parent().append('<img id="ajax_loader" src="img/ajax-loader.gif" alt="ajax loader"/>');
+					var page = $(this).attr("data-num");
+					page ++ ;
+					$(this).attr("data-num", page);
+					$.ajax({
+						// URL du traitement sur le serveur
+						url : 'index.php?module=index',
+						//Type de requête
+						type: 'post',
+						//parametres envoyés
+						data: 'action=ajax_more&page=' + page,
+						//on precise le type de flux
+						//Traitement en cas de succes
+						success: function(data) {
+							if(data == 'no more'){
+								$('#load_more').parent().html('no more product');
+							}
+							else {
+								traiterFlux(data);
+							}
+							$('#ajax_loader').remove();
+						},
+						error: function(jqXHR, textStatus, errorThrown) {
+							console.log(textStatus + " " + errorThrown);
+							console.log("Erreur execution requete ajax");
+						}
+					});
+				});
+			});
+
 		</script>
 		
 	</body>

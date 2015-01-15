@@ -120,15 +120,15 @@ class uploadController extends CoreControlers {
 	
 	function submit_pay() {
 		include_once _APP_PATH . 'models/class.product.php';
-		$product = new classProduct();
+		$classProducts = new classProducts();
 		
-		$product->name 			= $_POST['name'];
-		$product->descr 		= $_POST['description'];
-		$product->status		= $_POST['radio_public_private'];
-		$product->type			= $_POST['radio_tatoo_stickers'];
-		$product->img_url		= $_POST['img'];
+		$classProducts->name 			= $_POST['name'];
+		$classProducts->descr 		= $_POST['description'];
+		$classProducts->status		= $_POST['radio_public_private'];
+		$classProducts->type			= $_POST['radio_tatoo_stickers'];
+		$classProducts->img_url		= $_POST['img'];
 
-		$product->insert_new();
+		$classProducts->insert_new();
 		
 		header('location:index.php?module=summary');
 	}
@@ -136,15 +136,15 @@ class uploadController extends CoreControlers {
 	function submit_save() {
 
 		include_once _APP_PATH . 'models/class.product.php';
-		$product = new classProduct();
+		$classProducts = new classProducts();
 		
-		$product->name 			= $_POST['name'];
-		$product->descr 		= $_POST['description'];
-		$product->status		= $_POST['radio_public_private'];
-		$product->type			= $_POST['radio_tatoo_stickers'];
-		$product->img_url		= $_POST['img'];
+		$classProducts->name 			= $_POST['name'];
+		$classProducts->descr 		= $_POST['description'];
+		$classProducts->status		= $_POST['radio_public_private'];
+		$classProducts->type			= $_POST['radio_tatoo_stickers'];
+		$classProducts->img_url		= $_POST['img'];
 
-		$product->insert_new();
+		$classProducts->insert_new();
 
 		header('location:index.php?module=dashboard');
 	}
