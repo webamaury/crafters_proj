@@ -32,7 +32,7 @@ class classProducts extends CoreModels {
 	}
 	
 	function get_one() {
-		$query = "SELECT P.product_id, P.product_name, P.product_description, P.product_creation, P.product_status, P.product_type, S.nom, S.statut FROM " . _TABLE__PRODUCTS . " as P," . _TABLE__STATUTS . " as S WHERE P.product_id = :id AND S.type = 'product' AND S.statut = P.product_status";
+		$query = "SELECT P.product_id, P.product_name, P.product_description, P.product_creation, P.product_status, P.product_type, P.product_img_url, S.nom, S.statut FROM " . _TABLE__PRODUCTS . " as P," . _TABLE__STATUTS . " as S WHERE P.product_id = :id AND S.type = 'product' AND S.statut = P.product_status";
 		
 	
 		$champs = ':id';
@@ -56,6 +56,19 @@ class classProducts extends CoreModels {
 	
 		return $return[0] ;	
 	}
+	
+	function delete_product() {
+
+			$query = "DELETE FROM " . _TABLE__PRODUCTS . " WHERE product_id = :id";
+		
+			$cursor = $this->connexion->prepare($query);
+	
+			$cursor->bindValue(':id', $this->product_id, PDO::PARAM_INT);
+			$cursor->execute();
+			$cursor->closeCursor();
+			return true ;
+	}
+	
 	function get_list_front() {
 		$query = "SELECT P.product_id, P.product_name, P.product_img_url, U.user_username FROM " . _TABLE__PRODUCTS . " as P, " . _TABLE__USERS . " as U WHERE P.user_id_product = U.user_id ORDER BY product_id desc LIMIT ".$this->limit;
 		$cursor = $this->connexion->prepare($query);
@@ -82,6 +95,42 @@ class classProducts extends CoreModels {
 	
 		return $return[0] ;	
 	
+	}
+	
+	function update_product() {
+		$query = "UPDATE " . _TABLE__PRODUCTS . " 
+		SET product_name = :name,
+		product_description = :description,
+		product_status = :statut,
+		product_type = :type
+		WHERE product_id = :id";
+		
+		$cursor = $this->connexion->prepare($query);
+			
+		$cursor->bindValue(':name', $this->product_name, PDO::PARAM_STR);
+		$cursor->bindValue(':description', $this->product_description, PDO::PARAM_STR);
+		$cursor->bindValue(':statut', $this->product_status, PDO::PARAM_INT);
+		$cursor->bindValue(':type', $this->product_type, PDO::PARAM_STR);
+		$cursor->bindValue(':id', $this->product_id, PDO::PARAM_INT);
+
+		$return = $cursor->execute();
+
+		$cursor->closeCursor();
+		return $return ;
+	}
+	
+	function get_statuts() {
+		$query = "SELECT * FROM " . _TABLE__STATUTS . " WHERE type = 'product'";
+	
+		$cursor = $this->connexion->prepare($query);
+	
+		$cursor->execute();
+	
+		$cursor->setFetchMode(PDO::FETCH_OBJ);		
+		$list=$cursor->fetchAll();
+		$cursor->closeCursor();
+
+		return $list ;
 	}
 
 }

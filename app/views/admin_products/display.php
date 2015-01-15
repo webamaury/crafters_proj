@@ -31,6 +31,9 @@
 					<td class="colum_action">
 						<a href="#" onclick="return false" class="tips-trigger"  data-toggle="tooltip" data-placement="bottom" title="see details">
 							<span data-toggle="modal" data-target=".modal_fiche_product" data-id="<?php echo $item->product_id ; ?>" class="glyphicon glyphicon-eye-open modal-fiche-message-trigger"></span>
+						</a>&nbsp;&nbsp;
+						<a href="index.php?module=products&amp;action=form&amp;id=<?php echo $item->product_id ; ?>" class="tips-trigger" data-toggle="tooltip" data-placement="bottom" title="update">
+							<span class="glyphicon glyphicon-pencil"></span>
 						</a>&nbsp;
 						<a href="#" onclick="return false" class="tips-trigger"  data-toggle="tooltip" data-placement="bottom" title="delete">
 							<span data-toggle="modal" data-target=".bs-example-modal-sm" data-href="index.php?module=products&amp;action=delete&amp;id=<?php echo $item->product_id ; ?>" class="glyphicon glyphicon-trash modal-supp-trigger"></span>

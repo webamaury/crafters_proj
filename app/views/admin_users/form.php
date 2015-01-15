@@ -66,13 +66,13 @@
 				</div>
 			</div>
 			<div class="form-group">
-				<label for="phone" class="col-md-2 control-label">Birthday</label>
+				<label for="birthday" class="col-md-2 control-label">Birthday</label>
 				<div class="col-lg-10 col-md-8">
 					<input type="text" name="birthday" class="form-control" id="birthday" value="<?php echo (isset($item->user_birthday)) ? $item->user_birthday : '' ; ?>">
 				</div>
 			</div>
 			<div class="form-group">
-				<label for="phone" class="col-md-2 control-label">Creation</label>
+				<label for="creation" class="col-md-2 control-label">Creation</label>
 				<div class="col-lg-10 col-md-8">
 					<input type="text" name="creation" class="form-control" id="creation" readonly value="<?php echo (isset($item->user_creation)) ? $item->user_creation : '' ; ?>">
 				</div>
@@ -96,7 +96,7 @@
 		<div class="col-xs-12 margin-top-20">
 				<input type="hidden" name="action" value="<?php echo (isset($_GET['id'])) ? 'modifier' : 'ajouter' ; ?>">
 				
-				<button type="submit" class="btn btn-primary"><?php echo (isset($_GET['id'])) ? 'Update Admin' : '<span class="glyphicon glyphicon-plus font-09em"></span> Add new' ; ?></button>
+				<button type="submit" class="btn btn-primary"><?php echo (isset($_GET['id'])) ? 'Update User' : '<span class="glyphicon glyphicon-plus font-09em"></span> Add new' ; ?></button>
 		</div>
 	</form>
 

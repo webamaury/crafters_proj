@@ -8,8 +8,8 @@
 			$products = new classProducts();
 			
 			if(isset($_GET['action']) && $_GET['action'] == "delete") {
-				$messages->message_id = $_GET['id'];
-				if($messages->delete_message()) {
+				$products->product_id = $_GET['id'];
+				if($products->delete_product()) {
 					$notices->create_notice('success', 'Message deleted');
 					header('location:index.php?module=products');exit();
 				}
@@ -18,15 +18,35 @@
 					header('location:index.php?module=products');exit();
 				}
 			}
+			else if(isset($_POST['action']) && $_POST['action'] == 'modifier') {
+
+				$products->product_id 				= $_GET['id'];
+				$products->product_name				= $_POST['name'];
+				$products->product_description 		= $_POST['description'];
+				$products->product_status 			= $_POST['statut'];
+				$products->product_type 			= $_POST['type'];
+				
+	//						echo $_POST['statut']."<br>";
+	//						echo $adminUsers->statut ; exit();	
+				
+				if($products->update_product()) {
+					$notices->create_notice('success', 'User modifié');
+					header('location:index.php?module=products&action=form&id='.$_GET['id']);exit();
+				}
+				else {
+					$notices->create_notice('danger', 'erreur modif');
+					header('location:index.php?module=products&action=form&id='.$_GET['id']);exit();
+				}
+			}
 			else if(isset($_GET['action']) && $_GET['action'] == 'form') {
-					$messages->message_id = $_GET['id'];
-					$item = $messages->get_one();
+					$products->product_id = $_GET['id'];
+					$item = $products->get_one();
 					//var_dump($item); exit();
 					if(empty($item)) {
 						$notices->create_notice('danger', 'Unknown message !');
 						header('location:index.php?module=products');exit();
 					}
-					$statuts = $messages->get_statuts();
+					$statuts = $products->get_statuts();
 
 				##############################################################
 				##	APPEL TOOLS												##
