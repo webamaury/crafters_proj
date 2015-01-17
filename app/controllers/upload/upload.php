@@ -45,7 +45,7 @@ class uploadController extends CoreControlers {
 		$thumb_square_size 		= 360; //Thumbnails will be cropped to 360x360 pixels
 		$max_image_size 		= 800; //Maximum image size (height and width)
 		$thumb_prefix			= "thumb_"; //Normal thumb Prefix
-		$destination_folder		= '/Applications/MAMP/htdocs/crafters_proj/www/uploads/'; //upload directory ends with / (slash)
+		$destination_folder		= _WWW_PATH . 'products/'; //upload directory ends with / (slash)
 		$jpeg_quality 			= 90; //jpeg quality
 		##########################################
 		

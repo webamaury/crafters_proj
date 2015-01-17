@@ -21,6 +21,12 @@ class indexController extends CoreControlers {
 		##	TRAITEMENT PHP											##
 		##############################################################
 		include_once(_APP_PATH . 'models/class.product.php'); $ClassProduct = new classProducts();
+		include_once(_APP_PATH . 'models/class.users.php'); $ClassUser = new classUsers();
+
+		$crafter_of_month = $ClassUser->get_crafters_of_month();
+		$ClassUser->user_id_product = $crafter_of_month->user_id;
+		$ClassUser->limit_month_img = 4;
+		$user_month_products = $ClassUser->get_product_of_user();
 		$ClassProduct->limit = '0,'.$this->nb_by_page;
 		$products = $ClassProduct->get_list_front();
 		foreach($products as $product) {
@@ -63,6 +69,19 @@ class indexController extends CoreControlers {
 		}
 		else {
 			echo 'no more';
+		}
+	}
+	function ajax_like_product() {
+		include_once(_APP_PATH . 'models/class.product.php'); $ClassProduct = new classProducts();
+
+		$ClassProduct->product_id = $_POST['product'];
+		$ClassProduct->user_id = $_SESSION["CRAFTERS-USER"]["id"];
+		
+		if($ClassProduct->like_product()) {
+			echo true;
+		}
+		else {
+			echo false;
 		}
 	}
 }

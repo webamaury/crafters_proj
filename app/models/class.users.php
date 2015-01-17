@@ -140,6 +140,31 @@ class classUsers extends CoreModels {
 
 		return $list ;
 	}
+	function get_crafters_of_month() {
+	
+		$query = "SELECT user_id, user_username, user_description, user_img_url FROM " . _TABLE__USERS . " WHERE user_month = 1";
 
+		$cursor = $this->connexion->prepare($query);
+		
+		$cursor->execute();
+		$cursor->setFetchMode(PDO::FETCH_OBJ);		
+		$return=$cursor->fetch();
+		$cursor->closeCursor();
+	
+		return $return ;	
+	}
+	function get_product_of_user() {
+		$query = "SELECT product_id, product_name, product_img_url FROM " . _TABLE__PRODUCTS . " WHERE user_id_product = :user_id_product ORDER BY product_id desc LIMIT 0,".$this->limit_month_img;
+	
+		$cursor = $this->connexion->prepare($query);
+		$cursor->bindValue(':user_id_product', $this->user_id_product, PDO::PARAM_INT);
+		$cursor->execute();
+	
+		$cursor->setFetchMode(PDO::FETCH_OBJ);		
+		$list=$cursor->fetchAll();
+		$cursor->closeCursor();
+
+		return $list ;
+	}
 }
 ?>

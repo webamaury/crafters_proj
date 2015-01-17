@@ -62,7 +62,11 @@
 			<div class="form-group">
 				<label for="type" class="col-md-2 control-label">Type</label>
 				<div class="col-lg-10 col-md-8">
-					<input type="text" name="type" class="form-control" id="type" value="<?php echo (isset($item->product_type)) ? $item->product_type : '' ; ?>">
+					<select name="type" class="form-control">
+						<option <?php echo (isset($item->product_type) && $item->product_type == "tattoo") ? 'selected' : '' ; ?> value="tattoo">Tattoo</option>
+						<option <?php echo (isset($item->product_type) && $item->product_type == "stickers") ? 'selected' : '' ; ?> value="stickers">Stickers</option>
+					</select>
+
 				</div>
 			</div>
 			<div class="form-group">
@@ -70,7 +74,6 @@
 				<div class="col-lg-10 col-md-8">
 					<select name="statut" class="form-control">
 						<?php
-							var_dump($statuts);
 						foreach($statuts as $statut) {
 							?>
 						<option <?php echo (isset($item->statut) && $statut->statut == $item->statut) ? 'selected' : '' ; ?> value="<?php echo $statut->statut ; ?>"><?php echo $statut->nom ; ?></option>

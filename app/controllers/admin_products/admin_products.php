@@ -95,7 +95,7 @@
 			else if(isset($_POST['action']) && $_POST['action'] == 'ajax_delete_avatar') {
 					if(unlink(_WWW_PATH . $_POST['img_url'])) {
 						$products->product_id=$_POST["product_id"];
-						if($products->delete_address()){
+						if($products->delete_address_img()){
 							echo true;
 						}
 					}

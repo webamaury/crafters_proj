@@ -34,29 +34,28 @@
 		                    <div class="row">
 		
 		                        <div class="col-md-12">
-		                            <a onclick="ga('send','event','Crafter of the month','Clique');" href="#"><h2 style="text-transform: uppercase; font-size: 20px; ">Crafter of the month</h2></a>
+		                            <h2 style="text-transform: uppercase; font-size: 20px; ">Crafter of the month</h2>
 		                            <hr>
 		                        </div>
 		                            <div class="col-md-5 col-sm-3 col-xs-5">
-		                                <a onclick="ga('send','event','Crafter of the month','Clique');" href="#"><img src="user/A.jpg" class="img-responsive img-circle" style="float: right"></a>
+		                                <a href="index.php?module=profil&user=<?php echo $crafter_of_month->user_id ; ?>"><img src="<?php echo $crafter_of_month->user_img_url ; ?>" class="img-responsive img-circle" style="float: right"></a>
 		                            </div>
 		                            <div class="col-md-6 col-sm-9 col-xs-7">
 		                                <br/>
-		                                <a onclick="ga('send','event','Crafter of the month','Clique');" href="#"></a><h2>Alie Suvélor</h2></a>
-		                                <p>Alienor is a graphic designer based in San Francisco. She's a crafter for 2 years now.</p>
-		                                <img src="illu/3.jpg" width="40px">
-		                                <img src="illu/12.jpg" width="40px">
-		                                <img src="illu/11.jpg" width="40px">
-		                                <img src="illu/14.jpg" width="40px">
+		                                <a onclick="ga('send','event','Crafter of the month','Clique');" href="#"></a><h2><?php echo $crafter_of_month->user_username ; ?></h2></a>
+		                                <p><?php echo $crafter_of_month->user_description ; ?></p>
+		                                <?php foreach($user_month_products as $user_month_product) { ?>
+		                                <img src="<?php echo $user_month_product->product_img_url ; ?>" alt="<?php echo $user_month_product->product_name ; ?>" title="<?php echo $user_month_product->product_name ; ?>" width="40px">
+		                                <?php } ?>
 		                                <br/>
-		                                <span onclick="ga('send','event','Crafter of the month','Clique');" class="seemore"><a href="#" >See her creations</a></span>
+		                                <span onclick="ga('send','event','Crafter of the month','Clique');" class="seemore"><a href="index.php?module=profil&user=<?php echo $crafter_of_month->user_id ; ?>" >See her creations</a></span>
 		                                <br/>
 		                                <br/>
 		                                <br/>
 		                            </div>
 		
 		                        <div class="col-md-12 ">
-		                            <a onclick="ga('send','event','Most Popular','Clique');" href="#"><h2 style="text-transform: uppercase; font-size: 20px; ">Most Popular Crafters</h2></a>
+		                            <h2 style="text-transform: uppercase; font-size: 20px; ">Most Popular Crafters</h2>
 		                            <hr>
 		                        </div>
 		                        <div class="col-md-3 col-sm-3 col-xs-3">
@@ -144,13 +143,13 @@
 		                            <h4><?php echo $product->product_name ; ?></h4>
 		                            <p><small><em>By <?php echo $product->user_username ; ?></em></small></p>
 		                            <div class="btn-group " style="float: left">
-		                                <button type="button" class="btn btn-xs btn-default"><i class="fa fa-search"></i></button>
+		                                <a href="index.php?module=fiche&product=<?php echo $product->product_id ; ?>" class="btn btn-xs btn-default"><i class="fa fa-search"></i></a>
 		                                <button type="button" class="btn btn-xs btn-default"><i class="fa fa-shopping-cart"></i></button>
-		                                <button type="button" class="btn btn-xs btn-default btn-primary like2"><i class="fa fa-heart-o"></i></button>
+		                                <button type="button" data-product="<?php echo $product->product_id ; ?>" <?php echo (isset($_SESSION["CRAFTERS-USER"]["authed"]) && $_SESSION["CRAFTERS-USER"]["authed"] == true) ? 'class="btn btn-xs btn-default btn-primary like2 ajax_like_trigger"' : 'class="btn btn-xs btn-default btn-primary like2"  data-toggle="modal" data-target="#modal-login"' ; ?> ><i class="fa fa-heart-o"></i></button>
 		                            </div>
 		                            <div class="text-right">
 		                                <button type="button" class="btn btn-xs btn-default like">
-		                                    <?php echo $product->nb_like ; ?> <i class="fa fa-heart" style="color: tomato"></i>
+		                                    <span class="nb_like" id="nb_like<?php echo $product->product_id ; ?>"><?php echo $product->nb_like ; ?></span> <i class="fa fa-heart" style="color: tomato"></i>
 		                                </button>
 		                            </div>
 		                        </div>
@@ -159,7 +158,6 @@
 				            <?php
 			                }
 		                ?>
-		                
 		            </div>
 		            <div class="row ">
 		                <div class="col-md-12 text-center">
@@ -427,6 +425,32 @@
 							console.log("Erreur execution requete ajax");
 						}
 					});
+				});
+				
+				$(".ajax_like_trigger").on("click", function(){
+					var product = $(this).attr("data-product");
+					var nb_like = $(this).parent().next().find(".nb_like").html();
+					nb_like++;
+					$.ajax({
+						// URL du traitement sur le serveur
+						url : 'index.php?module=index',
+						//Type de requête
+						type: 'post',
+						//parametres envoyés
+						data: 'action=ajax_like_product&product=' + product,
+						//on precise le type de flux
+						//Traitement en cas de succes
+						success: function(data) {
+							
+						},
+						error: function(jqXHR, textStatus, errorThrown) {
+							console.log(textStatus + " " + errorThrown);
+							console.log("Erreur execution requete ajax");
+						}
+					});
+					$(this).parent().next().find(".nb_like").html(nb_like++);
+					$(this).addClass("btn-tomato");
+					$(this).removeClass("ajax_like_trigger");
 				});
 			});
 

@@ -24,8 +24,8 @@ class classProducts extends CoreModels {
 	}
 	
 	function get_list() {
-		$orderby = 'product_id asc';
-		$this->query = "SELECT product_img_url, product_id, product_name, product_description, product_type  FROM " . _TABLE__PRODUCTS . " ORDER BY " . $orderby;
+		$orderby = 'S.statut asc';
+		$this->query = "SELECT P.product_img_url, P.product_id, P.product_name, P.product_type, S.nom as status_name  FROM " . _TABLE__PRODUCTS . " P, " . _TABLE__STATUTS . " S WHERE S.statut = P.product_status and S.type = 'product' ORDER BY " . $orderby;
 		$list = $this->select_no_param();
 				
 		return $list ;
@@ -70,7 +70,7 @@ class classProducts extends CoreModels {
 	}
 	
 	function get_list_front() {
-		$query = "SELECT P.product_id, P.product_name, P.product_img_url, U.user_username FROM " . _TABLE__PRODUCTS . " as P, " . _TABLE__USERS . " as U WHERE P.user_id_product = U.user_id ORDER BY product_id desc LIMIT ".$this->limit;
+		$query = "SELECT P.product_id, P.product_name, P.product_img_url, U.user_username FROM " . _TABLE__PRODUCTS . " as P, " . _TABLE__USERS . " as U WHERE P.user_id_product = U.user_id and P.product_status = 1 ORDER BY product_id desc LIMIT ".$this->limit;
 		$cursor = $this->connexion->prepare($query);
 		
 		$cursor->execute();
@@ -133,7 +133,7 @@ class classProducts extends CoreModels {
 		return $list ;
 	}
 	
-	function delete_address() {
+	function delete_address_img() {
 		$query = "UPDATE " . _TABLE__PRODUCTS . " 
 		SET product_img_url = 'NULL'
 		WHERE product_id = :id";
@@ -146,6 +146,25 @@ class classProducts extends CoreModels {
 
 		$cursor->closeCursor();
 		return $return ;
+	}
+	function like_product() {
+		$query = "INSERT INTO " . _TABLE__LIKE . " 
+		(crafters_product_product_id, crafters_user_user_id) 
+		VALUES 
+		(:product_id, :user_id)";
+		$cursor = $this->connexion->prepare($query);
+	
+		$cursor->bindValue(':product_id', $this->product_id, PDO::PARAM_INT);
+		$cursor->bindValue(':user_id', $this->user_id, PDO::PARAM_INT);
+	
+		$return = $cursor->execute();
+		
+		$cursor->closeCursor();
+
+		return $return ;
+	}
+	function did_i_like() {
+		
 	}
 
 }

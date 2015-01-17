@@ -1,3 +1,8 @@
 body {
 	margin-bottom: 40px;
 }
+.btn-tomato {
+	background-color: #f05d43 !important;
+  border: 1px solid #f05d43 !important;
+  color: #FFF !important;
+}

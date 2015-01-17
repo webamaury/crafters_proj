@@ -67,8 +67,10 @@ if (isset($_GET['action']) && $_GET['action'] == 'logout')
 ##############################################################
 ## TEST DE SESSION											##
 ##############################################################
-$pages_allowed_without_session = array('www', 'index.php', 'index.php?module=index', 'index.php?module=contact');
-if (!$user->is_authed() && !in_array( $current_page, $pages_allowed_without_session))
+$pages_allowed_without_session = array('www', 'index.php', 'index', 'fiche', 'profil', 'contact');
+if(isset($_GET['module'])){ $var = $_GET['module'] ; }
+else{ $var = $current_page ; }
+if (!$user->is_authed() && !in_array( $var , $pages_allowed_without_session))
 {
 	header('Location: index.php?module=index');
 	exit();
