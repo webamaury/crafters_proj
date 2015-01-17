@@ -66,7 +66,7 @@ class classUsers extends CoreModels {
 		return $item;
 	}
 	function get_one_array() {
-		$query = "SELECT U.user_id, U.user_firstname, U.user_name, U.user_mail, U.user_birthday, U.user_phone, U.user_creation, S.nom FROM " . _TABLE__USERS . " as U," . _TABLE__STATUTS . " as S WHERE U.user_id = :id AND S.type = 'user' AND S.statut = U.user_status";
+		$query = "SELECT U.user_id, U.user_firstname, U.user_name, U.user_mail, U.user_birthday, U.user_phone, U.user_creation, S.nom, A.address_numberstreet, A.address_town, A.address_zipcode, A.address_country FROM " . _TABLE__USERS . " as U," . _TABLE__STATUTS . " as S," . _TABLE__ADDRESS . " as A WHERE U.user_id = :id AND S.type = 'user' AND S.statut = U.user_status AND U.user_id = A.user_id_address";
 		
 		$cursor = $this->connexion->prepare($query);
 	

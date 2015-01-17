@@ -23,7 +23,7 @@
 	<form class="form-horizontal" method="post" enctype="multipart/form-data" action="index.php?module=products&action=form<?php echo (isset($_GET['id'])) ? '&id='.$_GET['id'] : '' ; ?>" role="form">
 		<div class="col-xs-12 col-md-6 margin-top-20 text-center">
 			<div class="col-xs-12">
-				<img class="img_avatar" src="<?php echo (isset($item->product_img_url) && file_exists(_WWW_PATH . $item->product_img_url)) ? _WWW_PATH . $item->product_img_url : _WWW_PATH . 'img/avatar.jpg' ; ?>" alt="avatar"/>
+				<img class="img_avatar" src="<?php echo (isset($item->product_img_url) && file_exists(_WWW_PATH . $item->product_img_url)) ? _WWW_PATH . $item->product_img_url : _ADMIN_PATH . 'img/avatar.jpg' ; ?>" alt="avatar"/>
 				<?php
 					if(isset($item->product_img_url) && file_exists(_WWW_PATH . $item->product_img_url)){
 				?>
@@ -145,7 +145,7 @@
 </script>
 
 <?php		
-	if(isset($item->id) && file_exists(_ADMIN_PATH . 'img/photo_' . $item->id . '.jpg')){	
+	if(isset($item->product_img_url) && file_exists(_WWW_PATH . $item->product_img_url)){	
 ?>	
 <script type="text/javascript">
 	$(document).ready(function(){
@@ -155,11 +155,11 @@
 
 			$.ajax({
 				// URL du traitement sur le serveur
-				url : 'index.php?module=adminUsers',
+				url : 'index.php?module=products',
 				//Type de requête
 				type: 'post',
 				//parametres envoyés
-				data: 'action=ajax_delete_avatar&id=<?php echo $_GET['id']; ?>',
+				data: 'action=ajax_delete_avatar&img_url=<?php echo $item->product_img_url; ?>&product_id=<?php echo $item->product_id; ?>',
 				//on precise le type de flux
 				//Traitement en cas de succes
 				success: function(data) {
@@ -184,8 +184,5 @@
 	});
 </script>
 <?php 
-	}
-	if(isset($item) && $_SESSION['ADMIN-USER']['id'] == $item->product_id){
-		include_once(_APP_PATH . 'views/includes_admin/modal_password.inc.php') ;
 	}
 ?>
