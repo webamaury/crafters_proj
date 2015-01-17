@@ -10,7 +10,7 @@
 			if(isset($_GET['action']) && $_GET['action'] == "delete") {
 				$products->product_id = $_GET['id'];
 				if($products->delete_product()) {
-					$notices->create_notice('success', 'Message deleted');
+					$notices->create_notice('success', 'Product deleted');
 					header('location:index.php?module=products');exit();
 				}
 				else {
@@ -30,7 +30,7 @@
 	//						echo $adminUsers->statut ; exit();	
 				
 				if($products->update_product()) {
-					$notices->create_notice('success', 'User modifié');
+					$notices->create_notice('success', 'Product updated');
 					header('location:index.php?module=products&action=form&id='.$_GET['id']);exit();
 				}
 				else {
@@ -92,8 +92,17 @@
 					$ajax_item = json_encode($ajax_item);
 					echo $ajax_item;
 			}
-
-
+			else if(isset($_POST['action']) && $_POST['action'] == 'ajax_delete_avatar') {
+					if(unlink(_WWW_PATH . $_POST['img_url'])) {
+						$products->product_id=$_POST["product_id"];
+						if($products->delete_address()){
+							echo true;
+						}
+					}
+					else {
+						echo false;
+					}
+			}
 
 		}
 	}

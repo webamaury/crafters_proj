@@ -9,7 +9,7 @@
 				<div class="col-md-4 text-center">
 					<img src="#" class="ajax_img" alt="img">
 				</div>
-				<div class="col-md-7">
+				<div class="col-md-8">
 					<form class="form-horizontal" method="post" action="#" role="form">
 						<div class="display-inline">
 							<label class="col-md-4 control-label">Firstname : </label>
@@ -53,7 +53,36 @@
 								<p class="form-control-static ajax_status"></p>
 							</div>
 						</div>
-
+					</form>
+				</div>
+				<div class="col-md-4"></div>
+				<div class="col-md-8">
+					<h4>Billing address</h4>
+					<form class="form-horizontal" method="post" action="#" role="form">
+						<div class="display-inline">
+							<label class="col-md-4 control-label">Street : </label>
+							<div class="col-md-8">
+								<p class="form-control-static ajax_numberstreet"></p>
+							</div>
+						</div>
+						<div class="display-inline">
+							<label class="col-md-4 control-label">Town : </label>
+							<div class="col-md-8">
+								<p class="form-control-static ajax_town"></p>
+							</div>
+						</div>
+						<div class="display-inline">
+							<label class="col-md-4 control-label">Zipcode : </label>
+							<div class="col-md-8">
+								<p class="form-control-static ajax_zipcode"></p>
+							</div>
+						</div>
+						<div class="display-inline">
+							<label class="col-md-4 control-label">Country : </label>
+							<div class="col-md-8">
+								<p class="form-control-static ajax_country"></p>
+							</div>
+						</div>
 					</form>
 				</div>
 			</div>

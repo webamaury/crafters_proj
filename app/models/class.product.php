@@ -132,6 +132,21 @@ class classProducts extends CoreModels {
 
 		return $list ;
 	}
+	
+	function delete_address() {
+		$query = "UPDATE " . _TABLE__PRODUCTS . " 
+		SET product_img_url = 'NULL'
+		WHERE product_id = :id";
+		
+		$cursor = $this->connexion->prepare($query);
+			
+		$cursor->bindValue(':id', $this->product_id, PDO::PARAM_INT);
+
+		$return = $cursor->execute();
+
+		$cursor->closeCursor();
+		return $return ;
+	}
 
 }
 
