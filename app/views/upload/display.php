@@ -48,7 +48,7 @@
 	                <br/>
 	                <span class="modalities">Choose your medium ?</span>
 	                <br/>
-	                <input type="radio" name="radio_tatoo_stickers" value="tatoo" id="radio2" class="css-checkbox" checked="checked" />
+	                <input type="radio" name="radio_tatoo_stickers" value="tattoo" id="radio2" class="css-checkbox" checked="checked" />
 	                <label for="radio2" class="css-label2 radGroup2">Tattoo</label>
 	                <input type="radio" name="radio_tatoo_stickers" value="stickers" id="radio3" class="css-checkbox" />
 	                <label for="radio3" class="css-label2 radGroup2">Stickers</label>
