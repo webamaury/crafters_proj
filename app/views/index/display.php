@@ -135,7 +135,7 @@
 							                    	}
 							                    	if($product->nb_like > 5){
 								                    	$others = $product->nb_like - 5 ;
-								                    	echo 'and ' . $others . 'others';
+								                    	echo 'and ' . $others . ' others';
 							                    	}
 						                    	}
 						                    	 ?>" class="fa fa-heart" style="color: tomato"></i>
@@ -153,7 +153,7 @@
 							                    	}
 							                    	if($product->nb_like > 5){
 								                    	$others = $product->nb_like - 5 ;
-								                    	echo 'and ' . $others . 'others';
+								                    	echo 'and ' . $others . ' others';
 							                    	}
 						                    	}
 						                    	 ?>" class="fa fa-heart-o" style="color: tomato"></i>
@@ -163,7 +163,7 @@
 					                        }
 				                            else { 
 					                            ?>
-					                    <button type="button" data-product="<?php echo $product->product_id ; ?>" class="btn btn-xs btn-default like">
+					                    <button data-toggle="modal" data-target="#modal-login" type="button" data-product="<?php echo $product->product_id ; ?>" class="btn btn-xs btn-default like">
 					                    	<span class="nb_like" id="nb_like<?php echo $product->product_id ; ?>"><?php echo $product->nb_like ; ?></span> 
 					                    	<i data-toggle="tooltip" data-placement="top" data-html="true" title="<?php 
 						                    	if(isset($product->name_likes)){
@@ -172,7 +172,7 @@
 							                    	}
 							                    	if($product->nb_like > 5){
 								                    	$others = $product->nb_like - 5 ;
-								                    	echo 'and ' . $others . 'others';
+								                    	echo 'and ' . $others . ' others';
 							                    	}
 						                    	}
 						                    	 ?>" class="fa fa-heart-o" style="color: tomato"></i>
@@ -194,11 +194,14 @@
 			                }
 		                ?>
 		            </div>
-		            <div class="row ">
-		                <div class="col-md-12 text-center">
+					<div class="btn-group btn-group-justified" role="group" aria-label="...">
+						<div class="btn-group" role="group">
+							<a type="button" id="load_more" data-num="1" class="btn btn-default">load more...</a>
+						</div>
+					</div>		            
+					    <!--<div class="col-md-12 text-center">
 		                    <a id="load_more" data-num="1" href="#">load more...</a>
-		                </div>
-		            </div>
+		                </div>-->
 		        </div>
 		    </div>
 		</div>
@@ -441,7 +444,7 @@
 				});
 				$("#load_more").on("click", function(e){
 					e.preventDefault();
-					$(this).parent().append('<img id="ajax_loader" src="img/ajax-loader.gif" alt="ajax loader"/>');
+					$(this).append('<img id="ajax_loader" src="img/ajax-loader.gif" alt="ajax loader"/>');
 					var page = $(this).attr("data-num");
 					page ++ ;
 					$(this).attr("data-num", page);
@@ -456,7 +459,7 @@
 						//Traitement en cas de succes
 						success: function(data) {
 							if(data == 'no more'){
-								$('#load_more').parent().html('no more product');
+								$('#load_more').html('no more product');
 							}
 							else {
 								traiterFlux(data);

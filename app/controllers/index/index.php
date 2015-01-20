@@ -9,7 +9,7 @@ class indexController extends CoreControlers {
 		else if(isset($_POST['action'])) {
 			$method = $_POST['action'];
 		}
-		$this->nb_by_page = 8;
+		$this->nb_by_page = 12;
 
 		$this->$method($array_tools, $notices) ;
 
@@ -26,13 +26,14 @@ class indexController extends CoreControlers {
 		//CRAFTERS OF THE MONTH
 		$crafter_of_month = $ClassUser->get_crafters_of_month();
 		$ClassUser->user_id_product = $crafter_of_month->user_id;
-		$ClassUser->limit_month_img = 6;
+		$ClassUser->limit_month_img = 4;
 		$user_month_products = $ClassUser->get_product_of_user();
 
 		//POPULAR CRAFTERS
 		$popular_crafters = $ClassUser->get_popular_crafters();
 		foreach($popular_crafters as $popular_crafter) {
 			$ClassUser->user_id_product = $popular_crafter->user_id_product;
+			$ClassUser->limit_month_img = 6;
 			$popular_crafter->creas = $ClassUser->get_product_of_user();
 		}
 		
