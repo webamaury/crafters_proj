@@ -124,11 +124,21 @@
 		                            </div>
 		                            <div class="text-right"><?php 
 			                                if(isset($_SESSION["CRAFTERS-USER"]["authed"]) && $_SESSION["CRAFTERS-USER"]["authed"] == true) { 
-				                                if($product->did_i_like == true){ 
+				                                if(isset($product->did_i_like) && $product->did_i_like == true){ 
 					                                ?>
 					                    <button type="button" data-product="<?php echo $product->product_id ; ?>" class="btn btn-xs btn-default like ajax_like_trigger" data-didilike="1">
 					                    	<span class="nb_like" id="nb_like<?php echo $product->product_id ; ?>"><?php echo $product->nb_like ; ?></span> 
-					                    	<i data-toggle="tooltip" data-placement="top" data-html="true" title="Alie S.<br/>omom<br/>mehdi<br/>marius<br/>Lisa<br/>and 6 others" class="fa fa-heart" style="color: tomato"></i>
+					                    	<i data-toggle="tooltip" data-placement="top" data-html="true" title="<?php 
+						                    	if(isset($product->name_likes)){
+							                    	foreach($product->name_likes as $product->name_like) {								                    	
+								                    		echo $product->name_like->user_username.'<br/>';
+							                    	}
+							                    	if($product->nb_like > 5){
+								                    	$others = $product->nb_like - 5 ;
+								                    	echo 'and ' . $others . 'others';
+							                    	}
+						                    	}
+						                    	 ?>" class="fa fa-heart" style="color: tomato"></i>
 				                        </button>
 					                                <?php
 						                        }
@@ -136,7 +146,17 @@
 				                                	?>
 					                    <button type="button" data-product="<?php echo $product->product_id ; ?>" class="btn btn-xs btn-default like ajax_like_trigger" data-didilike="0">
 					                    	<span class="nb_like" id="nb_like<?php echo $product->product_id ; ?>"><?php echo $product->nb_like ; ?></span> 
-					                    	<i data-toggle="tooltip" data-placement="top" data-html="true" title="Alie S.<br/>omom<br/>mehdi<br/>marius<br/>Lisa<br/>and 6 others" class="fa fa-heart-o" style="color: tomato"></i>
+					                    	<i data-toggle="tooltip" data-placement="top" data-html="true" title="<?php 
+						                    	if(isset($product->name_likes)){
+							                    	foreach($product->name_likes as $product->name_like) {								                    	
+								                    		echo $product->name_like->user_username.'<br/>';
+							                    	}
+							                    	if($product->nb_like > 5){
+								                    	$others = $product->nb_like - 5 ;
+								                    	echo 'and ' . $others . 'others';
+							                    	}
+						                    	}
+						                    	 ?>" class="fa fa-heart-o" style="color: tomato"></i>
 				                        </button>
 				                                	<?php
 					                            }
@@ -145,7 +165,17 @@
 					                            ?>
 					                    <button type="button" data-product="<?php echo $product->product_id ; ?>" class="btn btn-xs btn-default like">
 					                    	<span class="nb_like" id="nb_like<?php echo $product->product_id ; ?>"><?php echo $product->nb_like ; ?></span> 
-					                    	<i data-toggle="tooltip" data-placement="top" data-html="true" title="Alie S.<br/>omom<br/>mehdi<br/>marius<br/>Lisa<br/>and 6 others" class="fa fa-heart-o" style="color: tomato"></i>
+					                    	<i data-toggle="tooltip" data-placement="top" data-html="true" title="<?php 
+						                    	if(isset($product->name_likes)){
+							                    	foreach($product->name_likes as $product->name_like) {								                    	
+								                    		echo $product->name_like->user_username.'<br/>';
+							                    	}
+							                    	if($product->nb_like > 5){
+								                    	$others = $product->nb_like - 5 ;
+								                    	echo 'and ' . $others . 'others';
+							                    	}
+						                    	}
+						                    	 ?>" class="fa fa-heart-o" style="color: tomato"></i>
 				                        </button>
 					                            <?php
 						                    } 

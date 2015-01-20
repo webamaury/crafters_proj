@@ -196,6 +196,21 @@ class classProducts extends CoreModels {
 
 		return $list ;
 	}
+	function get_users_who_liked() {
+		$query = "SELECT U.user_username FROM " . _TABLE__LIKE . " L, " . _TABLE__USERS . " U WHERE L.crafters_user_user_id = U.user_id and L.crafters_product_product_id = :product_id ORDER BY L.like_id desc LIMIT 0,5";
+	
+		$cursor = $this->connexion->prepare($query);
+
+		$cursor->bindValue(':product_id', $this->product_id, PDO::PARAM_INT);
+
+		$cursor->execute();
+	
+		$cursor->setFetchMode(PDO::FETCH_OBJ);		
+		$list=$cursor->fetchAll();
+		$cursor->closeCursor();
+
+		return $list ;
+	}
 
 }
 
