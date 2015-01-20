@@ -166,5 +166,18 @@ class classUsers extends CoreModels {
 
 		return $list ;
 	}
+	function get_popular_crafters() {
+		$query = "select P.user_id_product, U.user_username, U.user_img_url, count(L.like_id) as nb_like from crafters_like L, crafters_product P, crafters_user U WHERE P.product_id = L.crafters_product_product_id and U.user_id = P.user_id_product group by P.user_id_product ORDER BY nb_like desc LIMIT 0,3";
+	
+		$cursor = $this->connexion->prepare($query);
+
+		$cursor->execute();
+	
+		$cursor->setFetchMode(PDO::FETCH_OBJ);		
+		$list=$cursor->fetchAll();
+		$cursor->closeCursor();
+
+		return $list ;
+	}
 }
 ?>

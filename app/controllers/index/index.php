@@ -27,12 +27,24 @@ class indexController extends CoreControlers {
 		$ClassUser->user_id_product = $crafter_of_month->user_id;
 		$ClassUser->limit_month_img = 4;
 		$user_month_products = $ClassUser->get_product_of_user();
+
+		$popular_crafters = $ClassUser->get_popular_crafters();
+		foreach($popular_crafters as $popular_crafter) {
+			$ClassUser->user_id_product = $popular_crafter->user_id_product;
+			$popular_crafter->creas = $ClassUser->get_product_of_user();
+		}
+		
+		
 		$ClassProduct->limit = '0,'.$this->nb_by_page;
 		$products = $ClassProduct->get_list_front();
 		foreach($products as $product) {
 			$ClassProduct->product_id = $product->product_id;
 			$nb_like = $ClassProduct->number_of_like();
 			$product->nb_like = $nb_like->nb_like;
+			if(isset($_SESSION["CRAFTERS-USER"]["authed"]) && $_SESSION["CRAFTERS-USER"]["authed"] == true) {
+				$ClassProduct->user_id = $_SESSION["CRAFTERS-USER"]["id"];
+				$product->did_i_like = $ClassProduct->did_i_like();
+			}
 		}
 		
 		##############################################################
@@ -62,6 +74,14 @@ class indexController extends CoreControlers {
 				$ClassProduct->product_id = $product->product_id;
 				$nb_like = $ClassProduct->number_of_like();
 				$product->nb_like = $nb_like->nb_like;
+				if(isset($_SESSION["CRAFTERS-USER"]["authed"]) && $_SESSION["CRAFTERS-USER"]["authed"] == true) {
+					$ClassProduct->user_id = $_SESSION["CRAFTERS-USER"]["id"];
+					$product->did_i_like = $ClassProduct->did_i_like();
+				}
+				else {
+					$product->did_i_like = 2;
+				}
+
 			}
 
 			$json = json_encode($products);			
@@ -77,13 +97,33 @@ class indexController extends CoreControlers {
 		$ClassProduct->product_id = $_POST['product'];
 		$ClassProduct->user_id = $_SESSION["CRAFTERS-USER"]["id"];
 		
-		if($ClassProduct->like_product()) {
+		if($ClassProduct->did_i_like() == false) {
+		
+			if($ClassProduct->like_product()) {
+				echo true;
+			}
+			else {
+				echo false;
+			}
+		}
+		else {
+			echo 2;
+		}
+	}
+	function ajax_unlike_product() {
+		include_once(_APP_PATH . 'models/class.product.php'); $ClassProduct = new classProducts();
+
+		$ClassProduct->product_id = $_POST['product'];
+		$ClassProduct->user_id = $_SESSION["CRAFTERS-USER"]["id"];
+				
+		if($ClassProduct->unlike_product()) {
 			echo true;
 		}
 		else {
 			echo false;
 		}
 	}
+
 }
 
 ?>

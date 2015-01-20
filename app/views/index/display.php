@@ -58,62 +58,32 @@
 		                            <h2 style="text-transform: uppercase; font-size: 20px; ">Most Popular Crafters</h2>
 		                            <hr>
 		                        </div>
+		                        <?php
+			                        foreach($popular_crafters as $popular_crafter) {
+				                ?>
 		                        <div class="col-md-3 col-sm-3 col-xs-3">
-		                            <a onclick="ga('send','event','Most Popular','Clique');" href="#"><img src="user/B.jpg" class="img-responsive img-circle" style="float: right"></a>
+		                            <a href="index.php?module=profil&user=<?php echo $popular_crafter->user_id_product ; ?>"><img src="<?php echo $popular_crafter->user_img_url ; ?>" class="img-responsive img-circle" style="float: right"></a>
 		                        </div>
 		                        <div class="col-md-9 col-sm-9 col-xs-7">
 		                            <br/>
-		                            <a onclick="ga('send','event','Most Popular','Clique');" href="#"><h2>Lucas <small>Los Angeles</small></h2></a>
-		                            <img src="illu/4.jpg" width="30px">
-		                            <img src="illu/12.jpg" width="30px">
-		                            <img src="illu/9.jpg" width="30px">
-		                            <img src="illu/7.jpg" width="30px">
-		                            <img src="illu/16.jpg" width="30px">
-		                            <img src="illu/18.jpg" width="30px">
-		                            <br/>
-		                            <span class="seemore"><a href="#" >See his creations</a></span>
-		                            <br/>
-		                            <br/>
-		                            <br/>
-		                        </div>
-		                        <div class="col-md-3 col-sm-3 col-xs-3">
-		                            <a onclick="ga('send','event','Most Popular','Clique');" href="#"><img src="user/C.jpg" class="img-responsive img-circle" style="float: right"></a>
-		                        </div>
-		                        <div class="col-md-9 col-sm-9 col-xs-7">
-		                            <br/>
-		                            <a onclick="ga('send','event','Most Popular','Clique');" href="#"><h2>Justin <small>Ontario</small></h2></a>
-		                            <img src="illu/3.jpg" width="30px">
-		                            <img src="illu/12.jpg" width="30px">
-		                            <img src="illu/1.jpg" width="30px">
-		                            <img src="illu/13.jpg" width="30px">
-		                            <img src="illu/15.jpg" width="30px">
-		                            <img src="illu/17.jpg" width="30px">
-		
+		                            <a href="index.php?module=profil&user=<?php echo $popular_crafter->user_id_product ; ?>"><h2><?php echo $popular_crafter->user_username ; ?></h2></a>
+		                            <?php
+			                            foreach($popular_crafter->creas as $popular_crafter->crea) {
+				                    ?>
+		                            	<img src="<?php echo $popular_crafter->crea->product_img_url ; ?>" alt="<?php echo $popular_crafter->crea->product_name ; ?>" title="<?php echo $popular_crafter->crea->product_name ; ?>" width="30px">
+				                    <?php
+			                            }
+		                            ?>		
 		
 		                            <br/>
-		                            <span class="seemore"><a href="#" >See his creations</a></span>
+		                            <span class="seemore"><a href="index.php?module=profil&user=<?php echo $popular_crafter->user_id_product ; ?>" >See his creations</a></span>
 		                            <br/>
 		                            <br/>
 		                            <br/>
 		                        </div>
-		                        <div class="col-md-3 col-sm-3 col-xs-3">
-		                            <a onclick="ga('send','event','Most Popular','Clique');" href="#"><img src="user/D.jpg" class="img-responsive img-circle" style="float: right"></a>
-		                        </div>
-		                        <div class="col-md-9 col-sm-9 col-xs-7">
-		                            <br/>
-		                            <a onclick="ga('send','event','Most Popular','Clique');" href="#"><h2>Elvis <small>Paris</small></h2></a>
-		                            <img src="illu/3.jpg" width="30px">
-		                            <img src="illu/2.jpg" width="30px">
-		                            <img src="illu/1.jpg" width="30px">
-		                            <img src="illu/4.jpg" width="30px">
-		                            <img src="illu/19.jpg" width="30px">
-		                            <img src="illu/18.jpg" width="30px">
-		                            <br/>
-		                            <span class="seemore"><a href="#" >See his creations</a></span>
-		                            <br/>
-		                            <br/>
-		                            <br/>
-		                        </div>
+				                <?php
+			                        }
+		                        ?>
 		                    </div>
 		            </div>
 		        </div>
@@ -145,7 +115,12 @@
 		                            <div class="btn-group " style="float: left">
 		                                <a href="index.php?module=fiche&product=<?php echo $product->product_id ; ?>" class="btn btn-xs btn-default"><i class="fa fa-search"></i></a>
 		                                <button type="button" class="btn btn-xs btn-default"><i class="fa fa-shopping-cart"></i></button>
-		                                <button type="button" data-product="<?php echo $product->product_id ; ?>" <?php echo (isset($_SESSION["CRAFTERS-USER"]["authed"]) && $_SESSION["CRAFTERS-USER"]["authed"] == true) ? 'class="btn btn-xs btn-default btn-primary like2 ajax_like_trigger"' : 'class="btn btn-xs btn-default btn-primary like2"  data-toggle="modal" data-target="#modal-login"' ; ?> ><i class="fa fa-heart-o"></i></button>
+		                                <button type="button" data-product="<?php echo $product->product_id ; ?>" <?php 
+			                                if(isset($_SESSION["CRAFTERS-USER"]["authed"]) && $_SESSION["CRAFTERS-USER"]["authed"] == true) { 
+				                                if($product->did_i_like == true){ echo 'class="btn btn-xs btn-default btn-primary like2 btn-tomato ajax_like_trigger" data-didilike="1"'; }
+				                                else { echo 'class="btn btn-xs btn-default btn-primary like2 ajax_like_trigger" data-didilike="0"' ;}}
+				                            else { echo 'class="btn btn-xs btn-default btn-primary like2"  data-toggle="modal" data-target="#modal-login"' ;} ?>
+				                             ><i class="fa fa-heart-o"></i></button>
 		                            </div>
 		                            <div class="text-right">
 		                                <button type="button" class="btn btn-xs btn-default like">
@@ -368,7 +343,11 @@
 				});*/
 					var html = " ";
 				for (var key in obj){
-					html += '<div class="col-sm-6 col-md-4 col-xs-6 col-lg-3"><div class="thumbnail"><a href="index.php?module=fiche&product=' + obj[key].product_id + '"><img src="' + obj[key].product_img_url + '" class="img-responsive"></a><div class="caption"><h4>' + obj[key].product_name + '</h4><p><small><em>By ' + obj[key].user_username + '</em></small></p><div class="btn-group " style="float: left"><button type="button" class="btn btn-xs btn-default"><i class="fa fa-search"></i></button><button type="button" class="btn btn-xs btn-default"><i class="fa fa-shopping-cart"></i></button><button type="button" class="btn btn-xs btn-default btn-primary like2"><i class="fa fa-heart-o"></i></button></div><div class="text-right"><button type="button" class="btn btn-xs btn-default like">' + obj[key].nb_like + ' <i class="fa fa-heart" style="color: tomato"></i></button></div></div></div></div>';
+					html += '<div class="col-sm-6 col-md-4 col-xs-6 col-lg-3"><div class="thumbnail"><a href="index.php?module=fiche&product=' + obj[key].product_id + '"><img src="' + obj[key].product_img_url + '" class="img-responsive"></a><div class="caption"><h4>' + obj[key].product_name + '</h4><p><small><em>By ' + obj[key].user_username + '</em></small></p><div class="btn-group " style="float: left"><button type="button" class="btn btn-xs btn-default"><i class="fa fa-search"></i></button><button type="button" class="btn btn-xs btn-default"><i class="fa fa-shopping-cart"></i></button><button type="button"  data-product="' + obj[key].product_id + '" ';
+					if(obj[key].did_i_like == true){ html += 'class="btn btn-xs btn-default btn-primary like2 btn-tomato ajax_like_trigger" data-didilike="1"'; }
+					else if(obj[key].did_i_like == false) { html += 'class="btn btn-xs btn-default btn-primary like2 ajax_like_trigger" data-didilike="0"'; }
+					else { html += 'class="btn btn-xs btn-default btn-primary like2"'; }
+					html += 'class="btn btn-xs btn-default btn-primary like2"><i class="fa fa-heart-o"></i></button></div><div class="text-right"><button type="button" class="btn btn-xs btn-default like"><span class="nb_like" id="nb_like' + obj[key].product_id + '">' + obj[key].nb_like + '</span> <i class="fa fa-heart" style="color: tomato"></i></button></div></div></div></div>';
 				}
 				$('#display_load_more').append(html);
 
@@ -426,32 +405,62 @@
 						}
 					});
 				});
-				
-				$(".ajax_like_trigger").on("click", function(){
-					var product = $(this).attr("data-product");
-					var nb_like = $(this).parent().next().find(".nb_like").html();
-					nb_like++;
-					$.ajax({
-						// URL du traitement sur le serveur
-						url : 'index.php?module=index',
-						//Type de requête
-						type: 'post',
-						//parametres envoyés
-						data: 'action=ajax_like_product&product=' + product,
-						//on precise le type de flux
-						//Traitement en cas de succes
-						success: function(data) {
-							
-						},
-						error: function(jqXHR, textStatus, errorThrown) {
-							console.log(textStatus + " " + errorThrown);
-							console.log("Erreur execution requete ajax");
-						}
-					});
-					$(this).parent().next().find(".nb_like").html(nb_like++);
-					$(this).addClass("btn-tomato");
-					$(this).removeClass("ajax_like_trigger");
-				});
+			});
+			$(document).on('click', '.ajax_like_trigger', function(){ 
+					if($(this).attr("data-didilike") == 1){
+						var product = $(this).attr("data-product");
+						var nb_like = $(this).parent().next().find(".nb_like").html();
+
+						nb_like--;
+						$.ajax({
+							// URL du traitement sur le serveur
+							url : 'index.php?module=index',
+							//Type de requête
+							type: 'post',
+							//parametres envoyés
+							data: 'action=ajax_unlike_product&product=' + product,
+							//on precise le type de flux
+							//Traitement en cas de succes
+							success: function(data) {
+								
+							},
+							error: function(jqXHR, textStatus, errorThrown) {
+								console.log(textStatus + " " + errorThrown);
+								console.log("Erreur execution requete ajax");
+							}
+						});
+						$(this).parent().next().find(".nb_like").html(nb_like++);
+						$(this).removeClass("btn-tomato");
+						$(this).attr("data-didilike", "0");
+					}
+					else {
+
+						var product = $(this).attr("data-product");
+						var nb_like = $(this).parent().next().find(".nb_like").html();
+	
+						nb_like++;
+	
+						$.ajax({
+							// URL du traitement sur le serveur
+							url : 'index.php?module=index',
+							//Type de requête
+							type: 'post',
+							//parametres envoyés
+							data: 'action=ajax_like_product&product=' + product,
+							//on precise le type de flux
+							//Traitement en cas de succes
+							success: function(data) {
+								
+							},
+							error: function(jqXHR, textStatus, errorThrown) {
+								console.log(textStatus + " " + errorThrown);
+								console.log("Erreur execution requete ajax");
+							}
+						});
+						$(this).parent().next().find(".nb_like").html(nb_like++);
+						$(this).addClass("btn-tomato");
+						$(this).attr("data-didilike", "1");
+					}
 			});
 
 		</script>

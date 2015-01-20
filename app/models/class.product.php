@@ -51,10 +51,10 @@ class classProducts extends CoreModels {
 	
 		$cursor->execute();
 	
-		$return=$cursor->fetchAll();
+		$return=$cursor->fetch();
 		$cursor->closeCursor();
 	
-		return $return[0] ;	
+		return $return ;	
 	}
 	
 	function delete_product() {
@@ -64,9 +64,9 @@ class classProducts extends CoreModels {
 			$cursor = $this->connexion->prepare($query);
 	
 			$cursor->bindValue(':id', $this->product_id, PDO::PARAM_INT);
-			$cursor->execute();
+			$return = $cursor->execute();
 			$cursor->closeCursor();
-			return true ;
+			return $return ;
 	}
 	
 	function get_list_front() {
@@ -163,8 +163,38 @@ class classProducts extends CoreModels {
 
 		return $return ;
 	}
+	function unlike_product() {
+		$query = "DELETE FROM " . _TABLE__LIKE . " WHERE crafters_product_product_id = :product_id and crafters_user_user_id = :user_id";
+	
+		$cursor = $this->connexion->prepare($query);
+
+		$cursor->bindValue(':product_id', $this->product_id, PDO::PARAM_INT);
+		$cursor->bindValue(':user_id', $this->user_id, PDO::PARAM_INT);
+
+		$return = $cursor->execute();
+		$cursor->closeCursor();
+		return $return ;
+	}
 	function did_i_like() {
-		
+		$query = "SELECT count(like_id) as nb_like FROM " . _TABLE__LIKE . " WHERE crafters_product_product_id = :product_id and crafters_user_user_id = :user_id";
+		$cursor = $this->connexion->prepare($query);
+
+		$cursor->bindValue(':product_id', $this->product_id, PDO::PARAM_INT);
+		$cursor->bindValue(':user_id', $this->user_id, PDO::PARAM_INT);
+
+		$cursor->execute();
+	
+		$cursor->setFetchMode(PDO::FETCH_OBJ);		
+		$return = $cursor->fetch();
+		$cursor->closeCursor();
+		if($return->nb_like == 1){
+			return true ;
+		}
+		else {
+			return false;
+		}
+
+		return $list ;
 	}
 
 }

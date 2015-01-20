@@ -45,7 +45,7 @@ class uploadController extends CoreControlers {
 		$thumb_square_size 		= 360; //Thumbnails will be cropped to 360x360 pixels
 		$max_image_size 		= 800; //Maximum image size (height and width)
 		$thumb_prefix			= "thumb_"; //Normal thumb Prefix
-		$destination_folder		= _WWW_PATH . 'products/'; //upload directory ends with / (slash)
+		$destination_folder		= _WWW_PATH . 'uploads/products/'; //upload directory ends with / (slash)
 		$jpeg_quality 			= 90; //jpeg quality
 		##########################################
 		
@@ -108,7 +108,7 @@ class uploadController extends CoreControlers {
 					/* We have succesfully resized and created thumbnail image
 					We can now output image to user's browser or store information in the database*/
 					echo '<div align="center">';
-					echo '<img id="img_output" src="uploads/'.$thumb_prefix . $new_file_name.'" alt="Thumbnail">';
+					echo '<img id="img_output" src="uploads/products/'.$thumb_prefix . $new_file_name.'" alt="Thumbnail">';
 					echo '</div>';
 				}
 				
