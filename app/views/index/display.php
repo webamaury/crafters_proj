@@ -122,10 +122,40 @@
 				                            else { echo 'class="btn btn-xs btn-default btn-primary like2"  data-toggle="modal" data-target="#modal-login"' ;} ?>
 				                             ><i class="fa fa-heart-o"></i></button>-->
 		                            </div>
-		                            <div class="text-right">
-		                                <button type="button" class="btn btn-xs btn-default like">
+		                            <div class="text-right"><?php 
+			                                if(isset($_SESSION["CRAFTERS-USER"]["authed"]) && $_SESSION["CRAFTERS-USER"]["authed"] == true) { 
+				                                if($product->did_i_like == true){ 
+					                                ?>
+					                    <button type="button" data-product="<?php echo $product->product_id ; ?>" class="btn btn-xs btn-default like ajax_like_trigger" data-didilike="1">
+					                    	<span class="nb_like" id="nb_like<?php echo $product->product_id ; ?>"><?php echo $product->nb_like ; ?></span> 
+					                    	<i data-toggle="tooltip" data-placement="top" data-html="true" title="Alie S.<br/>omom<br/>mehdi<br/>marius<br/>Lisa<br/>and 6 others" class="fa fa-heart" style="color: tomato"></i>
+				                        </button>
+					                                <?php
+						                        }
+				                                else { 
+				                                	?>
+					                    <button type="button" data-product="<?php echo $product->product_id ; ?>" class="btn btn-xs btn-default like ajax_like_trigger" data-didilike="0">
+					                    	<span class="nb_like" id="nb_like<?php echo $product->product_id ; ?>"><?php echo $product->nb_like ; ?></span> 
+					                    	<i data-toggle="tooltip" data-placement="top" data-html="true" title="Alie S.<br/>omom<br/>mehdi<br/>marius<br/>Lisa<br/>and 6 others" class="fa fa-heart-o" style="color: tomato"></i>
+				                        </button>
+				                                	<?php
+					                            }
+					                        }
+				                            else { 
+					                            ?>
+					                    <button type="button" data-product="<?php echo $product->product_id ; ?>" class="btn btn-xs btn-default like">
+					                    	<span class="nb_like" id="nb_like<?php echo $product->product_id ; ?>"><?php echo $product->nb_like ; ?></span> 
+					                    	<i data-toggle="tooltip" data-placement="top" data-html="true" title="Alie S.<br/>omom<br/>mehdi<br/>marius<br/>Lisa<br/>and 6 others" class="fa fa-heart-o" style="color: tomato"></i>
+				                        </button>
+					                            <?php
+						                    } 
+						                    ?>
+				                             
+				                             
+				                             	
+										<!--<button type="button" class="btn btn-xs btn-default like">
 		                                    <span class="nb_like" id="nb_like<?php echo $product->product_id ; ?>"><?php echo $product->nb_like ; ?></span> <i data-toggle="tooltip" data-placement="top" data-html="true" title="Alie S.<br/>omom<br/>mehdi<br/>marius<br/>Lisa<br/>and 6 others" class="fa fa-heart" style="color: tomato"></i>
-		                                </button>
+		                                </button>-->
 		                            </div>
 		                        </div>
 		                    </div>
@@ -412,7 +442,7 @@
 			$(document).on('click', '.ajax_like_trigger', function(){ 
 					if($(this).attr("data-didilike") == 1){
 						var product = $(this).attr("data-product");
-						var nb_like = $(this).parent().next().find(".nb_like").html();
+						var nb_like = $(this).find(".nb_like").html();
 
 						nb_like--;
 						$.ajax({
@@ -432,14 +462,16 @@
 								console.log("Erreur execution requete ajax");
 							}
 						});
-						$(this).parent().next().find(".nb_like").html(nb_like++);
-						$(this).removeClass("btn-tomato");
+						$(this).find(".nb_like").html(nb_like++);
+						$(this).find("i").removeClass("fa-heart");
+						$(this).find("i").addClass("fa-heart-o");
+
 						$(this).attr("data-didilike", "0");
 					}
 					else {
 
 						var product = $(this).attr("data-product");
-						var nb_like = $(this).parent().next().find(".nb_like").html();
+						var nb_like = $(this).find(".nb_like").html();
 	
 						nb_like++;
 	
@@ -460,8 +492,9 @@
 								console.log("Erreur execution requete ajax");
 							}
 						});
-						$(this).parent().next().find(".nb_like").html(nb_like++);
-						$(this).addClass("btn-tomato");
+						$(this).find(".nb_like").html(nb_like++);
+						$(this).find("i").removeClass("fa-heart-o");
+						$(this).find("i").addClass("fa-heart");
 						$(this).attr("data-didilike", "1");
 					}
 			});
