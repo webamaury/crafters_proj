@@ -115,16 +115,16 @@
 		                            <div class="btn-group " style="float: left">
 		                                <a href="index.php?module=fiche&product=<?php echo $product->product_id ; ?>" class="btn btn-xs btn-default"><i class="fa fa-search"></i></a>
 		                                <button type="button" class="btn btn-xs btn-default"><i class="fa fa-shopping-cart"></i></button>
-		                                <button type="button" data-product="<?php echo $product->product_id ; ?>" <?php 
+		                                <!--<button type="button" data-product="<?php echo $product->product_id ; ?>" <?php 
 			                                if(isset($_SESSION["CRAFTERS-USER"]["authed"]) && $_SESSION["CRAFTERS-USER"]["authed"] == true) { 
 				                                if($product->did_i_like == true){ echo 'class="btn btn-xs btn-default btn-primary like2 btn-tomato ajax_like_trigger" data-didilike="1"'; }
 				                                else { echo 'class="btn btn-xs btn-default btn-primary like2 ajax_like_trigger" data-didilike="0"' ;}}
 				                            else { echo 'class="btn btn-xs btn-default btn-primary like2"  data-toggle="modal" data-target="#modal-login"' ;} ?>
-				                             ><i class="fa fa-heart-o"></i></button>
+				                             ><i class="fa fa-heart-o"></i></button>-->
 		                            </div>
 		                            <div class="text-right">
 		                                <button type="button" class="btn btn-xs btn-default like">
-		                                    <span class="nb_like" id="nb_like<?php echo $product->product_id ; ?>"><?php echo $product->nb_like ; ?></span> <i class="fa fa-heart" style="color: tomato"></i>
+		                                    <span class="nb_like" id="nb_like<?php echo $product->product_id ; ?>"><?php echo $product->nb_like ; ?></span> <i data-toggle="tooltip" data-placement="top" data-html="true" title="Alie S.<br/>omom<br/>mehdi<br/>marius<br/>Lisa<br/>and 6 others" class="fa fa-heart" style="color: tomato"></i>
 		                                </button>
 		                            </div>
 		                        </div>
@@ -375,6 +375,9 @@
 
 			
 			$(document).ready(function(){
+				$(function () {
+				  $('[data-toggle="tooltip"]').tooltip()
+				});
 				$("#load_more").on("click", function(e){
 					e.preventDefault();
 					$(this).parent().append('<img id="ajax_loader" src="img/ajax-loader.gif" alt="ajax loader"/>');

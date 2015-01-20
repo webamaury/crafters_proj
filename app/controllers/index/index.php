@@ -23,18 +23,20 @@ class indexController extends CoreControlers {
 		include_once(_APP_PATH . 'models/class.product.php'); $ClassProduct = new classProducts();
 		include_once(_APP_PATH . 'models/class.users.php'); $ClassUser = new classUsers();
 
+		//CRAFTERS OF THE MONTH
 		$crafter_of_month = $ClassUser->get_crafters_of_month();
 		$ClassUser->user_id_product = $crafter_of_month->user_id;
 		$ClassUser->limit_month_img = 4;
 		$user_month_products = $ClassUser->get_product_of_user();
 
+		//POPULAR CRAFTERS
 		$popular_crafters = $ClassUser->get_popular_crafters();
 		foreach($popular_crafters as $popular_crafter) {
 			$ClassUser->user_id_product = $popular_crafter->user_id_product;
 			$popular_crafter->creas = $ClassUser->get_product_of_user();
 		}
 		
-		
+		//PRODUITS DE LA LISTE PRINCIPALE
 		$ClassProduct->limit = '0,'.$this->nb_by_page;
 		$products = $ClassProduct->get_list_front();
 		foreach($products as $product) {
