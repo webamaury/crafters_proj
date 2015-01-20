@@ -45,7 +45,6 @@ class indexController extends CoreControlers {
 			$product->nb_like = $nb_like->nb_like;
 			if($product->nb_like > 0){
 				$product->name_likes = $ClassProduct->get_users_who_liked();
-				var_dump($product->name_likes);
 				if(isset($_SESSION["CRAFTERS-USER"]["authed"]) && $_SESSION["CRAFTERS-USER"]["authed"] == true) {
 					$ClassProduct->user_id = $_SESSION["CRAFTERS-USER"]["id"];
 					$product->did_i_like = $ClassProduct->did_i_like();
