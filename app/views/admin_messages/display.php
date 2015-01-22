@@ -50,7 +50,7 @@
 	function traiterFlux(flux) {
 		var obj = jQuery.parseJSON( flux );
 		
-		$(".ajax_creation").text(obj.message_creation);
+		$(".ajax_creation").text(obj.DateCrea);
 		$(".ajax_firstname").text(obj.message_firstname);
 		$(".ajax_name").text(obj.message_name);
 		$(".ajax_mail").text(obj.message_mail);

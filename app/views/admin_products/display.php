@@ -70,7 +70,7 @@
 		
 		$(".ajax_name").text(obj.product_name);
 		$(".ajax_description").text(obj.product_description);
-		$(".ajax_creation").text(obj.product_creation);
+		$(".ajax_creation").text(obj.DateCrea);
 		$(".ajax_status").text(obj.nom);
 		$(".ajax_type").text(obj.product_type);
 

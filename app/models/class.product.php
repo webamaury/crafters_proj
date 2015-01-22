@@ -32,7 +32,7 @@ class classProducts extends CoreModels {
 	}
 	
 	function get_one() {
-		$query = "SELECT P.product_id, P.product_name, P.product_description, P.product_creation, P.product_status, P.product_type, P.product_img_url, S.nom, S.statut FROM " . _TABLE__PRODUCTS . " as P," . _TABLE__STATUTS . " as S WHERE P.product_id = :id AND S.type = 'product' AND S.statut = P.product_status";
+		$query = "SELECT P.product_id, P.product_name, P.product_description, DATE_FORMAT(P.product_creation, '%d %M %Y %T') AS DateCrea, P.product_status, P.product_type, P.product_img_url, S.nom, S.statut FROM " . _TABLE__PRODUCTS . " as P," . _TABLE__STATUTS . " as S WHERE P.product_id = :id AND S.type = 'product' AND S.statut = P.product_status";
 		
 	
 		$champs = ':id';
@@ -43,7 +43,7 @@ class classProducts extends CoreModels {
 		return $item;
 	}
 	function get_one_array() {
-		$query = "SELECT P.product_id, P.product_name, P.product_description, P.product_creation, P.product_status, P.product_type, P.product_img_url, S.nom FROM " . _TABLE__PRODUCTS . " as P," . _TABLE__STATUTS . " as S WHERE P.product_id = :id AND S.type = 'product' AND S.statut = P.product_status";
+		$query = "SELECT P.product_id, P.product_name, P.product_description, DATE_FORMAT(P.product_creation, '%d %M %Y %T') AS DateCrea, P.product_status, P.product_type, P.product_img_url, S.nom FROM " . _TABLE__PRODUCTS . " as P," . _TABLE__STATUTS . " as S WHERE P.product_id = :id AND S.type = 'product' AND S.statut = P.product_status";
 
 		$cursor = $this->connexion->prepare($query);
 	

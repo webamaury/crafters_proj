@@ -76,8 +76,8 @@
 		$(".ajax_name").text(obj.user_name);
 		$(".ajax_mail").text(obj.user_mail);
 		$(".ajax_phone").text(obj.user_phone);
-		$(".ajax_birthday").text(obj.user_birthday);
-		$(".ajax_creation").text(obj.user_creation);
+		$(".ajax_birthday").text(obj.DateBirth);
+		$(".ajax_creation").text(obj.DateCrea);
 		$(".ajax_status").text(obj.nom);
 		$(".ajax_numberstreet").text(obj.address_numberstreet);
 		$(".ajax_town").text(obj.address_town);
