@@ -1,8 +1,13 @@
 <?php
-//parent::__construct()
-class classMessages extends CoreModels {
-		
-	function get_one() {
+/**
+ * Class classMessages
+ */
+class ClassMessages extends CoreModels {
+
+	/**
+	 * @return mixed
+     */
+	function getOne() {
 		$query = "SELECT M.message_id, M.message_firstname, M.message_name, M.message_mail, M.message_title, M.message_message, M.message_creation, S.nom, S.statut FROM " . _TABLE__MESSAGE . " as M," . _TABLE__STATUTS . " as S WHERE M.message_id = :id AND S.type = 'message' AND S.statut = M.message_status";
 		
 	
@@ -13,6 +18,10 @@ class classMessages extends CoreModels {
 	
 		return $item;
 	}
+
+	/**
+	 * @return mixed
+     */
 	function get_one_array() {
 		$query = "SELECT M.message_id, M.message_firstname, M.message_name, M.message_mail, M.message_title, M.message_message, DATE_FORMAT(M.message_creation, '%d %M %Y %T') AS DateCrea, S.nom FROM " . _TABLE__MESSAGE . " as M," . _TABLE__STATUTS . " as S WHERE M.message_id = :id AND S.type = 'message' AND S.statut = M.message_status";
 		
@@ -28,6 +37,10 @@ class classMessages extends CoreModels {
 	
 		return $return[0] ;	
 	}
+
+	/**
+	 * @return array
+     */
 	function get_list() {
 		$orderby = 'message_id asc';
 		$this->query = "SELECT message_id, message_firstname, message_name, message_mail, message_title, message_message, message_creation  FROM " . _TABLE__MESSAGE . " ORDER BY " . $orderby;
@@ -35,8 +48,11 @@ class classMessages extends CoreModels {
 				
 		return $list ;
 	}
-	
-	
+
+
+	/**
+	 * @return bool
+     */
 	function delete_message() {
 
 			$query = "DELETE FROM " . _TABLE__MESSAGE . " WHERE message_id = :id";
@@ -48,8 +64,11 @@ class classMessages extends CoreModels {
 			$cursor->closeCursor();
 			return true ;
 	}
-	
 
+
+	/**
+	 * @return array
+     */
 	function get_statuts() {
 		$query = "SELECT * FROM " . _TABLE__STATUTS . " WHERE type = 'message'";
 	

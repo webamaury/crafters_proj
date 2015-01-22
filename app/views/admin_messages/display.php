@@ -6,7 +6,7 @@
 	<h1 class="pull-left">Message</h1>
 	</div>
 
-	<?php echo display_notice(); clear_notice(); ?>
+	<?php echo $notices->displayNotice(); $notices->clearNotice(); ?>
 	<div class="col-xs-12 table-responsive">
 		<table class="table table-bordered table-striped">
 			<thead>

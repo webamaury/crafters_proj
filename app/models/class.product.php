@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Class classProducts
+ * Class ClassProducts
  */
 class ClassProducts extends CoreModels {
 
@@ -27,7 +27,7 @@ class ClassProducts extends CoreModels {
 		
 		$cursor->closeCursor();
 
-		return $return ;
+		return $return;
 	}
 
 	/**
@@ -36,10 +36,18 @@ class ClassProducts extends CoreModels {
      */
 	function getList() {
 		$orderby = 'S.statut asc';
-		$this->query = "SELECT P.product_img_url, P.product_id, P.product_name, P.product_type, S.nom as status_name  FROM " . _TABLE__PRODUCTS . " P, " . _TABLE__STATUTS . " S WHERE S.statut = P.product_status and S.type = 'product' ORDER BY " . $orderby;
+		$this->query = "SELECT P.product_img_url,
+			P.product_id,
+			P.product_name,
+			P.product_type,
+			S.nom as
+			status_name
+			FROM " . _TABLE__PRODUCTS . " P, " . _TABLE__STATUTS . " S
+			WHERE S.statut = P.product_status and S.type = 'product'
+			ORDER BY " . $orderby;
 		$list = $this->select_no_param();
 				
-		return $list ;
+		return $list;
 	}
 
 	/**
@@ -47,7 +55,17 @@ class ClassProducts extends CoreModels {
 	 * @return mixed
      */
 	function get0ne() {
-		$query = "SELECT P.product_id, P.product_name, P.product_description, DATE_FORMAT(P.product_creation, '%d %M %Y %T') AS DateCrea, P.product_status, P.product_type, P.product_img_url, S.nom, S.statut FROM " . _TABLE__PRODUCTS . " as P," . _TABLE__STATUTS . " as S WHERE P.product_id = :id AND S.type = 'product' AND S.statut = P.product_status";
+		$query = "SELECT P.product_id,
+			P.product_name,
+			P.product_description,
+			DATE_FORMAT(P.product_creation, '%d %M %Y %T') AS DateCrea,
+			P.product_status,
+			P.product_type,
+			P.product_img_url,
+			S.nom,
+			S.statut
+			FROM " . _TABLE__PRODUCTS . " as P," . _TABLE__STATUTS . " as S
+			WHERE P.product_id = :id AND S.type = 'product' AND S.statut = P.product_status";
 		
 	
 		$champs = ':id';
@@ -63,7 +81,16 @@ class ClassProducts extends CoreModels {
 	 * @return mixed
      */
 	function getOneArray() {
-		$query = "SELECT P.product_id, P.product_name, P.product_description, DATE_FORMAT(P.product_creation, '%d %M %Y %T') AS DateCrea, P.product_status, P.product_type, P.product_img_url, S.nom FROM " . _TABLE__PRODUCTS . " as P," . _TABLE__STATUTS . " as S WHERE P.product_id = :id AND S.type = 'product' AND S.statut = P.product_status";
+		$query = "SELECT P.product_id,
+
+			P.product_name, P.product_description,
+			DATE_FORMAT(P.product_creation, '%d %M %Y %T') AS DateCrea,
+			P.product_status,
+			P.product_type,
+			P.product_img_url,
+			S.nom
+			FROM " . _TABLE__PRODUCTS . " as P," . _TABLE__STATUTS . " as S
+			WHERE P.product_id = :id AND S.type = 'product' AND S.statut = P.product_status";
 
 		$cursor = $this->connexion->prepare($query);
 	
@@ -71,10 +98,10 @@ class ClassProducts extends CoreModels {
 	
 		$cursor->execute();
 	
-		$return=$cursor->fetch();
+		$return = $cursor->fetch();
 		$cursor->closeCursor();
 	
-		return $return ;	
+		return $return;
 	}
 
 	/**
@@ -90,7 +117,7 @@ class ClassProducts extends CoreModels {
 			$cursor->bindValue(':id', $this->product_id, PDO::PARAM_INT);
 			$return = $cursor->execute();
 			$cursor->closeCursor();
-			return $return ;
+			return $return;
 	}
 
 	/**
@@ -98,17 +125,23 @@ class ClassProducts extends CoreModels {
 	 * @return array
      */
 	function getListFront() {
-		$query = "SELECT P.product_id, P.product_name, P.product_img_url, U.user_username FROM " . _TABLE__PRODUCTS . " as P, " . _TABLE__USERS . " as U WHERE P.user_id_product = U.user_id and P.product_status = 1 ORDER BY product_id desc LIMIT ".$this->limit;
+		$query = "SELECT P.product_id,
+			P.product_name,
+			P.product_img_url,
+			U.user_username
+			FROM " . _TABLE__PRODUCTS . " as P, " . _TABLE__USERS . " as U
+			WHERE P.user_id_product = U.user_id and P.product_status = 1
+			ORDER BY product_id DESC
+			LIMIT " . $this->limit;
 		$cursor = $this->connexion->prepare($query);
 		
 		$cursor->execute();
 
 		$cursor->setFetchMode(PDO::FETCH_OBJ);		
-		$return=$cursor->fetchAll();
+		$return = $cursor->fetchAll();
 		$cursor->closeCursor();
 	
-		return $return ;	
-	
+		return $return;
 	}
 
 	/**
@@ -116,17 +149,20 @@ class ClassProducts extends CoreModels {
 	 * @return mixed
      */
 	function numberOfLike() {
-		$query = "SELECT count(like_id) as nb_like from " . _TABLE__LIKE . " WHERE crafters_product_product_id = :id";
+		$query = "SELECT count(like_id) as nb_like
+			FROM " . _TABLE__LIKE . "
+			WHERE crafters_product_product_id = :id";
+
 		$cursor = $this->connexion->prepare($query);
 		$cursor->bindValue(':id', $this->product_id, PDO::PARAM_INT);
 
 		$cursor->execute();
 
 		$cursor->setFetchMode(PDO::FETCH_OBJ);		
-		$return=$cursor->fetchAll();
+		$return = $cursor->fetch();
 		$cursor->closeCursor();
 	
-		return $return[0] ;	
+		return $return;
 	
 	}
 
@@ -153,7 +189,7 @@ class ClassProducts extends CoreModels {
 		$return = $cursor->execute();
 
 		$cursor->closeCursor();
-		return $return ;
+		return $return;
 	}
 
 	/**
@@ -161,17 +197,19 @@ class ClassProducts extends CoreModels {
 	 * @return array
      */
 	function getStatuts() {
-		$query = "SELECT * FROM " . _TABLE__STATUTS . " WHERE type = 'product'";
+		$query = "SELECT *
+			FROM " . _TABLE__STATUTS . "
+			WHERE type = 'product'";
 	
 		$cursor = $this->connexion->prepare($query);
 	
 		$cursor->execute();
 	
 		$cursor->setFetchMode(PDO::FETCH_OBJ);		
-		$list=$cursor->fetchAll();
+		$list = $cursor->fetchAll();
 		$cursor->closeCursor();
 
-		return $list ;
+		return $list;
 	}
 
 	/**
@@ -190,7 +228,7 @@ class ClassProducts extends CoreModels {
 		$return = $cursor->execute();
 
 		$cursor->closeCursor();
-		return $return ;
+		return $return;
 	}
 
 	/**
@@ -211,7 +249,7 @@ class ClassProducts extends CoreModels {
 		
 		$cursor->closeCursor();
 
-		return $return ;
+		return $return;
 	}
 
 	/**
@@ -228,7 +266,7 @@ class ClassProducts extends CoreModels {
 
 		$return = $cursor->execute();
 		$cursor->closeCursor();
-		return $return ;
+		return $return;
 	}
 
 	/**
@@ -236,7 +274,9 @@ class ClassProducts extends CoreModels {
 	 * @return bool
      */
 	function didILike() {
-		$query = "SELECT count(like_id) as nb_like FROM " . _TABLE__LIKE . " WHERE crafters_product_product_id = :product_id and crafters_user_user_id = :user_id";
+		$query = "SELECT count(like_id) as nb_like
+			FROM " . _TABLE__LIKE . "
+			WHERE crafters_product_product_id = :product_id and crafters_user_user_id = :user_id";
 		$cursor = $this->connexion->prepare($query);
 
 		$cursor->bindValue(':product_id', $this->product_id, PDO::PARAM_INT);
@@ -247,14 +287,11 @@ class ClassProducts extends CoreModels {
 		$cursor->setFetchMode(PDO::FETCH_OBJ);		
 		$return = $cursor->fetch();
 		$cursor->closeCursor();
-		if($return->nb_like == 1){
-			return true ;
-		}
-		else {
+		if ($return->nb_like === 1) {
+			return true;
+		} else {
 			return false;
 		}
-
-		return $list ;
 	}
 
 	/**
@@ -262,7 +299,11 @@ class ClassProducts extends CoreModels {
 	 * @return array
      */
 	function getUsersWhoLiked() {
-		$query = "SELECT U.user_username FROM " . _TABLE__LIKE . " L, " . _TABLE__USERS . " U WHERE L.crafters_user_user_id = U.user_id and L.crafters_product_product_id = :product_id ORDER BY L.like_id desc LIMIT 0,5";
+		$query = "SELECT U.user_username
+			FROM " . _TABLE__LIKE . " L, " . _TABLE__USERS . " U
+			WHERE L.crafters_user_user_id = U.user_id and L.crafters_product_product_id = :product_id
+			ORDER BY L.like_id DESC
+			LIMIT 0,5";
 	
 		$cursor = $this->connexion->prepare($query);
 
@@ -271,10 +312,10 @@ class ClassProducts extends CoreModels {
 		$cursor->execute();
 	
 		$cursor->setFetchMode(PDO::FETCH_OBJ);		
-		$list=$cursor->fetchAll();
+		$list = $cursor->fetchAll();
 		$cursor->closeCursor();
 
-		return $list ;
+		return $list;
 	}
 
 }
