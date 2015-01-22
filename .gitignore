@@ -2,4 +2,5 @@
 app/models/connect.php
 www/uploads/
 www/illu/
+doc/PHPCheckStyle/
 .DS_Store

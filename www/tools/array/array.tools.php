@@ -1,5 +1,5 @@
 <?php
-$array_tools = array(
+$arrayTools = array(
 	'bootstrap-css' => '<link href="' . _WWW_PATH . 'tools/bootstrap-3.2.0/css/bootstrap.min.css" rel="stylesheet">',
 	'bootstrap-js' => '<script type="text/javascript" src="' . _WWW_PATH . 'tools/bootstrap-3.2.0/js/bootstrap.min.js"></script>',
 	'admin-script' => '<script type="text/javascript" src="' . _ADMIN_PATH . 'js/script.js"></script>',
@@ -12,5 +12,5 @@ $array_tools = array(
 	'font-awesome' => '<link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">'
 	);
 
-//var_dump($array_tools);
+//var_dump($arrayTools);
 ?>

@@ -5,21 +5,21 @@ class CoreControlers {
 		return strtolower(substr($filename, strrpos($filename, ".") + 1, strlen($filename)));
 	}
 	
-	function load_css($styles_to_load) {
+	function load_css($stylesToLoad) {
 		$html_style = '';
-		foreach ($styles_to_load as $style_to_load) {
+		foreach ($stylesToLoad as $style_to_load) {
 			$html_style .= '
 		<link href="css/'.$style_to_load.'.css" rel="stylesheet" type="text/css" media="screen" id="css" />';
 		}
 		return $html_style ;
 	}
 	
-	function load_tools($tools_to_load, $array_tools) {
-		//var_dump($array_tools);
+	function load_tools($toolsToLoad, $arrayTools) {
+		//var_dump($arrayTools);
 		$html_tools = '';
-		foreach ($tools_to_load as $tool_to_load) {
+		foreach ($toolsToLoad as $tool_to_load) {
 			$html_tools .= '
-		'.$array_tools[$tool_to_load];
+		'.$arrayTools[$tool_to_load];
 		}
 		return $html_tools;
 	}

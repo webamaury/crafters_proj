@@ -1,7 +1,7 @@
 <?php
 class loginController {
 	
-	function __construct($array_tools) {
+	function __construct($arrayTools) {
 		
 		##############################################################
 		##	TRAITEMENT PHP											##
@@ -12,8 +12,8 @@ class loginController {
 		##############################################################
 		##	APPEL TOOLS												##
 		##############################################################
-		$tools_to_load = array("bootstrap-css", "jquery", "bootstrap-js");
-		$styles_to_load = array("style", 'signin');
+		$toolsToLoad = array("bootstrap-css", "jquery", "bootstrap-js");
+		$stylesToLoad = array("style", 'signin');
 		
 		##############################################################
 		##	VARIABLES LAYOUT										##

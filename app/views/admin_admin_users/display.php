@@ -7,7 +7,7 @@
 	<a href="index.php?module=adminUsers&amp;action=form" class="btn btn-primary pull-right margin-top-20"><span class="glyphicon glyphicon-plus font-09em"></span> Add new</a>
 	</div>
 
-	<?php echo display_notice(); clear_notice(); ?>
+	<?php echo $notices->displayNotice(); $notices->clearNotice(); ?>
 	<div class="col-xs-12 table-responsive">
 		<table class="table table-bordered table-striped">
 			<thead>

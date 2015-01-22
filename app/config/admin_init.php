@@ -14,7 +14,7 @@ DEFINE('_SITE_NAME', 'Nom du site');
 /**
  *	RECUPERATION DE LA PAGE ACTUELLE
 */
-$current_page = basename($_SERVER['REQUEST_URI']);
+$currentPage = basename($_SERVER['REQUEST_URI']);
 
 /**
  *	CHARGEMENT DES TABLEAUX TOOLS
@@ -43,10 +43,10 @@ $modules = load_modules();
  * GESTION DE LA MAINTENANCE
  */
 /*
-if ($config->site_maintenance === 1 && $current_page !== 'index.php?module=maintenance') {
+if ($config->site_maintenance === 1 && $currentPage !== 'index.php?module=maintenance') {
 	header('Location: index.php?module=maintenance');
 	exit();
-} elseif ($config->site_maintenance === 0 && $current_page === 'index.php?module=maintenance') {
+} elseif ($config->site_maintenance === 0 && $currentPage === 'index.php?module=maintenance') {
 	header('Location: index.php');
 	exit();
 }
@@ -83,8 +83,8 @@ if (isset($_GET['action']) && $_GET['action'] === 'logout') {
 /**
  * TEST DE SESSION
  */
-$pages_allowed_without_session = array('index.php?module=login');
-if (!$user->is_authed() && !in_array($current_page, $pages_allowed_without_session)) {
+$pagesAllowedWithoutSession = array('index.php?module=login');
+if (!$user->is_authed() && !in_array($currentPage, $pagesAllowedWithoutSession)) {
 	header('Location: index.php?module=login');
 	exit();
 }

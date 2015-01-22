@@ -1,7 +1,7 @@
 <?php
 	class indexController {
 	
-		function __construct($array_tools, $notices, $modules) {
+		function __construct($arrayTools, $notices, $modules) {
 			
 		##############################################################
 		##	TRAITEMENT PHP											##
@@ -12,8 +12,8 @@
 		##############################################################
 		##	APPEL TOOLS												##
 		##############################################################
-		$tools_to_load = array("bootstrap-css", "jquery" , "bootstrap-js");
-		$styles_to_load = array("style");
+		$toolsToLoad = array("bootstrap-css", "jquery" , "bootstrap-js");
+		$stylesToLoad = array("style");
 		
 		##############################################################
 		##	VARIABLES LAYOUT										##

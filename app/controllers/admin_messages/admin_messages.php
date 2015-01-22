@@ -6,11 +6,11 @@
 class MessagesController {
 
 	/**
-	 * @param $array_tools
+	 * @param $arrayTools
 	 * @param $notices
 	 * @param $modules
 	 */
-	function __construct($array_tools, $notices, $modules) {
+	function __construct($arrayTools, $notices, $modules) {
 		//include_once(_APP_PATH . 'models/lib.admin_users.php');
 		include_once _APP_PATH . 'models/class.messages.php';
 		$messages = new ClassMessages();
@@ -40,8 +40,8 @@ class MessagesController {
 			/*************************************
 			 *	APPEL TOOLS                     **
 			 *************************************/
-			$tools_to_load = array("bootstrap-css", "jquery", "bootstrap-js", "admin-script");
-			$styles_to_load = array("style");
+			$toolsToLoad = array("bootstrap-css", "jquery", "bootstrap-js", "admin-script");
+			$stylesToLoad = array("style");
 
 			/*************************************
 			 *	VARIABLES LAYOUT                **
@@ -60,8 +60,8 @@ class MessagesController {
 			/*************************************
 			 *	APPEL TOOLS                     **
 			 *************************************/
-			$tools_to_load = array("bootstrap-css", "jquery", "bootstrap-js", "admin-script", "datatable-css", "datatable-js");
-			$styles_to_load = array("style");
+			$toolsToLoad = array("bootstrap-css", "jquery", "bootstrap-js", "admin-script", "datatable-css", "datatable-js");
+			$stylesToLoad = array("style");
 
 			/*************************************
 			 *	VARIABLES LAYOUT                **
@@ -75,9 +75,9 @@ class MessagesController {
 			include_once(_APP_PATH . 'views/admin_messages/display.php');
 		} else if (isset($_POST['action']) && $_POST['action'] === 'ajax_display_message_fiche') {
 			$messages->message_id = $_POST['id'];
-			$ajax_item = $messages->get_one_array();
-			$ajax_item = json_encode($ajax_item);
-			echo $ajax_item;
+			$ajaxItem = $messages->get_one_array();
+			$ajaxItem = json_encode($ajaxItem);
+			echo $ajaxItem;
 		}
 
 

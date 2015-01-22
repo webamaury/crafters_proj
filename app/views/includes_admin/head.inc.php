@@ -8,8 +8,8 @@
 	<meta name="description" content="<?php echo _METADESCRIPTION ; ?>">
 	<title><?php echo _METATITLE ; ?></title>
 	<!-- Bootstrap core CSS -->
-	<?php echo load_tools($tools_to_load, $array_tools) ; ?>
-	<?php echo load_css($styles_to_load) ; ?> 
+	<?php echo load_tools($toolsToLoad, $arrayTools) ; ?>
+	<?php echo load_css($stylesToLoad) ; ?> 
   
 </head>
 

@@ -1,7 +1,7 @@
 <?php
 class contactController {
 	
-	function __construct($array_tools, $notices) {
+	function __construct($arrayTools, $notices) {
 
 		##############################################################
 		##	TRAITEMENT PHP											##
@@ -12,7 +12,7 @@ class contactController {
 		##############################################################
 		##	APPEL TOOLS												##
 		##############################################################
-		$tools_to_load = array();
+		$toolsToLoad = array();
 		
 		
 		##############################################################

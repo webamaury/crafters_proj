@@ -2,7 +2,7 @@
 	
 	class productsController {
 		
-		function __construct($array_tools, $notices, $modules) {
+		function __construct($arrayTools, $notices, $modules) {
 			//include_once(_APP_PATH . 'models/lib.admin_users.php');
 			include_once _APP_PATH . 'models/class.product.php';
 			$products = new ClassProducts();
@@ -10,11 +10,11 @@
 			if(isset($_GET['action']) && $_GET['action'] == "delete") {
 				$products->product_id = $_GET['id'];
 				if($products->deleteProduct()) {
-					$notices->create_notice('success', 'Product deleted');
+					$notices->createNotice('success', 'Product deleted');
 					header('location:index.php?module=products');exit();
 				}
 				else {
-					$notices->create_notice('danger', 'Impossible to delete !');
+					$notices->createNotice('danger', 'Impossible to delete !');
 					header('location:index.php?module=products');exit();
 				}
 			}
@@ -30,11 +30,11 @@
 	//						echo $adminUsers->statut ; exit();	
 				
 				if($products->updateProduct()) {
-					$notices->create_notice('success', 'Product updated');
+					$notices->createNotice('success', 'Product updated');
 					header('location:index.php?module=products&action=form&id='.$_GET['id']);exit();
 				}
 				else {
-					$notices->create_notice('danger', 'erreur modif');
+					$notices->createNotice('danger', 'erreur modif');
 					header('location:index.php?module=products&action=form&id='.$_GET['id']);exit();
 				}
 			}
@@ -43,7 +43,7 @@
 					$item = $products->get0ne();
 					//var_dump($item); exit();
 					if(empty($item)) {
-						$notices->create_notice('danger', 'Unknown message !');
+						$notices->createNotice('danger', 'Unknown message !');
 						header('location:index.php?module=products');exit();
 					}
 					$statuts = $products->getStatuts();
@@ -51,8 +51,8 @@
 				##############################################################
 				##	APPEL TOOLS												##
 				##############################################################
-				$tools_to_load = array("bootstrap-css", "jquery", "bootstrap-js", "admin-script");
-				$styles_to_load = array("style");
+				$toolsToLoad = array("bootstrap-css", "jquery", "bootstrap-js", "admin-script");
+				$stylesToLoad = array("style");
 				
 				##############################################################
 				##	VARIABLES LAYOUT										##
@@ -72,8 +72,8 @@
 				##############################################################
 				##	APPEL TOOLS												##
 				##############################################################
-				$tools_to_load = array("bootstrap-css", "jquery", "bootstrap-js", "admin-script", "datatable-css", "datatable-js");
-				$styles_to_load = array("style");
+				$toolsToLoad = array("bootstrap-css", "jquery", "bootstrap-js", "admin-script", "datatable-css", "datatable-js");
+				$stylesToLoad = array("style");
 				
 				##############################################################
 				##	VARIABLES LAYOUT										##
@@ -88,9 +88,9 @@
 			}
 			else if (isset($_POST['action']) && $_POST['action'] == 'ajax_display_product_fiche') {
 					$products->product_id = $_POST['id'];
-					$ajax_item = $products->getOneArray();
-					$ajax_item = json_encode($ajax_item);
-					echo $ajax_item;
+					$ajaxItem = $products->getOneArray();
+					$ajaxItem = json_encode($ajaxItem);
+					echo $ajaxItem;
 			}
 			else if(isset($_POST['action']) && $_POST['action'] == 'ajax_delete_avatar') {
 					if(unlink(_WWW_PATH . $_POST['img_url'])) {

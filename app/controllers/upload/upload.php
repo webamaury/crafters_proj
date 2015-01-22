@@ -1,7 +1,7 @@
 <?php
 class uploadController extends CoreControlers {
 	
-	function __construct($array_tools, $notices) {
+	function __construct($arrayTools, $notices) {
 		if(!isset($_GET['action']) && !isset($_POST['action'])) {
 			$method = 'main' ;
 		}
@@ -9,10 +9,10 @@ class uploadController extends CoreControlers {
 			$method = $_POST['action'];
 		}
 
-		$this->$method($array_tools, $notices) ;
+		$this->$method($arrayTools, $notices) ;
 	}
 	
-	function main($array_tools, $notices) {
+	function main($arrayTools, $notices) {
 	
 		##############################################################
 		##	TRAITEMENT PHP											##
@@ -23,7 +23,7 @@ class uploadController extends CoreControlers {
 		##############################################################
 		##	APPEL TOOLS												##
 		##############################################################
-		$tools_to_load = array('bootstrap-css', 'font-awesome');
+		$toolsToLoad = array('bootstrap-css', 'font-awesome');
 		
 		##############################################################
 		##	VARIABLES LAYOUT										##
@@ -39,7 +39,7 @@ class uploadController extends CoreControlers {
 
 	}
 	
-	function upload_ajax($array_tools, $notices) {
+	function upload_ajax($arrayTools, $notices) {
 	
 		############ Configuration ##############
 		$thumb_square_size 		= 360; //Thumbnails will be cropped to 360x360 pixels

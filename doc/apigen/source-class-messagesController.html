@@ -87,7 +87,7 @@
 </span><span id="2" class="l"><a class="l" href="#2"> 2: </a>    
 </span><span id="3" class="l"><a class="l" href="#3"> 3: </a>    <span class="php-keyword1">class</span> <a id="messagesController" href="#messagesController">messagesController</a> {
 </span><span id="4" class="l"><a class="l" href="#4"> 4: </a>        
-</span><span id="5" class="l"><a class="l" href="#5"> 5: </a>        <span class="php-keyword1">function</span> <a id="___construct" href="#___construct">__construct</a>(<span class="php-var">$array_tools</span>, <span class="php-var">$notices</span>, <span class="php-var">$modules</span>) {
+</span><span id="5" class="l"><a class="l" href="#5"> 5: </a>        <span class="php-keyword1">function</span> <a id="___construct" href="#___construct">__construct</a>(<span class="php-var">$arrayTools</span>, <span class="php-var">$notices</span>, <span class="php-var">$modules</span>) {
 </span><span id="6" class="l"><a class="l" href="#6"> 6: </a>            <span class="php-comment">//include_once(_APP_PATH . 'models/lib.admin_users.php');</span>
 </span><span id="7" class="l"><a class="l" href="#7"> 7: </a>            <span class="php-keyword1">include_once</span> _APP_PATH . <span class="php-quote">'models/class.admin_messages.php'</span>;
 </span><span id="8" class="l"><a class="l" href="#8"> 8: </a>            <span class="php-var">$messages</span> = <span class="php-keyword1">new</span> classMessages();
@@ -137,8 +137,8 @@
 </span><span id="52" class="l"><a class="l" href="#52">52: </a>                <span class="php-comment">##############################################################</span>
 </span><span id="53" class="l"><a class="l" href="#53">53: </a>                <span class="php-comment">##  APPEL TOOLS                                             ##</span>
 </span><span id="54" class="l"><a class="l" href="#54">54: </a>                <span class="php-comment">##############################################################</span>
-</span><span id="55" class="l"><a class="l" href="#55">55: </a>                <span class="php-var">$tools_to_load</span> = <span class="php-keyword1">array</span>(<span class="php-quote">&quot;bootstrap-css&quot;</span>, <span class="php-quote">&quot;jquery&quot;</span>, <span class="php-quote">&quot;bootstrap-js&quot;</span>, <span class="php-quote">&quot;admin-script&quot;</span>);
-</span><span id="56" class="l"><a class="l" href="#56">56: </a>                <span class="php-var">$styles_to_load</span> = <span class="php-keyword1">array</span>(<span class="php-quote">&quot;style&quot;</span>);
+</span><span id="55" class="l"><a class="l" href="#55">55: </a>                <span class="php-var">$toolsToLoad</span> = <span class="php-keyword1">array</span>(<span class="php-quote">&quot;bootstrap-css&quot;</span>, <span class="php-quote">&quot;jquery&quot;</span>, <span class="php-quote">&quot;bootstrap-js&quot;</span>, <span class="php-quote">&quot;admin-script&quot;</span>);
+</span><span id="56" class="l"><a class="l" href="#56">56: </a>                <span class="php-var">$stylesToLoad</span> = <span class="php-keyword1">array</span>(<span class="php-quote">&quot;style&quot;</span>);
 </span><span id="57" class="l"><a class="l" href="#57">57: </a>                
 </span><span id="58" class="l"><a class="l" href="#58">58: </a>                <span class="php-comment">##############################################################</span>
 </span><span id="59" class="l"><a class="l" href="#59">59: </a>                <span class="php-comment">##  VARIABLES LAYOUT                                        ##</span>
@@ -158,8 +158,8 @@
 </span><span id="73" class="l"><a class="l" href="#73">73: </a>                <span class="php-comment">##############################################################</span>
 </span><span id="74" class="l"><a class="l" href="#74">74: </a>                <span class="php-comment">##  APPEL TOOLS                                             ##</span>
 </span><span id="75" class="l"><a class="l" href="#75">75: </a>                <span class="php-comment">##############################################################</span>
-</span><span id="76" class="l"><a class="l" href="#76">76: </a>                <span class="php-var">$tools_to_load</span> = <span class="php-keyword1">array</span>(<span class="php-quote">&quot;bootstrap-css&quot;</span>, <span class="php-quote">&quot;jquery&quot;</span>, <span class="php-quote">&quot;bootstrap-js&quot;</span>, <span class="php-quote">&quot;admin-script&quot;</span>, <span class="php-quote">&quot;datatable-css&quot;</span>, <span class="php-quote">&quot;datatable-js&quot;</span>);
-</span><span id="77" class="l"><a class="l" href="#77">77: </a>                <span class="php-var">$styles_to_load</span> = <span class="php-keyword1">array</span>(<span class="php-quote">&quot;style&quot;</span>);
+</span><span id="76" class="l"><a class="l" href="#76">76: </a>                <span class="php-var">$toolsToLoad</span> = <span class="php-keyword1">array</span>(<span class="php-quote">&quot;bootstrap-css&quot;</span>, <span class="php-quote">&quot;jquery&quot;</span>, <span class="php-quote">&quot;bootstrap-js&quot;</span>, <span class="php-quote">&quot;admin-script&quot;</span>, <span class="php-quote">&quot;datatable-css&quot;</span>, <span class="php-quote">&quot;datatable-js&quot;</span>);
+</span><span id="77" class="l"><a class="l" href="#77">77: </a>                <span class="php-var">$stylesToLoad</span> = <span class="php-keyword1">array</span>(<span class="php-quote">&quot;style&quot;</span>);
 </span><span id="78" class="l"><a class="l" href="#78">78: </a>                
 </span><span id="79" class="l"><a class="l" href="#79">79: </a>                <span class="php-comment">##############################################################</span>
 </span><span id="80" class="l"><a class="l" href="#80">80: </a>                <span class="php-comment">##  VARIABLES LAYOUT                                        ##</span>

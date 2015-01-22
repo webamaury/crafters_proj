@@ -87,7 +87,7 @@
 </span><span id="2" class="l"><a class="l" href="#2">  2: </a>    
 </span><span id="3" class="l"><a class="l" href="#3">  3: </a>    <span class="php-keyword1">class</span> <a id="adminUsersController" href="#adminUsersController">adminUsersController</a> {
 </span><span id="4" class="l"><a class="l" href="#4">  4: </a>        
-</span><span id="5" class="l"><a class="l" href="#5">  5: </a>        <span class="php-keyword1">function</span> <a id="___construct" href="#___construct">__construct</a>(<span class="php-var">$array_tools</span>, <span class="php-var">$notices</span>, <span class="php-var">$modules</span>) {
+</span><span id="5" class="l"><a class="l" href="#5">  5: </a>        <span class="php-keyword1">function</span> <a id="___construct" href="#___construct">__construct</a>(<span class="php-var">$arrayTools</span>, <span class="php-var">$notices</span>, <span class="php-var">$modules</span>) {
 </span><span id="6" class="l"><a class="l" href="#6">  6: </a>            <span class="php-comment">//include_once(_APP_PATH . 'models/lib.admin_users.php');</span>
 </span><span id="7" class="l"><a class="l" href="#7">  7: </a>            <span class="php-keyword1">include_once</span> _APP_PATH . <span class="php-quote">'models/class.admin_adminUsers.php'</span>;
 </span><span id="8" class="l"><a class="l" href="#8">  8: </a>            <span class="php-var">$adminUsers</span> = <span class="php-keyword1">new</span> classAdminUsers();
@@ -185,8 +185,8 @@
 </span><span id="100" class="l"><a class="l" href="#100">100: </a>                <span class="php-comment">##############################################################</span>
 </span><span id="101" class="l"><a class="l" href="#101">101: </a>                <span class="php-comment">##  APPEL TOOLS                                             ##</span>
 </span><span id="102" class="l"><a class="l" href="#102">102: </a>                <span class="php-comment">##############################################################</span>
-</span><span id="103" class="l"><a class="l" href="#103">103: </a>                <span class="php-var">$tools_to_load</span> = <span class="php-keyword1">array</span>(<span class="php-quote">&quot;bootstrap-css&quot;</span>, <span class="php-quote">&quot;jquery&quot;</span>, <span class="php-quote">&quot;bootstrap-js&quot;</span>, <span class="php-quote">&quot;admin-script&quot;</span>);
-</span><span id="104" class="l"><a class="l" href="#104">104: </a>                <span class="php-var">$styles_to_load</span> = <span class="php-keyword1">array</span>(<span class="php-quote">&quot;style&quot;</span>);
+</span><span id="103" class="l"><a class="l" href="#103">103: </a>                <span class="php-var">$toolsToLoad</span> = <span class="php-keyword1">array</span>(<span class="php-quote">&quot;bootstrap-css&quot;</span>, <span class="php-quote">&quot;jquery&quot;</span>, <span class="php-quote">&quot;bootstrap-js&quot;</span>, <span class="php-quote">&quot;admin-script&quot;</span>);
+</span><span id="104" class="l"><a class="l" href="#104">104: </a>                <span class="php-var">$stylesToLoad</span> = <span class="php-keyword1">array</span>(<span class="php-quote">&quot;style&quot;</span>);
 </span><span id="105" class="l"><a class="l" href="#105">105: </a>                
 </span><span id="106" class="l"><a class="l" href="#106">106: </a>                <span class="php-comment">##############################################################</span>
 </span><span id="107" class="l"><a class="l" href="#107">107: </a>                <span class="php-comment">##  VARIABLES LAYOUT                                        ##</span>
@@ -206,8 +206,8 @@
 </span><span id="121" class="l"><a class="l" href="#121">121: </a>                <span class="php-comment">##############################################################</span>
 </span><span id="122" class="l"><a class="l" href="#122">122: </a>                <span class="php-comment">##  APPEL TOOLS                                             ##</span>
 </span><span id="123" class="l"><a class="l" href="#123">123: </a>                <span class="php-comment">##############################################################</span>
-</span><span id="124" class="l"><a class="l" href="#124">124: </a>                <span class="php-var">$tools_to_load</span> = <span class="php-keyword1">array</span>(<span class="php-quote">&quot;bootstrap-css&quot;</span>, <span class="php-quote">&quot;jquery&quot;</span>, <span class="php-quote">&quot;bootstrap-js&quot;</span>, <span class="php-quote">&quot;admin-script&quot;</span>, <span class="php-quote">&quot;datatable-css&quot;</span>, <span class="php-quote">&quot;datatable-js&quot;</span>);
-</span><span id="125" class="l"><a class="l" href="#125">125: </a>                <span class="php-var">$styles_to_load</span> = <span class="php-keyword1">array</span>(<span class="php-quote">&quot;style&quot;</span>);
+</span><span id="124" class="l"><a class="l" href="#124">124: </a>                <span class="php-var">$toolsToLoad</span> = <span class="php-keyword1">array</span>(<span class="php-quote">&quot;bootstrap-css&quot;</span>, <span class="php-quote">&quot;jquery&quot;</span>, <span class="php-quote">&quot;bootstrap-js&quot;</span>, <span class="php-quote">&quot;admin-script&quot;</span>, <span class="php-quote">&quot;datatable-css&quot;</span>, <span class="php-quote">&quot;datatable-js&quot;</span>);
+</span><span id="125" class="l"><a class="l" href="#125">125: </a>                <span class="php-var">$stylesToLoad</span> = <span class="php-keyword1">array</span>(<span class="php-quote">&quot;style&quot;</span>);
 </span><span id="126" class="l"><a class="l" href="#126">126: </a>                
 </span><span id="127" class="l"><a class="l" href="#127">127: </a>                <span class="php-comment">##############################################################</span>
 </span><span id="128" class="l"><a class="l" href="#128">128: </a>                <span class="php-comment">##  VARIABLES LAYOUT                                        ##</span>

@@ -11,7 +11,7 @@
 
     <link rel="icon" href="../../favicon.ico">
 
-	<?php echo $this->load_tools($tools_to_load, $array_tools) ; ?>
+	<?php echo $this->load_tools($toolsToLoad, $arrayTools) ; ?>
 
     <!-- Bootstrap core CSS -->
     <link href="css/custom2.css" rel="stylesheet">

@@ -1,7 +1,7 @@
 <?php
 class profilController extends CoreControlers {
 		
-	function __construct($array_tools, $notices) {
+	function __construct($arrayTools, $notices) {
 
 		if(!isset($_GET['action']) && !isset($_POST['action'])) {
 			$method = 'main' ;
@@ -10,11 +10,11 @@ class profilController extends CoreControlers {
 			$method = $_POST['action'];
 		}
 
-		$this->$method($array_tools, $notices) ;
+		$this->$method($arrayTools, $notices) ;
 
 	}
 
-	function main($array_tools, $notices) {
+	function main($arrayTools, $notices) {
 
 		##############################################################
 		##	TRAITEMENT PHP											##
@@ -25,7 +25,7 @@ class profilController extends CoreControlers {
 		##############################################################
 		##	APPEL TOOLS												##
 		##############################################################
-		$tools_to_load = array('bootstrap-css', 'font-awesome');
+		$toolsToLoad = array('bootstrap-css', 'font-awesome');
 		
 		##############################################################
 		##	VARIABLES LAYOUT										##

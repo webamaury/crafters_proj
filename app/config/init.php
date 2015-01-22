@@ -17,7 +17,7 @@ DEFINE('_SITE_NAME', 'Crafters');
  *	RECUPERATION DE LA PAGE ACTUELLE
  */
 
-$current_page = "http://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+$currentPage = "http://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
 
 /**
  *	CHARGEMENT DES TABLEAUX TOOLS
@@ -47,7 +47,7 @@ if ((isset($_POST['action']) && $_POST['action'] === 'login')) {
 	$user->login();
 
 	if ($user->isAuthed()) {
-		header('Location: ' . $current_page);
+		header('Location: ' . $currentPage);
 		exit();
 	} else {
 		sleep(1);
@@ -68,15 +68,15 @@ if (isset($_GET['action']) && $_GET['action'] === 'logout') {
 /**
  * TEST DE SESSION
  */
-if( _DEBUG === true ) {
-	var_dump($current_page);
-}
-$pages_allowed_without_session = array('http://localhost:8888/crafters_proj/www/', 'http://localhost:8888/crafters_proj/www/index.php', 'index', 'fiche', 'profil', 'contact');
-if(isset($_GET['module'])){
-	$var = $_GET['module'] ;
+$pagesAllowedWithoutSession = array(
+	'http://localhost:8888/crafters_proj/www/', 
+	'http://localhost:8888/crafters_proj/www/index.php', 
+	'index', 'fiche', 'profil', 'contact');
+if (isset($_GET['module'])) {
+	$var = $_GET['module'];
 } else {
-	$var = $current_page ;
-} if (!$user->isAuthed() && !in_array( $var , $pages_allowed_without_session)) {
+	$var = $currentPage;
+} if (!$user->isAuthed() && !in_array($var, $pagesAllowedWithoutSession)) {
 	header('Location: index.php?module=index');
 	exit();
 }

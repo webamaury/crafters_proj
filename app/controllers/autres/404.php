@@ -1,7 +1,7 @@
 <?php
 class AutreController extends CoreControlers {
 	
-	function __construct($array_tools, $notices) {
+	function __construct($arrayTools, $notices) {
 
 		if(!isset($_GET['action']) && !isset($_POST['action'])) {
 			$method = 'main' ;
@@ -10,11 +10,11 @@ class AutreController extends CoreControlers {
 			$method = $_POST['action'];
 		}
 
-		$this->$method($array_tools, $notices) ;
+		$this->$method($arrayTools, $notices) ;
 
 	}
 
-	function main($array_tools, $notices) {
+	function main($arrayTools, $notices) {
 
 		##############################################################
 		##	TRAITEMENT PHP											##
@@ -23,8 +23,8 @@ class AutreController extends CoreControlers {
 		##############################################################
 		##	APPEL TOOLS												##
 		##############################################################
-		$tools_to_load = array("bootstrap-css", "jquery", "bootstrap-js", "admin-script");
-		$styles_to_load = array("style");
+		$toolsToLoad = array("bootstrap-css", "jquery", "bootstrap-js", "admin-script");
+		$stylesToLoad = array("style");
 		
 		##############################################################
 		##	VARIABLES LAYOUT										##
