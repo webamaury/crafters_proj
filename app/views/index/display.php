@@ -221,7 +221,7 @@
 		
 		                        <h3>Please Log In, or <a href="#" data-toggle="modal" data-target="#modal-new-signup">Sign Up</a></h3>
 		
-		                        <form role="form" method="post" action="#">
+		                        <form role="form" method="post" action="http://<?php echo $_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'] ; ?>">
 		                            <div class="form-group">
 		                                <input type="text" name="email" placeholder="Username or Email" class="form-control" required>
 		                                <br/>

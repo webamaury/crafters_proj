@@ -1,7 +1,7 @@
 <?php
 //parent::__construct()
 class classUsers extends CoreModels {
-	
+
 	function login() {
 
 		$accounts = $this->get_array_from_query("SELECT * FROM crafters_user WHERE user_mail = :mail AND user_password = :mdp", 
@@ -48,7 +48,7 @@ class classUsers extends CoreModels {
 			return false;
 		}
 	}
-	
+
 	function logout() {
 	    unset($_SESSION['CRAFTERS-USER']);
 		
@@ -88,7 +88,7 @@ class classUsers extends CoreModels {
 		
 		return $list ;
 	}
-		
+
 	function delete_user() {
 	
 			$query = "DELETE FROM " . _TABLE__USERS . " WHERE user_id = :id";
@@ -100,7 +100,7 @@ class classUsers extends CoreModels {
 			$cursor->closeCursor();
 			return true ;
 	}
-	
+
 	function update_user() {
 		$query = "UPDATE " . _TABLE__USERS . " 
 		SET user_mail = :mail,
@@ -167,7 +167,7 @@ class classUsers extends CoreModels {
 		return $list ;
 	}
 	function get_popular_crafters() {
-		$query = "select P.user_id_product, U.user_username, U.user_img_url, count(L.like_id) as nb_like from crafters_like L, crafters_product P, crafters_user U WHERE P.product_id = L.crafters_product_product_id and U.user_id = P.user_id_product group by P.user_id_product ORDER BY nb_like desc LIMIT 0,3";
+		$query = "select P.user_id_product, U.user_username, U.user_img_url, count(L.like_id) as nb_like from crafters_like L, crafters_product P, crafters_user U WHERE P.product_id = L.crafters_product_product_id and U.user_id = P.user_id_product and like_date > NOW() - INTERVAL 1 MONTH group by P.user_id_product ORDER BY nb_like desc LIMIT 0,3";
 	
 		$cursor = $this->connexion->prepare($query);
 
