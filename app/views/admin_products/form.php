@@ -56,7 +56,7 @@
 			<div class="form-group">
 				<label for="creation" class="col-md-2 control-label">Creation</label>
 				<div class="col-lg-10 col-md-8">
-					<input type="text" required name="creation" class="form-control" id="creation" readonly value="<?php echo (isset($item->product_creation)) ? $item->product_creation : '' ; ?>">
+					<input type="text" required name="creation" class="form-control" id="creation" readonly value="<?php echo (isset($item->DateCrea)) ? $item->DateCrea : '' ; ?>">
 				</div>
 			</div>
 			<div class="form-group">

@@ -68,13 +68,13 @@
 			<div class="form-group">
 				<label for="birthday" class="col-md-2 control-label">Birthday</label>
 				<div class="col-lg-10 col-md-8">
-					<input type="text" name="birthday" class="form-control" id="birthday" value="<?php echo (isset($item->user_birthday)) ? $item->user_birthday : '' ; ?>">
+					<input type="text" name="birthday" class="form-control" id="birthday" value="<?php echo (isset($item->DateBirth)) ? $item->DateBirth : '' ; ?>">
 				</div>
 			</div>
 			<div class="form-group">
 				<label for="creation" class="col-md-2 control-label">Creation</label>
 				<div class="col-lg-10 col-md-8">
-					<input type="text" name="creation" class="form-control" id="creation" readonly value="<?php echo (isset($item->user_creation)) ? $item->user_creation : '' ; ?>">
+					<input type="text" name="creation" class="form-control" id="creation" readonly value="<?php echo (isset($item->DateCrea)) ? $item->DateCrea : '' ; ?>">
 				</div>
 			</div>
 			<div class="form-group">

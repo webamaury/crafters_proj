@@ -14,7 +14,7 @@ class classMessages extends CoreModels {
 		return $item;
 	}
 	function get_one_array() {
-		$query = "SELECT M.message_id, M.message_firstname, M.message_name, M.message_mail, M.message_title, M.message_message, M.message_creation, S.nom FROM " . _TABLE__MESSAGE . " as M," . _TABLE__STATUTS . " as S WHERE M.message_id = :id AND S.type = 'message' AND S.statut = M.message_status";
+		$query = "SELECT M.message_id, M.message_firstname, M.message_name, M.message_mail, M.message_title, M.message_message, DATE_FORMAT(M.message_creation, '%d %M %Y %T') AS DateCrea, S.nom FROM " . _TABLE__MESSAGE . " as M," . _TABLE__STATUTS . " as S WHERE M.message_id = :id AND S.type = 'message' AND S.statut = M.message_status";
 		
 		$cursor = $this->connexion->prepare($query);
 	
