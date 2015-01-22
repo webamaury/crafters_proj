@@ -19,9 +19,9 @@ class profilController extends CoreControlers {
 		##############################################################
 		##	TRAITEMENT PHP											##
 		##############################################################
-		include_once(_APP_PATH . 'models/class.product.php'); $ClassUser = new classUsers();
+		include_once(_APP_PATH . 'models/class.product.php'); $ClassUser = new ClassUsers();
 		$ClassUser->user_id = $_GET['user'];
-		$user = $ClassUser->get_one();
+		$user = $ClassUser->getOne();
 		##############################################################
 		##	APPEL TOOLS												##
 		##############################################################

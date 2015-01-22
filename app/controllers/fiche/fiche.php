@@ -19,9 +19,9 @@ class ficheController extends CoreControlers {
 		##############################################################
 		##	TRAITEMENT PHP											##
 		##############################################################
-		include_once(_APP_PATH . 'models/class.product.php'); $ClassProduct = new classProducts();
+		include_once(_APP_PATH . 'models/class.product.php'); $ClassProduct = new ClassProducts();
 		$ClassProduct->product_id = $_GET['product'];
-		$product = $ClassProduct->get_one();
+		$product = $ClassProduct->get0ne();
 		##############################################################
 		##	APPEL TOOLS												##
 		##############################################################

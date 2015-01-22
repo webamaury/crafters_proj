@@ -2,9 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8faa85b7-f8ac-4705-927c-70129d9eb11f" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/admin_products/admin_products.php" afterPath="$PROJECT_DIR$/app/controllers/admin_products/admin_products.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/admin_users/admin_users.php" afterPath="$PROJECT_DIR$/app/controllers/admin_users/admin_users.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/class.product.php" afterPath="$PROJECT_DIR$/app/models/class.product.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/class.users.php" afterPath="$PROJECT_DIR$/app/models/class.users.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/index/display.php" afterPath="$PROJECT_DIR$/app/views/index/display.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/fiche/fiche.php" afterPath="$PROJECT_DIR$/app/controllers/fiche/fiche.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/index/index.php" afterPath="$PROJECT_DIR$/app/controllers/index/index.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/config/init.php" afterPath="$PROJECT_DIR$/app/config/init.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/profil/profil.php" afterPath="$PROJECT_DIR$/app/controllers/profil/profil.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/upload/upload.php" afterPath="$PROJECT_DIR$/app/controllers/upload/upload.php" />
     </list>
     <ignored path="crafters_proj.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -32,19 +38,74 @@
       <file leaf-file-name="class.users.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/models/class.users.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.099734046" vertical-offset="0" max-vertical-offset="2820">
-              <caret line="5" column="0" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.63829786" vertical-offset="0" max-vertical-offset="3705">
+              <caret line="32" column="60" selection-start-line="32" selection-start-column="60" selection-end-line="32" selection-end-column="60" />
               <folding>
-                <marker date="1421925671000" expanded="true" signature="133:209" placeholder="SELECT * FRO..crafters_user..." />
-                <marker date="1421925671000" expanded="true" signature="1573:1830" placeholder="SELECT U.use.._TABLE__USERS as..." />
-                <marker date="1421925671000" expanded="true" signature="2016:2404" placeholder="SELECT U.use.._TABLE__USERS as..." />
-                <marker date="1421925671000" expanded="true" signature="2743:2832" placeholder="SELECT user_.._TABLE__USERS ORDER..." />
-                <marker date="1421925671000" expanded="true" signature="2951:3004" placeholder="DELETE FROM ..." />
-                <marker date="1421925671000" expanded="true" signature="4091:4148" placeholder="SELECT * FRO.._TABLE__STATUTS WHERE..." />
-                <marker date="1421925671000" expanded="true" signature="4395:4504" placeholder="SELECT user_.._TABLE__USERS WHERE..." />
-                <marker date="1421925671000" expanded="true" signature="4748:4901" placeholder="SELECT produ.._TABLE__PRODUCTS WHERE..." />
-                <marker date="1421925671000" expanded="true" signature="5248:5577" placeholder="select P.use..crafters_like..." />
+                <marker date="1421943204000" expanded="true" signature="237:313" placeholder="SELECT * FRO..crafters_user..." />
+                <marker date="1421943204000" expanded="true" signature="1901:2158" placeholder="SELECT U.use.._TABLE__USERS as..." />
+                <marker date="1421943204000" expanded="true" signature="1901:2236" placeholder="SELECT U.use.._TABLE__USERS as..." />
+                <marker date="1421943204000" expanded="true" signature="2524:2912" placeholder="SELECT U.use.._TABLE__USERS as..." />
+                <marker date="1421943204000" expanded="true" signature="2524:2990" placeholder="SELECT U.use.._TABLE__USERS as..." />
+                <marker date="1421943204000" expanded="true" signature="3417:3506" placeholder="SELECT user_.._TABLE__USERS ORDER..." />
+                <marker date="1421943204000" expanded="true" signature="3699:3752" placeholder="DELETE FROM ..." />
+                <marker date="1421943204000" expanded="true" signature="5033:5090" placeholder="SELECT * FRO.._TABLE__STATUTS WHERE..." />
+                <marker date="1421943204000" expanded="true" signature="5413:5522" placeholder="SELECT user_.._TABLE__USERS WHERE..." />
+                <marker date="1421943204000" expanded="true" signature="5906:6059" placeholder="SELECT produ.._TABLE__PRODUCTS WHERE..." />
+                <marker date="1421943204000" expanded="true" signature="6475:6804" placeholder="select P.use..crafters_like..." />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="class.product.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/models/class.product.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-3.125" vertical-offset="0" max-vertical-offset="4305">
+              <caret line="5" column="19" selection-start-line="5" selection-start-column="6" selection-end-line="5" selection-end-column="19" />
+              <folding>
+                <marker date="1421936140000" expanded="true" signature="185:389" placeholder="INSERT INTO ..." />
+                <marker date="1421936140000" expanded="true" signature="1148:1367" placeholder="SELECT P.pro.._TABLE__PRODUCTS P..." />
+                <marker date="1421936140000" expanded="true" signature="1546:1878" placeholder="SELECT P.pro.._TABLE__PRODUCTS as..." />
+                <marker date="1421936140000" expanded="true" signature="2146:2468" placeholder="SELECT P.pro.._TABLE__PRODUCTS as..." />
+                <marker date="1421936140000" expanded="true" signature="2798:2857" placeholder="DELETE FROM ..." />
+                <marker date="1421936140000" expanded="true" signature="3181:3408" placeholder="SELECT P.pro.._TABLE__PRODUCTS as..." />
+                <marker date="1421936140000" expanded="true" signature="3747:3845" placeholder="SELECT count.._TABLE__LIKE WHERE..." />
+                <marker date="1421936140000" expanded="true" signature="5012:5072" placeholder="SELECT * FRO.._TABLE__STATUTS WHERE..." />
+                <marker date="1421936140000" expanded="true" signature="5779:5904" placeholder="INSERT INTO ..." />
+                <marker date="1421936140000" expanded="true" signature="6283:6400" placeholder="DELETE FROM ..." />
+                <marker date="1421936140000" expanded="true" signature="6803:6946" placeholder="SELECT count.._TABLE__LIKE WHERE..." />
+                <marker date="1421936140000" expanded="true" signature="7493:7692" placeholder="SELECT U.use.._TABLE__LIKE L..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="upload.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/controllers/upload/upload.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-81.25" vertical-offset="0" max-vertical-offset="2370">
+              <caret line="130" column="36" selection-start-line="130" selection-start-column="36" selection-end-line="130" selection-end-column="36" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/controllers/index/index.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-3.125" vertical-offset="255" max-vertical-offset="2070">
+              <caret line="22" column="86" selection-start-line="22" selection-start-column="86" selection-end-line="22" selection-end-column="86" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="init.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/config/init.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-6.875" vertical-offset="0" max-vertical-offset="1275">
+              <caret line="11" column="24" selection-start-line="11" selection-start-column="24" selection-end-line="11" selection-end-column="24" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -57,6 +118,8 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
+        <option value="$PROJECT_DIR$/app/controllers/index/index.php" />
+        <option value="$PROJECT_DIR$/app/models/class.product.php" />
         <option value="$PROJECT_DIR$/app/models/class.users.php" />
       </list>
     </option>
@@ -121,6 +184,20 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="www" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="crafters_proj" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="crafters_proj" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="app" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -143,6 +220,86 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="crafters_proj" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="crafters_proj" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="controllers" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="crafters_proj" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="crafters_proj" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="controllers" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="upload" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="crafters_proj" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="crafters_proj" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="controllers" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="index" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="crafters_proj" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="crafters_proj" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="config" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
       <pane id="Scope" />
@@ -151,7 +308,7 @@
   <component name="PropertiesComponent">
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../captchas/reCAPTCHA" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="options.lastSelected" value="preferences.lookFeel" />
+    <property name="options.lastSelected" value="reference.settingsdialog.IDE.editor.postfix.templates" />
     <property name="options.splitter.main.proportions" value="0.3" />
     <property name="options.splitter.details.proportions" value="0.2" />
   </component>
@@ -195,22 +352,22 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1420" height="873" extended-state="0" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.329602" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24647887" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24647887" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.0" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
@@ -244,33 +401,90 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2820">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <marker date="1421925671000" expanded="true" signature="133:209" placeholder="SELECT * FRO..crafters_user..." />
-            <marker date="1421925671000" expanded="true" signature="1573:1830" placeholder="SELECT U.use.._TABLE__USERS as..." />
-            <marker date="1421925671000" expanded="true" signature="2016:2404" placeholder="SELECT U.use.._TABLE__USERS as..." />
-            <marker date="1421925671000" expanded="true" signature="2743:2832" placeholder="SELECT user_.._TABLE__USERS ORDER..." />
-            <marker date="1421925671000" expanded="true" signature="2951:3004" placeholder="DELETE FROM ..." />
-            <marker date="1421925671000" expanded="true" signature="4091:4148" placeholder="SELECT * FRO.._TABLE__STATUTS WHERE..." />
-            <marker date="1421925671000" expanded="true" signature="4395:4504" placeholder="SELECT user_.._TABLE__USERS WHERE..." />
-            <marker date="1421925671000" expanded="true" signature="4748:4901" placeholder="SELECT produ.._TABLE__PRODUCTS WHERE..." />
-            <marker date="1421925671000" expanded="true" signature="5248:5577" placeholder="select P.use..crafters_like..." />
+            <marker date="1421943204000" expanded="true" signature="237:313" placeholder="SELECT * FRO..crafters_user..." />
+            <marker date="1421943204000" expanded="true" signature="1901:2158" placeholder="SELECT U.use.._TABLE__USERS as..." />
+            <marker date="1421943204000" expanded="true" signature="1901:2236" placeholder="SELECT U.use.._TABLE__USERS as..." />
+            <marker date="1421943204000" expanded="true" signature="2524:2912" placeholder="SELECT U.use.._TABLE__USERS as..." />
+            <marker date="1421943204000" expanded="true" signature="2524:2990" placeholder="SELECT U.use.._TABLE__USERS as..." />
+            <marker date="1421943204000" expanded="true" signature="3417:3506" placeholder="SELECT user_.._TABLE__USERS ORDER..." />
+            <marker date="1421943204000" expanded="true" signature="3699:3752" placeholder="DELETE FROM ..." />
+            <marker date="1421943204000" expanded="true" signature="5033:5090" placeholder="SELECT * FRO.._TABLE__STATUTS WHERE..." />
+            <marker date="1421943204000" expanded="true" signature="5413:5522" placeholder="SELECT user_.._TABLE__USERS WHERE..." />
+            <marker date="1421943204000" expanded="true" signature="5906:6059" placeholder="SELECT produ.._TABLE__PRODUCTS WHERE..." />
+            <marker date="1421943204000" expanded="true" signature="6475:6804" placeholder="select P.use..crafters_like..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="776">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/config/init.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-6.875" vertical-offset="0" max-vertical-offset="1275">
+          <caret line="11" column="24" selection-start-line="11" selection-start-column="24" selection-end-line="11" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/upload/upload.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-81.25" vertical-offset="0" max-vertical-offset="2370">
+          <caret line="130" column="36" selection-start-line="130" selection-start-column="36" selection-end-line="130" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/index/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-3.125" vertical-offset="255" max-vertical-offset="2070">
+          <caret line="22" column="86" selection-start-line="22" selection-start-column="86" selection-end-line="22" selection-end-column="86" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/class.product.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-3.125" vertical-offset="0" max-vertical-offset="4305">
+          <caret line="5" column="19" selection-start-line="5" selection-start-column="6" selection-end-line="5" selection-end-column="19" />
+          <folding>
+            <marker date="1421936140000" expanded="true" signature="185:389" placeholder="INSERT INTO ..." />
+            <marker date="1421936140000" expanded="true" signature="1148:1367" placeholder="SELECT P.pro.._TABLE__PRODUCTS P..." />
+            <marker date="1421936140000" expanded="true" signature="1546:1878" placeholder="SELECT P.pro.._TABLE__PRODUCTS as..." />
+            <marker date="1421936140000" expanded="true" signature="2146:2468" placeholder="SELECT P.pro.._TABLE__PRODUCTS as..." />
+            <marker date="1421936140000" expanded="true" signature="2798:2857" placeholder="DELETE FROM ..." />
+            <marker date="1421936140000" expanded="true" signature="3181:3408" placeholder="SELECT P.pro.._TABLE__PRODUCTS as..." />
+            <marker date="1421936140000" expanded="true" signature="3747:3845" placeholder="SELECT count.._TABLE__LIKE WHERE..." />
+            <marker date="1421936140000" expanded="true" signature="5012:5072" placeholder="SELECT * FRO.._TABLE__STATUTS WHERE..." />
+            <marker date="1421936140000" expanded="true" signature="5779:5904" placeholder="INSERT INTO ..." />
+            <marker date="1421936140000" expanded="true" signature="6283:6400" placeholder="DELETE FROM ..." />
+            <marker date="1421936140000" expanded="true" signature="6803:6946" placeholder="SELECT count.._TABLE__LIKE WHERE..." />
+            <marker date="1421936140000" expanded="true" signature="7493:7692" placeholder="SELECT U.use.._TABLE__LIKE L..." />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/models/class.users.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.099734046" vertical-offset="0" max-vertical-offset="2820">
-          <caret line="5" column="0" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.63829786" vertical-offset="0" max-vertical-offset="3705">
+          <caret line="32" column="60" selection-start-line="32" selection-start-column="60" selection-end-line="32" selection-end-column="60" />
           <folding>
-            <marker date="1421925671000" expanded="true" signature="133:209" placeholder="SELECT * FRO..crafters_user..." />
-            <marker date="1421925671000" expanded="true" signature="1573:1830" placeholder="SELECT U.use.._TABLE__USERS as..." />
-            <marker date="1421925671000" expanded="true" signature="2016:2404" placeholder="SELECT U.use.._TABLE__USERS as..." />
-            <marker date="1421925671000" expanded="true" signature="2743:2832" placeholder="SELECT user_.._TABLE__USERS ORDER..." />
-            <marker date="1421925671000" expanded="true" signature="2951:3004" placeholder="DELETE FROM ..." />
-            <marker date="1421925671000" expanded="true" signature="4091:4148" placeholder="SELECT * FRO.._TABLE__STATUTS WHERE..." />
-            <marker date="1421925671000" expanded="true" signature="4395:4504" placeholder="SELECT user_.._TABLE__USERS WHERE..." />
-            <marker date="1421925671000" expanded="true" signature="4748:4901" placeholder="SELECT produ.._TABLE__PRODUCTS WHERE..." />
-            <marker date="1421925671000" expanded="true" signature="5248:5577" placeholder="select P.use..crafters_like..." />
+            <marker date="1421943204000" expanded="true" signature="237:313" placeholder="SELECT * FRO..crafters_user..." />
+            <marker date="1421943204000" expanded="true" signature="1901:2158" placeholder="SELECT U.use.._TABLE__USERS as..." />
+            <marker date="1421943204000" expanded="true" signature="1901:2236" placeholder="SELECT U.use.._TABLE__USERS as..." />
+            <marker date="1421943204000" expanded="true" signature="2524:2912" placeholder="SELECT U.use.._TABLE__USERS as..." />
+            <marker date="1421943204000" expanded="true" signature="2524:2990" placeholder="SELECT U.use.._TABLE__USERS as..." />
+            <marker date="1421943204000" expanded="true" signature="3417:3506" placeholder="SELECT user_.._TABLE__USERS ORDER..." />
+            <marker date="1421943204000" expanded="true" signature="3699:3752" placeholder="DELETE FROM ..." />
+            <marker date="1421943204000" expanded="true" signature="5033:5090" placeholder="SELECT * FRO.._TABLE__STATUTS WHERE..." />
+            <marker date="1421943204000" expanded="true" signature="5413:5522" placeholder="SELECT user_.._TABLE__USERS WHERE..." />
+            <marker date="1421943204000" expanded="true" signature="5906:6059" placeholder="SELECT produ.._TABLE__PRODUCTS WHERE..." />
+            <marker date="1421943204000" expanded="true" signature="6475:6804" placeholder="select P.use..crafters_like..." />
           </folding>
         </state>
       </provider>

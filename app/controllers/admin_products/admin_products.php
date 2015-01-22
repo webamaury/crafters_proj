@@ -5,11 +5,11 @@
 		function __construct($array_tools, $notices, $modules) {
 			//include_once(_APP_PATH . 'models/lib.admin_users.php');
 			include_once _APP_PATH . 'models/class.product.php';
-			$products = new classProducts();
+			$products = new ClassProducts();
 			
 			if(isset($_GET['action']) && $_GET['action'] == "delete") {
 				$products->product_id = $_GET['id'];
-				if($products->delete_product()) {
+				if($products->deleteProduct()) {
 					$notices->create_notice('success', 'Product deleted');
 					header('location:index.php?module=products');exit();
 				}
@@ -29,7 +29,7 @@
 	//						echo $_POST['statut']."<br>";
 	//						echo $adminUsers->statut ; exit();	
 				
-				if($products->update_product()) {
+				if($products->updateProduct()) {
 					$notices->create_notice('success', 'Product updated');
 					header('location:index.php?module=products&action=form&id='.$_GET['id']);exit();
 				}
@@ -40,13 +40,13 @@
 			}
 			else if(isset($_GET['action']) && $_GET['action'] == 'form') {
 					$products->product_id = $_GET['id'];
-					$item = $products->get_one();
+					$item = $products->get0ne();
 					//var_dump($item); exit();
 					if(empty($item)) {
 						$notices->create_notice('danger', 'Unknown message !');
 						header('location:index.php?module=products');exit();
 					}
-					$statuts = $products->get_statuts();
+					$statuts = $products->getStatuts();
 
 				##############################################################
 				##	APPEL TOOLS												##
@@ -66,7 +66,7 @@
 				include_once( _APP_PATH . 'views/admin_products/form.php');
 			}
 			else if((!isset($_GET['action']) && !isset($_POST['action'])) || (isset($_GET['action']) && $_GET['action'] == 'list')) {
-				$items = $products->get_list();
+				$items = $products->getList();
 				
 				//$items = $adminUsers;
 				##############################################################
@@ -88,14 +88,14 @@
 			}
 			else if (isset($_POST['action']) && $_POST['action'] == 'ajax_display_product_fiche') {
 					$products->product_id = $_POST['id'];
-					$ajax_item = $products->get_one_array();
+					$ajax_item = $products->getOneArray();
 					$ajax_item = json_encode($ajax_item);
 					echo $ajax_item;
 			}
 			else if(isset($_POST['action']) && $_POST['action'] == 'ajax_delete_avatar') {
 					if(unlink(_WWW_PATH . $_POST['img_url'])) {
 						$products->product_id=$_POST["product_id"];
-						if($products->delete_address_img()){
+						if($products->deleteAddressImg()){
 							echo true;
 						}
 					}

@@ -5,11 +5,11 @@
 		function __construct($array_tools, $notices, $modules) {
 			//include_once(_APP_PATH . 'models/lib.admin_users.php');
 			include_once _APP_PATH . 'models/class.users.php';
-			$users = new classUsers();
+			$users = new ClassUsers();
 			
 			if(isset($_GET['action']) && $_GET['action'] == "delete") {
 				$users->user_id = $_GET['id'];
-				if($users->delete_user()) {
+				if($users->deleteUser()) {
 					$notices->create_notice('success', 'Users deleted');
 					header('location:index.php?module=users');exit();
 				}
@@ -52,7 +52,7 @@
 	//						echo $_POST['statut']."<br>";
 	//						echo $adminUsers->statut ; exit();	
 				
-				if($users->update_user()) {
+				if($users->updateUser()) {
 					$notices->create_notice('success', 'User modifié');
 					header('location:index.php?module=users&action=form&id='.$_GET['id']);exit();
 				}
@@ -63,13 +63,13 @@
 			}
 			else if(isset($_GET['action']) && $_GET['action'] == 'form') {
 					$users->user_id = $_GET['id'];
-					$item = $users->get_one();
+					$item = $users->getOne();
 					if(empty($item)) {
 						$notices->create_notice('danger', 'Unknown user !');
 						header('location:index.php?module=users');exit();
 					}
 
-				$statuts = $users->get_statuts();
+				$statuts = $users->getStatuts();
 
 				##############################################################
 				##	APPEL TOOLS												##
@@ -89,7 +89,7 @@
 				include_once( _APP_PATH . 'views/admin_users/form.php');
 			}
 			else if((!isset($_GET['action']) && !isset($_POST['action'])) || (isset($_GET['action']) && $_GET['action'] == 'list')) {
-				$items = $users->get_list();
+				$items = $users->getList();
 				
 				//$items = $adminUsers;
 				##############################################################
@@ -111,7 +111,7 @@
 			}
 			else if(isset($_POST['action']) && $_POST['action'] == 'ajax_display_user_fiche') {
 					$users->user_id = $_POST['id'];
-					$ajax_item = $users->get_one_array();
+					$ajax_item = $users->getOneArray();
 					$ajax_item = json_encode($ajax_item);
 					echo $ajax_item;
 			}

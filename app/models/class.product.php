@@ -1,8 +1,15 @@
 <?php
 
-class classProducts extends CoreModels {
+/**
+ * Class classProducts
+ */
+class ClassProducts extends CoreModels {
 
-	function insert_new() {
+	/**
+	 * Permet dinsérer un nouveau produit
+	 * @return bool
+     */
+	function insertNew() {
 		$query = "INSERT INTO " . _TABLE__PRODUCTS . " 
 		(product_name, product_description, product_status, product_type, product_img_url, user_id_product) 
 		VALUES 
@@ -22,16 +29,24 @@ class classProducts extends CoreModels {
 
 		return $return ;
 	}
-	
-	function get_list() {
+
+	/**
+	 * Permet d'obtenir la liste de touts les produits classé par statut pour avoir les produits non-validé en haut dans le BO
+	 * @return array
+     */
+	function getList() {
 		$orderby = 'S.statut asc';
 		$this->query = "SELECT P.product_img_url, P.product_id, P.product_name, P.product_type, S.nom as status_name  FROM " . _TABLE__PRODUCTS . " P, " . _TABLE__STATUTS . " S WHERE S.statut = P.product_status and S.type = 'product' ORDER BY " . $orderby;
 		$list = $this->select_no_param();
 				
 		return $list ;
 	}
-	
-	function get_one() {
+
+	/**
+	 * Permet d'avoir un produit (object)
+	 * @return mixed
+     */
+	function get0ne() {
 		$query = "SELECT P.product_id, P.product_name, P.product_description, DATE_FORMAT(P.product_creation, '%d %M %Y %T') AS DateCrea, P.product_status, P.product_type, P.product_img_url, S.nom, S.statut FROM " . _TABLE__PRODUCTS . " as P," . _TABLE__STATUTS . " as S WHERE P.product_id = :id AND S.type = 'product' AND S.statut = P.product_status";
 		
 	
@@ -42,7 +57,12 @@ class classProducts extends CoreModels {
 	
 		return $item;
 	}
-	function get_one_array() {
+
+	/**
+	 * Permet d'avoir un produit dans un tableau
+	 * @return mixed
+     */
+	function getOneArray() {
 		$query = "SELECT P.product_id, P.product_name, P.product_description, DATE_FORMAT(P.product_creation, '%d %M %Y %T') AS DateCrea, P.product_status, P.product_type, P.product_img_url, S.nom FROM " . _TABLE__PRODUCTS . " as P," . _TABLE__STATUTS . " as S WHERE P.product_id = :id AND S.type = 'product' AND S.statut = P.product_status";
 
 		$cursor = $this->connexion->prepare($query);
@@ -56,8 +76,12 @@ class classProducts extends CoreModels {
 	
 		return $return ;	
 	}
-	
-	function delete_product() {
+
+	/**
+	 * Permet de supprimer un produit
+	 * @return bool
+     */
+	function deleteProduct() {
 
 			$query = "DELETE FROM " . _TABLE__PRODUCTS . " WHERE product_id = :id";
 		
@@ -68,8 +92,12 @@ class classProducts extends CoreModels {
 			$cursor->closeCursor();
 			return $return ;
 	}
-	
-	function get_list_front() {
+
+	/**
+	 * Permet d'afficher les produits dans le front
+	 * @return array
+     */
+	function getListFront() {
 		$query = "SELECT P.product_id, P.product_name, P.product_img_url, U.user_username FROM " . _TABLE__PRODUCTS . " as P, " . _TABLE__USERS . " as U WHERE P.user_id_product = U.user_id and P.product_status = 1 ORDER BY product_id desc LIMIT ".$this->limit;
 		$cursor = $this->connexion->prepare($query);
 		
@@ -82,7 +110,12 @@ class classProducts extends CoreModels {
 		return $return ;	
 	
 	}
-	function number_of_like() {
+
+	/**
+	 * Permet d'obtenir le nombre de like d'un produit
+	 * @return mixed
+     */
+	function numberOfLike() {
 		$query = "SELECT count(like_id) as nb_like from " . _TABLE__LIKE . " WHERE crafters_product_product_id = :id";
 		$cursor = $this->connexion->prepare($query);
 		$cursor->bindValue(':id', $this->product_id, PDO::PARAM_INT);
@@ -96,8 +129,12 @@ class classProducts extends CoreModels {
 		return $return[0] ;	
 	
 	}
-	
-	function update_product() {
+
+	/**
+	 * Permet de modifier un produit
+	 * @return bool
+     */
+	function updateProduct() {
 		$query = "UPDATE " . _TABLE__PRODUCTS . " 
 		SET product_name = :name,
 		product_description = :description,
@@ -118,8 +155,12 @@ class classProducts extends CoreModels {
 		$cursor->closeCursor();
 		return $return ;
 	}
-	
-	function get_statuts() {
+
+	/**
+	 * Permet d'obtenir la liste des statuts de type produit
+	 * @return array
+     */
+	function getStatuts() {
 		$query = "SELECT * FROM " . _TABLE__STATUTS . " WHERE type = 'product'";
 	
 		$cursor = $this->connexion->prepare($query);
@@ -132,8 +173,12 @@ class classProducts extends CoreModels {
 
 		return $list ;
 	}
-	
-	function delete_address_img() {
+
+	/**
+	 * Permet de supprimer l'image d'un produit
+	 * @return bool
+     */
+	function deleteAddressImg() {
 		$query = "UPDATE " . _TABLE__PRODUCTS . " 
 		SET product_img_url = 'NULL'
 		WHERE product_id = :id";
@@ -147,7 +192,12 @@ class classProducts extends CoreModels {
 		$cursor->closeCursor();
 		return $return ;
 	}
-	function like_product() {
+
+	/**
+	 * permet de liker un produit
+	 * @return bool
+     */
+	function likeProduct() {
 		$query = "INSERT INTO " . _TABLE__LIKE . " 
 		(crafters_product_product_id, crafters_user_user_id) 
 		VALUES 
@@ -163,7 +213,12 @@ class classProducts extends CoreModels {
 
 		return $return ;
 	}
-	function unlike_product() {
+
+	/**
+	 * permet de supprimer un like
+	 * @return bool
+     */
+	function unlikeProduct() {
 		$query = "DELETE FROM " . _TABLE__LIKE . " WHERE crafters_product_product_id = :product_id and crafters_user_user_id = :user_id";
 	
 		$cursor = $this->connexion->prepare($query);
@@ -175,7 +230,12 @@ class classProducts extends CoreModels {
 		$cursor->closeCursor();
 		return $return ;
 	}
-	function did_i_like() {
+
+	/**
+	 * Permet de savoir si l'utilisateur connecté à liké un produit
+	 * @return bool
+     */
+	function didILike() {
 		$query = "SELECT count(like_id) as nb_like FROM " . _TABLE__LIKE . " WHERE crafters_product_product_id = :product_id and crafters_user_user_id = :user_id";
 		$cursor = $this->connexion->prepare($query);
 
@@ -196,7 +256,12 @@ class classProducts extends CoreModels {
 
 		return $list ;
 	}
-	function get_users_who_liked() {
+
+	/**
+	 * Permet d'avoir les noms des utilisateurs qui ont liké
+	 * @return array
+     */
+	function getUsersWhoLiked() {
 		$query = "SELECT U.user_username FROM " . _TABLE__LIKE . " L, " . _TABLE__USERS . " U WHERE L.crafters_user_user_id = U.user_id and L.crafters_product_product_id = :product_id ORDER BY L.like_id desc LIMIT 0,5";
 	
 		$cursor = $this->connexion->prepare($query);

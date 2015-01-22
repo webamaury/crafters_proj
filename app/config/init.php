@@ -29,7 +29,7 @@ require_once(_APP_PATH . 'models/class.session.php'); $session = new Session();
 require_once(_CORE_PATH . 'coreModels.php');
 require_once(_CORE_PATH . 'coreControlers.php'); new CoreControlers();
 require_once(_APP_PATH . 'models/lib.function.php');
-require_once(_APP_PATH . 'models/class.users.php'); $user = new classUsers();
+require_once(_APP_PATH . 'models/class.users.php'); $user = new ClassUsers();
 
 ##############################################################
 ## OUVERTURE DE SESSION										##
@@ -42,7 +42,7 @@ if ((isset($_POST['action']) && $_POST['action'] == 'login'))
 		
 	$user->login();
 
-	if ($user->is_authed())
+	if ($user->isAuthed())
 	{
 		header('Location: '.$current_page);
 		exit();
@@ -72,7 +72,7 @@ if( _DEBUG == true ) { var_dump($current_page);}
 $pages_allowed_without_session = array('http://localhost:8888/crafters_proj/www/', 'http://localhost:8888/crafters_proj/www/index.php', 'index', 'fiche', 'profil', 'contact');
 if(isset($_GET['module'])){ $var = $_GET['module'] ; }
 else{ $var = $current_page ; }
-if (!$user->is_authed() && !in_array( $var , $pages_allowed_without_session))
+if (!$user->isAuthed() && !in_array( $var , $pages_allowed_without_session))
 {
 	header('Location: index.php?module=index');
 	exit();

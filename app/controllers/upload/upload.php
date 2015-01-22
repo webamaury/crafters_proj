@@ -120,7 +120,7 @@ class uploadController extends CoreControlers {
 	
 	function submit_pay() {
 		include_once _APP_PATH . 'models/class.product.php';
-		$classProducts = new classProducts();
+		$classProducts = new ClassProducts();
 		
 		$classProducts->name 			= $_POST['name'];
 		$classProducts->descr 		= $_POST['description'];
@@ -128,7 +128,7 @@ class uploadController extends CoreControlers {
 		$classProducts->type			= $_POST['radio_tatoo_stickers'];
 		$classProducts->img_url		= $_POST['img'];
 
-		$classProducts->insert_new();
+		$classProducts->insertNew();
 		
 		header('location:index.php?module=summary');
 	}
@@ -136,7 +136,7 @@ class uploadController extends CoreControlers {
 	function submit_save() {
 
 		include_once _APP_PATH . 'models/class.product.php';
-		$classProducts = new classProducts();
+		$classProducts = new ClassProducts();
 		
 		$classProducts->name 			= $_POST['name'];
 		$classProducts->descr 		= $_POST['description'];
@@ -144,7 +144,7 @@ class uploadController extends CoreControlers {
 		$classProducts->type			= $_POST['radio_tatoo_stickers'];
 		$classProducts->img_url		= $_POST['img'];
 
-		$classProducts->insert_new();
+		$classProducts->insertNew();
 
 		header('location:index.php?module=dashboard');
 	}
