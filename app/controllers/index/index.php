@@ -19,9 +19,9 @@ class IndexController extends CoreControlers
 			$method = $_POST['action'];
 		}
 		$this->nb_by_page = 12;
+		var_dump($_SESSION);
 
 		$this->$method($arrayTools, $notices);
-
 	}
 
 	/**

@@ -100,7 +100,6 @@
 										his creations</a></span>
 								<br/>
 								<br/>
-								<br/>
 							</div>
 						<?php
 						}
@@ -142,8 +141,8 @@
 										<div class="btn-group " style="float: left">
 											<a href="index.php?module=fiche&product=<?php echo $product->product_id; ?>"
 											   class="btn btn-xs btn-default"><i class="fa fa-search"></i></a>
-											<button type="button" class="btn btn-xs btn-default"><i
-													class="fa fa-shopping-cart"></i></button>
+											<a href="index.php?module=panier&action=addToCart&product=<?php echo $product->product_id; ?>" class="btn btn-xs btn-default"><i
+													class="fa fa-shopping-cart"></i></a>
 											<!--<button type="button" data-product="<?php echo $product->product_id; ?>" <?php
 											if (isset($_SESSION["CRAFTERS-USER"]["authed"]) && $_SESSION["CRAFTERS-USER"]["authed"] == true) {
 												if ($product->did_i_like == true) {

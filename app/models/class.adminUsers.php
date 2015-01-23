@@ -42,7 +42,7 @@ class classAdminUsers extends CoreModels {
 		}
 		
 	}
-	function is_authed() {
+	function isAuthed() {
 		if(isset($_SESSION["ADMIN-USER"]["authed"])) {
 			return $_SESSION["ADMIN-USER"]["authed"];
 		}
@@ -50,7 +50,7 @@ class classAdminUsers extends CoreModels {
 			return false;
 		}
 	}
-	
+
 	function logout() {
 	    unset($_SESSION['ADMIN-USER']);
 		
@@ -58,8 +58,16 @@ class classAdminUsers extends CoreModels {
 		//setcookie(COOKIE_NAME . "[admin_password]", '', time() - 3600);
 	}
 	
-	function get_one() {
-		$query = "SELECT U.id, U.firstname, U.name, U.mail, U.phone, S.nom, S.statut FROM " . _TABLE__ADMIN_USERS . " as U," . _TABLE__STATUTS . " as S WHERE U.id = :id AND S.type = 'admin' AND S.statut = U.statut";
+	function getOne() {
+		$query = "SELECT U.id,
+			U.firstname,
+			U.name,
+			U.mail,
+			U.phone,
+			S.nom,
+			S.statut
+			FROM " . _TABLE__ADMIN_USERS . " as U," . _TABLE__STATUTS . " as S
+			WHERE U.id = :id AND S.type = 'admin' AND S.statut = U.statut";
 	
 		$champs = ':id';
 		$values = $this->id; 
@@ -81,7 +89,7 @@ class classAdminUsers extends CoreModels {
 		$return=$cursor->fetchAll();
 		$cursor->closeCursor();
 	
-		return $return[0] ;	
+		return $return[0];
 	}
 	function get_list() {
 		$orderby = 'id asc';
@@ -89,7 +97,7 @@ class classAdminUsers extends CoreModels {
 			
 		$list = $this->select_no_param();
 		
-		return $list ;
+		return $list;
 	}
 	
 	function create_admin() {
@@ -113,9 +121,9 @@ class classAdminUsers extends CoreModels {
 	}
 	
 	function delete_admin() {
-		$admin = $this->get_one();
+		$admin = $this->getOne();
 	
-		if($_SESSION['ADMIN-USER']['statut'] = 1) {
+		if ($_SESSION['ADMIN-USER']['statut'] = 1) {
 			$query = "DELETE FROM " . _TABLE__ADMIN_USERS . " WHERE id = :id";
 				
 			$cursor = $this->connexion->prepare($query);

@@ -277,6 +277,7 @@ class ClassProducts extends CoreModels {
 		$query = "SELECT count(like_id) as nb_like
 			FROM " . _TABLE__LIKE . "
 			WHERE crafters_product_product_id = :product_id and crafters_user_user_id = :user_id";
+
 		$cursor = $this->connexion->prepare($query);
 
 		$cursor->bindValue(':product_id', $this->product_id, PDO::PARAM_INT);
@@ -287,7 +288,7 @@ class ClassProducts extends CoreModels {
 		$cursor->setFetchMode(PDO::FETCH_OBJ);		
 		$return = $cursor->fetch();
 		$cursor->closeCursor();
-		if ($return->nb_like === 1) {
+		if ((int)$return->nb_like === 1) {
 			return true;
 		} else {
 			return false;

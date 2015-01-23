@@ -3,7 +3,7 @@
 /**
  * Class adminUsersController
  */
-class AdminUsersController extends CoreControlers {
+class AdminUsersController {
 
 	/**
 	 * @param $arrayTools
@@ -95,7 +95,7 @@ class AdminUsersController extends CoreControlers {
 		} else if (isset($_GET['action']) && $_GET['action'] === 'form') {
 			if ((isset($_GET['id']) && $_GET['id'] === $_SESSION['ADMIN-USER']['id']) || (isset($_GET['id']) && $_SESSION['ADMIN-USER']['statut'] === 1)) {
 				$adminUsers->id = $_GET['id'];
-				$item = $adminUsers->get_one();
+				$item = $adminUsers->getOne();
 				if (empty($item)) {
 					$notices->createNotice('danger', 'Unknown user !');
 					header('location:index.php?module=adminUsers');

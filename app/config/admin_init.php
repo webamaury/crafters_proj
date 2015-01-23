@@ -61,7 +61,7 @@ if ((isset($_POST['action']) && $_POST['action'] === 'login') || (isset($_POST['
 	
 	$user->login();
 
-	if ($user->is_authed()) {
+	if ($user->isAuthed()) {
 		header('Location: index.php');
 		exit();
 	} else {
@@ -84,7 +84,7 @@ if (isset($_GET['action']) && $_GET['action'] === 'logout') {
  * TEST DE SESSION
  */
 $pagesAllowedWithoutSession = array('index.php?module=login');
-if (!$user->is_authed() && !in_array($currentPage, $pagesAllowedWithoutSession)) {
+if (!$user->isAuthed() && !in_array($currentPage, $pagesAllowedWithoutSession)) {
 	header('Location: index.php?module=login');
 	exit();
 }

@@ -1,1 +1,0 @@
-php run.php --src /Applications/MAMP/htdocs/crafters_proj --outdir /Applications/MAMP/htdocs/crafters_proj/doc/checkstyle_result --exclude /Applications/MAMP/htdocs/crafters_proj/doc
