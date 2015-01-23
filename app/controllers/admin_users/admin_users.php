@@ -112,6 +112,13 @@
 			else if(isset($_POST['action']) && $_POST['action'] == 'ajax_display_user_fiche') {
 					$users->user_id = $_POST['id'];
 					$ajaxItem = $users->getOneArray();
+					$ajaxItem['address'] = $users->getOneArrayAddress(); 
+					if(empty($ajaxItem['address'])) {
+						$ajaxItem['address']['address_numberstreet'] = '';
+						$ajaxItem['address']['address_town'] = '';
+						$ajaxItem['address']['address_zipcode'] = '';
+						$ajaxItem['address']['address_country'] = '';
+					}
 					$ajaxItem = json_encode($ajaxItem);
 					echo $ajaxItem;
 			}

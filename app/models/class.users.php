@@ -99,13 +99,41 @@ class ClassUsers extends CoreModels {
 			DATE_FORMAT(U.user_birthday, '%d %M %Y') AS DateBirth,
 			U.user_phone,
 			DATE_FORMAT(U.user_creation, '%d %M %Y %T') AS DateCrea,
+			S.nom
+			FROM " . _TABLE__USERS . " as U," . _TABLE__STATUTS . " as S
+			WHERE U.user_id = :id AND S.type = 'user' AND S.statut = U.user_status";
+		
+		$cursor = $this->connexion->prepare($query);
+	
+		$cursor->bindValue(':id', $this->user_id, PDO::PARAM_INT);
+	
+		$cursor->execute();
+	
+		//$cursor->setFetchMode(PDO::FETCH_ARR);
+		$return = $cursor->fetch();
+		$cursor->closeCursor();
+	
+		return $return;
+	}
+	
+	/**
+	 * Permet d'avoir l'adresse de facturation d'un utilisateur en tableau
+	 * @return mixed
+     */
+	public function getOneArrayAddress() {
+		$query = "SELECT
+			U.user_id,
 			S.nom,
 			A.address_numberstreet,
 			A.address_town,
 			A.address_zipcode,
 			A.address_country
 			FROM " . _TABLE__USERS . " as U," . _TABLE__STATUTS . " as S," . _TABLE__ADDRESS . " as A
-			WHERE U.user_id = :id AND S.type = 'user' AND S.statut = U.user_status AND U.user_id = A.user_id_address";
+			WHERE U.user_id = :id
+			AND U.user_id = A.user_id_address
+			AND S.statut = A.address_status
+			AND S.type = 'address'
+			AND A.address_status = 0";
 		
 		$cursor = $this->connexion->prepare($query);
 	

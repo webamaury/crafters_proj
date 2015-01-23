@@ -79,10 +79,10 @@
 		$(".ajax_birthday").text(obj.DateBirth);
 		$(".ajax_creation").text(obj.DateCrea);
 		$(".ajax_status").text(obj.nom);
-		$(".ajax_numberstreet").text(obj.address_numberstreet);
-		$(".ajax_town").text(obj.address_town);
-		$(".ajax_zipcode").text(obj.address_zipcode);
-		$(".ajax_country").text(obj.address_country);
+		$(".ajax_numberstreet").text(obj.address.address_numberstreet);
+		$(".ajax_town").text(obj.address.address_town);
+		$(".ajax_zipcode").text(obj.address.address_zipcode);
+		$(".ajax_country").text(obj.address.address_country);
 
 		//alert( obj.name );
 		//var obj = jQuery.parseJSON(flux);

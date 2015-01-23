@@ -30,7 +30,7 @@
 					<td><?php echo $item->status_name ; ?></td>
 					<td class="colum_action">
 						<a href="#" onclick="return false" class="tips-trigger"  data-toggle="tooltip" data-placement="bottom" title="see details">
-							<span data-toggle="modal" data-target=".modal_fiche_product" data-id="<?php echo $item->product_id ; ?>" class="glyphicon glyphicon-eye-open modal-fiche-message-trigger"></span>
+							<span data-toggle="modal" data-target=".modal_fiche_product" data-id="<?php echo $item->product_id ; ?>" class="glyphicon glyphicon-eye-open modal-fiche-product-trigger"></span>
 						</a>&nbsp;&nbsp;
 						<a href="index.php?module=products&amp;action=form&amp;id=<?php echo $item->product_id ; ?>" class="tips-trigger" data-toggle="tooltip" data-placement="bottom" title="update">
 							<span class="glyphicon glyphicon-pencil"></span>
@@ -91,7 +91,8 @@
 	
 	$(document).ready(function(){
 		$('.table').DataTable();
-		$(".modal-fiche-message-trigger").on("click", function(){
+	});
+	$(document).on("click", ".modal-fiche-product-trigger", function(){
 			var item_id = $(this).attr("data-id");
 			$.ajax({
 				// URL du traitement sur le serveur
@@ -111,8 +112,6 @@
 					console.log("Erreur execution requete ajax");
 				}
 			});
-			
-		});
 	});
 </script>
 <?php include_once(_APP_PATH . 'views/includes_admin/modal_fiche_product.inc.php') ?>
