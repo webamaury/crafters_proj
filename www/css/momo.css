@@ -1,8 +1,9 @@
 body {
 	margin-bottom: 40px;
 }
-a:focus, input:focus, textarea:focus, button:focus {
+a:focus, input:focus, textarea:focus, button:focus, a:hover, input:hover, textarea:hover, button:hover {
     outline: none !important;
+    text-decoration: none;
 }
 .btn-tomato {
 	background-color: #f05d43 !important;

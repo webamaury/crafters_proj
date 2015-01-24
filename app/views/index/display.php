@@ -525,7 +525,7 @@
 						html += '<small>From ' + flux[key].from + '</small>';
 						html += '</p>';
 						html += '<p>';
-						html += '<small>Quantity: ' + flux[key].quantity + ' <i class="fa fa-minus-square"></i> <i class="fa fa-plus-square"></i></small>';
+						html += '<small>Quantity: <span class="ajax_quantity_display' + key + '">' + flux[key].quantity + '</span> <a href="index.php?module=panier&action=changeQuantity&move=less&product=' + key + '" class="ajax_quantity_trigger" data-id="' + key + '"><i class="fa fa-minus-square"></i></a> <a href="index.php?module=panier&action=changeQuantity&move=more&product=' + key + '" class="ajax_quantity_trigger" data-id="' + key + '"><i class="fa fa-plus-square"></i></a></small>';
 						html += '</p>';
 						html += '<p>';
 						html += '<small><span class="size_title">Size: </span><span class="size_cart size_cart_select">s</span> <span class="size_cart">m</span> <span class="size_cart">l</span></small>';
@@ -540,7 +540,7 @@
 						html += '<br/>';
 						html += '<br/>';
 						html += '<div class="col-md-1">';
-						html += '<i class="fa fa-trash-o"></i>'
+						html += '<a href="index.php?module=panier&action=deleteFromCart&product=' + key + '" class="ajax_delete_trigger"><i class="fa fa-trash-o"></i></a>'
 				    html += '</div>';
 			    html += '</div>';
 
@@ -666,7 +666,7 @@
 			}
 		});
 		$(document).on('click', '.ajax_cart_trigger', function (e) {
-			event.preventDefault();
+			e.preventDefault();
 			$.get($(this).attr('href'),{},function(data){
 				if(data.error){
 					alert(data.message);
@@ -679,6 +679,40 @@
 			},'json');
 			return false;
 
+		});
+		$(document).on('click', '.ajax_delete_trigger', function (e) {
+			e.preventDefault();
+			$.get($(this).attr('href'),{},function(data){
+				if(data.error){
+					alert(data.message);
+				}else{
+					//SI C BON
+				alert('hehe');
+				}
+			},'json');
+			return false;
+		});
+		$(document).on('click', '.ajax_quantity_trigger', function (e) {
+			e.preventDefault();
+			var product = $(this).attr('data-id');
+			$.get($(this).attr('href'),{},function(data){
+				if(data.message == 'more'){
+					var anchor = '.ajax_quantity_display' + product;
+					var quantity = $(anchor).text();
+
+					quantity ++;
+
+					$(anchor).html(quantity)
+				} else if (data.message == 'less'){
+					var anchor = '.ajax_quantity_display' + product;
+					var quantity = $(anchor).text();
+
+					quantity --;
+
+					$(anchor).html(quantity)
+				}
+			},'json');
+			return false;
 		});
 
 	</script>

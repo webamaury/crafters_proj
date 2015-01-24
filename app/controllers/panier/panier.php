@@ -66,15 +66,34 @@ class PanierController extends CoreControlers
 	 */
 	public function deleteFromCart()
 	{
-
+		$key = $_GET['product'];
+		unset($_SESSION[_SES_NAME]['Cart'][$key]);
 	}
 
 	/**
 	 * Permet de supprimer un panier entier
 	 */
-	public function deleteAllCart()
+	public function changeQuantity()
 	{
+		$product = $_GET['product'];
 
+		if($_GET['move'] == 'more') {
+			if(isset($_SESSION[_SES_NAME]['Cart'][$product]['quantity'])) {
+				$_SESSION[_SES_NAME]['Cart'][$product]['quantity'] ++;
+				$json['message'] = 'more';
+			}
+		} else if ($_GET['move'] == 'less') {
+			if (isset($_SESSION[_SES_NAME]['Cart'][$product]['quantity'])) {
+				$_SESSION[_SES_NAME]['Cart'][$product]['quantity']--;
+				if ($_SESSION[_SES_NAME]['Cart'][$product]['quantity'] <= 0) {
+					unset($_SESSION[_SES_NAME]['Cart'][$product]);
+				}
+				$json['message'] = 'less';
+			}
+		}
+		$json =json_encode($json);
+		echo $json;
+		exit();
 	}
 
 }
