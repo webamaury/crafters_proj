@@ -1,8 +1,30 @@
 body {
 	margin-bottom: 40px;
 }
+a:focus, input:focus, textarea:focus, button:focus {
+    outline: none !important;
+}
 .btn-tomato {
 	background-color: #f05d43 !important;
   border: 1px solid #f05d43 !important;
   color: #FFF !important;
+}
+.size_title {
+    float: left;
+    margin-top: 5px;
+}
+.size_cart_select, .size_cart:hover {
+    background-color: #f05d43 !important;
+    color: #FFF !important;
+
+}
+.size_cart {
+    cursor: pointer;
+    margin-top: 5px;
+    margin-left: 3px;
+    float: left;
+    text-align: center;
+    width: 17px;
+    height: 17px;
+    border-radius: 50%;
 }

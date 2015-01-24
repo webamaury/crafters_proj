@@ -21,7 +21,7 @@ class ClassProducts extends CoreModels {
 		$cursor->bindValue(':status', $this->status, PDO::PARAM_STR);
 		$cursor->bindValue(':type', $this->type, PDO::PARAM_STR);
 		$cursor->bindValue(':img_url', $this->img_url, PDO::PARAM_STR);
-		$cursor->bindValue(':user_id', $_SESSION["CRAFTERS-USER"]["id"], PDO::PARAM_STR);
+		$cursor->bindValue(':user_id', $_SESSION[_SES_NAME]["id"], PDO::PARAM_STR);
 	
 		$return = $cursor->execute();
 		

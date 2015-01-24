@@ -24,14 +24,29 @@
         <div class="col-md-1 col-sm-1 col-xs-3">
             <br/>
             <br/>
-            <a href="#"data-toggle="modal" data-target="#modal-shoppingbag"> <i class="fa fa-shopping-cart"></i> <span class="badge" style="background-color: white; color: black;">(2)</span>
+            <a href="#" data-ajax="index.php?module=panier&action=displayCart" id="ajax_display_cart" data-toggle="modal" data-target="#modal-shoppingbag">
+                <i class="fa fa-shopping-cart"></i>
+                <span class="badge" style="background-color: white; color: black;">
+                    (<span id="nb_product_ajax"><?php
+                        if(isset($_SESSION[_SES_NAME]['Cart'])){
+                            $nb_prod = 0;
+                            foreach ($_SESSION[_SES_NAME]['Cart'] as $obj) {
+                                $nb_prod += $obj['quantity'];
+
+                            }
+                            echo $nb_prod;
+                        } else {
+                            echo 0;
+                        }
+
+                    ?></span>)</span>
             </a>
         </div>
         <div class="col-md-1 col-sm-1 col-xs-3">
             <br/>
             <br/>
             <?php
-			if(isset($_SESSION["CRAFTERS-USER"]["authed"]) && $_SESSION["CRAFTERS-USER"]["authed"] == true){
+			if(isset($_SESSION[_SES_NAME]["authed"]) && $_SESSION[_SES_NAME]["authed"] == true){
             ?>
             <a href="index.php?action=logout"><i class="fa fa-power-off"></i></a> <span class="badge" data-toggle="modal" data-target="#login" style="background-color: darkred;">1</span>
             <?php

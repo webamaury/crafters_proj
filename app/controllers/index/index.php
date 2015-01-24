@@ -19,7 +19,7 @@ class IndexController extends CoreControlers
 			$method = $_POST['action'];
 		}
 		$this->nb_by_page = 12;
-		var_dump($_SESSION);
+		//var_dump($_SESSION[_SES_NAME]['Cart']);
 
 		$this->$method($arrayTools, $notices);
 	}
@@ -59,8 +59,8 @@ class IndexController extends CoreControlers
 			$product->nb_like = $nb_like->nb_like;
 			if ($product->nb_like > 0) {
 				$product->name_likes = $ClassProduct->getUsersWhoLiked();
-				if (isset($_SESSION["CRAFTERS-USER"]["authed"]) && $_SESSION["CRAFTERS-USER"]["authed"] === true) {
-					$ClassProduct->user_id = $_SESSION["CRAFTERS-USER"]["id"];
+				if (isset($_SESSION[_SES_NAME]["authed"]) && $_SESSION[_SES_NAME]["authed"] === true) {
+					$ClassProduct->user_id = $_SESSION[_SES_NAME]["id"];
 					$product->did_i_like = $ClassProduct->didILike();
 				}
 			}
@@ -100,8 +100,8 @@ class IndexController extends CoreControlers
 				$ClassProduct->product_id = $product->product_id;
 				$nb_like = $ClassProduct->numberOfLike();
 				$product->nb_like = $nb_like->nb_like;
-				if (isset($_SESSION["CRAFTERS-USER"]["authed"]) && $_SESSION["CRAFTERS-USER"]["authed"] == true) {
-					$ClassProduct->user_id = $_SESSION["CRAFTERS-USER"]["id"];
+				if (isset($_SESSION[_SES_NAME]["authed"]) && $_SESSION[_SES_NAME]["authed"] == true) {
+					$ClassProduct->user_id = $_SESSION[_SES_NAME]["id"];
 					$product->did_i_like = $ClassProduct->didILike();
 				} else {
 					$product->did_i_like = 2;
@@ -126,7 +126,7 @@ class IndexController extends CoreControlers
 		$ClassProduct = new ClassProducts();
 
 		$ClassProduct->product_id = $_POST['product'];
-		$ClassProduct->user_id = $_SESSION["CRAFTERS-USER"]["id"];
+		$ClassProduct->user_id = $_SESSION[_SES_NAME]["id"];
 
 		if ($ClassProduct->didILike() === false) {
 
@@ -149,7 +149,7 @@ class IndexController extends CoreControlers
 		$ClassProduct = new ClassProducts();
 
 		$ClassProduct->product_id = $_POST['product'];
-		$ClassProduct->user_id = $_SESSION["CRAFTERS-USER"]["id"];
+		$ClassProduct->user_id = $_SESSION[_SES_NAME]["id"];
 
 		if ($ClassProduct->unlikeProduct()) {
 			echo true;

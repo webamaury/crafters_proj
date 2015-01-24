@@ -16,7 +16,7 @@
 						</iframe>
 						<br>
 						<?php
-						if (isset($_SESSION["CRAFTERS-USER"]["authed"]) && $_SESSION["CRAFTERS-USER"]["authed"] == true) {
+						if (isset($_SESSION[_SES_NAME]["authed"]) && $_SESSION[_SES_NAME]["authed"] == true) {
 							?>
 							<a href="index.php?module=upload" onclick="ga('send','event','Upload','Clique');"
 							   class="btn upload-2 upload-2c star">Start uploading your work</a>
@@ -141,10 +141,10 @@
 										<div class="btn-group " style="float: left">
 											<a href="index.php?module=fiche&product=<?php echo $product->product_id; ?>"
 											   class="btn btn-xs btn-default"><i class="fa fa-search"></i></a>
-											<a href="index.php?module=panier&action=addToCart&product=<?php echo $product->product_id; ?>" class="btn btn-xs btn-default"><i
+											<a href="index.php?module=panier&action=addToCart&product=<?php echo $product->product_id; ?>&img_url=<?php echo $product->product_img_url; ?>&name=<?php echo $product->product_name; ?>&from=<?php echo $product->user_username; ?>" class="btn btn-xs ajax_cart_trigger btn-default"><i
 													class="fa fa-shopping-cart"></i></a>
 											<!--<button type="button" data-product="<?php echo $product->product_id; ?>" <?php
-											if (isset($_SESSION["CRAFTERS-USER"]["authed"]) && $_SESSION["CRAFTERS-USER"]["authed"] == true) {
+											if (isset($_SESSION[_SES_NAME]["authed"]) && $_SESSION[_SES_NAME]["authed"] == true) {
 												if ($product->did_i_like == true) {
 													echo 'class="btn btn-xs btn-default btn-primary like2 btn-tomato ajax_like_trigger" data-didilike="1"';
 												} else {
@@ -156,7 +156,7 @@
 				                             ><i class="fa fa-heart-o"></i></button>-->
 										</div>
 										<div class="text-right"><?php
-											if (isset($_SESSION["CRAFTERS-USER"]["authed"]) && $_SESSION["CRAFTERS-USER"]["authed"] == true) {
+											if (isset($_SESSION[_SES_NAME]["authed"]) && $_SESSION[_SES_NAME]["authed"] == true) {
 												if (isset($product->did_i_like) && $product->did_i_like == true) {
 													?>
 													<button type="button"
@@ -323,32 +323,18 @@
 					<div class="modal-body">
 						<div class="row center-block">
 							<div class="col-md-12">
-								<h3 class="text-center">2 items</h3>
-								<hr/>
+								<div class="col-md-6">
+								<span id="ajax_all_quantity">0 product</span>
+								</div>
+								<div class="col-md-6 text-right">
+								Total : <span id="ajax_all_price">0</span> €
+								</div>
 								<br/>
 
-								<form role="form">
-									<div class="col-md-12">
-										<div class="col-md-4">
-											<img src="illu/stickers/13.jpg" class="img-responsive">
-										</div>
-										<div class="col-md-5 description-achat">
-											<br/>
+								<hr/>
 
-											<p><strong>Stickers Mac 13' Minion</strong></p>
-
-											<p>
-												<small>From Gru Bell</small>
-											</p>
-										</div>
-										<div class="col-md-3">
-											<br/>
-											<br/>
-
-											<p class="price">9$</p>
-										</div>
-									</div>
-									<div class="col-md-12">
+								<form style="max-height: 300px;overflow: scroll;border: 1px solid #ddd;" role="form" id="ajax_display_cart_content">
+														<!--<div class="col-md-12">
 										<div class="col-md-4">
 											<img src="illu/13.jpg" class="img-responsive">
 										</div>
@@ -363,6 +349,9 @@
 											<p>
 												<small>Quantity: 2</small>
 											</p>
+											<p>
+												<small>Quantity: 2</small>
+											</p>
 										</div>
 										<div class="col-md-3">
 											<br/>
@@ -370,7 +359,7 @@
 
 											<p class="price">9$</p>
 										</div>
-									</div>
+									</div>-->
 								</form>
 							</div>
 						</div>
@@ -490,15 +479,23 @@
 	<script>
 		function traiterFlux(flux) {
 			var obj = jQuery.parseJSON(flux);
-			/*obj.forEach(function(){
-			 alert(obj[0].product_name);
-			 });*/
+
 			var html = " ";
 			for (var key in obj) {
 				html += '<div class="col-sm-6 col-md-4 col-xs-6 col-lg-3">';
-				html += '<div class="thumbnail"><a href="index.php?module=fiche&product=' + obj[key].product_id + '"><img src="' + obj[key].product_img_url + '" class="img-responsive"></a><div class="caption"><h4>' + obj[key].product_name + '</h4><p><small><em>By ' + obj[key].user_username + '</em></small></p><div class="btn-group " style="float: left"><button type="button" class="btn btn-xs btn-default"><i class="fa fa-search"></i></button><button type="button" class="btn btn-xs btn-default"><i class="fa fa-shopping-cart"></i></button></div><div class="text-right">';
+				html += '<div class="thumbnail">';
+				html += '<a href="index.php?module=fiche&product=' + obj[key].product_id + '">';
+				html += '<img src="' + obj[key].product_img_url + '" class="img-responsive"></a>';
+				html += '<div class="caption"><h4>' + obj[key].product_name + '</h4>';
+				html += '<p><small><em>By ' + obj[key].user_username + '</em></small></p>';
+				html += '<div class="btn-group " style="float: left">';
+				html += '<button type="button" class="btn btn-xs btn-default"><i class="fa fa-search"></i></button>';
+				html += '<a href="index.php?module=panier&action=addToCart&product=' + obj[key].product_id + '&name=' + obj[key].product_name + '&img_url=' + obj[key].product_img_url + '&from=' + obj[key].user_username + '" class="btn btn-xs btn-default ajax_cart_trigger"><i class="fa fa-shopping-cart"></i></a>';
+				html += '</div><div class="text-right">';
 				if (obj[key].did_i_like == true) {
-					html += '<button type="button" data-product="' + obj[key].product_id + '" class="btn btn-xs btn-default like ajax_like_trigger" data-didilike="1"><span class="nb_like" id="nb_like' + obj[key].product_id + '">' + obj[key].nb_like + '</span> <i data-toggle="tooltip" data-placement="top" data-html="true" title="Alie S.<br/>omom<br/>mehdi<br/>marius<br/>Lisa<br/>and 6 others" class="fa fa-heart" style="color: tomato"></i></button>';
+					html += '<button type="button" data-product="' + obj[key].product_id + '" class="btn btn-xs btn-default like ajax_like_trigger" data-didilike="1">';
+					html += '<span class="nb_like" id="nb_like' + obj[key].product_id + '">' + obj[key].nb_like + '</span> ';
+					html += '<i data-toggle="tooltip" data-placement="top" data-html="true" title="Alie S.<br/>omom<br/>mehdi<br/>marius<br/>Lisa<br/>and 6 others" class="fa fa-heart" style="color: tomato"></i></button>';
 				}
 				else if (obj[key].did_i_like == false) {
 					html += '<button type="button" data-product="' + obj[key].product_id + '" class="btn btn-xs btn-default like ajax_like_trigger" data-didilike="0"><span class="nb_like" id="nb_like' + obj[key].product_id + '">' + obj[key].nb_like + '</span> <i data-toggle="tooltip" data-placement="top" data-html="true" title="Alie S.<br/>omom<br/>mehdi<br/>marius<br/>Lisa<br/>and 6 others" class="fa fa-heart-o" style="color: tomato"></i></button>';
@@ -510,28 +507,57 @@
 			}
 			$('#display_load_more').append(html);
 
-			/*var img_url = 'img/photo_' + obj.id + '.jpg';
-			 ImageExist(img_url);
+		}
+		function traiterFlux2(flux) {
+			var html = '';
+			var all_quantity = 0;
+			var all_price = 0;
+			for (var key in flux) {
+				html += '<div class="col-md-12">';
+					html += '<div class="col-md-3">';
+						html += '<img src="' + flux[key].img_url + '" class="img-responsive">';
+					html += '</div>';
+					html += '<div class="col-md-6 description-achat">';
+						html += '<br/>';
+						html += '<p><strong>' + flux[key].name + '</strong></p>';
 
-			 $(".ajax_firstname").text(obj.firstname);
-			 $(".ajax_name").text(obj.name);
-			 $(".ajax_mail").text(obj.mail);
-			 $(".ajax_statut").text(obj.nom);
-			 $(".ajax_phone").text(obj.phone);*/
+						html += '<p>';
+						html += '<small>From ' + flux[key].from + '</small>';
+						html += '</p>';
+						html += '<p>';
+						html += '<small>Quantity: ' + flux[key].quantity + ' <i class="fa fa-minus-square"></i> <i class="fa fa-plus-square"></i></small>';
+						html += '</p>';
+						html += '<p>';
+						html += '<small><span class="size_title">Size: </span><span class="size_cart size_cart_select">s</span> <span class="size_cart">m</span> <span class="size_cart">l</span></small>';
+						html += '</p>';
+					html += '</div>';
+					html += '<div class="col-md-2">';
+						html += '<br/>';
+						html += '<br/>';
 
-			//alert( obj.name );
-			//var obj = jQuery.parseJSON(flux);
-			//alert(obj.name);
-			/*$.each(flux, function(key,value) {
-			 if(key == 'name') {
-			 $('.ajax_name').text(value);
-			 }
-			 //contenu += "<li>Key : "+key+" - Value : "+value+"</li>";
-			 });*/
-			//$(affichage).html(contenu);
+						html += '<p class="price">9$</p>';
+					html += '</div>';
+						html += '<br/>';
+						html += '<br/>';
+						html += '<div class="col-md-1">';
+						html += '<i class="fa fa-trash-o"></i>'
+				    html += '</div>';
+			    html += '</div>';
+
+				all_quantity += flux[key].quantity;
+				all_price += flux[key].quantity * 10 ;
+			}
+			if(all_quantity > 1) {
+				all_quantity += ' products';
+			} else {
+				all_quantity += ' product';
+			}
+
+			$('#ajax_display_cart_content').html(html);
+			$('#ajax_all_quantity').text(all_quantity);
+			$('#ajax_all_price').text(all_price);
 
 		}
-
 
 		$(document).ready(function () {
 			$(function () {
@@ -567,6 +593,18 @@
 					}
 				});
 			});
+			$('#ajax_display_cart').on('click', function(e) {
+				//e.preventDefault();
+				var url_ajax = $(this).attr("data-ajax");
+				$.get(url_ajax, {}, function(data){
+					traiterFlux2(data);
+				}, 'json');
+				//return false;
+			});
+
+
+
+
 		});
 		$(document).on('click', '.ajax_like_trigger', function () {
 			if ($(this).attr("data-didilike") == 1) {
@@ -626,6 +664,21 @@
 				$(this).find("i").addClass("fa-heart");
 				$(this).attr("data-didilike", "1");
 			}
+		});
+		$(document).on('click', '.ajax_cart_trigger', function (e) {
+			event.preventDefault();
+			$.get($(this).attr('href'),{},function(data){
+				if(data.error){
+					alert(data.message);
+				}else{
+					//SI C BON
+					var nb_product = $('#nb_product_ajax').text();
+					nb_product ++ ;
+					$('#nb_product_ajax').text(nb_product);
+				}
+			},'json');
+			return false;
+
 		});
 
 	</script>

@@ -21,15 +21,15 @@ class ClassUsers extends CoreModels {
 			if ($accounts[0]->user_status !== 0) {
 				$session_authed = true;
 				
-				$_SESSION["CRAFTERS-USER"]["authed"] 		= $session_authed;
-				$_SESSION["CRAFTERS-USER"]["verif"] 		= md5($_SERVER['HTTP_USER_AGENT']);
+				$_SESSION[_SES_NAME]["authed"] 		= $session_authed;
+				$_SESSION[_SES_NAME]["verif"] 		= md5($_SERVER['HTTP_USER_AGENT']);
 				
-				$_SESSION["CRAFTERS-USER"]["id"] 			= $accounts[0]->user_id;
-				$_SESSION["CRAFTERS-USER"]["mail"] 			= $accounts[0]->user_mail;
-				$_SESSION["CRAFTERS-USER"]["password"] 		= $accounts[0]->user_password;
-				$_SESSION["CRAFTERS-USER"]["firstname"] 	= $accounts[0]->user_firstname;
-				$_SESSION["CRAFTERS-USER"]["name"] 			= $accounts[0]->user_name;
-				$_SESSION["CRAFTERS-USER"]["statut"] 		= $accounts[0]->user_status;
+				$_SESSION[_SES_NAME]["id"] 			= $accounts[0]->user_id;
+				$_SESSION[_SES_NAME]["mail"] 			= $accounts[0]->user_mail;
+				$_SESSION[_SES_NAME]["password"] 		= $accounts[0]->user_password;
+				$_SESSION[_SES_NAME]["firstname"] 	= $accounts[0]->user_firstname;
+				$_SESSION[_SES_NAME]["name"] 			= $accounts[0]->user_name;
+				$_SESSION[_SES_NAME]["statut"] 		= $accounts[0]->user_status;
 					
 				return true;
 			} else {
@@ -43,8 +43,8 @@ class ClassUsers extends CoreModels {
 	 * @return bool
      */
 	public function isAuthed() {
-		if (isset($_SESSION["CRAFTERS-USER"]["authed"])) {
-			return $_SESSION["CRAFTERS-USER"]["authed"];
+		if (isset($_SESSION[_SES_NAME]["authed"])) {
+			return $_SESSION[_SES_NAME]["authed"];
 		} else {
 			return false;
 		}
@@ -54,7 +54,7 @@ class ClassUsers extends CoreModels {
 	 * Permet de déconnecter un utilisateur
      */
 	public function logout() {
-		unset($_SESSION['CRAFTERS-USER']);
+		unset($_SESSION[_SES_NAME]);
 		
 		//setcookie(COOKIE_NAME . "[admin_login]", '', time() - 3600);
 		//setcookie(COOKIE_NAME . "[admin_password]", '', time() - 3600);
