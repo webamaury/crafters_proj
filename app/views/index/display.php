@@ -129,7 +129,7 @@
 							<div class="col-sm-6 col-md-4 col-xs-6 col-lg-3">
 								<div class="thumbnail">
 									<a onclick="ga('send','event','Gallery','Clique');"
-									   href="index.php?module=fiche&product=<?php echo $product->product_id; ?>"><img
+									   href="index.php?module=fiche&product=<?php echo $product->product_id; ?>" class="product-image"><img
 											src="<?php echo $product->product_img_url; ?>" class="img-responsive"></a>
 
 									<div class="caption">
@@ -141,7 +141,7 @@
 										<div class="btn-group " style="float: left">
 											<a href="index.php?module=fiche&product=<?php echo $product->product_id; ?>"
 											   class="btn btn-xs btn-default"><i class="fa fa-search"></i></a>
-											<a href="index.php?module=panier&action=addToCart&product=<?php echo $product->product_id; ?>&img_url=<?php echo $product->product_img_url; ?>&name=<?php echo $product->product_name; ?>&from=<?php echo $product->user_username; ?>" class="btn btn-xs ajax_cart_trigger btn-default"><i
+											<a href="index.php?module=panier&action=addToCart&product=<?php echo $product->product_id; ?>&img_url=<?php echo $product->product_img_url; ?>&name=<?php echo $product->product_name; ?>&from=<?php echo $product->user_username; ?>" class="btn btn-xs ajax_cart_trigger btn-default add-to-cart"><i
 													class="fa fa-shopping-cart"></i></a>
 											<!--<button type="button" data-product="<?php echo $product->product_id; ?>" <?php
 											if (isset($_SESSION[_SES_NAME]["authed"]) && $_SESSION[_SES_NAME]["authed"] == true) {
@@ -484,13 +484,13 @@
 			for (var key in obj) {
 				html += '<div class="col-sm-6 col-md-4 col-xs-6 col-lg-3">';
 				html += '<div class="thumbnail">';
-				html += '<a href="index.php?module=fiche&product=' + obj[key].product_id + '">';
+				html += '<a href="index.php?module=fiche&product=' + obj[key].product_id + '" class="product-image">';
 				html += '<img src="' + obj[key].product_img_url + '" class="img-responsive"></a>';
 				html += '<div class="caption"><h4>' + obj[key].product_name + '</h4>';
 				html += '<p><small><em>By ' + obj[key].user_username + '</em></small></p>';
 				html += '<div class="btn-group " style="float: left">';
 				html += '<button type="button" class="btn btn-xs btn-default"><i class="fa fa-search"></i></button>';
-				html += '<a href="index.php?module=panier&action=addToCart&product=' + obj[key].product_id + '&name=' + obj[key].product_name + '&img_url=' + obj[key].product_img_url + '&from=' + obj[key].user_username + '" class="btn btn-xs btn-default ajax_cart_trigger"><i class="fa fa-shopping-cart"></i></a>';
+				html += '<a href="index.php?module=panier&action=addToCart&product=' + obj[key].product_id + '&name=' + obj[key].product_name + '&img_url=' + obj[key].product_img_url + '&from=' + obj[key].user_username + '" class="btn btn-xs btn-default ajax_cart_trigger add-to-cart"><i class="fa fa-shopping-cart"></i></a>';
 				html += '</div><div class="text-right">';
 				if (obj[key].did_i_like == true) {
 					html += '<button type="button" data-product="' + obj[key].product_id + '" class="btn btn-xs btn-default like ajax_like_trigger" data-didilike="1">';
@@ -771,5 +771,25 @@
 			return false;
 		});
 
+	</script>
+	<script type="text/javascript">
+
+		$(document).on('click', '.add-to-cart', function () {
+		var cart = $('.fa-shopping-cart');
+		var imgtofly = $(this).parents('div.thumbnail').find('a.product-image img').eq(0);
+		if (imgtofly) {
+			var imgclone = imgtofly.clone()
+				.offset({ top:imgtofly.offset().top, left:imgtofly.offset().left })
+				.css({'opacity':'0.7', 'position':'absolute', 'height':'150px', 'width':'150px', 'z-index':'1000'})
+				.appendTo($('body'))
+				.animate({
+					'top':cart.offset().top + 10,
+					'left':cart.offset().left + 30,
+					'width':55,
+					'height':55
+				}, 500, 'swing');
+			imgclone.animate({'width':0, 'height':0}, function(){ $(this).detach() });
+		}
+	});
 	</script>
 <?php include(_APP_PATH . "views/includes/footer.inc.php"); ?>

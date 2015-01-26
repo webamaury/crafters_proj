@@ -3,13 +3,15 @@
 /**
  * Class ClassProducts
  */
-class ClassProducts extends CoreModels {
+class ClassProducts extends CoreModels 
+{
 
 	/**
 	 * Permet dinsérer un nouveau produit
 	 * @return bool
      */
-	function insertNew() {
+	function insertNew() 
+	{
 		$query = "INSERT INTO " . _TABLE__PRODUCTS . " 
 		(product_name, product_description, product_status, product_type, product_img_url, user_id_product) 
 		VALUES 
@@ -22,6 +24,23 @@ class ClassProducts extends CoreModels {
 		$cursor->bindValue(':type', $this->type, PDO::PARAM_STR);
 		$cursor->bindValue(':img_url', $this->img_url, PDO::PARAM_STR);
 		$cursor->bindValue(':user_id', $_SESSION[_SES_NAME]["id"], PDO::PARAM_STR);
+	
+		$return = $cursor->execute();
+		
+		$cursor->closeCursor();
+
+		return $return;
+	}
+	
+	function updateImage($image_url, $product) 
+	{
+		$query = "UPDATE " . _TABLE__PRODUCTS . " 
+		SET product_img_url = :img_url
+		WHERE product_id = :id";
+		$cursor = $this->connexion->prepare($query);
+	
+		$cursor->bindValue(':img_url', $image_url, PDO::PARAM_STR);
+		$cursor->bindValue(':id', $product, PDO::PARAM_INT);
 	
 		$return = $cursor->execute();
 		
