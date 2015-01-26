@@ -1,8 +1,8 @@
-<?php include("../app/views/includes/head.inc.php"); ?>
+<?php include(_APP_PATH . "views/includes/head.inc.php"); ?>
 
 <div class="container">
 
-	<?php include("../app/views/includes/header.inc.php"); ?>
+	<?php include(_APP_PATH . "views/includes/header.inc.php"); ?>
 
 
 	<div class="container">
@@ -513,7 +513,14 @@
 			var all_quantity = 0;
 			var all_price = 0;
 			for (var key in flux) {
-				html += '<div class="col-md-12">';
+				if (flux[key].size == 's') {
+					var price = 5 ;
+				} else if (flux[key].size == 'm') {
+					var price = 10 ;
+				} else if (flux[key].size == 'l') {
+					var price = 15 ;
+				}
+				html += '<div id="product' + key + '" class="col-md-12 ajax_row">';
 					html += '<div class="col-md-3">';
 						html += '<img src="' + flux[key].img_url + '" class="img-responsive">';
 					html += '</div>';
@@ -528,18 +535,36 @@
 						html += '<small>Quantity: <span class="ajax_quantity_display' + key + '">' + flux[key].quantity + '</span> <a href="index.php?module=panier&action=changeQuantity&move=less&product=' + key + '" class="ajax_quantity_trigger" data-id="' + key + '"><i class="fa fa-minus-square"></i></a> <a href="index.php?module=panier&action=changeQuantity&move=more&product=' + key + '" class="ajax_quantity_trigger" data-id="' + key + '"><i class="fa fa-plus-square"></i></a></small>';
 						html += '</p>';
 						html += '<p>';
-						html += '<small><span class="size_title">Size: </span><span class="size_cart size_cart_select">s</span> <span class="size_cart">m</span> <span class="size_cart">l</span></small>';
+						html += '<small><span class="size_title">Size: </span><span data-id="' + key + '" data-size="s" class="size_s' + key + ' size_cart';
+						if (flux[key].size == 's') {
+							html += ' size_cart_select';
+						} else {
+							html += ' ajax_size_trigger';
+						}
+						html +='">s</span> <span data-id="' + key + '" data-size="m" class="size_m' + key + ' size_cart';
+						if (flux[key].size == 'm') {
+							html += ' size_cart_select';
+						} else {
+							html += ' ajax_size_trigger';
+						}
+						html+= '">m</span> <span data-id="' + key + '" data-size="l" class="size_l' + key + ' size_cart';
+						if (flux[key].size == 'l') {
+							html += ' size_cart_select';
+						} else {
+							html += ' ajax_size_trigger';
+						}
+						html+='">l</span></small>';
 						html += '</p>';
 					html += '</div>';
 					html += '<div class="col-md-2">';
 						html += '<br/>';
 						html += '<br/>';
 
-						html += '<p class="price">9$</p>';
+						html += '<p class="price">' + price + '$</p>';
 					html += '</div>';
-						html += '<br/>';
-						html += '<br/>';
-						html += '<div class="col-md-1">';
+					html += '<br/>';
+					html += '<br/>';
+					html += '<div class="col-md-1">';
 						html += '<a href="index.php?module=panier&action=deleteFromCart&product=' + key + '" class="ajax_delete_trigger"><i class="fa fa-trash-o"></i></a>'
 				    html += '</div>';
 			    html += '</div>';
@@ -682,13 +707,38 @@
 		});
 		$(document).on('click', '.ajax_delete_trigger', function (e) {
 			e.preventDefault();
+			var idAjax = "#" + $(this).parent().parent("div").attr("id");
 			$.get($(this).attr('href'),{},function(data){
-				if(data.error){
-					alert(data.message);
-				}else{
-					//SI C BON
-				alert('hehe');
+				$(idAjax).fadeOut("500");
+			},'json');
+			return false;
+		});
+		$(document).on('click', '.ajax_size_trigger', function (e) {
+			e.preventDefault();
+			var size = $(this).attr("data-size");
+			var product = $(this).attr("data-id");
+			var urlAjax = 'index.php?module=panier&action=changeSize&size=' + size + '&product=' + product ;
+			$.get(urlAjax,{},function(data){
+				if (size == 's') {
+					var classDislplay = '.size_s' + product;
+				} else if (size == 'm') {
+					var classDislplay = '.size_m' + product;
+				} else if (size == 'l') {
+					var classDislplay = '.size_l' + product;
 				}
+				$(classDislplay).siblings(".size_cart").addClass("ajax_size_trigger");
+				$(classDislplay).siblings(".size_cart").removeClass("size_cart_select");
+
+				$(classDislplay).addClass("size_cart_select");
+				$(classDislplay).removeClass("ajax_size_trigger");
+				if (size == 's') {
+					var price = 5 ;
+				} else if (size == 'm') {
+					var price = 10 ;
+				} else if (size == 'l') {
+					var price = 15 ;
+				}
+				$(classDislplay).parent().parent().parent().next().find(".price").text(price + "€");
 			},'json');
 			return false;
 		});
@@ -696,26 +746,30 @@
 			e.preventDefault();
 			var product = $(this).attr('data-id');
 			$.get($(this).attr('href'),{},function(data){
+				var anchor = '.ajax_quantity_display' + product;
+				var quantity = $(anchor).text();
+				var allQuantity = $('#nb_product_ajax').text();
 				if(data.message == 'more'){
-					var anchor = '.ajax_quantity_display' + product;
-					var quantity = $(anchor).text();
 
 					quantity ++;
+					allQuantity ++;
 
-					$(anchor).html(quantity)
 				} else if (data.message == 'less'){
-					var anchor = '.ajax_quantity_display' + product;
-					var quantity = $(anchor).text();
 
 					quantity --;
+					if (quantity == 0) {
+						$(anchor).parent().parent().parent().parent(".ajax_row").fadeOut("500");
 
-					$(anchor).html(quantity)
+					}
+					allQuantity --;
+
 				}
+				$(anchor).html(quantity)
+				$('#nb_product_ajax').text(allQuantity);
+				$('#ajax_all_quantity').text(allQuantity + ' products');
 			},'json');
 			return false;
 		});
 
 	</script>
-
-	</body>
-	</html>
+<?php include(_APP_PATH . "views/includes/footer.inc.php"); ?>

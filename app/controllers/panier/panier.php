@@ -68,6 +68,10 @@ class PanierController extends CoreControlers
 	{
 		$key = $_GET['product'];
 		unset($_SESSION[_SES_NAME]['Cart'][$key]);
+		$json['totalPrice'] = $this->calculateTotalPrice();
+		$json['nb_product'] = $this->nbProduct();
+		echo json_encode($json);
+		exit();
 	}
 
 	/**
@@ -91,9 +95,39 @@ class PanierController extends CoreControlers
 				$json['message'] = 'less';
 			}
 		}
+		$json['totalPrice'] = $this->calculateTotalPrice();
 		$json =json_encode($json);
 		echo $json;
 		exit();
+	}
+	private function calculateTotalPrice()
+	{
+		$totalPrice = 0 ;
+		foreach ($_SESSION[_SES_NAME]['Cart'] as $product) {
+			if ($product['size'] == 's') {
+				$totalPrice += $product['quantity'] * 5;
+			} else if ($product['size'] == 'm') {
+				$totalPrice += $product['quantity'] * 10;
+			} else if ($product['size'] == 'l') {
+				$totalPrice += $product['quantity'] * 15;
+			}
+		}
+		return $totalPrice;
+	}
+	private function nbProduct() {
+		$quantity = 0 ;
+		foreach ($_SESSION[_SES_NAME]['Cart'] as $product) {
+			$quantity += $product['quantity'];
+		}
+		return $quantity;
+	}
+	public function changeSize()
+	{
+		$product = $_GET['product'];
+		$size = $_GET['size'];
+		$_SESSION[_SES_NAME]['Cart'][$product]['size'] = $size;
+		$json['totalPrice'] = $this->calculateTotalPrice();
+		echo json_encode($json);
 	}
 
 }
