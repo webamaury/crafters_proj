@@ -710,6 +710,10 @@
 			var idAjax = "#" + $(this).parent().parent("div").attr("id");
 			$.get($(this).attr('href'),{},function(data){
 				$(idAjax).fadeOut("500");
+				$('#nb_product_ajax').text(data.nb_product);
+				$('#ajax_all_quantity').text(data.nb_product + ' products');
+				$('#ajax_all_price').text(data.totalPrice);
+
 			},'json');
 			return false;
 		});
@@ -739,6 +743,8 @@
 					var price = 15 ;
 				}
 				$(classDislplay).parent().parent().parent().next().find(".price").text(price + "€");
+				$('#ajax_all_price').text(data.totalPrice);
+
 			},'json');
 			return false;
 		});
@@ -767,6 +773,8 @@
 				$(anchor).html(quantity)
 				$('#nb_product_ajax').text(allQuantity);
 				$('#ajax_all_quantity').text(allQuantity + ' products');
+				$('#ajax_all_price').text(data.totalPrice);
+
 			},'json');
 			return false;
 		});
