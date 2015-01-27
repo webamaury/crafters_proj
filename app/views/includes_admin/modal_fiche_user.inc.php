@@ -7,7 +7,7 @@
 			</div>
 			<div class="modal-body display-inline">
 				<div class="col-md-4 text-center">
-					<img src="#" class="ajax_img" alt="img">
+					<img src="#" class="ajax_img" alt="img" height="250" width="250">
 				</div>
 				<div class="col-md-8">
 					<form class="form-horizontal" method="post" action="#" role="form">

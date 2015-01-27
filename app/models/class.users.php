@@ -73,6 +73,7 @@ class ClassUsers extends CoreModels {
 			DATE_FORMAT(U.user_birthday, '%d %M %Y') AS DateBirth,
 			U.user_phone,
 			DATE_FORMAT(U.user_creation, '%d %M %Y %T') AS DateCrea,
+			U.user_img_url,
 			S.nom,
 			S.statut
 			FROM " . _TABLE__USERS . " as U," . _TABLE__STATUTS . " as S
@@ -99,6 +100,7 @@ class ClassUsers extends CoreModels {
 			DATE_FORMAT(U.user_birthday, '%d %M %Y') AS DateBirth,
 			U.user_phone,
 			DATE_FORMAT(U.user_creation, '%d %M %Y %T') AS DateCrea,
+			U.user_img_url,
 			S.nom
 			FROM " . _TABLE__USERS . " as U," . _TABLE__STATUTS . " as S
 			WHERE U.user_id = :id AND S.type = 'user' AND S.statut = U.user_status";
@@ -145,6 +147,46 @@ class ClassUsers extends CoreModels {
 		$return = $cursor->fetch();
 		$cursor->closeCursor();
 	
+		return $return;
+	}
+	
+	/**
+	 * Permet d'update l'image d'un user
+	 * @return array
+     */
+	function updateImage($image_url, $user) 
+	{
+		$query = "UPDATE " . _TABLE__USERS . " 
+		SET user_img_url = :img_url
+		WHERE user_id = :id";
+		$cursor = $this->connexion->prepare($query);
+	
+		$cursor->bindValue(':img_url', $image_url, PDO::PARAM_STR);
+		$cursor->bindValue(':id', $user, PDO::PARAM_INT);
+	
+		$return = $cursor->execute();
+		
+		$cursor->closeCursor();
+
+		return $return;
+	}
+	
+	/**
+	 * Permet de supprimer l'image d'un produit
+	 * @return bool
+     */
+	function deleteAddressImg() {
+		$query = "UPDATE " . _TABLE__USERS . " 
+		SET user_img_url = 'NULL'
+		WHERE user_id = :id";
+		
+		$cursor = $this->connexion->prepare($query);
+			
+		$cursor->bindValue(':id', $this->user_id, PDO::PARAM_INT);
+
+		$return = $cursor->execute();
+
+		$cursor->closeCursor();
 		return $return;
 	}
 

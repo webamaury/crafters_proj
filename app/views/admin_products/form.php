@@ -34,12 +34,12 @@
 				?>
 				<div class="form-group margin-top-20">
 				    <label for="exampleInputFile">Image</label>
-				    <input type="file" class="center-block" name="image_file" id="js-upload-files"/>
+				    <input type="file" class="center-block" name="image_file" id="js-upload-files"/><br>
 				    <input type="submit" class="ajax_img_trigger btn btn-info" value="Upload">
 				    <input type="hidden" name="action" value="uploadAjax"/>
 
 				    <p class="help-block">( dimensions conseillées : 200 * 200 pixels )</p>
-				  </div>
+				</div>
 			</div>
 		</div>
 	</form>
@@ -183,55 +183,6 @@ function bytesToSize(bytes) {
 <script type="text/javascript">
 	$(document).ready(function(){
 		$("#ajax_alert").hide();
-		$("#form_ajax_update_password").on("submit", function(e){
-			//on désavtive le comportement par default
-			e.preventDefault();
-			//création de la requete ajax
-			$.ajax({
-				// URL du traitement sur le serveur
-				url : 'index.php?module=adminUsers',
-				//Type de requête
-				type: 'post',
-				//parametres envoyés
-				data: $(this).serialize(),
-				//Traitement en cas de succes
-				success: function(data) {
-					$(".modal").modal("hide");
-					if(data == true) {
-						$("#ajax_alert").attr("class", "alert alert-success alert-dismissible");
-						$(".ajax_alert_content").text("Password update successfully");
-						$("#ajax_alert").show();
-					}
-					else if(data == 'error_sql'){
-						$("#ajax_alert").attr("class", "alert alert-danger alert-dismissible");
-						$(".ajax_alert_content").text("Error while changing password. Try later !");
-						$("#ajax_alert").show();
-					}
-					else if(data == 'wrong_current') {
-						$("#ajax_alert").attr("class", "alert alert-danger alert-dismissible");
-						$(".ajax_alert_content").text("Wrong current password !");
-						$("#ajax_alert").show();
-					}
-					else if(data == 'wrong_confirm') {
-						$("#ajax_alert").attr("class", "alert alert-danger alert-dismissible");
-						$(".ajax_alert_content").text("Confirmation password is different !");
-					}
-					else if(data == 'modif_impo') {
-						$("#ajax_alert").attr("class", "alert alert-danger alert-dismissible");
-						$(".ajax_alert_content").text("Impossible modification !");
-					}
-					$("#ajax_alert").show();
-					setTimeout(function(){
-						$("#ajax_alert").hide();
-					}, 7000);				
-
-				},
-				error: function() {
-					alert("error");
-				}
-			});
-		});
-		
 	});
 </script>
 
