@@ -1,7 +1,23 @@
 <?php
-class loginController {
-	
-	function __construct($arrayTools) {
+class loginController
+{
+
+	function __construct($arrayTools, $notices)
+	{
+		if (!isset($_GET['action']) && !isset($_POST['action'])) {
+			$method = 'main';
+		} else if (isset($_POST['action'])) {
+			$method = $_POST['action'];
+		} else if (isset($_GET['action'])) {
+			$method = $_GET['action'];
+		}
+
+		$this->$method($arrayTools, $notices);
+	}
+
+
+	function main($arrayTools, $notices)
+	{
 		
 		##############################################################
 		##	TRAITEMENT PHP											##
