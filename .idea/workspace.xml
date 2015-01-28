@@ -2,10 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8faa85b7-f8ac-4705-927c-70129d9eb11f" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/views/gallery/display.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/controllers/gallery/gallery.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/js/loadmore.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/index/display.php" afterPath="$PROJECT_DIR$/app/views/index/display.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/includes/header.inc.php" afterPath="$PROJECT_DIR$/app/views/includes/header.inc.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/config/init.php" afterPath="$PROJECT_DIR$/app/config/init.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/includes/modal_login.inc.php" afterPath="$PROJECT_DIR$/app/views/includes/modal_login.inc.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/js/list.js" afterPath="$PROJECT_DIR$/www/js/list.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="crafters_proj.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -40,11 +42,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="display.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="display.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/views/index/display.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.44859812" vertical-offset="16" max-vertical-offset="4640">
-              <caret line="22" column="32" selection-start-line="22" selection-start-column="32" selection-end-line="22" selection-end-column="32" />
+            <state vertical-scroll-proportion="0.7037037" vertical-offset="3891" max-vertical-offset="4640">
+              <caret line="242" column="26" selection-start-line="0" selection-start-column="0" selection-end-line="284" selection-end-column="62" />
               <folding>
                 <element signature="e#1130#1182#0#HTML" expanded="true" />
                 <element signature="e#1505#1525#0#HTML" expanded="true" />
@@ -59,34 +61,38 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="class.users.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/models/class.users.php">
+      <file leaf-file-name="gallery.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/controllers/gallery/gallery.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="5648">
-              <caret line="26" column="41" selection-start-line="26" selection-start-column="37" selection-end-line="26" selection-end-column="41" />
+            <state vertical-scroll-proportion="0.020618556" vertical-offset="0" max-vertical-offset="784">
+              <caret line="1" column="13" selection-start-line="1" selection-start-column="13" selection-end-line="1" selection-end-column="13" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="display.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/views/gallery/display.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="384">
+              <caret line="12" column="0" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
               <folding>
-                <marker date="1422394853000" expanded="true" signature="229:305" placeholder="SELECT * FRO..crafters_user..." />
-                <marker date="1422394853000" expanded="true" signature="1915:2302" placeholder="SELECT U.use.._TABLE__USERS as..." />
-                <marker date="1422394853000" expanded="true" signature="2589:2963" placeholder="SELECT U.use.._TABLE__USERS as..." />
-                <marker date="1422394853000" expanded="true" signature="3384:3747" placeholder="SELECT U.use.._TABLE__USERS as..." />
-                <marker date="1422394853000" expanded="true" signature="5025:5114" placeholder="SELECT user_.._TABLE__USERS ORDER..." />
-                <marker date="1422394853000" expanded="true" signature="5305:5358" placeholder="DELETE FROM ..." />
-                <marker date="1422394853000" expanded="true" signature="6635:6698" placeholder="SELECT * FRO.._TABLE__STATUTS&#10;&#9;&#9;&#9;WHERE..." />
-                <marker date="1422394853000" expanded="true" signature="7021:7145" placeholder="SELECT user_.._TABLE__USERS&#10;&#9;&#9;&#9;WHERE..." />
-                <marker date="1422394853000" expanded="true" signature="7528:7699" placeholder="SELECT produ.._TABLE__PRODUCTS&#10;&#9;&#9;&#9;WHERE..." />
-                <marker date="1422394853000" expanded="true" signature="8117:8476" placeholder="SELECT P.use..crafters_like..." />
+                <element signature="e#371#814#0#HTML" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="modal_contact.inc.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/views/includes/modal_contact.inc.php">
+      <file leaf-file-name="loadmore.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/www/js/loadmore.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1264">
-              <caret line="73" column="16" selection-start-line="73" selection-start-column="16" selection-end-line="73" selection-end-column="16" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="384" max-vertical-offset="1168">
+              <caret line="34" column="47" selection-start-line="34" selection-start-column="47" selection-end-line="34" selection-end-column="47" />
               <folding>
-                <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+                <marker date="1422445120000" expanded="true" signature="640:651" placeholder="..." />
+                <marker date="1422445120000" expanded="true" signature="1640:1653" placeholder="..." />
+                <marker date="1422445120000" expanded="true" signature="2146:2159" placeholder="..." />
+                <marker date="1422445120000" expanded="true" signature="2582:2595" placeholder="..." />
               </folding>
             </state>
           </provider>
@@ -105,37 +111,12 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="panier.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/www/js/panier.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="3392">
-              <caret line="16" column="16" selection-start-line="16" selection-start-column="16" selection-end-line="16" selection-end-column="16" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="momo.css" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/www/css/momo.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="472" max-vertical-offset="1344">
-              <caret line="72" column="1" selection-start-line="72" selection-start-column="1" selection-end-line="72" selection-end-column="1" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="list.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/www/js/list.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="1336" max-vertical-offset="2112">
-              <caret line="126" column="0" selection-start-line="126" selection-start-column="0" selection-end-line="126" selection-end-column="0" />
-              <folding>
-                <marker date="1422391243000" expanded="true" signature="640:651" placeholder="..." />
-                <marker date="1422391243000" expanded="true" signature="1640:1653" placeholder="..." />
-                <marker date="1422391243000" expanded="true" signature="2146:2159" placeholder="..." />
-                <marker date="1422391243000" expanded="true" signature="2582:2595" placeholder="..." />
-              </folding>
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1120">
+              <caret line="29" column="45" selection-start-line="29" selection-start-column="45" selection-end-line="29" selection-end-column="45" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -190,7 +171,6 @@
         <option value="$PROJECT_DIR$/www/index.php" />
         <option value="$PROJECT_DIR$/app/controllers/index/index.php" />
         <option value="$PROJECT_DIR$/www/js/panier.js" />
-        <option value="$PROJECT_DIR$/www/js/list.js" />
         <option value="$PROJECT_DIR$/app/views/includes/modal_contact.inc.php" />
         <option value="$PROJECT_DIR$/app/views/includes/modal_panier.inc.php" />
         <option value="$PROJECT_DIR$/app/models/class.users.php" />
@@ -201,7 +181,11 @@
         <option value="$PROJECT_DIR$/app/views/includes/modal_login.inc.php" />
         <option value="$PROJECT_DIR$/app/config/init.php" />
         <option value="$PROJECT_DIR$/app/views/includes/header.inc.php" />
+        <option value="$PROJECT_DIR$/www/js/list.js" />
+        <option value="$PROJECT_DIR$/www/js/loadmore.js" />
         <option value="$PROJECT_DIR$/app/views/index/display.php" />
+        <option value="$PROJECT_DIR$/app/views/gallery/display.php" />
+        <option value="$PROJECT_DIR$/app/controllers/gallery/gallery.php" />
       </list>
     </option>
   </component>
@@ -319,24 +303,6 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="www" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="css" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="crafters_proj" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="crafters_proj" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="app" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -421,29 +387,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="includes" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="crafters_proj" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="crafters_proj" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="views" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="admin_login" />
+              <option name="myItemId" value="gallery" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -480,6 +424,28 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="controllers" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="crafters_proj" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="crafters_proj" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="controllers" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="upload" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -567,29 +533,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="admin_login" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="crafters_proj" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="crafters_proj" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="controllers" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="admin_index" />
+              <option name="myItemId" value="gallery" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -741,50 +685,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/models/class.users.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="4650">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <marker date="1422394853000" expanded="true" signature="229:305" placeholder="SELECT * FRO..crafters_user..." />
-            <marker date="1422394853000" expanded="true" signature="1915:2302" placeholder="SELECT U.use.._TABLE__USERS as..." />
-            <marker date="1422394853000" expanded="true" signature="2589:2963" placeholder="SELECT U.use.._TABLE__USERS as..." />
-            <marker date="1422394853000" expanded="true" signature="3384:3747" placeholder="SELECT U.use.._TABLE__USERS as..." />
-            <marker date="1422394853000" expanded="true" signature="5025:5114" placeholder="SELECT user_.._TABLE__USERS ORDER..." />
-            <marker date="1422394853000" expanded="true" signature="5305:5358" placeholder="DELETE FROM ..." />
-            <marker date="1422394853000" expanded="true" signature="6635:6698" placeholder="SELECT * FRO.._TABLE__STATUTS&#10;&#9;&#9;&#9;WHERE..." />
-            <marker date="1422394853000" expanded="true" signature="7021:7145" placeholder="SELECT user_.._TABLE__USERS&#10;&#9;&#9;&#9;WHERE..." />
-            <marker date="1422394853000" expanded="true" signature="7528:7699" placeholder="SELECT produ.._TABLE__PRODUCTS&#10;&#9;&#9;&#9;WHERE..." />
-            <marker date="1422394853000" expanded="true" signature="8117:8476" placeholder="SELECT P.use..crafters_like..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/panier/panier.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="199" max-vertical-offset="975">
-          <caret line="37" column="16" selection-start-line="37" selection-start-column="16" selection-end-line="37" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/index/display.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="8869" max-vertical-offset="9645">
-          <caret line="626" column="59" selection-start-line="626" selection-start-column="59" selection-end-line="626" selection-end-column="59" />
-          <folding>
-            <element signature="e#1130#1182#0#HTML" expanded="true" />
-            <element signature="e#1505#1525#0#HTML" expanded="true" />
-            <element signature="e#2472#2524#0#HTML" expanded="true" />
-            <element signature="e#2910#2930#0#HTML" expanded="true" />
-            <element signature="e#4978#4997#0#HTML" expanded="true" />
-            <element signature="e#7420#7441#0#HTML" expanded="true" />
-            <element signature="e#8449#8470#0#HTML" expanded="true" />
-            <element signature="e#9463#9484#0#HTML" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/includes/header.inc.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="465" max-vertical-offset="975">
@@ -828,24 +728,17 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2820">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <marker date="1422394853000" expanded="true" signature="229:305" placeholder="SELECT * FRO..crafters_user..." />
-            <marker date="1422394853000" expanded="true" signature="1915:2302" placeholder="SELECT U.use.._TABLE__USERS as..." />
-            <marker date="1422394853000" expanded="true" signature="2589:2963" placeholder="SELECT U.use.._TABLE__USERS as..." />
-            <marker date="1422394853000" expanded="true" signature="3384:3747" placeholder="SELECT U.use.._TABLE__USERS as..." />
-            <marker date="1422394853000" expanded="true" signature="5025:5114" placeholder="SELECT user_.._TABLE__USERS ORDER..." />
-            <marker date="1422394853000" expanded="true" signature="5305:5358" placeholder="DELETE FROM ..." />
-            <marker date="1422394853000" expanded="true" signature="6635:6698" placeholder="SELECT * FRO.._TABLE__STATUTS&#10;&#9;&#9;&#9;WHERE..." />
-            <marker date="1422394853000" expanded="true" signature="7021:7145" placeholder="SELECT user_.._TABLE__USERS&#10;&#9;&#9;&#9;WHERE..." />
-            <marker date="1422394853000" expanded="true" signature="7528:7699" placeholder="SELECT produ.._TABLE__PRODUCTS&#10;&#9;&#9;&#9;WHERE..." />
-            <marker date="1422394853000" expanded="true" signature="8117:8476" placeholder="SELECT P.use..crafters_like..." />
+            <marker date="1422394853000" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..crafters_user..." />
+            <marker date="1422394853000" expanded="true" signature="-1:-1" placeholder="SELECT U.use.._TABLE__USERS as..." />
+            <marker date="1422394853000" expanded="true" signature="-1:-1" placeholder="SELECT U.use.._TABLE__USERS as..." />
+            <marker date="1422394853000" expanded="true" signature="-1:-1" placeholder="SELECT U.use.._TABLE__USERS as..." />
+            <marker date="1422394853000" expanded="true" signature="-1:-1" placeholder="SELECT user_.._TABLE__USERS ORDER..." />
+            <marker date="1422394853000" expanded="true" signature="-1:-1" placeholder="DELETE FROM ..." />
+            <marker date="1422394853000" expanded="true" signature="-1:-1" placeholder="SELECT * FRO.._TABLE__STATUTS&#10;&#9;&#9;&#9;WHERE..." />
+            <marker date="1422394853000" expanded="true" signature="-1:-1" placeholder="SELECT user_.._TABLE__USERS&#10;&#9;&#9;&#9;WHERE..." />
+            <marker date="1422394853000" expanded="true" signature="-1:-1" placeholder="SELECT produ.._TABLE__PRODUCTS&#10;&#9;&#9;&#9;WHERE..." />
+            <marker date="1422394853000" expanded="true" signature="-1:-1" placeholder="SELECT P.use..crafters_like..." />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/upload/upload.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-81.25" vertical-offset="0" max-vertical-offset="2370">
-          <caret line="130" column="36" selection-start-line="130" selection-start-column="36" selection-end-line="130" selection-end-column="36" />
         </state>
       </provider>
     </entry>
@@ -1093,16 +986,16 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="5648">
           <caret line="26" column="41" selection-start-line="26" selection-start-column="37" selection-end-line="26" selection-end-column="41" />
           <folding>
-            <marker date="1422394853000" expanded="true" signature="229:305" placeholder="SELECT * FRO..crafters_user..." />
-            <marker date="1422394853000" expanded="true" signature="1915:2302" placeholder="SELECT U.use.._TABLE__USERS as..." />
-            <marker date="1422394853000" expanded="true" signature="2589:2963" placeholder="SELECT U.use.._TABLE__USERS as..." />
-            <marker date="1422394853000" expanded="true" signature="3384:3747" placeholder="SELECT U.use.._TABLE__USERS as..." />
-            <marker date="1422394853000" expanded="true" signature="5025:5114" placeholder="SELECT user_.._TABLE__USERS ORDER..." />
-            <marker date="1422394853000" expanded="true" signature="5305:5358" placeholder="DELETE FROM ..." />
-            <marker date="1422394853000" expanded="true" signature="6635:6698" placeholder="SELECT * FRO.._TABLE__STATUTS&#10;&#9;&#9;&#9;WHERE..." />
-            <marker date="1422394853000" expanded="true" signature="7021:7145" placeholder="SELECT user_.._TABLE__USERS&#10;&#9;&#9;&#9;WHERE..." />
-            <marker date="1422394853000" expanded="true" signature="7528:7699" placeholder="SELECT produ.._TABLE__PRODUCTS&#10;&#9;&#9;&#9;WHERE..." />
-            <marker date="1422394853000" expanded="true" signature="8117:8476" placeholder="SELECT P.use..crafters_like..." />
+            <marker date="1422394853000" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..crafters_user..." />
+            <marker date="1422394853000" expanded="true" signature="-1:-1" placeholder="SELECT U.use.._TABLE__USERS as..." />
+            <marker date="1422394853000" expanded="true" signature="-1:-1" placeholder="SELECT U.use.._TABLE__USERS as..." />
+            <marker date="1422394853000" expanded="true" signature="-1:-1" placeholder="SELECT U.use.._TABLE__USERS as..." />
+            <marker date="1422394853000" expanded="true" signature="-1:-1" placeholder="SELECT user_.._TABLE__USERS ORDER..." />
+            <marker date="1422394853000" expanded="true" signature="-1:-1" placeholder="DELETE FROM ..." />
+            <marker date="1422394853000" expanded="true" signature="-1:-1" placeholder="SELECT * FRO.._TABLE__STATUTS&#10;&#9;&#9;&#9;WHERE..." />
+            <marker date="1422394853000" expanded="true" signature="-1:-1" placeholder="SELECT user_.._TABLE__USERS&#10;&#9;&#9;&#9;WHERE..." />
+            <marker date="1422394853000" expanded="true" signature="-1:-1" placeholder="SELECT produ.._TABLE__PRODUCTS&#10;&#9;&#9;&#9;WHERE..." />
+            <marker date="1422394853000" expanded="true" signature="-1:-1" placeholder="SELECT P.use..crafters_like..." />
           </folding>
         </state>
       </provider>
@@ -1113,19 +1006,6 @@
           <caret line="73" column="16" selection-start-line="73" selection-start-column="16" selection-end-line="73" selection-end-column="16" />
           <folding>
             <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/js/list.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1336" max-vertical-offset="2112">
-          <caret line="126" column="0" selection-start-line="126" selection-start-column="0" selection-end-line="126" selection-end-column="0" />
-          <folding>
-            <marker date="1422391243000" expanded="true" signature="640:651" placeholder="..." />
-            <marker date="1422391243000" expanded="true" signature="1640:1653" placeholder="..." />
-            <marker date="1422391243000" expanded="true" signature="2146:2159" placeholder="..." />
-            <marker date="1422391243000" expanded="true" signature="2582:2595" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -1181,10 +1061,47 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/www/js/list.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1120">
+          <caret line="29" column="45" selection-start-line="29" selection-start-column="45" selection-end-line="29" selection-end-column="45" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/js/loadmore.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="384" max-vertical-offset="1168">
+          <caret line="34" column="47" selection-start-line="34" selection-start-column="47" selection-end-line="34" selection-end-column="47" />
+          <folding>
+            <marker date="1422445120000" expanded="true" signature="640:651" placeholder="..." />
+            <marker date="1422445120000" expanded="true" signature="1640:1653" placeholder="..." />
+            <marker date="1422445120000" expanded="true" signature="2146:2159" placeholder="..." />
+            <marker date="1422445120000" expanded="true" signature="2582:2595" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/upload/upload.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.4226804" vertical-offset="1752" max-vertical-offset="2528">
+          <caret line="130" column="36" selection-start-line="0" selection-start-column="0" selection-end-line="152" selection-end-column="2" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/ajax_queries.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="776">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/index/display.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.44859812" vertical-offset="16" max-vertical-offset="4640">
-          <caret line="22" column="32" selection-start-line="22" selection-start-column="32" selection-end-line="22" selection-end-column="32" />
+        <state vertical-scroll-proportion="0.7037037" vertical-offset="3891" max-vertical-offset="4640">
+          <caret line="242" column="26" selection-start-line="0" selection-start-column="0" selection-end-line="284" selection-end-column="62" />
           <folding>
             <element signature="e#1130#1182#0#HTML" expanded="true" />
             <element signature="e#1505#1525#0#HTML" expanded="true" />
@@ -1195,6 +1112,24 @@
             <element signature="e#8449#8470#0#HTML" expanded="true" />
             <element signature="e#9463#9484#0#HTML" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/gallery/display.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="384">
+          <caret line="12" column="0" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
+          <folding>
+            <element signature="e#371#814#0#HTML" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/gallery/gallery.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.020618556" vertical-offset="0" max-vertical-offset="784">
+          <caret line="1" column="13" selection-start-line="1" selection-start-column="13" selection-end-line="1" selection-end-column="13" />
+          <folding />
         </state>
       </provider>
     </entry>

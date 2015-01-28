@@ -238,7 +238,7 @@
 					</div>
 					<div class="btn-group btn-group-justified" role="group" aria-label="...">
 						<div class="btn-group" role="group">
-							<a href="#" id="load_more" data-num="1" class="btn btn-default">load more...</a>
+							<a href="index.php?module=gallery" id="load_more" data-num="1" class="btn btn-default">load more...</a>
 						</div>
 					</div>
 					<!--<div class="col-md-12 text-center">
