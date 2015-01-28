@@ -36,37 +36,24 @@
     font-style: normal;
 }
 
-@font-face {
-    font-family: 'latomedium';
-    src: url('../fonts/lato-medium-webfont.eot');
-    src: url('../fonts/lato-medium-webfont.eot?#iefix') format('embedded-opentype'),
-    url('../fonts/lato-medium-webfont.woff2') format('woff2'),
-    url('../fonts/lato-medium-webfont.woff') format('woff'),
-    url('../fonts/lato-medium-webfont.ttf') format('truetype'),
-    url('../fonts/lato-medium-webfont.svg#latomedium') format('svg');
-    font-weight: normal;
-    font-style: normal;
 
-}
 
 
 
 
 /**        ///     GENERAL   ///        **/
-
+body{
+width:100%;
+}
 
 h1 {font-family: "oneerregular";
+    text-transform: uppercase;
     font-size: 56px;}
-
 h1 a:hover {text-decoration: none; color: black;}
 
 h2 {font-family: "latolight";
     font-size: 15px;
     margin-top: -15px;}
-
-h3 {font-family: "latolight";
-    font-size: 20px;
-    }
 
 a {color: black;}
 
@@ -82,14 +69,6 @@ a {color: black;}
 
 /** ////////// PAGE HOME ////////// **/
 
-.logo-mini {text-transform: lowercase;}
-
-.breadcrumb:hover{
-	text-decoration: none;
-	color:grey;
-}
-
-
 .header_video {margin-bottom: 30px;}
 
 
@@ -103,39 +82,25 @@ a {color: black;}
 .seemore a:hover{font-size: 11px; color: black; text-decoration: none;}
 
 
-
-
-/** NAVBAR **/
-
-
-.nav .open>a, .nav .open>a:hover, .nav .open>a:focus, .nav .open>a:active  {background-color: white;
-                                                       color: black;}
-.nav-pills li a, .nav-pills li a:active, .nav-pills li a:hover, .nav-pills li a:visited {background-color: white;
-                                                                                            color: black;
-                                                                                            text-transform: uppercase;}
-
-.title-gallery {font-family: 'oneerregular';
-                float: left;
-                font-size: 35px;
-                color: black;
-                }
-.big-container {padding-bottom: 20px;}
-
-
 /**  Bouton upload **/
 
-.btn a {color: white;
-}
+.btn a {color: white;}
 .btn a:hover {text-decoration: none; color: white;}
 
-
-.btn-gray {background-color: gray;}
-
-
+.upload {background-color: white;
+         font-family: 'latobold';
+         font-size: 20px;
+         text-transform: uppercase;
+         padding-bottom: 5px;
+        border-bottom: 8px #ff6347 solid;
+        border-radius: 0px;
+}
+.upload:hover {border-bottom: 8px darkred solid;
+           padding-bottom: 5px;
 }
 
 .upload a:hover{text-decoration: none;
-                color: white;
+                color: #000000;
 }
 
 .upload-2 {
@@ -150,16 +115,11 @@ a {color: black;}
 .upload-2c {
     background: #cb4e4e;
     border-radius: 5px;
-    width: 354px;
-    text-transform: UPPERCASE;
-    font-weight: 500;
-
 }
 
 .upload-2c:hover {
     box-shadow: 0 4px #ab3c3c;
     top: 2px;
-    color: white;
 }
 
 .upload-2c:active {
@@ -227,15 +187,12 @@ a {color: black;}
 
 
 
-.ol.li.a:hover {color: black;
-                text-decoration: none;}
-
 /** ////////// PAGE UPLOAD ////////// **/
 
 
 /* Drag and drop */
 
-.container-upload {margin-top: -80px;}
+.container-upload {margin-top: 50px;}
 .container-upload p {font-size: 18px;}
 
 
@@ -277,124 +234,205 @@ a {color: black;}
 /** ////////// DASHBOARD ////////// **/
 .dashboard {margin-top: 50px;}
 
-.dashboard_infos {margin-top: 50px;}
-.dashboard a {font-size: 12px;}
+
+/** ////////// PAGE GALLERY ////////// **/
 
 
+.breadcrumb{
+    margin-bottom: 5px;
+}
 
-#addtobasket a{border: 1px black solid;
-    padding: 20px;
+.breadcrumb li a{
+text-decoration: none;
+color:grey;
+}
+
+.breadcrumb li a:hover{
+text-decoration: none;
+color:#FF4D4D;
+}
+
+.field {
+  display:flex;
+  position:realtive;
+  margin-top:4em auto;
+  margin-bottom:0.4em ;
+  margin-left: 45px;
+  width:75%;
+  flex-direction:row;
+  color:#ff4040;
+}
+
+.field>input[type=text],
+.field>button {
+  display:block;
+  font:1.2em 'Helvetica';
+}
+
+.field>input[type=text] {
+  flex:1;
+  padding:0.6em;
+  border:0.15em solid black;
+  border-top-left-radius:10px;
+}
+
+.field>button {
+  padding:0.6em 0.8em;
+  background-color:black;
+  color:white;
+  border:none;
+  border-bottom-right-radius:10px;
+}
+
+.field>button:hover {
+  padding:0.6em 0.8em;
+  background-color:#ff4040;
+  color:white;
+  border:none;
+  transition:0.4s;
+}
+
+/** ////////// PAGE REGISTER ////////// **/
+
+.form-horizontal{
+    width: 65%;
+    margin: auto;
+    padding:1em;
+}
+
+#legend{
+    font-size: 2.5em;
+    font-family: 'latolight'
+}
+
+@media (min-width: 768px) {
+    .omb_row-sm-offset-3 div:first-child[class*="col-"] {
+        margin-left: 25%;
+    }
+}
+
+.btnconfirm{
+    border-radius: 7px;
+    height: 3em;
+    margin: auto;
+    margin-left: 15px;
+    margin-top: 15px;
+    background-color: mediumseagreen;
+    border: none;
+    color:white;
+    transition:0.35s;
+    width: 15.5em;
+}
+
+.btnconfirm:hover{
+   background-color:#349961;
+   transition:0.35s;
+}
+
+.omb_login .omb_socialButtons{
+    padding: 25px;
+    padding-top: 10px;
+}
+
+.omb_login{
+    padding-bottom:100px;
 }
 
 
-#addtobasket a {background-color: white;
-                color: black;
-    1px black solid;
-    padding: 20px;
-
-                    }
-
-#addtobasket a:hover {text-decoration: none;}
-
-
-
-.socialnetwork {margin-top: 2em;}
-
-.socialnetwork img {float:left; }
-
-
-
-
-.contact_bloc { margin-top: 50px;}
-
-
-.form-upload {width: 200px; margin-top: -10px; border-radius: 0px;}
-
-.form-upload-description {width: 200px; margin-top: -10px; border-radius: 0px; height: 70px;}
-
-
-.size {border: none;
-        border-radius: 0px;}
-.size:hover {background-color: #ff5555; color: white;}
-.size:focus {background-color: #ff5555; color: white;}
-
-
-
-.modalities {font-family: 'latomedium';}
-
-.form-quantity {width: 110px;}
-
-.title_upload {font-family: 'latomedium';}
-
-.summary {font-size: 14px;
-            font-family: 'latolight';
-            margin-bottom: -10px;}
-.summary-block {margin-top: 15px;}
-
-
-.btn-another-work {background-color: #f5f5f5;
-                  margin-top: 25px;
-                  border-radius: 0px;
-                    font-family: 'latolight';
-                    text-transform: uppercase;
-                  width: 100%;}
-
-input[type=radio].css-checkbox {
-    position:absolute; z-index:-1000; left:-1000px; overflow: hidden; clip: rect(0 0 0 0); height:1px; width:1px; margin:-1px; padding:0; border:0;
+.omb_login .omb_authTitle {
+    text-align: center;
+    line-height: 300%;
+}
+    
+.omb_login .omb_socialButtons a {
+    color: white; // In yourUse @body-bg 
+    opacity:0.9;
+}
+.omb_login .omb_socialButtons a:hover {
+    color: white;
+    opacity:1;      
+}
+.omb_login .omb_socialButtons .omb_btn-facebook {
+    background: #3b5998;
+    transition: 0.35s;
 }
 
-input[type=radio].css-checkbox + label.css-label {
-    padding-left:23px;
-    height:18px;
-    display:inline-block;
-    line-height:18px;
-    background-repeat:no-repeat;
-    background-position: 0 0;
-    font-size:12px;
+.omb_login .omb_socialButtons .omb_btn-facebook:hover {
+    background: #324a80;
+}
+
+.textreg{
+    margin-top: 20px;
     font-family: 'latolight';
-    vertical-align:middle;
-    cursor:pointer;
-
+    font-size: 1.25em;
+    text-align: center;
 }
 
-input[type=radio].css-checkbox:checked + label.css-label {
-    background-position: 0 -18px;
-}
-label.css-label {
-    background-image:url(http://csscheckbox.com/checkboxes/u/csscheckbox_68164feed330bede8c442476d8be4ad2.png);
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-}
-
-input[type=radio].css-checkbox + label.css-label2 {
-    padding-left:23px;
-    height:18px;
-    display:inline-block;
-    line-height:18px;
-    background-repeat:no-repeat;
-    background-position: 0 0;
-    font-size:12px;
-    font-family: 'latolight';
-    vertical-align:middle;
-    cursor:pointer;
-
-}
-
-input[type=radio].css-checkbox:checked + label.css-label2 {
-    background-position: 0 -18px;
-}
-label.css-label2 {
-    background-image:url(http://csscheckbox.com/checkboxes/u/csscheckbox_68164feed330bede8c442476d8be4ad2.png);
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
+#footer{
+width: 100%;
+height:135px;
+background-color: black;
+color: white;
+font-family: 'latolight';
 }
 
 
+    
+.footer-social { 
+    float: left;
+    padding: 52px;
+}
+
+
+.footer-social img{ 
+opacity: 0.8;
+}
+
+.footer-social img:hover{ 
+opacity: 1;
+transition: 0.5s;
+}
+
+.footer-social li {
+    display: inline;
+    padding: 8px;
+}
+
+.footer-social span { margin-top: -20px;}
+
+
+.footer-legal { 
+    float: right;
+    padding: 52px;
+}
+
+.footer-legal li {
+    display: inline;
+    padding: 8px;
+}
+
+.footer-legal li a{
+    text-decoration: none;
+    color:#fff;
+}
+.footer-legal li a:hover{
+    text-decoration: none;
+    color:#8c8c8c;
+    transition:0.5s;
+}
+
+.upload-2c {
+  background: #cb4e4e;
+  border-radius: 5px;
+  width: 354px;
+  text-transform: UPPERCASE;
+  font-weight: 500;
+}
+
+    
+@media (min-width: 768px) {
+    .omb_login .omb_forgotPwd {
+        text-align: right;
+        margin-top:10px;
+    }    
+}
