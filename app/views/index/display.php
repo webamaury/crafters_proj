@@ -18,14 +18,11 @@
 						<?php
 						if (isset($_SESSION[_SES_NAME]["authed"]) && $_SESSION[_SES_NAME]["authed"] == true) {
 							?>
-							<a href="index.php?module=upload" onclick="ga('send','event','Upload','Clique');"
-							   class="btn upload-2 upload-2c star">Start uploading your work</a>
+							<a href="index.php?module=upload" class="btn upload-2 upload-2c star">Start uploading your work</a>
 						<?php
 						} else {
 							?>
-							<a href="#" onclick="ga('send','event','Upload','Clique');" data-toggle="modal"
-							   data-target="#modal-login" class="btn upload-2 upload-2c star">Start uploading your
-								work</a>
+							<a href="#" data-toggle="modal" data-target="#modal-login" class="btn upload-2 upload-2c star">Start uploading your work</a>
 						<?php
 						}
 						?>

@@ -57,7 +57,17 @@
                     <li><a href="index.php?module=gallery">Gallery</a></li>
                     <!--<li><a href="#">Monthly Set</a></li>-->
                     <li><a href="contact.php" data-toggle="modal" data-target="#modal-contact">Contact</a> </li>
-                    <li><a href="index.php?module=upload" onclick="ga('send','event','Upload','Clique');" class="btn upload-2 upload-2c star upload_header">Upload</a>
+                    <?php
+                    if (isset($_SESSION[_SES_NAME]["authed"]) && $_SESSION[_SES_NAME]["authed"] == true) {
+                    ?>
+                    <li><a href="index.php?module=upload" class="btn upload-2 upload-2c star upload_header">Upload</a>
+                    <?php
+                    } else {
+                    ?>
+                    <li><a href="#" data-toggle="modal"data-target="#modal-login" class="btn upload-2 upload-2c star upload_header">Upload</a>
+                    <?php
+                    }
+                    ?>
                     </li>
                 </ul>
             </div>

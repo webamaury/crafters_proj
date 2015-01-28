@@ -38,7 +38,7 @@
 							</div>-->
 							<div class="col-xs-12 col-sm-12 col-md-12 text-center">
 								<br/>
-								<a href="#" class="new-signup">New on Crafters ? Subscribe</a>
+								<a href="index.php?module=subscribe" class="new-signup">New on Crafters ? Subscribe</a>
 							</div>
 						</div>
 

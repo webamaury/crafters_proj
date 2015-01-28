@@ -71,7 +71,7 @@ if (isset($_GET['action']) && $_GET['action'] === 'logout') {
 $pagesAllowedWithoutSession = array(
 	'http://localhost:8888/crafters_proj/www/', 
 	'http://localhost:8888/crafters_proj/www/index.php', 
-	'index', 'fiche', 'profil', 'contact', 'panier');
+	'index', 'fiche', 'profil', 'contact', 'panier', 'subscribe');
 if (isset($_GET['module'])) {
 	$var = $_GET['module'];
 } else {
