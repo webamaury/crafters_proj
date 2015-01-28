@@ -32,7 +32,7 @@
 	                <div class="form-group">
 	                    <input required type="text" maxlength="20" placeholder="Name your work" name="name" class="form-control form-upload">
 	                    <br/>
-	                    <textarea name="description" maxlength="400" rows="3" placeholder="Description" required class="form-control form-upload"></textarea>
+	                    <textarea name="description" maxlength="400" rows="3" placeholder="Description" required class="form-control form-upload textarea_upload"></textarea>
 	                </div>
 	            </div>
 	            <div class="col-md-12">
@@ -53,21 +53,7 @@
 	                <input type="radio" name="radio_tatoo_stickers" value="stickers" id="radio3" class="css-checkbox" />
 	                <label for="radio3" class="css-label2 radGroup2">Stickers</label>
 	            </div>
-	            <div class="col-md-12">
-	                <br/>
-	                <span class="modalities">Choose your size</span>
-	                <br/>
-	                <div class="btn-group " role="group" aria-label="...">
-	                    <button type="button" id="size_s" class="btn btn-default size">S</button>
-	                    <button type="button" id="size_m" class="btn btn-default size">M</button>
-	                    <button type="button" id="size_l" class="btn btn-default size">L</button>
-	                </div>
-	                <br/>
-	                <br/>
-	                <span class="modalities">How many ?</span>
-	                <br/>
-	                <input type="number" min="0" name="quantity" max="1000" placeholder="Max: 1000" class="form-control form-quantity">
-	            </div>
+
 	            <div class="col-md-12">
 	                <br/>
 	                <input type="hidden" name="img" id="img_url" value="" />
@@ -81,13 +67,14 @@
     </div>
 
     <div class="row">
-
+    <br>
         <div class="col-md-12">
             <div class="btn btn-lg btn-another-work">Add another craft</div>
         </div>
     </div>
 
     <div class="row">
+        <br>
         <div class="col-md-12">
             <h4>Latest work updated</h4>
             <hr/>
@@ -172,109 +159,7 @@
     </div>
 
 
-    <div class="modal" id="modal-login" tabindex="-1" role="dialog" aria-labelledby="modal-login-label" aria-hidden="true" style="padding-top: 100px;">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title" id="modal-login-label">Log in</h4>
-                </div>
-                <div class="modal-body">
-                    <div class="row center-block">
-                        <div class="col-md-12">
-                            <h3>Please Log In, or <a href="#" data-toggle="modal" data-target="#modal-new-signup">Sign Up</a></h3>
-                                <form role="form">
-                                    <div class="form-group">
-                                        <input type="text" placeholder="Username or Email" class="form-control">
-                                        <br/>
-                                        <input type="password" placeholder="Password" class="form-control">
-                                    </div>
-                                    <a class="pull-right" href="#">Forgot password?</a>
-                                    <button type="submit" class="btn btn btn-primary">
-                                        Log In
-                                    </button>
-                                </form>
-                                    <div class="login-or">
-                                        <hr class="hr-or">
-                                        <span class="span-or">or</span>
-                                    </div>
-                                <div class="row">
-                                    <div class="col-xs-12 col-sm-12 col-md-12">
-                                        <a href="#" class="btn btn-lg btn-block" style="background-color: #3b5998; border-color: #3b5998; color: white">Facebook</a>
-                                    </div>
-                                    <div class="col-xs-12 col-sm-12 col-md-12 text-center">
-                                        <br/>
-                                        <a href="#" class="new-signup">New on Crafters ? Subscribe</a>
-                                    </div>
-                                </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                </div>
-            </div><!-- /.modal-content -->
-        </div><!-- /.modal-dialog -->
-    </div><!-- /.modal -->
 
-
-    <!-- CREDIT CARD - SHOPPING BAG -->
-    <div class="modal" id="modal-shoppingbag" tabindex="-1" role="dialog" aria-labelledby="modal-shoppingbag-label" aria-hidden="true" style="padding-top: 100px;">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title" id="modal-shoppingbag-label">Your shopping bag</h4>
-                </div>
-                <div class="modal-body">
-                    <div class="row center-block">
-                        <div class="col-md-12">
-                            <h3 class="text-center">2 items</h3>
-                            <hr/>
-                            <br/>
-                            <form role="form">
-                                <div class="col-md-12">
-                                    <div class="col-md-4">
-                                        <img src="illu/stickers/13.jpg" class="img-responsive">
-                                    </div>
-                                    <div class="col-md-5 description-achat">
-                                        <br/>
-                                        <p><strong>Stickers Mac 13' Minion</strong></p>
-                                        <p><small>From Gru Bell</small></p>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <br/>
-                                        <br/>
-                                        <p class="price">9$</p>
-                                    </div>
-                                </div>
-                                <div class="col-md-12">
-                                    <div class="col-md-4">
-                                        <img src="illu/13.jpg" class="img-responsive">
-                                    </div>
-                                    <div class="col-md-5 description-achat">
-                                        <br/>
-                                        <p><strong>Geometric illusion</strong></p>
-                                        <p><small>From Geo Trouvetout</small></p>
-                                        <p><small>Quantity: 2</small></p>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <br/>
-                                        <br/>
-                                        <p class="price">9$</p>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button class="btn btn-danger"><a href="#">Buy it</a> </button>
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                </div>
-            </div><!-- /.modal-content -->
-        </div><!-- /.modal-dialog -->
-    </div><!-- /.modal -->
 
 
 
@@ -292,9 +177,9 @@
 
 </script>
 
-<script src="js/jquery-1.11.1.min.js"></script>
-<script src="js/bootstrap.js"></script>
-<script type="text/javascript" src="tools/plugin_jquery/jquery.form.min.js"></script>
+    <script type="text/javascript" src="tools/jQuery/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="tools/bootstrap-3.2.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="tools/plugin_jquery/jquery.form.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function() { 
 	
@@ -391,5 +276,4 @@ function bytesToSize(bytes) {
 
 </script>
 
-</body>
-</html>
+<?php include(_APP_PATH . "views/includes/footer.inc.php"); ?>

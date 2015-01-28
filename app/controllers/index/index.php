@@ -19,7 +19,7 @@ class IndexController extends CoreControlers
 			$method = $_POST['action'];
 		}
 		$this->nb_by_page = 12;
-		//var_dump($_SESSION[_SES_NAME]['Cart']);
+		//if(isset($_SESSION[_SES_NAME]))var_dump($_SESSION[_SES_NAME]);
 
 		$this->$method($arrayTools, $notices);
 	}

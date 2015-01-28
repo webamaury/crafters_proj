@@ -18,7 +18,6 @@ class PanierController extends CoreControlers
 		} else if (isset($_GET['action'])) {
 			$method = $_GET['action'];
 		}
-
 		$this->$method($arrayTools, $notices);
 	}
 

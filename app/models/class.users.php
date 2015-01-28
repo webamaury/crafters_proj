@@ -21,15 +21,16 @@ class ClassUsers extends CoreModels {
 			if ($accounts[0]->user_status !== 0) {
 				$session_authed = true;
 				
-				$_SESSION[_SES_NAME]["authed"] 		= $session_authed;
-				$_SESSION[_SES_NAME]["verif"] 		= md5($_SERVER['HTTP_USER_AGENT']);
+				$_SESSION[_SES_NAME]["authed"] 		    = $session_authed;
+				$_SESSION[_SES_NAME]["verif"] 		    = md5($_SERVER['HTTP_USER_AGENT']);
 				
-				$_SESSION[_SES_NAME]["id"] 			= $accounts[0]->user_id;
+				$_SESSION[_SES_NAME]["id"] 			    = $accounts[0]->user_id;
 				$_SESSION[_SES_NAME]["mail"] 			= $accounts[0]->user_mail;
 				$_SESSION[_SES_NAME]["password"] 		= $accounts[0]->user_password;
-				$_SESSION[_SES_NAME]["firstname"] 	= $accounts[0]->user_firstname;
+				$_SESSION[_SES_NAME]["firstname"] 	    = $accounts[0]->user_firstname;
 				$_SESSION[_SES_NAME]["name"] 			= $accounts[0]->user_name;
-				$_SESSION[_SES_NAME]["statut"] 		= $accounts[0]->user_status;
+				$_SESSION[_SES_NAME]["username"] 	    = $accounts[0]->user_username;
+				$_SESSION[_SES_NAME]["statut"] 		    = $accounts[0]->user_status;
 					
 				return true;
 			} else {
