@@ -38,6 +38,30 @@ class ClassUsers extends CoreModels {
 			}
 		}
 	}
+	
+	/**
+	 * Permet à un utilisateur de s'incscrire
+	 * 
+	 */
+	public function signup() {
+		$query = "INSERT INTO " . _TABLE__USERS . " 
+		(user_firstname, user_name, user_mail, user_password, user_username) 
+		VALUES 
+		(:firstname, :name, :mail, :password, :username)";
+		$cursor = $this->connexion->prepare($query);
+	
+		$cursor->bindValue(':firstname', $this->firstname, PDO::PARAM_STR);
+		$cursor->bindValue(':name', $this->name, PDO::PARAM_STR);
+		$cursor->bindValue(':mail', $this->mail, PDO::PARAM_STR);
+		$cursor->bindValue(':password', $this->password, PDO::PARAM_STR);
+		$cursor->bindValue(':username', $this->username, PDO::PARAM_STR);
+	
+		$return = $cursor->execute();
+		
+		$cursor->closeCursor();
+
+		return $return;
+	}
 
 	/**
 	 * Permet de vérifier si l'utilisateur est logger
