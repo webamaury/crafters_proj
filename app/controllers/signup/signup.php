@@ -43,10 +43,20 @@ class SignUpController extends CoreControlers
 		include_once('../app/views/signup/display.php');
 	}
 	
-	public function signup()
+	public function signup($arrayTools, $notices)
 	{
 		//Add Crafters
-		if (!empty($_POST['firstname']) && !empty($_POST['name']) && !empty($_POST['username']) && !empty($_POST['mail']) && !empty($_POST['password']) && !empty($_POST['password']) && $_POST['password'] == $_POST['password']) {
+		if (empty($_POST['firstname']) || empty($_POST['name']) || empty($_POST['username']) || empty($_POST['mail']) || empty($_POST['password']) || empty($_POST['confirmpassword'])) {
+		
+			$notices->createNotice('danger', 'Veuillez remplir tous les champs.');
+			header("location:index.php?module=signup");
+
+		} else if($_POST['password'] =! $_POST['confirmpassword']) {
+
+			$notices->createNotice('danger', 'Veuillez entrer le meme mote de passe.');
+			header("location:index.php?module=signup");
+			
+		} else {
 			include_once(_APP_PATH . 'models/class.users.php');
 			$ClassUser = new ClassUsers();
 		
@@ -59,14 +69,12 @@ class SignUpController extends CoreControlers
 	
 			$add_crafter = $ClassUser->signup();
 			if( $add_crafter == true) {
+				$notices->createNotice('success', 'Votre compte a bien été crée vous allez recevoir un mail pour le valider');
 				header("location:index.php?module=index");
 			} else {
 				$notices->createNotice('danger', 'Problème d`inscription. Merci de réessayer plus tard');
 				header("location:index.php?module=signup");
 			}
-		} else {
-			$notices->createNotice('danger', 'Veuillez remplir tous les champs.');
-			header("location:index.php?module=signup");
 		}
 	}
 }

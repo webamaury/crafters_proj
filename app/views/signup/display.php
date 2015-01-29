@@ -5,7 +5,10 @@
 	<?php include(_APP_PATH . "views/includes/header.inc.php"); ?>
 
 
-	<div class="container">				
+	<div class="container">
+		<div class="row">	
+			<?php echo $notices->displayNotice(); $notices->clearNotice(); ?>	
+		</div>
 
 		<form class="form-horizontal" method="post" action="index.php?module=signup" role="form">
 			<fieldset>
@@ -26,7 +29,7 @@
 			<div class="form-group">
 			  <label class="col-md-4 control-label" for="Firstname">Firstname</label>  
 			  <div class="col-md-4">
-			  <input id="Firstname" name="firstname" type="text" placeholder="Doe" class="form-control input-md"required>
+			  <input id="Firstname" name="firstname" type="text" placeholder="Doe" class="form-control input-md" required>
 			    
 			  </div>
 			</div>
@@ -34,7 +37,7 @@
 			<div class="form-group">
 			  <label class="col-md-4 control-label" for="Username">Username</label>  
 			  <div class="col-md-4">
-			  <input id="Username" name="username" type="text" placeholder="JDoe" class="form-control input-md"required>
+			  <input id="Username" name="username" type="text" placeholder="JDoe" class="form-control input-md" required>
 			    
 			  </div>
 			</div>
@@ -43,7 +46,7 @@
 			<div class="form-group">
 			  <label class="col-md-4 control-label" for="Mail">Mail</label>  
 			  <div class="col-md-5">
-			  <input id="Mail" name="mail" type="text" placeholder="johndoe@gmail.com" class="form-control input-md"required>
+			  <input id="Mail" name="mail" type="email" placeholder="johndoe@gmail.com" class="form-control input-md" required>
 			    
 			  </div>
 			</div>
@@ -52,16 +55,16 @@
 			<div class="form-group">
 			  <label class="col-md-4 control-label" for="Password">Password</label>  
 			  <div class="col-md-4">
-			  <input id="Password" name="password" type="password" placeholder="" class="form-control input-md"required>
+			  <input id="Password" name="password" type="password" placeholder="" class="form-control input-md" required>
 			    
 			  </div>
 			</div>
 			
 			<!-- Text input-->
 			<div class="form-group">
-			  <label class="col-md-4 control-label" for="Confirm password">Confirm password</label>  
+			  <label class="col-md-4 control-label" for="ConfirmPassword">Confirm password</label>  
 			  <div class="col-md-4">
-			  <input id="Confirm password" name="Confirm password" type="password" placeholder="" class="form-control input-md">
+			  <input id="ConfirmPassword" name="confirmpassword" type="password" placeholder="" class="form-control input-md" required>
 			    
 			  </div>
 			</div>
