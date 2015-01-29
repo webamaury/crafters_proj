@@ -93,8 +93,6 @@ class CoreControlers {
 	function send_mail($text, $name_expe, $email_expe, $email_desti, $subject, $reply = null, $file = null)
 	{
 
-
-
 		//------------------------------------------------------
 		//VARIABLES
 		//------------------------------------------------------

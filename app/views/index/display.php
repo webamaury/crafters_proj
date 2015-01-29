@@ -6,6 +6,9 @@
 
 
 	<div class="container">
+		<div class="row">	
+			<?php echo $notices->displayNotice(); $notices->clearNotice(); ?>	
+		</div>
 		<div class="row">
 			<div class="col-sm-6 col-md-4">
 				<div class="row">

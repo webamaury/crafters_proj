@@ -6,13 +6,14 @@
 class SignUpController extends CoreControlers
 {
 	function __construct($arrayTools, $notices) {
-		if(!isset($_GET['action']) && !isset($_POST['action'])) {
+		if (!isset($_GET['action']) && !isset($_POST['action'])) {
 			$method = 'main' ;
-		}
-		else if(isset($_POST['action'])) {
+		} else if (isset($_POST['action'])) {
 			$method = $_POST['action'];
+		} else if (isset($_GET['action'])) {
+			$method = $_GET['action'];
 		}
-
+		
 		$this->$method($arrayTools, $notices) ;
 	}
 	/**
@@ -51,9 +52,9 @@ class SignUpController extends CoreControlers
 			$notices->createNotice('danger', 'Veuillez remplir tous les champs.');
 			header("location:index.php?module=signup");
 
-		} else if($_POST['password'] =! $_POST['confirmpassword']) {
+		} else if($_POST['password'] != $_POST['confirmpassword']) {
 
-			$notices->createNotice('danger', 'Veuillez entrer le meme mote de passe.');
+			$notices->createNotice('danger', 'Veuillez entrer deux mots de passe identiques.');
 			header("location:index.php?module=signup");
 			
 		} else {
@@ -66,14 +67,49 @@ class SignUpController extends CoreControlers
 			$ClassUser->mail 		= $_POST['mail'];
 			$ClassUser->password 	= md5($_POST['password']);
 			
+			if ($ClassUser->mailUnique()) {
+				$lastid = $ClassUser->signup();
+				if( $lastid == false) {
+					$notices->createNotice('danger', 'Problème d`inscription. Merci de réessayer plus tard');
+					header("location:index.php?module=signup");
+				} else {
+					
+					$tpl = file_get_contents(_APP_PATH . 'mail_templates/mails.header.htm');
+					$tpl .= file_get_contents(_APP_PATH . 'mail_templates/mails.contact.htm');
+					$tpl .= file_get_contents(_APP_PATH . 'mail_templates/mails.footer.htm');
+		
+					// On remplace les infos personnelles
+					$tpl = str_replace("%CONTENT%", 'Pour confirmer votre compte, veuillez cliquer sur <a href="index.php?module=signup&action=verif&user=' . $lastid . '">ce lien</a>  ', $tpl);
+					$tpl = str_replace("%SITE_NAME%", _SITE_NAME, $tpl);
 	
-			$add_crafter = $ClassUser->signup();
-			if( $add_crafter == true) {
-				$notices->createNotice('success', 'Votre compte a bien été crée vous allez recevoir un mail pour le valider');
+					$this->send_mail($tpl,
+						'Crafters',
+						'bossxiii@hotmail.fr',
+						$_POST['mail'],
+						'Vérification de votre compte Crafters');
+						
+					$notices->createNotice('success', 'Votre compte a bien été crée vous allez recevoir un mail pour le valider');
+					header("location:index.php?module=index");
+				}
+			} else {
+				$notices->createNotice('danger', 'Cette adresse email possède deja un compte');
+				header("location:index.php?module=signup");
+			}			
+		}
+	}
+	
+	public function verif($arrayTools, $notices) {
+		
+		if (isset($_GET['user']) && !empty($_GET['user'])) {
+			include_once(_APP_PATH . 'models/class.users.php');
+			$ClassUser = new ClassUsers();
+			$ClassUser->user_id = $_GET['user'];
+			if ($ClassUser->verif() == true) {
+				$notices->createNotice('success', 'Votre compte a bien été validé');
 				header("location:index.php?module=index");
 			} else {
-				$notices->createNotice('danger', 'Problème d`inscription. Merci de réessayer plus tard');
-				header("location:index.php?module=signup");
+				$notices->createNotice('danger', 'Problème lors de la vérification de votre compte, veuillez réessayer plus tard');
+				header("location:index.php?module=index");
 			}
 		}
 	}

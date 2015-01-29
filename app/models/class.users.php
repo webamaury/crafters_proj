@@ -56,11 +56,52 @@ class ClassUsers extends CoreModels {
 		$cursor->bindValue(':password', $this->password, PDO::PARAM_STR);
 		$cursor->bindValue(':username', $this->username, PDO::PARAM_STR);
 	
-		$return = $cursor->execute();
+		$cursor->execute();
+		
+		$return = $this->connexion->lastInsertId();
 		
 		$cursor->closeCursor();
 
 		return $return;
+	}
+	
+	/**
+	 * Permet à un utilisateur de valider son compte
+	 * 
+	 */
+	public function verif() {
+		$query = "UPDATE " . _TABLE__USERS . "
+		SET user_status = '1'
+		WHERE user_id = :id";
+		
+		$cursor = $this->connexion->prepare($query);
+		$cursor->bindValue(':id', $this->user_id, PDO::PARAM_INT);
+		
+		$return = $cursor->execute();
+		return $return;
+	}
+	
+	/**
+	 * Permet de voir si le mail existe deja dans la BD
+	 * 
+	 */
+	public function mailUnique() {
+		$query = "SELECT count(*) AS nbMail
+		FROM  " . _TABLE__USERS . "
+		WHERE user_mail = :mail";
+		
+		$cursor = $this->connexion->prepare($query);
+		$cursor->bindValue(':mail', $this->mail, PDO::PARAM_STR);
+		
+		$cursor->execute();
+		$cursor->setFetchMode(PDO::FETCH_OBJ);
+		$return = $cursor->fetch();
+		if ($return->nbMail == 0){
+			return true;
+		} else {
+			return false;
+		}
+		
 	}
 
 	/**
