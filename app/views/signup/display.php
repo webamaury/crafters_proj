@@ -20,7 +20,7 @@
 			<div class="form-group">
 			  <label class="col-md-4 control-label" for="Name">Name</label>  
 			  <div class="col-md-4">
-			  <input id="Name" name="name" type="text" placeholder="John" class="form-control input-md" required>
+			  <input id="Name" name="name" type="text" placeholder="John" class="form-control input-md"  maxlength="30" required>
 			    
 			  </div>
 			</div>
@@ -29,7 +29,7 @@
 			<div class="form-group">
 			  <label class="col-md-4 control-label" for="Firstname">Firstname</label>  
 			  <div class="col-md-4">
-			  <input id="Firstname" name="firstname" type="text" placeholder="Doe" class="form-control input-md" required>
+			  <input id="Firstname" name="firstname" type="text" placeholder="Doe" class="form-control input-md" maxlength="20" required>
 			    
 			  </div>
 			</div>
@@ -37,7 +37,7 @@
 			<div class="form-group">
 			  <label class="col-md-4 control-label" for="Username">Username</label>  
 			  <div class="col-md-4">
-			  <input id="Username" name="username" type="text" placeholder="JDoe" class="form-control input-md" required>
+			  <input id="Username" name="username" type="text" placeholder="JDoe" class="form-control input-md" maxlength="15" required>
 			    
 			  </div>
 			</div>
@@ -46,7 +46,7 @@
 			<div class="form-group">
 			  <label class="col-md-4 control-label" for="Mail">Mail</label>  
 			  <div class="col-md-5">
-			  <input id="Mail" name="mail" type="email" placeholder="johndoe@gmail.com" class="form-control input-md" required>
+			  <input id="Mail" name="mail" type="email" placeholder="johndoe@gmail.com" class="form-control input-md" maxlength="100" required>
 			    
 			  </div>
 			</div>
@@ -55,7 +55,7 @@
 			<div class="form-group">
 			  <label class="col-md-4 control-label" for="Password">Password</label>  
 			  <div class="col-md-4">
-			  <input id="Password" name="password" type="password" placeholder="" class="form-control input-md" required>
+			  <input id="Password" name="password" type="password" placeholder="" class="form-control input-md" maxlength="40" required>
 			    
 			  </div>
 			</div>
@@ -64,7 +64,7 @@
 			<div class="form-group">
 			  <label class="col-md-4 control-label" for="ConfirmPassword">Confirm password</label>  
 			  <div class="col-md-4">
-			  <input id="ConfirmPassword" name="confirmpassword" type="password" placeholder="" class="form-control input-md" required>
+			  <input id="ConfirmPassword" name="confirmpassword" type="password" placeholder="" class="form-control input-md" maxlength="40" required>
 			    
 			  </div>
 			</div>
