@@ -11,6 +11,4 @@ $arrayTools = array(
 	'datatable-js' => '<script type="text/javascript" src="' . _WWW_PATH . 'tools/plugin_jquery/DataTables-1.10.3/media/js/jquery.dataTables.min.js"></script>',
 	'font-awesome' => '<link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">'
 	);
-
-//var_dump($arrayTools);
 ?>

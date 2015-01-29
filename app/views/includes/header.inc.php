@@ -21,10 +21,9 @@
                         </div>
                           <!--<span class="badge" data-toggle="modal" data-target="#login" style="background-color: darkred;">1</span>-->
                     <?php
-                    }
-                    else {
+                    } else {
                         ?>
-                        <a href="#" data-toggle="modal" data-target="#modal-login"><i class="fa fa-user"></i></a> <span class="badge" data-toggle="modal" data-target="#login" style="background-color: darkred;">1</span>
+                        <a href="#" data-toggle="modal" data-target="#modal-login">Login <i class="fa fa-user"></i></a>
                     <?php
                     }
                     ?>

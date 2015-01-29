@@ -125,9 +125,7 @@
 							?>
 							<div class="col-sm-6 col-md-4 col-xs-6 col-lg-3">
 								<div class="thumbnail">
-									<a onclick="ga('send','event','Gallery','Clique');"
-									   href="index.php?module=fiche&product=<?php echo $product->product_id; ?>" class="product-image"><img
-											src="<?php echo $product->product_img_url; ?>" class="img-responsive"></a>
+									<a href="index.php?module=fiche&product=<?php echo $product->product_id; ?>" class="product-image"><img src="<?php echo $product->product_img_url; ?>" class="img-responsive"></a>
 
 									<div class="caption">
 										<h4><?php echo $product->product_name; ?></h4>
@@ -136,21 +134,8 @@
 											<small><em>By <?php echo $product->user_username; ?></em></small>
 										</p>
 										<div class="btn-group " style="float: left">
-											<a href="index.php?module=fiche&product=<?php echo $product->product_id; ?>"
-											   class="btn btn-xs btn-default"><i class="fa fa-search"></i></a>
-											<a href="index.php?module=panier&action=addToCart&product=<?php echo $product->product_id; ?>&img_url=<?php echo $product->product_img_url; ?>&name=<?php echo $product->product_name; ?>&from=<?php echo $product->user_username; ?>" class="btn btn-xs ajax_cart_trigger btn-default add-to-cart"><i
-													class="fa fa-shopping-cart"></i></a>
-											<!--<button type="button" data-product="<?php echo $product->product_id; ?>" <?php
-											if (isset($_SESSION[_SES_NAME]["authed"]) && $_SESSION[_SES_NAME]["authed"] == true) {
-												if ($product->did_i_like == true) {
-													echo 'class="btn btn-xs btn-default btn-primary like2 btn-tomato ajax_like_trigger" data-didilike="1"';
-												} else {
-													echo 'class="btn btn-xs btn-default btn-primary like2 ajax_like_trigger" data-didilike="0"';
-												}
-											} else {
-												echo 'class="btn btn-xs btn-default btn-primary like2"  data-toggle="modal" data-target="#modal-login"';
-											} ?>
-				                             ><i class="fa fa-heart-o"></i></button>-->
+											<a href="index.php?module=fiche&product=<?php echo $product->product_id; ?>" class="btn btn-xs btn-default"><i class="fa fa-search"></i></a>
+											<a href="index.php?module=panier&action=addToCart&product=<?php echo $product->product_id; ?>&img_url=<?php echo $product->product_img_url; ?>&name=<?php echo $product->product_name; ?>&from=<?php echo $product->user_username; ?>" class="btn btn-xs ajax_cart_trigger btn-default add-to-cart"><i class="fa fa-shopping-cart"></i></a>
 										</div>
 										<div class="text-right"><?php
 											if (isset($_SESSION[_SES_NAME]["authed"]) && $_SESSION[_SES_NAME]["authed"] == true) {
@@ -241,16 +226,14 @@
 							<a href="index.php?module=gallery" id="load_more" data-num="1" class="btn btn-default">load more...</a>
 						</div>
 					</div>
-					<!--<div class="col-md-12 text-center">
-						<a id="load_more" data-num="1" href="#">load more...</a>
-					</div>-->
 				</div>
 			</div>
 		</div>
-		
+
+
+
 	</div>
 	<!-- /container -->
-
 
 	<script type="text/javascript" src="tools/jQuery/jquery-2.1.1.min.js"></script>
 	<script type="text/javascript" src="tools/bootstrap-3.2.0/js/bootstrap.min.js"></script>

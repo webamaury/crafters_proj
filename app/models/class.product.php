@@ -34,16 +34,16 @@ class ClassProducts extends CoreModels
 	
 	function updateImage($image_url, $product) 
 	{
-		$query = "UPDATE " . _TABLE__PRODUCTS . " 
+		$query = "UPDATE " . _TABLE__PRODUCTS . "
 		SET product_img_url = :img_url
 		WHERE product_id = :id";
 		$cursor = $this->connexion->prepare($query);
-	
+
 		$cursor->bindValue(':img_url', $image_url, PDO::PARAM_STR);
 		$cursor->bindValue(':id', $product, PDO::PARAM_INT);
-	
+
 		$return = $cursor->execute();
-		
+
 		$cursor->closeCursor();
 
 		return $return;
@@ -337,6 +337,24 @@ class ClassProducts extends CoreModels
 
 		return $list;
 	}
+
+	public function get_search_tag() {
+		$query = "SELECT P.product_name
+			FROM " . _TABLE__PRODUCTS . " P
+			WHERE P.product_name LIKE :product_name
+			ORDER BY P.product_name ASC
+			LIMIT 0,15";
+		$cursor = $this->connexion->prepare($query);
+
+		$cursor->bindValue(':product_name', $this->product_name, PDO::PARAM_STR);
+
+		$cursor->execute();
+
+		$cursor->setFetchMode(PDO::FETCH_OBJ);
+		$list = $cursor->fetchAll();
+		$cursor->closeCursor();
+
+		return $list;	}
 
 }
 

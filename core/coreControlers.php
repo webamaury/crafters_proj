@@ -88,7 +88,82 @@ class CoreControlers {
 				break;
 			default: return false;
 		}
-	}	
+	}
+
+	function send_mail($text, $name_expe, $email_expe, $email_desti, $subject, $reply = null, $file = null)
+	{
+
+
+
+		//------------------------------------------------------
+		//VARIABLES
+		//------------------------------------------------------
+		$email_expediteur=$email_expe;
+		//$email_reply=$email_expe;
+		//$message_text='Bonjour'."\n\n".'Voici un message au format texte';
+
+		$destinataire=$email_desti;
+		$sujet=$subject;
+
+		$message_html=$text;
+		$message = '';
+
+		//------------------------------------------------------
+		//FRONTIERE
+		//------------------------------------------------------
+		$frontiere=md5(uniqid(mt_rand()));
+
+
+		//------------------------------------------------------
+		//HEADERS DU MAIL
+		//------------------------------------------------------
+		$headers = 'From: "'.$name_expe.'" <'.$email_expediteur.'>'."\n";
+		$headers .= 'Return-Path: <'.$reply.'>'."\n";
+		$headers .= 'MIME-Version: 1.0'."\n";
+		$headers .= 'Content-Type: multipart/mixed; boundary="'.$frontiere.'"';
+		/*
+		//------------------------------------------------------
+		//MESSAGE TEXTE
+		//------------------------------------------------------
+		$message = 'This is a multi-part message in MIME format.'."\n\n";
+
+		$message .='--'.$frontiere."\n";
+		$message .= 'Content-Type: text/plain; charset="iso-8859-1"'."\n";
+		$message .= 'Content-Transfer-Encoding: 8bit'."\n\n";
+		$message .= $message_text."\n\n";
+		*/
+		//------------------------------------------------------
+		//MESSAGE HTML
+		//------------------------------------------------------
+		$message .='--'.$frontiere."\n";
+
+		$message .= 'Content-Type: text/html; charset="iso-8859-1"'."\n";
+		$message .= 'Content-Transfer-Encoding: 8bit'."\n\n";
+		$message .= $message_html."\n\n";
+		/*
+		//------------------------------------------------------
+		//PIECE JOINTE
+		//------------------------------------------------------
+		$message .='--'.$frontiere."\n";
+
+		$message .= 'Content-Type: image/jpeg; name="image.jpg"'."\n";
+		$message .= 'Content-Transfer-Encoding: base64'."\n";
+		$message .= 'Content-Disposition:attachement; filename="image.jpg"'."\n\n";
+
+		$message .= chunk_split(base64_encode(file_get_contents('image.jpg')))."\n";
+		*/
+		//------------------------------------------------------
+		//ENVOI DU MAIL
+		//------------------------------------------------------
+		if(mail($destinataire, $sujet, $message, $headers))
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
 
 }
 ?>

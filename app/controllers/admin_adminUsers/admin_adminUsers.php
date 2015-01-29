@@ -3,7 +3,7 @@
 /**
  * Class adminUsersController
  */
-class AdminUsersController {
+class AdminUsersController extends CoreControlers {
 
 	/**
 	 * @param $arrayTools
@@ -37,7 +37,7 @@ class AdminUsersController {
 			$tpl = str_replace("%SITE_NAME%", _SITE_NAME, $tpl);
 
 
-			if (send_mail($tpl,
+			if ($this->send_mail($tpl,
 				$_SESSION['ADMIN-USER']['firstname'] . $_SESSION['ADMIN-USER']['name'],
 				$_SESSION['ADMIN-USER']['mail'],
 				$_POST['input_mail'],
