@@ -23,7 +23,7 @@ class AutreController extends CoreControlers {
 		##############################################################
 		##	APPEL TOOLS												##
 		##############################################################
-		$toolsToLoad = array("bootstrap-css", "jquery", "bootstrap-js", "admin-script");
+		$toolsToLoad = array("bootstrap-css", 'font-awesome');
 		$stylesToLoad = array("style");
 		
 		##############################################################

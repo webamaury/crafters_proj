@@ -1,3 +1,4 @@
+<div class="container">
 
     <div class="row">
         <div class="col-md-4 col-sm-4 col-xs-12">
@@ -28,26 +29,33 @@
                     }
                     ?>
                 </div>
-                <div class="col-xs-2 pull-right text-right">
-                    <br>
-                    <a href="#" data-ajax="index.php?module=panier&action=displayCart" id="ajax_display_cart" data-toggle="modal" data-target="#modal-shoppingbag">
-                        <i class="fa fa-shopping-cart"></i>
+                <?php
+                if (!isset($_GET['module']) || $_GET['module'] != 'commande') {
+                ?>
+                    <div class="col-xs-2 pull-right text-right">
+                        <br>
+                        <a href="#" data-ajax="index.php?module=panier&action=displayCart" class="ajax_display_cart" data-toggle="modal" data-target="#modal-shoppingbag">
+                            <i class="fa fa-shopping-cart"></i>
                         <span class="badge" style="background-color: white; color: black;">
-                        (<span id="nb_product_ajax"><?php
-                        if(isset($_SESSION[_SES_NAME]['Cart'])){
-                            $nb_prod = 0;
-                            foreach ($_SESSION[_SES_NAME]['Cart'] as $obj) {
-                                $nb_prod += $obj['quantity'];
+                        (<span class="nb_product_ajax"><?php
+                                if(isset($_SESSION[_SES_NAME]['Cart'])){
+                                    $nb_prod = 0;
+                                    foreach ($_SESSION[_SES_NAME]['Cart'] as $obj) {
+                                        $nb_prod += $obj['quantity'];
 
-                            }
-                            echo $nb_prod;
-                        } else {
-                            echo 0;
-                        }
+                                    }
+                                    echo $nb_prod;
+                                } else {
+                                    echo 0;
+                                }
 
-                        ?></span>)</span>
-                    </a>
-                </div>
+                                ?></span>)</span>
+                        </a>
+                    </div>
+                <?php
+                }
+                ?>
+
             </div>
             <div class="col-xs-12">
                 <br>

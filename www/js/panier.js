@@ -28,9 +28,9 @@ $(document).on('click', '.ajax_cart_trigger', function (e) {
             alert(data.message);
         }else{
             //SI C BON
-            var nb_product = $('#nb_product_ajax').text();
+            var nb_product = $('.nb_product_ajax').text();
             nb_product ++ ;
-            $('#nb_product_ajax').text(nb_product);
+            $('.nb_product_ajax').text(nb_product);
         }
     },'json');
     return false;
@@ -43,9 +43,9 @@ $(document).on('click', '.ajax_delete_trigger', function (e) {
     var idAjax = "#" + $(this).parent().parent("div").attr("id");
     $.get($(this).attr('href'),{},function(data){
         $(idAjax).fadeOut("500");
-        $('#nb_product_ajax').text(data.nb_product);
-        $('#ajax_all_quantity').text(data.nb_product + ' products');
-        $('#ajax_all_price').text(data.totalPrice);
+        $('.nb_product_ajax').text(data.nb_product);
+        $('.ajax_all_quantity').text(data.nb_product + ' products');
+        $('.ajax_all_price').text(data.totalPrice);
 
     },'json');
     return false;
@@ -58,27 +58,22 @@ $(document).on('click', '.ajax_quantity_trigger', function (e) {
     var product = $(this).attr('data-id');
     $.get($(this).attr('href'),{},function(data){
         var anchor = '.ajax_quantity_display' + product;
-        var quantity = $(anchor).text();
-        var allQuantity = $('#nb_product_ajax').text();
-        if(data.message == 'more'){
-
-            quantity ++;
-            allQuantity ++;
-
-        } else if (data.message == 'less'){
-
-            quantity --;
-            if (quantity == 0) {
-                $(anchor).parent().parent().parent().parent(".ajax_row").fadeOut("500");
-
-            }
-            allQuantity --;
-
+        var quantity = data.quantity;
+        var allQuantity = data.nb_product;
+        if (quantity == 0) {
+            $(anchor).parent().parent().parent().parent(".ajax_row").fadeOut("500");
         }
+
         $(anchor).html(quantity)
-        $('#nb_product_ajax').text(allQuantity);
-        $('#ajax_all_quantity').text(allQuantity + ' products');
-        $('#ajax_all_price').text(data.totalPrice);
+        $('.nb_product_ajax').text(allQuantity);
+        if(allQuantity > 1) {
+            allQuantity += ' products';
+        } else {
+            allQuantity += ' product';
+        }
+
+        $('.ajax_all_quantity').text(allQuantity);
+        $('.ajax_all_price').text(data.totalPrice);
 
     },'json');
     return false;
@@ -112,7 +107,7 @@ $(document).on('click', '.ajax_size_trigger', function (e) {
             var price = 15 ;
         }
         $(classDislplay).parent().parent().parent().next().find(".price").text(price + "€");
-        $('#ajax_all_price').text(data.totalPrice);
+        $('.ajax_all_price').text(data.totalPrice);
 
     },'json');
     return false;
@@ -189,13 +184,13 @@ function traiterFlux2(flux) {
         all_quantity += ' product';
     }
 
-    $('#ajax_display_cart_content').html(html);
-    $('#ajax_all_quantity').text(all_quantity);
-    $('#ajax_all_price').text(all_price);
+    $('.ajax_display_cart_content').html(html);
+    $('.ajax_all_quantity').text(all_quantity);
+    $('.ajax_all_price').text(all_price);
 
 }
 $(document).ready(function () {
-    $('#ajax_display_cart').on('click', function (e) {
+    $('.ajax_display_cart').on('click', function (e) {
         //e.preventDefault();
         var url_ajax = $(this).attr("data-ajax");
         $.get(url_ajax, {}, function (data) {

@@ -17,14 +17,14 @@ class ClassNotices {
 	 * @param $content
      */
 	function createNotice($type, $content) {
-		$_SESSION['notices'] = array('type' => $type, 'content' => $content);
+		$_SESSION[_SES_NAME]['notices'] = array('type' => $type, 'content' => $content);
 	}
 
 	/**
 	 * Permet de nettoyer la session pour supprimer les messages
      */
 	function clearNotice() {
-		unset($_SESSION['notices']);
+		unset($_SESSION[_SES_NAME]['notices']);
 	}
 
 	/**
@@ -32,13 +32,13 @@ class ClassNotices {
 	 * @return string
      */
 	function displayNotice() {
-		if (isset($_SESSION['notices'])) {
+		if (isset($_SESSION[_SES_NAME]['notices'])) {
 			$return = '<div class="col-xs-12">';
-			$return .= '<div class="alert alert-' . $_SESSION['notices']['type'] . ' alert-dismissible" role="alert">';
+			$return .= '<div class="alert alert-' . $_SESSION[_SES_NAME]['notices']['type'] . ' alert-dismissible" role="alert">';
 			$return .= '<button type="button" class="close" data-dismiss="alert">';
 			$return .= '<span aria-hidden="true">&times;</span>';
 			$return .= '<span class="sr-only">Close</span>';
-			$return .= '</button>' . $_SESSION['notices']['content'] . '</div></div>';
+			$return .= '</button>' . $_SESSION[_SES_NAME]['notices']['content'] . '</div></div>';
 
 			return $return;
 		}

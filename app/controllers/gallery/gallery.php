@@ -132,20 +132,12 @@ class galleryController extends CoreControlers {
 		}
 	}
 
-	function searchAutocomplete() {
+	function search() {
 
 		include_once(_APP_PATH . 'models/class.product.php');
 		$ClassProduct = new ClassProducts();
 
-		$ClassProduct->product_name = $_GET["term"] . "%";
-		$availableTags = $ClassProduct->get_search_tag();
-		if(!empty){
-
-		}
-		foreach($availableTags as $key => $availableTag) {
-			$return[$key] = $availableTag->product_name;
-		}
-		echo json_encode($return);
+		$ClassProduct->product_search = $_GET["term"] . "%";
 
 	}
 }

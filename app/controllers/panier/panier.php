@@ -79,22 +79,27 @@ class PanierController extends CoreControlers
 	public function changeQuantity()
 	{
 		$product = $_GET['product'];
+		if (isset($_SESSION[_SES_NAME]['Cart'][$product]['quantity'])) {
 
-		if($_GET['move'] == 'more') {
-			if(isset($_SESSION[_SES_NAME]['Cart'][$product]['quantity'])) {
-				$_SESSION[_SES_NAME]['Cart'][$product]['quantity'] ++;
-				$json['message'] = 'more';
-			}
-		} else if ($_GET['move'] == 'less') {
-			if (isset($_SESSION[_SES_NAME]['Cart'][$product]['quantity'])) {
+			if ($_GET['move'] == 'more') {
+					$_SESSION[_SES_NAME]['Cart'][$product]['quantity']++;
+					$json['message'] = 'more';
+					$json['quantity'] = $_SESSION[_SES_NAME]['Cart'][$product]['quantity'];
+
+			} else if ($_GET['move'] == 'less') {
 				$_SESSION[_SES_NAME]['Cart'][$product]['quantity']--;
+				$json['quantity'] = $_SESSION[_SES_NAME]['Cart'][$product]['quantity'];
 				if ($_SESSION[_SES_NAME]['Cart'][$product]['quantity'] <= 0) {
 					unset($_SESSION[_SES_NAME]['Cart'][$product]);
 				}
 				$json['message'] = 'less';
 			}
+		} else {
+			$json['quantity'] = 0;
 		}
 		$json['totalPrice'] = $this->calculateTotalPrice();
+		$json['nb_product'] = $this->nbProduct();
+
 		$json =json_encode($json);
 		echo $json;
 		exit();
