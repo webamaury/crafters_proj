@@ -103,6 +103,29 @@ class ClassUsers extends CoreModels {
 		}
 		
 	}
+	
+	/**
+	 * Permet de voir si le username existe deja dans la BD
+	 * 
+	 */
+	public function usernameUnique() {
+		$query = "SELECT count(*) AS nbUsername
+		FROM  " . _TABLE__USERS . "
+		WHERE user_username = :username";
+		
+		$cursor = $this->connexion->prepare($query);
+		$cursor->bindValue(':username', $this->username, PDO::PARAM_STR);
+		
+		$cursor->execute();
+		$cursor->setFetchMode(PDO::FETCH_OBJ);
+		$return = $cursor->fetch();
+		if ($return->nbUsername == 0){
+			return true;
+		} else {
+			return false;
+		}
+		
+	}
 
 	/**
 	 * Permet de vérifier si l'utilisateur est logger

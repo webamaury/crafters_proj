@@ -67,7 +67,7 @@ class SignUpController extends CoreControlers
 			$ClassUser->mail 		= $_POST['mail'];
 			$ClassUser->password 	= md5($_POST['password']);
 			
-			if ($ClassUser->mailUnique()) {
+			if ($ClassUser->mailUnique() && $ClassUser->usernameUnique()) {
 				$lastid = $ClassUser->signup();
 				if( $lastid == false) {
 					$notices->createNotice('danger', 'Problème d`inscription. Merci de réessayer plus tard');
