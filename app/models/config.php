@@ -16,5 +16,7 @@ DEFINE( '_TABLE__PRODUCTS', 					_DB_PREFIX."product");
 DEFINE( '_TABLE__MESSAGE',		 				_DB_PREFIX."message" );
 DEFINE( '_TABLE__STATUTS', 						_DB_PREFIX."statuts");
 DEFINE( '_TABLE__LIKE', 						_DB_PREFIX."like");
+DEFINE( '_TABLE__ORDER', 						_DB_PREFIX."order");
+DEFINE( '_TABLE__PRODUCT_ORDER', 				_DB_PREFIX."product_order");
 
 ?>
