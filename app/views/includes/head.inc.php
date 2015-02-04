@@ -14,9 +14,9 @@
 	<?php echo $this->load_tools($toolsToLoad, $arrayTools) ; ?>
 
     <!-- Bootstrap core CSS -->
-    <link href="css/custom2.css" rel="stylesheet">
-    <link href="css/momo.css" rel="stylesheet">
-    <link href="css/old/custom.min.css" rel="stylesheet">
+    <link href="<?php echo _PATH_FOLDER; ?>css/custom2.css" rel="stylesheet">
+    <link href="<?php echo _PATH_FOLDER; ?>css/momo.css" rel="stylesheet">
+    <link href="<?php echo _PATH_FOLDER; ?>css/old/custom.min.css" rel="stylesheet">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
 
 

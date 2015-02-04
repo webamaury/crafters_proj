@@ -47,11 +47,12 @@ if ((isset($_POST['action']) && $_POST['action'] === 'login')) {
 	$user->login();
 
 	if ($user->isAuthed()) {
+		$notices->createNotice('success', 'Hello ' . $_SESSION[_SES_NAME]['username'] . ', welcome on crafters');
 		header('Location: ' . $currentPage);
 		exit();
 	} else {
 		sleep(1);
-		create_notice('danger', 'Erreur login / mot de passe');
+		$notices->createNotice('danger', 'Error username/password');
 		header('Location: index.php');
 		exit();
 	}
@@ -69,8 +70,8 @@ if (isset($_GET['action']) && $_GET['action'] === 'logout') {
  * TEST DE SESSION
  */
 $pagesAllowedWithoutSession = array(
-	'http://localhost:8888/crafters_proj/www/', 
-	'http://localhost:8888/crafters_proj/www/index.php', 
+	_PATH_FOLDER,
+	_PATH_FOLDER . 'index.php',
 	'index', 'fiche', 'profil', 'contact', 'panier', 'signup', 'gallery');
 if (isset($_GET['module'])) {
 	$var = $_GET['module'];

@@ -87,3 +87,25 @@ a:focus, input:focus, textarea:focus, button:focus, a:hover, input:hover, textar
     width: 202px !important;
     resize: none !important;
 }
+.min-header {
+    position: fixed;
+    background: rgba(255,255,255,1);
+    border-bottom: 1px solid #EEE;
+    z-index: 1000;
+    width: 100%;
+    left: 15px;
+}
+.min-header h1 {
+    font-size: 48px !important;
+    margin-top: -4px !important;
+}
+.min-header h2 {
+    font-size: 11px !important;
+    margin-bottom: 7px !important;
+}
+.min-header .menu {
+    margin-top: -12px;
+}
+.menu {
+    margin-top:30px;
+}

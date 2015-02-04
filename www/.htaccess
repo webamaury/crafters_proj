@@ -1,0 +1,8 @@
+RewriteEngine On
+RewriteRule home index.php [L]
+RewriteRule ^([a-z\-]+)$ index.php?module=$1 [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^([a-z\-]+)/([0-9\-]+)/?$ index.php?module=$1&product=$2 [L]
+
+ErrorDocument 404 index.php?module=404
