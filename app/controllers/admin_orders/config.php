@@ -10,11 +10,11 @@
 ##############################################################################
 
 $module_details = array(
-	'name' 					=> 'Messages', 
-	'description' 			=> 'Manage messages',
-	'icon' 					=> 'glyphicon-envelope', 
-	'path' 					=> 'messages', 
+	'name' 					=> 'Orders', 
+	'description' 			=> 'Manage orders',
+	'icon' 					=> 'glyphicon-book', 
+	'path' 					=> 'orders', 
 	'allowed_levels' 		=> array(1, 2), 
-	'position' 				=> 5
+	'position' 				=> 4
 );
 ?>

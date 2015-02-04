@@ -12,7 +12,7 @@
 $module_details = array(
 	'name' 					=> 'Admins', 
 	'description' 			=> 'Manage admins',
-	'icon' 					=> 'glyphicon-user', 
+	'icon' 					=> 'glyphicon-tower', 
 	'path' 					=> 'adminUsers', 
 	'allowed_levels' 		=> array(1, 2), 
 	'position' 				=> 1

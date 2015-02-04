@@ -19,6 +19,6 @@ DEFINE("_METADESCRIPTION", "Admin 404");
 /***********************************************************
  *	VUE													  **
  ***********************************************************/
-include_once('../app/views/admin_autres/404.php');
+include_once(_APP_PATH . 'views/admin_autres/404.php');
 
 ?>

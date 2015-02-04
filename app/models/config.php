@@ -19,5 +19,7 @@ DEFINE( '_TABLE__LIKE', 						_DB_PREFIX."like");
 DEFINE( '_TABLE__COMMANDES', 					_DB_PREFIX."order");
 DEFINE( '_TABLE__COMMANDES_PRODUITS',			_DB_PREFIX."product_order");
 
+DEFINE( '_TABLE__ORDER', 						_DB_PREFIX."order");
+DEFINE( '_TABLE__PRODUCT_ORDER', 				_DB_PREFIX."product_order");
 
 ?>
