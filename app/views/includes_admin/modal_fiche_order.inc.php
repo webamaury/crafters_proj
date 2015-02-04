@@ -73,7 +73,6 @@
 					<h4>Product</h4>
 					<form class="form-horizontal" method="post" action="#" role="form">
 						<div class="display-inline">
-							<label class="col-md-4 control-label">Product name : </label>
 							<div class="col-md-8">
 								<span class="form-control-static ajax_pquantity"></span>
 								<span class="form-control-static ajax_ptype"></span>
