@@ -9,6 +9,17 @@ a:focus, input:focus, textarea:focus, button:focus, a:hover, input:hover, textar
     outline: none !important;
     text-decoration: none;
 }
+.maxheight300 {
+    max-height: 300px;
+    overflow: scroll;
+    border: 1px solid #ddd;
+}
+
+.maxheight400 {
+    max-height: 400px;
+    overflow: scroll;
+    border: 1px solid #ddd;
+}
 .btn-tomato {
 	background-color: #f05d43 !important;
   border: 1px solid #f05d43 !important;

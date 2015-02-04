@@ -20,7 +20,7 @@
 
 						<hr/>
 
-						<form style="max-height: 300px;overflow: scroll;border: 1px solid #ddd;" role="form" class="ajax_display_cart_content">
+						<form role="form" class="ajax_display_cart_content maxheight300">
 							<!--<div class="col-md-12">
 								<div class="col-md-4">
 									<img src="illu/13.jpg" class="img-responsive">
@@ -52,7 +52,7 @@
 				</div>
 			</div>
 			<div class="modal-footer">
-				<button class="btn btn-danger"><a href="index.php?module=commande">Buy it</a></button>
+				<a class="btn btn-danger" href="index.php?module=commande">Buy it</a>
 				<button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
 			</div>
 		</div>

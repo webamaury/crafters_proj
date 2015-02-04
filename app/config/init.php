@@ -77,6 +77,7 @@ if (isset($_GET['module'])) {
 } else {
 	$var = $currentPage;
 } if (!$user->isAuthed() && !in_array($var, $pagesAllowedWithoutSession)) {
+	$notices->createNotice("danger", "Vous devez posséder un compte pour accéder à ce contenu");
 	header('Location: index.php?module=index');
 	exit();
 }
