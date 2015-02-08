@@ -6,7 +6,7 @@
 				<h4 class="modal-title" id="myModalLabel">Details about the order of <span class="ajax_firstname"></span></h4>
 			</div>
 			<div class="modal-body display-inline">
-				<div class="col-md-6">
+				<div class="col-md-7">
 					<form class="form-horizontal" method="post" action="#" role="form">
 						<div class="display-inline">
 							<label class="col-md-4 control-label">Creation : </label>
@@ -40,7 +40,15 @@
 						</div>
 					</form>
 				</div>
-				<div class="col-md-6">
+				<div class="col-md-5">
+					<h4>Product</h4>
+					<form class="form-horizontal" method="post" action="#" role="form">
+						<div class="display-inline product_order">
+
+						</div>
+					</form>
+				</div>
+				<div class="col-md-7">
 					<h4>Billing address</h4>
 					<form class="form-horizontal" method="post" action="#" role="form">
 						<div class="display-inline">
@@ -65,18 +73,6 @@
 							<label class="col-md-4 control-label">Country : </label>
 							<div class="col-md-8">
 								<p class="form-control-static ajax_country"></p>
-							</div>
-						</div>
-					</form>
-				</div>
-				<div class="col-md-6">
-					<h4>Product</h4>
-					<form class="form-horizontal" method="post" action="#" role="form">
-						<div class="display-inline">
-							<div class="col-md-8">
-								<span class="form-control-static ajax_pquantity"></span>
-								<span class="form-control-static ajax_ptype"></span>
-								<span class="form-control-static ajax_pname"></span>
 							</div>
 						</div>
 					</form>

@@ -106,9 +106,12 @@
 
 </div>
 <script type="text/javascript" src="../tools/plugin_jquery/jquery.form.min.js"></script>
+<script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
 <script type="text/javascript">
-$(document).ready(function() { 
-	
+$(document).ready(function() {
+	$("#birthday").datepicker();
+	$("#birthday").datepicker("option", "dateFormat", "yy-mm-dd");
+
 	
 	var options = { 
 			target: '#output',   // target element(s) to be updated with server response 
