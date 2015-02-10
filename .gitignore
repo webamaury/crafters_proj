@@ -4,4 +4,5 @@ www/uploads/
 www/illu/
 doc/PHPCheckStyle/
 .DS_Store
+.idea/
 doc.docx
