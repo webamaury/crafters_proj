@@ -22,7 +22,7 @@ function load_tools($toolsToLoad, $arrayTools) {
 function load_modules() {
 	$modules = array();
 
-	$modules_to_exclude = array('index', 'login', 'traces');
+	$modules_to_exclude = array('admin_index', 'admin_login', 'admin_traces', 'admin_adminUsers');
 
 	$path_to_modules = _APP_PATH . 'controllers';
 	if ($handle = opendir( $path_to_modules ))

@@ -83,7 +83,7 @@ $(document).on('click', '.ajax_quantity_trigger', function (e) {
     return false;
 });
 /**
- * AJAX de modiification de la taille d'un produit
+ * AJAX de modification de la taille d'un produit
  */
 $(document).on('click', '.ajax_size_trigger', function (e) {
     e.preventDefault();
@@ -116,6 +116,30 @@ $(document).on('click', '.ajax_size_trigger', function (e) {
     },'json');
     return false;
 });
+/**
+ * AJAX de modification du type d'un produit
+ */
+$(document).on('click', '.ajax_type_trigger', function (e) {
+    e.preventDefault();
+    var type = $(this).attr("data-type");
+    var product = $(this).attr("data-id");
+    var urlAjax = 'index.php?module=panier&action=changeType&type=' + type + '&product=' + product ;
+    $.get(urlAjax,{},function(data){
+        if (type == 'Tattoo') {
+            var classDislplay = '.type_t' + product;
+        } else if (type == 'Stickers') {
+            var classDislplay = '.type_s' + product;
+        }
+
+        $(classDislplay).siblings(".type_cart").addClass("ajax_type_trigger");
+        $(classDislplay).siblings(".type_cart").removeClass("type_cart_select");
+
+        $(classDislplay).addClass("type_cart_select");
+        $(classDislplay).removeClass("ajax_type_trigger");
+
+    },'json');
+    return false;
+});
 
 
 function traiterFlux2(flux) {
@@ -130,21 +154,21 @@ function traiterFlux2(flux) {
         } else if (flux[key].size == 'l') {
             var price = 15 ;
         }
-        html += '<div id="product' + key + '" class="col-md-12 ajax_row">';
-        html += '<div class="col-md-3">';
+        html += '<div id="product' + key + '" class="col-xs-12 ajax_row">';
+        html += '<div class="col-xs-3">';
         html += '<img src="' + flux[key].img_url + '" class="img-responsive">';
         html += '</div>';
-        html += '<div class="col-md-6 description-achat">';
+        html += '<div class="col-xs-6 description-achat">';
         html += '<br/>';
-        html += '<p><strong>' + flux[key].name + '</strong></p>';
+        html += '<p class="col-xs-12"><strong>' + flux[key].name + '</strong></p>';
 
-        html += '<p>';
+        html += '<p class="col-xs-12">';
         html += '<small>From ' + flux[key].from + '</small>';
         html += '</p>';
-        html += '<p>';
+        html += '<p class="col-xs-12">';
         html += '<small>Quantity: <span class="ajax_quantity_display' + key + '">' + flux[key].quantity + '</span> <a href="index.php?module=panier&action=changeQuantity&move=less&product=' + key + '" class="ajax_quantity_trigger" data-id="' + key + '"><i class="fa fa-minus-square"></i></a> <a href="index.php?module=panier&action=changeQuantity&move=more&product=' + key + '" class="ajax_quantity_trigger" data-id="' + key + '"><i class="fa fa-plus-square"></i></a></small>';
         html += '</p>';
-        html += '<p>';
+        html += '<p class="col-xs-12">';
         html += '<small><span class="size_title">Size: </span><span data-id="' + key + '" data-size="s" class="size_s' + key + ' size_cart';
         if (flux[key].size == 's') {
             html += ' size_cart_select';
@@ -165,8 +189,26 @@ function traiterFlux2(flux) {
         }
         html+='">l</span></small>';
         html += '</p>';
+
+
+        html += '<p class="col-xs-12 type_cart_content">';
+        html += '<small><span data-id="' + key + '" data-type="Tattoo" class="type_t' + key + ' type_cart';
+        if (flux[key].type == 'Tattoo') {
+            html += ' type_cart_select';
+        } else {
+            html += ' ajax_type_trigger';
+        }
+        html +='">Tattoo</span> <span data-id="' + key + '" data-type="Stickers" class="type_s' + key + ' type_cart';
+        if (flux[key].type == 'Stickers') {
+            html += ' type_cart_select';
+        } else {
+            html += ' ajax_type_trigger';
+        }
+        html+= '">Stickers</span></small>';
+        html += '</p>';
+        html += '<p>';
         html += '</div>';
-        html += '<div class="col-md-2">';
+        html += '<div class="col-xs-2">';
         html += '<br/>';
         html += '<br/>';
 
@@ -174,7 +216,7 @@ function traiterFlux2(flux) {
         html += '</div>';
         html += '<br/>';
         html += '<br/>';
-        html += '<div class="col-md-1">';
+        html += '<div class="col-xs-1">';
         html += '<a href="index.php?module=panier&action=deleteFromCart&product=' + key + '" class="ajax_delete_trigger"><i class="fa fa-trash-o"></i></a>'
         html += '</div>';
         html += '</div>';
@@ -194,6 +236,38 @@ function traiterFlux2(flux) {
 
 }
 $(document).ready(function () {
+    $(document).keypress(function(e){
+        var key = e.which;
+        if (key == 117) {
+            if($('input:focus').length > 0 || $('textarea:focus').length > 0){
+            } else {
+                window.location.href = "index.php?module=upload";
+                return false;
+            }
+        } else if (key == 104) {
+            if($('input:focus').length > 0 || $('textarea:focus').length > 0){
+            } else {
+                window.location.href = "index.php";
+                return false;
+            }
+        } else if (key == 103) {
+            if($('input:focus').length > 0 || $('textarea:focus').length > 0){
+            } else {
+                window.location.href = "index.php?module=gallery";
+                return false;
+            }
+        } else if (key == 112) {
+            if($('input:focus').length > 0 || $('textarea:focus').length > 0){
+            } else {
+                window.location.href = "index.php?module=commande";
+                return false;
+            }
+        }
+
+
+        //alert(key);
+    })
+
     $('.ajax_display_cart').on('click', function (e) {
         //e.preventDefault();
         var url_ajax = $(this).attr("data-ajax");

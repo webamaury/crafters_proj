@@ -87,9 +87,9 @@ class SignUpController extends CoreControlers
 						'bossxiii@hotmail.fr',
 						$_POST['mail'],
 						'Vérification de votre compte Crafters');
-						
-					$notices->createNotice('success', 'Votre compte a bien été crée vous allez recevoir un mail pour le valider');
-					header("location:index.php?module=index");
+
+					$_SESSION[_SES_NAME]['pageMessage'] = 2;
+					header('location:index.php?module=autre&action=messagePage');
 				}
 			} else {
 				$notices->createNotice('danger', 'Cette adresse email possède deja un compte');
@@ -105,8 +105,8 @@ class SignUpController extends CoreControlers
 			$ClassUser = new ClassUsers();
 			$ClassUser->user_id = $_GET['user'];
 			if ($ClassUser->verif() == true) {
-				$notices->createNotice('success', 'Votre compte a bien été validé');
-				header("location:index.php?module=index");
+				$_SESSION[_SES_NAME]['pageMessage'] = 3;
+				header('location:index.php?module=autre&action=messagePage');
 			} else {
 				$notices->createNotice('danger', 'Problème lors de la vérification de votre compte, veuillez réessayer plus tard');
 				header("location:index.php?module=index");

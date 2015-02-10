@@ -10,9 +10,9 @@
 			<?php echo $notices->displayNotice(); $notices->clearNotice(); ?>	
 		</div>
 		<div class="row">
-			<div class="col-sm-6 col-md-4">
+			<div class="col-sm-12 col-md-5 col-lg-4">
 				<div class="row">
-					<div class="col-md-4 header_video">
+					<div class="col-md-4 header_video text-center">
 						<iframe id="ytplayer" type="text/html" width="354" height="199"
 						        src="https://www.youtube.com/embed/hzbq6XM9zTU?autoplay=0&controls=0&fs=0&modestbranding=1&rel=0&showinfo=0&autohide=1&color=white&theme=light"
 						        frameborder="0" allowfullscreen>
@@ -33,22 +33,19 @@
 						<br/>
 						<br/>
 					</div>
-					<div class="row">
 
-						<div class="col-md-12">
-							<h2 style="text-transform: uppercase; font-size: 20px; ">Crafter of the month</h2>
-							<hr>
-						</div>
-						<div class="col-md-5 col-sm-3 col-xs-5">
-							<a href="index.php?module=profil&user=
-								<?php echo $crafter_of_month->user_id; ?>
-							">
-								<img src="
-								<?php echo $crafter_of_month->user_img_url; ?>
-								" class="img-responsive img-circle" style="float: right">
+					<div class="col-xs-12">
+						<h2 style="text-transform: uppercase; font-size: 20px; ">Crafter of the month</h2>
+						<hr>
+					</div>
+					<div class="col-xs-12">
+						<div class="col-md-5 col-sm-3 col-xs-3">
+							<a href="index.php?module=profil&user=<?php echo $crafter_of_month->user_id; ?>">
+								<img src="<?php echo $crafter_of_month->user_img_url; ?>" class="img-responsive img-circle" style="float: right">
 							</a>
 						</div>
-						<div class="col-md-6 col-sm-9 col-xs-7">
+
+						<div class="col-md-7 col-sm-9 col-xs-9">
 							<br/>
 							<a onclick="ga('send','event','Crafter of the month','Clique');" href="#"></a>
 
@@ -67,20 +64,21 @@
 							<br/>
 							<br/>
 						</div>
-
-						<div class="col-md-12 ">
-							<h2 style="text-transform: uppercase; font-size: 20px; ">Most Popular Crafters</h2>
-							<hr>
-						</div>
-						<?php
-						foreach ($popular_crafters as $popular_crafter) {
-							?>
-							<div class="col-md-3 col-sm-3 col-xs-3">
+					</div>
+					<div class="col-xs-12">
+						<h2 style="text-transform: uppercase; font-size: 20px; ">Most Popular Crafters</h2>
+						<hr>
+					</div>
+					<?php
+					foreach ($popular_crafters as $popular_crafter) {
+						?>
+						<div class="col-xs-12">
+							<div class="col-md-3 col-sm-2 col-xs-2">
 								<a href="index.php?module=profil&user=<?php echo $popular_crafter->user_id_product; ?>"><img
 										src="<?php echo $popular_crafter->user_img_url; ?>"
 										class="img-responsive img-circle" style="float: right"></a>
 							</div>
-							<div class="col-md-9 col-sm-9 col-xs-7">
+							<div class="col-md-9 col-sm-10 col-xs-10">
 								<br/>
 								<a href="index.php?module=profil&user=<?php echo $popular_crafter->user_id_product; ?>">
 									<h2><?php echo $popular_crafter->user_username; ?></h2></a>
@@ -93,40 +91,43 @@
 								<?php
 								}
 								?>
-
 								<br/>
-								<span class="seemore"><a
-										href="index.php?module=profil&user=<?php echo $popular_crafter->user_id_product; ?>">See
-										his creations</a></span>
+								<span class="seemore">
+									<a href="index.php?module=profil&user=<?php echo $popular_crafter->user_id_product; ?>">See his creations</a>
+								</span>
 								<br/>
 								<br/>
 							</div>
-						<?php
-						}
-						?>
-					</div>
+						</div>
+					<?php
+					}
+					?>
 				</div>
 			</div>
 
 
-			<div class="container big-gallery">
-				<div class="col-sm-8 col-md-8 big-container">
+			<div class="col-sm-12 col-md-7 col-lg-8 container big-gallery">
+				<div class="col-xs-12 big-container">
 					<span class="title-gallery">CRaFTERS LaST UPLOaD</span>
-					<!--<form class="navbar-form navbar-right" role="search">
-						<div class="form-group">
-							<input type="text" class="form-control" placeholder="Search">
+					<form action="index.php" method="get" class="navbar-form navbar-right" role="search">
+						<div class="input-group input-group-sm">
+							<input type="hidden" name="module" value="gallery">
+							<input type="text" min="3" class="form-control" name="search" placeholder="Search for..." required>
+							<span class="input-group-btn">
+
+								<button class="btn btn-default" type="submit"><i class="fa fa-search"></i></button>
+							</span>
 						</div>
-						<button type="submit" class="btn btn-default">Submit</button>
-					</form>-->
+					</form>
 				</div>
 
-				<div class="col-sm-6 col-md-8">
+				<div class="col-xs-12">
 					<div id="display_load_more" class="row">
 
 						<?php
 						foreach ($products as $product) {
 							?>
-							<div class="col-sm-6 col-md-4 col-xs-6 col-lg-3">
+							<div class="col-sm-4 col-md-4 col-xs-6 col-lg-3">
 								<div class="thumbnail">
 									<a href="index.php?module=fiche&product=<?php echo $product->product_id; ?>" class="product-image"><img src="<?php echo $product->product_img_url; ?>" class="img-responsive"></a>
 

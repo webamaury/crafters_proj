@@ -13,20 +13,21 @@ class ClassProducts extends CoreModels
 	function insertNew() 
 	{
 		$query = "INSERT INTO " . _TABLE__PRODUCTS . " 
-		(product_name, product_description, product_status, product_type, product_img_url, user_id_product) 
+		(product_name, product_description, product_status, product_img_url, user_id_product)
 		VALUES 
-		(:name, :descr, :status, :type, :img_url, :user_id)";
+		(:name, :descr, :status, :img_url, :user_id)";
 		$cursor = $this->connexion->prepare($query);
 	
 		$cursor->bindValue(':name', $this->name, PDO::PARAM_STR);
 		$cursor->bindValue(':descr', $this->descr, PDO::PARAM_STR);
 		$cursor->bindValue(':status', $this->status, PDO::PARAM_STR);
-		$cursor->bindValue(':type', $this->type, PDO::PARAM_STR);
 		$cursor->bindValue(':img_url', $this->img_url, PDO::PARAM_STR);
 		$cursor->bindValue(':user_id', $_SESSION[_SES_NAME]["id"], PDO::PARAM_STR);
 	
-		$return = $cursor->execute();
-		
+		$cursor->execute();
+
+		$return = $this->connexion->lastInsertId();
+
 		$cursor->closeCursor();
 
 		return $return;
@@ -58,14 +59,13 @@ class ClassProducts extends CoreModels
 		$this->query = "SELECT P.product_img_url,
 			P.product_id,
 			P.product_name,
-			P.product_type,
 			S.nom as
 			status_name
 			FROM " . _TABLE__PRODUCTS . " P, " . _TABLE__STATUTS . " S
 			WHERE S.statut = P.product_status and S.type = 'product'
 			ORDER BY " . $orderby;
 		$list = $this->select_no_param();
-				
+
 		return $list;
 	}
 
@@ -79,7 +79,6 @@ class ClassProducts extends CoreModels
 			P.product_description,
 			DATE_FORMAT(P.product_creation, '%d %M %Y %T') AS DateCrea,
 			P.product_status,
-			P.product_type,
 			P.product_img_url,
 			S.nom,
 			S.statut
@@ -105,7 +104,6 @@ class ClassProducts extends CoreModels
 			P.product_name, P.product_description,
 			DATE_FORMAT(P.product_creation, '%d %M %Y %T') AS DateCrea,
 			P.product_status,
-			P.product_type,
 			P.product_img_url,
 			S.nom
 			FROM " . _TABLE__PRODUCTS . " as P," . _TABLE__STATUTS . " as S
@@ -143,14 +141,15 @@ class ClassProducts extends CoreModels
 	 * Permet d'afficher les produits dans le front
 	 * @return array
      */
-	function getListFront() {
+	function getListFront($orderby = 'product_id DESC', $search = null) {
 		$query = "SELECT P.product_id,
 			P.product_name,
 			P.product_img_url,
+			P.product_nblike,
 			U.user_username
-			FROM " . _TABLE__PRODUCTS . " as P, " . _TABLE__USERS . " as U
-			WHERE P.user_id_product = U.user_id and P.product_status = 1
-			ORDER BY product_id DESC
+			FROM " . _TABLE__PRODUCTS . " P, " . _TABLE__USERS . " U
+			WHERE P.user_id_product = U.user_id and P.product_status = 2" . $search . "
+			ORDER BY " . $orderby . "
 			LIMIT " . $this->limit;
 		$cursor = $this->connexion->prepare($query);
 		
@@ -193,8 +192,7 @@ class ClassProducts extends CoreModels
 		$query = "UPDATE " . _TABLE__PRODUCTS . " 
 		SET product_name = :name,
 		product_description = :description,
-		product_status = :statut,
-		product_type = :type
+		product_status = :statut
 		WHERE product_id = :id";
 		
 		$cursor = $this->connexion->prepare($query);
@@ -202,7 +200,6 @@ class ClassProducts extends CoreModels
 		$cursor->bindValue(':name', $this->product_name, PDO::PARAM_STR);
 		$cursor->bindValue(':description', $this->product_description, PDO::PARAM_STR);
 		$cursor->bindValue(':statut', $this->product_status, PDO::PARAM_INT);
-		$cursor->bindValue(':type', $this->product_type, PDO::PARAM_STR);
 		$cursor->bindValue(':id', $this->product_id, PDO::PARAM_INT);
 
 		$return = $cursor->execute();

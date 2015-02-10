@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Class adminUsersController
+ * Class AdminUsersController
  */
 class AdminUsersController extends CoreControlers {
 

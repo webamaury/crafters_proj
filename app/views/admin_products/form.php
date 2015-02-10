@@ -65,16 +65,6 @@
 				</div>
 			</div>
 			<div class="form-group">
-				<label for="type" class="col-md-2 control-label">Type</label>
-				<div class="col-lg-10 col-md-8">
-					<select name="type" class="form-control">
-						<option <?php echo (isset($item->product_type) && $item->product_type == "tattoo") ? 'selected' : '' ; ?> value="tattoo">Tattoo</option>
-						<option <?php echo (isset($item->product_type) && $item->product_type == "stickers") ? 'selected' : '' ; ?> value="stickers">Stickers</option>
-					</select>
-
-				</div>
-			</div>
-			<div class="form-group">
 				<label for="statut" class="col-md-2 control-label">Status</label>
 				<div class="col-lg-10 col-md-8">
 					<select name="statut" class="form-control">

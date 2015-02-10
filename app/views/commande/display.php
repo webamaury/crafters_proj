@@ -18,36 +18,76 @@
 							<?php
 							//var_dump($_SESSION[_SES_NAME]['Cart']);
 							foreach ($_SESSION[_SES_NAME]['Cart'] as $key => $product) {
-							?>
+							//var_dump($product);
+								?>
 								<div id="product<?php echo $key; ?>" class="col-md-12 ajax_row">
 									<div class="col-md-3"><img src="<?php echo $product['img_url']; ?>" class="img-responsive"></div>
 									<div class="col-md-6 description-achat">
-										<br>
-										<p>
+										<p class="col-xs-12">
 											<strong><?php echo $product['name']; ?></strong>
 										</p>
-										<p>
+										<p class="col-xs-12">
 											<small>From <?php echo $product['from']; ?></small>
 										</p>
-										<p>
+										<p class="col-xs-12">
 											<small>Quantity:
 												<span class="ajax_quantity_display<?php echo $key; ?>"><?php echo $product['quantity']; ?></span>
 												<a href="index.php?module=panier&amp;action=changeQuantity&amp;move=less&amp;product=<?php echo $key; ?>" class="ajax_quantity_trigger" data-id="<?php echo $key; ?>"><i class="fa fa-minus-square"></i></a>
 												<a href="index.php?module=panier&amp;action=changeQuantity&amp;move=more&amp;product=<?php echo $key; ?>" class="ajax_quantity_trigger" data-id="<?php echo $key; ?>"><i class="fa fa-plus-square"></i></a>
 											</small>
 										</p>
-										<p>
+										<p class="col-xs-12">
 											<small>
 												<span class="size_title">Size: </span>
-												<span data-id="<?php echo $key; ?>" data-size="s" class="size_s<?php echo $key; ?> size_cart ajax_size_trigger">s</span>
-												<span data-id="<?php echo $key; ?>" data-size="m" class="size_m<?php echo $key; ?> size_cart size_cart_select">m</span>
-												<span data-id="<?php echo $key; ?>" data-size="l" class="size_l<?php echo $key; ?> size_cart ajax_size_trigger">l</span>
+												<span data-id="<?php echo $key; ?>" data-size="s" class="size_s<?php echo $key; ?> size_cart<?php
+												if ($product['size'] == 's') {
+													$prodprice = '5€';
+													echo ' size_cart_select';
+												} else {
+													echo ' ajax_size_trigger';
+												}
+												?>">s</span>
+												<span data-id="<?php echo $key; ?>" data-size="m" class="size_m<?php echo $key; ?> size_cart<?php
+												if ($product['size'] == 'm') {
+													$prodprice = '10€';
+													echo ' size_cart_select';
+												} else {
+													echo ' ajax_size_trigger';
+												}
+												?>">m</span>
+												<span data-id="<?php echo $key; ?>" data-size="l" class="size_l<?php echo $key; ?> size_cart<?php
+												if ($product['size'] == 'l') {
+													$prodprice = '15€';
+													echo ' size_cart_select';
+												} else {
+													echo ' ajax_size_trigger';
+												}
+												?>">l</span>
 											</small>
 										</p>
+										<p class="col-xs-12 type_cart_content">
+											<small>
+												<span data-id="<?php echo $key; ?>" data-type="Tattoo" class="type_t<?php echo $key; ?> type_cart<?php
+												if ($product['type'] == 'Tattoo') {
+													echo ' type_cart_select';
+												} else {
+													echo ' ajax_type_trigger';
+												}
+												?>">Tattoo</span>
+												<span data-id="<?php echo $key; ?>" data-type="Stickers" class="type_s<?php echo $key; ?> type_cart<?php
+												if ($product['type'] == 'Stickers') {
+													echo ' type_cart_select';
+												} else {
+													echo ' ajax_type_trigger';
+												}
+												?>">Stickers</span>
+											</small>
+										</p>
+
 									</div>
 									<div class="col-md-2">
 										<br><br>
-										<p class="price">10$</p>
+										<p class="price"><?php echo $prodprice; ?></p>
 									</div>
 									<br><br>
 									<div class="col-md-1">
@@ -116,7 +156,7 @@
 						</div>
 						<div class="col-md-4 col-md-offset-4 col-xs-8 col-xs-offset-2">
 							<br/>
-							<input type="submit" class="btn btn-md btn-primary center-block" value="Pay with Paypal">
+							<input type="submit" class="btn btn-md btn-primary center-block" value="Delivery">
 							<br>
 						</div>
 					</div>

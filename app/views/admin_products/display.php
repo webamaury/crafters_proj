@@ -14,7 +14,6 @@
 				<tr>
 					<th class="table_img">#</th>
 					<th>Name</th>
-					<th>Type</th>
 					<th>Status</th>
 					<th class="colum_action">Actions</th>
 				</tr>
@@ -23,10 +22,9 @@
 				<?php
 				foreach($items as $item) {
 					?>
-				<tr <?php echo ($item->status_name == 'disable') ? 'class="info"' : '' ; ?>>
+				<tr <?php echo ($item->status_name == 'public disable') ? 'class="warning"' : '' ; ?>>
 					<td><img src="../<?php echo $item->product_img_url ; ?>" alt="product image" width="30" height="30"></td>
 					<td><?php echo $item->product_name ; ?></td>
-					<td><?php echo $item->product_type ; ?></td>
 					<td><?php echo $item->status_name ; ?></td>
 					<td class="colum_action">
 						<a href="#" onclick="return false" class="tips-trigger"  data-toggle="tooltip" data-placement="bottom" title="see details">
@@ -72,7 +70,6 @@
 		$(".ajax_description").text(obj.product_description);
 		$(".ajax_creation").text(obj.DateCrea);
 		$(".ajax_status").text(obj.nom);
-		$(".ajax_type").text(obj.product_type);
 
 		//alert( obj.name );
 		//var obj = jQuery.parseJSON(flux);

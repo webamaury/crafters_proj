@@ -42,6 +42,8 @@ class PanierController extends CoreControlers
 			$_SESSION[_SES_NAME]['Cart'][$productId]['from'] = $_GET['from'];
 			$_SESSION[_SES_NAME]['Cart'][$productId]['img_url'] = $_GET['img_url'];
 			$_SESSION[_SES_NAME]['Cart'][$productId]['size'] = "m";
+			$_SESSION[_SES_NAME]['Cart'][$productId]['type'] = "Tattoo";
+
 			echo true;
 		} else {
 			$_SESSION[_SES_NAME]['Cart'][$productId]['quantity'] ++;
@@ -132,6 +134,13 @@ class PanierController extends CoreControlers
 		$_SESSION[_SES_NAME]['Cart'][$product]['size'] = $size;
 		$json['totalPrice'] = $this->calculateTotalPrice();
 		echo json_encode($json);
+	}
+	public function changeType()
+	{
+		$product = $_GET['product'];
+		$type = $_GET['type'];
+		$_SESSION[_SES_NAME]['Cart'][$product]['type'] = $type;
+		echo true;
 	}
 
 }

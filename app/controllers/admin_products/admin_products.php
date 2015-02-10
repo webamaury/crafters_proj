@@ -24,8 +24,7 @@
 				$products->product_name				= $_POST['name'];
 				$products->product_description 		= $_POST['description'];
 				$products->product_status 			= $_POST['statut'];
-				$products->product_type 			= $_POST['type'];
-				
+
 	//						echo $_POST['statut']."<br>";
 	//						echo $adminUsers->statut ; exit();	
 				
@@ -67,7 +66,6 @@
 			}
 			else if((!isset($_GET['action']) && !isset($_POST['action'])) || (isset($_GET['action']) && $_GET['action'] == 'list')) {
 				$items = $products->getList();
-				
 				//$items = $adminUsers;
 				##############################################################
 				##	APPEL TOOLS												##

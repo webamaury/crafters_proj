@@ -8,7 +8,7 @@ class ClassNotices {
 	 *
      */
 	function __construct() {
-			
+
 	}
 
 	/**

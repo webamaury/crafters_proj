@@ -17,9 +17,28 @@ class uploadController extends CoreControlers {
 		##############################################################
 		##	TRAITEMENT PHP											##
 		##############################################################
-		
-		
-		
+		include_once(_APP_PATH . 'models/class.product.php');
+		$ClassProduct = new ClassProducts();
+
+		include_once(_APP_PATH . 'models/class.users.php');
+		$ClassUser = new ClassUsers();
+
+		$ClassUser->user_id_product = $_SESSION[_SES_NAME]['id'];
+		$lastUploads = $ClassUser->getProductOfUser(4, $ClassUser->user_id_product);
+		foreach ($lastUploads as $lastUpload) {
+			$lastUpload->user_username = $_SESSION[_SES_NAME]['username'];
+			$ClassProduct->product_id = $lastUpload->product_id;
+			$nb_like = $ClassProduct->numberOfLike();
+			$lastUpload->nb_like = $nb_like->nb_like;
+			if ($lastUpload->nb_like > 0) {
+				$lastUpload->name_likes = $ClassProduct->getUsersWhoLiked();
+				if (isset($_SESSION[_SES_NAME]["authed"]) && $_SESSION[_SES_NAME]["authed"] === true) {
+					$ClassProduct->user_id = $_SESSION[_SES_NAME]["id"];
+					$lastUpload->did_i_like = $ClassProduct->didILike();
+				}
+			}
+		}
+
 		##############################################################
 		##	APPEL TOOLS												##
 		##############################################################
@@ -35,8 +54,7 @@ class uploadController extends CoreControlers {
 		##############################################################
 		##	VUE														##
 		##############################################################
-		include_once('../app/views/upload/display.php');
-
+		include('../app/views/upload/display.php');
 	}
 	
 	function upload_ajax($arrayTools, $notices) {
@@ -118,36 +136,20 @@ class uploadController extends CoreControlers {
 		
 	}
 	
-	function submit_pay() {
+	function submitCraft() {
 		include_once _APP_PATH . 'models/class.product.php';
 		$classProducts = new ClassProducts();
 		
 		$classProducts->name 			= $_POST['name'];
 		$classProducts->descr 		= $_POST['description'];
 		$classProducts->status		= $_POST['radio_public_private'];
-		$classProducts->type			= $_POST['radio_tatoo_stickers'];
 		$classProducts->img_url		= $_POST['img'];
 
-		$classProducts->insertNew();
+		$lastId = $classProducts->insertNew();
 		
-		header('location:index.php?module=summary');
+		header('location:index.php?module=fiche&product=' . $lastId);
 	}
 	
-	function submit_save() {
-
-		include_once _APP_PATH . 'models/class.product.php';
-		$classProducts = new ClassProducts();
-		
-		$classProducts->name 			= $_POST['name'];
-		$classProducts->descr 		= $_POST['description'];
-		$classProducts->status		= $_POST['radio_public_private'];
-		$classProducts->type			= $_POST['radio_tatoo_stickers'];
-		$classProducts->img_url		= $_POST['img'];
-
-		$classProducts->insertNew();
-
-		header('location:index.php?module=dashboard');
-	}
 }
 
 ?>

@@ -94,7 +94,18 @@ class IndexController extends CoreControlers
 		$min = ($_POST['page'] - 1) * $this->nb_by_page;
 		$ClassProduct->limit = $min . ',' . $this->nb_by_page;
 		//echo $ClassProduct->limit;exit();
-		$products = $ClassProduct->getListFront();
+		if (isset($_POST['order'])) {
+			if ($_POST['order'] == 'popular') {
+				$orderby = 'product_nblike DESC';
+			} else if ($_POST['order'] == 'newest') {
+				$orderby = 'product_id DESC';
+			} else {
+				$orderby = 'product_id DESC';
+			}
+		} else {
+			$orderby = 'product_id DESC';
+		}
+		$products = $ClassProduct->getListFront($orderby);
 		if (!empty($products)) {
 			foreach ($products as $product) {
 				$ClassProduct->product_id = $product->product_id;

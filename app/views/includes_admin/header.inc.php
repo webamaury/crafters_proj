@@ -25,6 +25,7 @@
                       ?>
                 <li class="divider"></li>
                 <li class="dropdown-header">Nav header</li>
+                <li><a href="index.php?module=AdminUsers">Admin</a></li>
                 <li><a href="#">Config</a></li>
                 <li><a href="#">settings</a></li>
               </ul>

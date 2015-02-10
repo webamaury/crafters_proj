@@ -162,6 +162,8 @@ class CoreControlers {
 			return false;
 		}
 	}
-
+	function loadView($view, $arrayTools, $notices) {
+		include_once($view);
+	}
 }
 ?>

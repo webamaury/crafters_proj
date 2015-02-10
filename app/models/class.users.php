@@ -14,11 +14,11 @@ class ClassUsers extends CoreModels {
 						
 		// No account found
 		if (count($accounts) === 0) {
-			return false;
+			return 'error0';
 		} elseif (count($accounts) > 1) { // More than one account found
-			return false;
+			return 'error1';
 		} else { // One account found - login
-			if ($accounts[0]->user_status !== 0) {
+			if ($accounts[0]->user_status != 0) {
 				$session_authed = true;
 				
 				$_SESSION[_SES_NAME]["authed"] 		    = $session_authed;
@@ -34,7 +34,7 @@ class ClassUsers extends CoreModels {
 					
 				return true;
 			} else {
-				return false;
+				return 'error2';
 			}
 		}
 	}

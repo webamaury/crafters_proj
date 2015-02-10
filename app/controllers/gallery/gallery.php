@@ -24,8 +24,25 @@ class galleryController extends CoreControlers {
 		$ClassUser = new ClassUsers();
 
 		//PRODUITS DE LA LISTE
+		if (isset($_GET['order'])) {
+			if ($_GET['order'] == 'popular') {
+				$orderby = 'product_nblike DESC';
+			} else if ($_GET['order'] == 'newest') {
+				$orderby = 'product_id DESC';
+			} else {
+				$orderby = 'product_id DESC';
+			}
+		} else {
+			$orderby = 'product_id DESC';
+		}
+		if (isset($_GET['search'])) {
+			$search = " AND (P.product_name LIKE '%" . $_GET['search'] . "%' OR P.product_description LIKE '%" . $_GET['search'] . "%')";
+		} else {
+			$search = "";
+		}
 		$ClassProduct->limit = '0,' . $this->nb_by_page;
-		$products = $ClassProduct->getListFront();
+		$products = $ClassProduct->getListFront($orderby, $search);
+		//var_dump($products);
 		foreach ($products as $product) {
 			$ClassProduct->product_id = $product->product_id;
 			$nb_like = $ClassProduct->numberOfLike();
@@ -38,8 +55,6 @@ class galleryController extends CoreControlers {
 				}
 			}
 		}
-
-
 		##############################################################
 		##	APPEL TOOLS												##
 		##############################################################

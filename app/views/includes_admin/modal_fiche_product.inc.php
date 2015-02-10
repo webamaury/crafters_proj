@@ -35,12 +35,6 @@
 								<p class="form-control-static ajax_status"></p>
 							</div>
 						</div>
-						<div class="display-inline">
-							<label class="col-md-4 control-label">Type : </label>
-							<div class="col-md-8">
-								<p class="form-control-static ajax_type"></p>
-							</div>
-						</div>
 					</form>
 				</div>
 			</div>

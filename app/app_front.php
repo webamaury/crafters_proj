@@ -7,7 +7,7 @@ if (file_exists($url)) {
 	include_once($url);
 	new $class($arrayTools, $notices);
 } else {
-	include_once('../app/controllers/autres/404.php');
+	include_once('../app/controllers/autres/autres.php');
 	new AutreController($arrayTools, $notices);
 }
 

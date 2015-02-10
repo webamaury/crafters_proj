@@ -34,6 +34,19 @@ a:focus, input:focus, textarea:focus, button:focus, a:hover, input:hover, textar
     color: #FFF !important;
 
 }
+.type_cart {
+    padding: 3px 4px;
+    cursor: pointer;
+}
+.type_cart_content {
+    margin-top: 6px;
+}
+.type_cart_select, .type_cart:hover {
+    background-color: #f05d43 !important;
+    color: #FFF !important;
+    padding: 3px 4px;
+    border-radius: 5px;
+}
 .size_cart {
     cursor: pointer;
     margin-top: 5px;
@@ -108,4 +121,40 @@ a:focus, input:focus, textarea:focus, button:focus, a:hover, input:hover, textar
 }
 .menu {
     margin-top:30px;
+}
+.messagepageicon {
+    font-size: 140px;
+}
+.messagepageheader {
+    font-size: 50px;
+}
+.messagepageheader {
+    font-size: 30px;
+}
+.btn-another-work {
+    border-radius: 6px;
+    border: 1px solid #EEE;
+}
+.btn-another-work:hover {
+    background-image: none;
+    outline: 0;
+    -webkit-box-shadow: inset 0 3px 5px rgba(0,0,0,.125);
+    box-shadow: inset 0 1px 3px rgba(0,0,0,.125);
+}
+.tooltip-inner {
+    min-width: 50px;
+    padding: 4px 16px !important;
+}
+#img_output {
+    width: 300px;
+}
+.breadcrumb li a:hover {
+    text-decoration: none !important;
+    color: #e55858 !important;
+}
+.breadcrumb li .select {
+    color: #e55858 !important;
+}
+.breadcrumb {
+    margin-top: 6px;
 }

@@ -6,29 +6,30 @@
 <?php include(_APP_PATH . "views/includes/header.inc.php"); ?>
 
 
-	<div class="field" id="searchform">
-		<input type="text" id="searchterm" placeholder="What are you searching for?">
-		<button type="button" id="search">Get it !</button>
-	</div>
 	<div class="container">
 		<div class="container big-gallery">
-			<div class="col-sm-5 col-md-5">
-
+			<div class="col-sm-5 col-xs-12 pull-right">
+				<form class="navbar-form navbar-right" role="search">
+					<div class="input-group input-group-sm">
+						<input type="text" name="search" class="form-control searchval" value="<?php echo (isset($_GET['search'])) ? $_GET['search'] : "" ; ?>" placeholder="Search for...">
+							<span class="input-group-btn">
+								<button class="btn btn-default" type="button"><i class="fa fa-search"></i></button>
+							</span>
+					</div>
+				</form>
+			</div>
+			<div class="col-xs-12 col-sm-7">
 				<ol class="breadcrumb">
-					<li class="active"><a href="#">Tattoo</a></li>
-					<li> <a href="#">Stickers</a></li>
-					<li> <a href="#">Popular</a></li>
-					<li> <a href="#">Newest</a></li>
-					<li> <a href="#">All</a></li>
+					<li> <a href="index.php?module=gallery">Newest</a></li>
+					<li> <a href="index.php?module=gallery&order=popular">Popular</a></li>
 				</ol>
 			</div>
-
 
 			<div class="col-sm-12">
 
 
 				<div id="display_load_more" class="row">
-
+				<span data-order="<?php echo (isset($_GET['order'])) ? $_GET['order'] : 'newest' ; ?>" class="orderby"></span>
 					<?php
 					foreach ($products as $product) {
 						?>
