@@ -99,12 +99,13 @@
 		var html = " ";
 		for (var key in obj.product) {
 
-			html += '<div class="col-md-8">';
-			html += '<span class="form-control-static">' + obj.product[key].product_order_quantity + 'x </span>';
-			html += '<span class="form-control-static">' + obj.product[key].product_type + ' </span>';
-			html += '<span class="form-control-static">' + obj.product[key].product_name + ' </span><br>';
-			html += '<span class="form-control-static">(taille ' + obj.product[key].product_order_size + ')</span>';
-			html += '</div>';
+			html += '<tr>';
+			html += '<td>' + obj.product[key].product_id + '</td>';
+			html += '<td>' + obj.product[key].product_order_type + '</td>';
+			html += '<td>' + obj.product[key].product_order_quantity + '</td>';
+			html += '<td>' + obj.product[key].product_name + '</td>';
+			html += '<td>' + obj.product[key].product_order_size + '</td>';
+			html += '</tr>';
 
 		}
 		$('.product_order').html(html);
@@ -150,6 +151,12 @@
 	$(document).ready(function(){
 		$('.table').DataTable({
 			"order": [[2, "asc"]]
+		});
+		$('.table_modal').DataTable({
+			"paging": false,
+			"searching": false,
+			"info": false,
+			"ordering": false
 		});
 		$(".modal-fiche-trigger").on("click", function(){
 			var item_id = $(this).attr("data-id");

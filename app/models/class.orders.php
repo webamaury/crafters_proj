@@ -169,8 +169,8 @@ class ClassOrders extends CoreModels {
 	 * @return mixed
      */
 	public function getOneArrayProduct() {
-		$query = "SELECT P.product_name, P.product_type,
-			O.product_id, O.order_id, O.product_order_quantity, O.product_order_size
+		$query = "SELECT P.product_id, P.product_name,
+			O.product_order_type, O.product_id, O.order_id, O.product_order_quantity, O.product_order_size
 			FROM " . _TABLE__PRODUCT_ORDER . " as O, " . _TABLE__PRODUCTS . " as P
 			WHERE P.product_id = O.product_id
 			AND O.order_id = :id";
