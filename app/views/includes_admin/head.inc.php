@@ -9,7 +9,8 @@
 	<title><?php echo _METATITLE ; ?></title>
 	<!-- Bootstrap core CSS -->
 	<?php echo load_tools($toolsToLoad, $arrayTools) ; ?>
-	<?php echo load_css($stylesToLoad) ; ?> 
+	<?php echo load_css($stylesToLoad) ; ?>
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
   
 </head>
 

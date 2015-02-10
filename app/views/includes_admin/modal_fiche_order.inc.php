@@ -5,8 +5,8 @@
 				<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
 				<h4 class="modal-title" id="myModalLabel">Details about the order of <span class="ajax_firstname"></span></h4>
 			</div>
-			<div class="modal-body display-inline">
-				<div class="col-md-6">
+			<div class="modal-body display-inline modal_order">
+				<div class="col-md-12">
 					<form class="form-horizontal" method="post" action="#" role="form">
 						<div class="display-inline">
 							<label class="col-md-4 control-label">Creation : </label>
@@ -40,8 +40,8 @@
 						</div>
 					</form>
 				</div>
-				<div class="col-md-6">
-					<h4>Billing address</h4>
+				<div class="col-md-12">
+					<h4 class="text-center">Billing address</h4>
 					<form class="form-horizontal" method="post" action="#" role="form">
 						<div class="display-inline">
 							<label class="col-md-4 control-label">Street : </label>
@@ -69,17 +69,21 @@
 						</div>
 					</form>
 				</div>
-				<div class="col-md-6">
-					<h4>Product</h4>
-					<form class="form-horizontal" method="post" action="#" role="form">
-						<div class="display-inline">
-							<div class="col-md-8">
-								<span class="form-control-static ajax_pquantity"></span>
-								<span class="form-control-static ajax_ptype"></span>
-								<span class="form-control-static ajax_pname"></span>
-							</div>
-						</div>
-					</form>
+				<div class="col-xs-12 table-responsive">
+					<table class="table_modal table-bordered table-striped">
+						<thead>
+						<tr>
+							<th>#</th>
+							<th>Type</th>
+							<th>Quantity</th>
+							<th>Name</th>
+							<th>Size</th>
+						</tr>
+						</thead>
+						<tbody class="product_order">
+
+						</tbody>
+					</table>
 				</div>
 			</div>
 			<div class="modal-footer">

@@ -83,9 +83,6 @@
 		$(".ajax_town").text(obj.address_town);
 		$(".ajax_zipcode").text(obj.address_zipcode);
 		$(".ajax_country").text(obj.address_country);
-		$(".ajax_pname").text(obj.product.product_name);
-		$(".ajax_ptype").text(obj.product.product_type);
-		$(".ajax_pquantity").text(obj.product.product_order_quantity);
 
 		//alert( obj.name );
 		//var obj = jQuery.parseJSON(flux);
@@ -98,13 +95,68 @@
 		});*/
 		//$(affichage).html(contenu);
 
+
+		var html = " ";
+		for (var key in obj.product) {
+
+			html += '<tr>';
+			html += '<td>' + obj.product[key].product_id + '</td>';
+			html += '<td>' + obj.product[key].product_order_type + '</td>';
+			html += '<td>' + obj.product[key].product_order_quantity + '</td>';
+			html += '<td>' + obj.product[key].product_name + '</td>';
+			html += '<td>' + obj.product[key].product_order_size + '</td>';
+			html += '</tr>';
+
+		}
+		$('.product_order').html(html);
+
 	}
 
-	
+	$(document).ready(function () {
+		$(function () {
+			$('[data-toggle="tooltip"]').tooltip();
+		});
+		$("#load_more").on("click", function (e) {
+			e.preventDefault();
+			$(this).append('<img id="ajax_loader" src="img/ajax-loader.gif" alt="ajax loader"/>');
+			var page = $(this).attr("data-num");
+			page++;
+			$(this).attr("data-num", page);
+			$.ajax({
+				// URL du traitement sur le serveur
+				url: 'index.php?module=index',
+				//Type de requête
+				type: 'post',
+				//parametres envoyés
+				data: 'action=ajax_more&page=' + page,
+				//on precise le type de flux
+				//Traitement en cas de succes
+				success: function (data) {
+					if (data == 'no more') {
+						$('#load_more').html('no more product');
+					}
+					else {
+						traiterFlux(data);
+					}
+					$('#ajax_loader').remove();
+				},
+				error: function (jqXHR, textStatus, errorThrown) {
+					console.log(textStatus + " " + errorThrown);
+					console.log("Erreur execution requete ajax");
+				}
+			});
+		});
+	});
 	
 	$(document).ready(function(){
 		$('.table').DataTable({
 			"order": [[2, "asc"]]
+		});
+		$('.table_modal').DataTable({
+			"paging": false,
+			"searching": false,
+			"info": false,
+			"ordering": false
 		});
 		$(".modal-fiche-trigger").on("click", function(){
 			var item_id = $(this).attr("data-id");
