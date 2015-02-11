@@ -9,6 +9,12 @@
 				<div class="col-md-12">
 					<form class="form-horizontal" method="post" action="#" role="form">
 						<div class="display-inline">
+							<label class="col-md-4 control-label">Order hash : </label>
+							<div class="col-md-8">
+								<p class="form-control-static ajax_hash"></p>
+							</div>
+						</div>
+						<div class="display-inline">
 							<label class="col-md-4 control-label">Creation : </label>
 							<div class="col-md-8">
 								<p class="form-control-static ajax_datecrea"></p>
@@ -21,15 +27,21 @@
 							</div>
 						</div>
 						<div class="display-inline">
-							<label class="col-md-4 control-label">Product number : </label>
+							<label class="col-md-4 control-label">Delivery : </label>
 							<div class="col-md-8">
-								<p class="form-control-static ajax_nbproduit"></p>
+								<p class="form-control-static ajax_delivery"></p>
 							</div>
 						</div>
 						<div class="display-inline">
-							<label class="col-md-4 control-label">Name : </label>
+							<label class="col-md-4 control-label">Payment mode : </label>
 							<div class="col-md-8">
-								<p class="form-control-static ajax_name"></p>
+								<p class="form-control-static ajax_payment_mode"></p>
+							</div>
+						</div>
+						<div class="display-inline">
+							<label class="col-md-4 control-label">Price : </label>
+							<div class="col-md-8">
+								<p class="form-control-static ajax_price"></p>
 							</div>
 						</div>
 						<div class="display-inline">
@@ -38,36 +50,16 @@
 								<p class="form-control-static ajax_firstname"></p>
 							</div>
 						</div>
+						<div class="display-inline">
+							<label class="col-md-4 control-label">Name : </label>
+							<div class="col-md-8">
+								<p class="form-control-static ajax_name"></p>
+							</div>
+						</div>
 					</form>
 				</div>
-				<div class="col-md-12">
-					<h4 class="text-center">Billing address</h4>
-					<form class="form-horizontal" method="post" action="#" role="form">
-						<div class="display-inline">
-							<label class="col-md-4 control-label">Street : </label>
-							<div class="col-md-8">
-								<p class="form-control-static ajax_numberstreet"></p>
-							</div>
-						</div>
-						<div class="display-inline">
-							<label class="col-md-4 control-label">Town : </label>
-							<div class="col-md-8">
-								<p class="form-control-static ajax_town"></p>
-							</div>
-						</div>
-						<div class="display-inline">
-							<label class="col-md-4 control-label">Zipcode : </label>
-							<div class="col-md-8">
-								<p class="form-control-static ajax_zipcode"></p>
-							</div>
-						</div>
-						<div class="display-inline">
-							<label class="col-md-4 control-label">Country : </label>
-							<div class="col-md-8">
-								<p class="form-control-static ajax_country"></p>
-							</div>
-						</div>
-					</form>
+				<div class="col-md-12 address_order">
+
 				</div>
 				<div class="col-xs-12 table-responsive">
 					<table class="table_modal table-bordered table-striped">
@@ -86,7 +78,7 @@
 					</table>
 				</div>
 			</div>
-			<div class="modal-footer">
+			<div class="modal-footer ajax_send ajax_paid">
 				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 			</div>
 		</div>
