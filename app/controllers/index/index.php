@@ -105,7 +105,12 @@ class IndexController extends CoreControlers
 		} else {
 			$orderby = 'product_id DESC';
 		}
-		$products = $ClassProduct->getListFront($orderby);
+		if (isset($_POST['search'])) {
+			$search = " AND (P.product_name LIKE '%" . $_POST['search'] . "%' OR P.product_description LIKE '%" . $_POST['search'] . "%' OR U.user_username LIKE '%" . $_POST['search'] . "%')";
+		} else {
+			$search = "";
+		}
+		$products = $ClassProduct->getListFront($orderby, $search);
 		if (!empty($products)) {
 			foreach ($products as $product) {
 				$ClassProduct->product_id = $product->product_id;

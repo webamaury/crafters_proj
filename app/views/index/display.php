@@ -112,7 +112,7 @@
 					<form action="index.php" method="get" class="navbar-form navbar-right" role="search">
 						<div class="input-group input-group-sm">
 							<input type="hidden" name="module" value="gallery">
-							<input type="text" min="3" class="form-control" name="search" placeholder="Search for..." required>
+							<input type="text" minlength="3" maxlength="20" class="form-control" name="search" placeholder="Search for..." required>
 							<span class="input-group-btn">
 
 								<button class="btn btn-default" type="submit"><i class="fa fa-search"></i></button>

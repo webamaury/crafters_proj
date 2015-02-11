@@ -79,7 +79,7 @@ class SignUpController extends CoreControlers
 					$tpl .= file_get_contents(_APP_PATH . 'mail_templates/mails.footer.htm');
 		
 					// On remplace les infos personnelles
-					$tpl = str_replace("%CONTENT%", 'Pour confirmer votre compte, veuillez cliquer sur <a href="http://ns366377.ovh.net/chelli/perso/crafters_proj/www/index.php?module=signup&action=verif&user=' . $lastid . '">ce lien</a>  ', $tpl);
+					$tpl = str_replace("%CONTENT%", 'Pour confirmer votre compte, veuillez cliquer sur <a href="http://ns366377.ovh.net/gilbon/perso/crafters/www/index.php?module=signup&action=verif&user=' . $lastid . '">ce lien</a>  ', $tpl);
 					$tpl = str_replace("%SITE_NAME%", _SITE_NAME, $tpl);
 	
 					$this->send_mail($tpl,

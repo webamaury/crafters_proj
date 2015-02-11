@@ -39,7 +39,6 @@ $(document).ready(function () {
         $(this).append('<img id="ajax_loader" src="img/ajax-loader.gif" alt="ajax loader"/>');
         var order = $('.orderby').attr("data-order");
         var search = $('.searchval').val();
-        alert(search);
         var page = $(this).attr("data-num");
         page++;
         $(this).attr("data-num", page);
@@ -49,7 +48,7 @@ $(document).ready(function () {
             //Type de requête
             type: 'post',
             //parametres envoyés
-            data: 'action=ajax_more&page=' + page + '&order=' + order,
+            data: 'action=ajax_more&page=' + page + '&order=' + order + '&search=' + search,
             //on precise le type de flux
             //Traitement en cas de succes
             success: function (data) {

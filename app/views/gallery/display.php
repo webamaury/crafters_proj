@@ -9,9 +9,10 @@
 	<div class="container">
 		<div class="container big-gallery">
 			<div class="col-sm-5 col-xs-12 pull-right">
-				<form class="navbar-form navbar-right" role="search">
+				<form action="index.php" method="get" class="navbar-form navbar-right" role="search">
 					<div class="input-group input-group-sm">
-						<input type="text" name="search" class="form-control searchval" value="<?php echo (isset($_GET['search'])) ? $_GET['search'] : "" ; ?>" placeholder="Search for...">
+						<input type="hidden" name="module" value="gallery">
+						<input type="text" minlength="3" maxlength="20" name="search" class="form-control searchval" value="<?php echo (isset($_GET['search'])) ? $_GET['search'] : "" ; ?>" placeholder="Search for...">
 							<span class="input-group-btn">
 								<button class="btn btn-default" type="button"><i class="fa fa-search"></i></button>
 							</span>

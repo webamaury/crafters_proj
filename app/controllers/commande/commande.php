@@ -182,11 +182,24 @@ class commandeController extends CoreControlers
 
 	function success($arrayTools, $notices)
 	{
-		include_once(_APP_PATH . 'models/class.commande.php');
-		$ClassCommandes = new ClassCommandes();
+		include_once(_APP_PATH . 'models/class.commande.php'); $ClassCommandes = new ClassCommandes();
+
 		$ClassCommandes->order_id = $_SESSION[_SES_NAME]['order'];
 		//unset($_SESSION[_SES_NAME]['order']);
 		$commande = $ClassCommandes->get_commande();
+		$adressesCommande = $ClassCommandes->getAdressesCommande($commande->order_id);
+
+		$infosclient = array(
+			"name" => $_SESSION[_SES_NAME]['firstname'] . " " . $_SESSION[_SES_NAME]['name'] ,
+			"adr1" => $adressesCommande[0]->address_numberstreet,
+			"adr2" => $adressesCommande[0]->address_zipcode . " " . $adressesCommande[0]->address_town
+		);
+		$infospanier = $_SESSION[_SES_NAME]['Cart'];
+		$infoscommande = $commande;
+
+
+
+		//var_dump($infosclient, $infospanier, $infoscommande);exit();
 
 		$totalttc = $commande->order_price;
 		$port = 10.0;
@@ -241,6 +254,11 @@ class commandeController extends CoreControlers
 			//var_dump($response);
 			//$response['PAYMENTINFO_0_TRANSACTIONID'];
 			$ClassCommandes->statusPayed();
+
+
+
+			$this->generateFacture($infosclient, $infospanier, $infoscommande);
+
 			unset($_SESSION[_SES_NAME]['order']);
 			unset($_SESSION[_SES_NAME]['Cart']);
 

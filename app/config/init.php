@@ -9,9 +9,10 @@ require_once(_APP_PATH . 'models/config.php');
 /**
  *	NOM DE SESSION
  */
-
-DEFINE('_SES_NAME', 'Crafters');
 DEFINE('_SITE_NAME', 'Crafters');
+DEFINE('_SES_NAME', 'Crafters');
+DEFINE('_COOKIE_NAME', 'CraftersCookie');
+
 
 /**
  *	RECUPERATION DE LA PAGE ACTUELLE
@@ -33,7 +34,7 @@ require_once (_APP_PATH . 'models/class.notices.php'); $notices = new ClassNotic
 
 require_once(_CORE_PATH . 'coreViews.php');
 require_once(_CORE_PATH . 'coreModels.php');
-require_once(_CORE_PATH . 'coreControlers.php'); new CoreControlers();
+require_once(_CORE_PATH . 'coreControlers.php'); $coreControler = new CoreControlers();
 
 require_once(_APP_PATH . 'models/lib.function.php');
 
@@ -46,6 +47,7 @@ if ((isset($_POST['action']) && $_POST['action'] === 'login')) {
 	
 	$user->mail = $_POST['email'];
 	$user->password = md5($_POST['password']);
+	$user->remember = $_POST['remember'];
 
 	$return = $user->login();
 	if ($return === 'error0' || $return === 'error1') {
@@ -60,6 +62,10 @@ if ((isset($_POST['action']) && $_POST['action'] === 'login')) {
 		exit();
 	} else {
 		if ($user->isAuthed()) {
+			if ($user->remember == true) {
+				$values = json_encode(array('user' => $_POST['email'], 'pwd' => md5($_POST['password'])));
+				$coreControler->cookieRemenberMe($values);
+			}
 			$notices->createNotice('success', 'Hello ' . $_SESSION[_SES_NAME]['username'] . ', welcome on crafters');
 			header('Location: ' . $currentPage);
 			exit();
@@ -72,6 +78,7 @@ if ((isset($_POST['action']) && $_POST['action'] === 'login')) {
  */
 if (isset($_GET['action']) && $_GET['action'] === 'logout') {
 	$user->logout();
+	$coreControler->removeCookie();
 	header('Location: index.php');
 	exit();
 }
@@ -86,9 +93,40 @@ if (isset($_GET['module'])) {
 	$var = $_GET['module'];
 } else {
 	$var = $currentPage;
-} if (!$user->isAuthed() && !in_array($var, $pagesAllowedWithoutSession)) {
+}
+if (!$user->isAuthed() && !in_array($var, $pagesAllowedWithoutSession)) {
 	$notices->createNotice("danger", "Vous devez posséder un compte pour accéder à ce contenu");
 	header('Location: index.php?module=index');
 	exit();
 }
+/**
+ * TEST DE COOKIE
+ */
+if (!$user->isAuthed()) {
+	if (isset($_COOKIE[_COOKIE_NAME])) {
+		$values = json_decode($_COOKIE[_COOKIE_NAME]);
+		$user->mail = $values->user;
+		$user->password = $values->pwd;
+
+		$return = $user->login();
+		if ($return === 'error0' || $return === 'error1') {
+			sleep(1);
+			$notices->createNotice('danger', 'Error username/password');
+			header('Location: index.php');
+			exit();
+		} else if ($return === 'error2') {
+			sleep(1);
+			$notices->createNotice('danger', 'Invalid accound, please check your e-mail to validate.');
+			header('Location: index.php');
+			exit();
+		} else {
+			if ($user->isAuthed()) {
+				$notices->createNotice('success', 'Hello ' . $_SESSION[_SES_NAME]['username'] . ', welcome on crafters');
+				header('Location: ' . $currentPage);
+				exit();
+			}
+		}
+	}
+}
+
 ?>

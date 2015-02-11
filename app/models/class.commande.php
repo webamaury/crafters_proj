@@ -25,6 +25,7 @@ class ClassCommandes extends CoreModels
 
 		if($return != false) {
 			$this->insertProductsCommande($this->products, $return);
+			$this->insertAdresseCommande($this->ad_numberstreet,$this->ad_zipcode,$this->ad_city,$this->ad_more,$this->ad_status, $return);
 		}
 
 		return $return;
@@ -54,6 +55,25 @@ class ClassCommandes extends CoreModels
 		return $return;
 
 	}
+	private function insertAdresseCommande($address_numberstreet, $address_zipcode, $address_town, $address_more, $address_status, $crafters_order_order_id)
+	{
+		$query = "INSERT INTO " . _TABLE__ADDRESS . "
+		(address_numberstreet, address_town, address_zipcode, address_more, address_status, crafters_order_order_id)
+		VALUES
+		(:address_numberstreet, :address_town, :address_zipcode, :address_more, :address_status, :crafters_order_order_id)";
+		$cursor = $this->connexion->prepare($query);
+
+		$cursor->bindValue(':address_numberstreet', $address_numberstreet, PDO::PARAM_STR);
+		$cursor->bindValue(':address_town', $address_town, PDO::PARAM_STR);
+		$cursor->bindValue(':address_zipcode', $address_zipcode, PDO::PARAM_STR);
+		$cursor->bindValue(':address_more', $address_more, PDO::PARAM_STR);
+		$cursor->bindValue(':address_status', $address_status, PDO::PARAM_INT);
+		$cursor->bindValue(':crafters_order_order_id', $crafters_order_order_id, PDO::PARAM_INT);
+
+		$return = $cursor->execute();
+
+		return $return;
+	}
 	function get_commande()
 	{
 		$query = "SELECT * FROM " . _TABLE__COMMANDES . " WHERE order_id = :order_id";
@@ -62,6 +82,18 @@ class ClassCommandes extends CoreModels
 		$cursor->execute();
 		$cursor->setFetchMode(PDO::FETCH_OBJ);
 		$return = $cursor->fetch();
+		$cursor->closeCursor();
+
+		return $return;
+	}
+	function getAdressesCommande($order_id)
+	{
+		$query = "SELECT * FROM " . _TABLE__ADDRESS . " WHERE crafters_order_order_id = :order_id";
+		$cursor = $this->connexion->prepare($query);
+		$cursor->bindValue(':order_id', $order_id, PDO::PARAM_INT);
+		$cursor->execute();
+		$cursor->setFetchMode(PDO::FETCH_OBJ);
+		$return = $cursor->fetchAll();
 		$cursor->closeCursor();
 
 		return $return;

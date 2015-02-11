@@ -23,10 +23,14 @@
 								       class="form-control" required>
 							</div>
 							<!--<a class="pull-right" href="#">Forgot password?</a>-->
+							<div class="checkbox">
+								<label for="remember"><input type="checkbox" id="remember" name="remember" value="true"/>Remember me</label>
+							</div>
 							<input type="hidden" name="action" value="login"/>
-							<button type="submit" class="btn btn btn-primary">
+							<button type="submit" class="btn btn btn-primary pull-right">
 								Log In
 							</button>
+
 						</form>
 						<!--<div class="login-or">
 							<hr class="hr-or">

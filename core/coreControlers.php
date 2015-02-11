@@ -1,6 +1,6 @@
 <?php
 class CoreControlers {
-	
+
 	function get_extension($filename) {
 		return strtolower(substr($filename, strrpos($filename, ".") + 1, strlen($filename)));
 	}
@@ -164,6 +164,119 @@ class CoreControlers {
 	}
 	function loadView($view, $arrayTools, $notices) {
 		include_once($view);
+	}
+
+	/**
+	 * COOKIES
+	 */
+	function cookieRemenberMe($values)
+	{
+		setcookie(_COOKIE_NAME, $values, time()+3600);
+	}
+	function removeCookie() {
+		setcookie(_COOKIE_NAME, "", time()+1);
+	}
+	function generateFacture($infosclient, $infospanier, $infoscommande)
+	{
+		ob_start();
+		?>
+		<style type="text/css">
+			* { color: #717375; }
+			hr { background: #717375; height: 1px; border: none; }
+			table { border-collapse: collapse; width: 100%; color: #717375; font-size: 11pt; font-family: helvetica; line-height: 6mm; }
+			strong { color: #000; }
+			em { font-size: 9pt; }
+			h3 { color: #000; margin: 0; padding: 0; }
+			td.right { text-align: right; }
+			table.border td { border: 1px solid #CFD1D2; padding: 3mm 1mm; }
+			table.border th, td.black { background: #010101; color: #FFF; font-weight: normal; border: 1px solid #FFF; padding: 1mm; }
+			td.noborder { border:none; }
+		</style>
+
+		<page backtop="20mm" backleft="10mm" backright="10mm" bachbottom="30mm">
+		<page_footer style="text-align: center;">
+			<hr/>
+			Crafters &copy; All right reserved <?php echo date('Y'); ?>
+		</page_footer>
+			<table style="vertical-align: top;">
+				<tr>
+					<td style="width: 72%;">
+						<br/><br/><br/>
+						<strong><?php echo $infosclient["name"]; ?></strong><br/>
+						<?php echo $infosclient["adr1"]; ?><br/>
+						<?php echo $infosclient["adr2"]; ?>
+					</td>
+					<td style="width: 28%">
+						<img style="margin-left: -3mm;" src="img/logo.png" alt="logo"/><br/>
+						<strong>Crafters</strong><br/>
+						28 Place de la Bourse<br/>
+						75002 Paris<br/>
+						crafters.fr<br/>
+						01 45 86 43 52
+					</td>
+				</tr>
+			</table>
+			<br/><br/><br/><br/><br/>
+			<table>
+				<tr>
+					<td style="width:50%;"><h3>Facture N°<?php echo $infoscommande->order_hash; ?></h3></td>
+					<td style="width:50%;" class="right">Emis le <?php echo date('d/m/Y'); ?></td>
+				</tr>
+			</table>
+			<br/><br/><br/>
+			<table class="border">
+				<thead>
+				<tr>
+					<th style="width: 56%">Description</th>
+					<th style="width: 12%">Type</th>
+					<th style="width: 6%">Size</th>
+					<th style="width: 6%">Qtt</th>
+					<th style="width: 10%">Unit</th>
+					<th style="width: 10%">Price</th>
+				</tr>
+				</thead>
+				<tbody>
+				<?php foreach ($infospanier as $product) :
+					if ($product['size'] == 's') {
+						$unitprice = 5;
+					} else if ($product['size'] == 'm') {
+						$unitprice = 10;
+					} else if ($product['size'] == 'l') {
+						$unitprice = 15;
+					}
+					$price = $unitprice * $product['quantity'];
+				?>
+				<tr>
+					<td><?php echo $product['name']; ?></td>
+					<td><?php echo $product['type']; ?></td>
+					<td><?php echo $product['size']; ?></td>
+					<td><?php echo $product['quantity']; ?></td>
+					<td><?php echo number_format($unitprice,2); ?>€</td>
+					<td><?php echo number_format($price,2); ?>€</td>
+				</tr>
+				<?php endforeach; ?>
+				<tr>
+					<td colspan="4" class="noborder"></td>
+					<td class="black">Total:</td>
+					<td><?php echo number_format($infoscommande->order_price, 2); ?>€</td>
+				</tr>
+				</tbody>
+			</table>
+
+		</page>
+
+		<?php
+		$content = ob_get_clean();
+		require(_APP_PATH . 'ext_lib/html2pdf/html2pdf.class.php');
+
+		try {
+			$pdf = new HTML2PDF('P', 'A4', 'fr');
+			$pdf->writeHTML($content);
+			$pdf->Output(_WWW_PATH . 'uploads/factures/facture_' . $infoscommande->order_hash . '.pdf', 'F');
+		} catch(HTML2PDF_exception $e) {
+			die($e);
+		}
+
 	}
 }
 ?>

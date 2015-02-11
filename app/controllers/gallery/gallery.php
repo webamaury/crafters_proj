@@ -36,7 +36,7 @@ class galleryController extends CoreControlers {
 			$orderby = 'product_id DESC';
 		}
 		if (isset($_GET['search'])) {
-			$search = " AND (P.product_name LIKE '%" . $_GET['search'] . "%' OR P.product_description LIKE '%" . $_GET['search'] . "%')";
+			$search = " AND (P.product_name LIKE '%" . $_GET['search'] . "%' OR P.product_description LIKE '%" . $_GET['search'] . "%' OR U.user_username LIKE '%" . $_GET['search'] . "%')";
 		} else {
 			$search = "";
 		}
