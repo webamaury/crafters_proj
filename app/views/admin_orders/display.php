@@ -26,7 +26,7 @@
 				<?php
 				foreach($items as $item) {
 					?>
-				<tr>
+				<tr<?php if ($item->nom == 'Pending payment') { echo ' class="warning"';} else if ($item->nom == 'Paid') { echo ' class="danger"';} else { echo ' class="success"';} ?>>
 					<td><?php echo $item->order_id ; ?></td>
 					<td><?php echo $item->user_username ; ?></td>
 					<td><?php echo $item->nom ; ?></td>
@@ -227,28 +227,28 @@
 			"info": false,
 			"ordering": false
 		});
-		$(".modal-fiche-trigger").on("click", function(){
-			var item_id = $(this).attr("data-id");
-			$.ajax({
-				// URL du traitement sur le serveur
-				url : 'index.php?module=orders',
-				//Type de requête
-				type: 'post',
-				//parametres envoyés
-				data: 'action=ajax_display_order_fiche&id=' + item_id,
-				//on precise le type de flux
-				//Traitement en cas de succes
-				success: function(data) {
-					console.log("flux : " + data);
-					traiterFlux(data);
-				},
-				error: function(jqXHR, textStatus, errorThrown) {
-					console.log(textStatus + " " + errorThrown);
-					console.log("Erreur execution requete ajax");
-				}
-			});
-			
+	});
+	$(document).on("click", ".modal-fiche-trigger", function(){
+		var item_id = $(this).attr("data-id");
+		$.ajax({
+			// URL du traitement sur le serveur
+			url : 'index.php?module=orders',
+			//Type de requête
+			type: 'post',
+			//parametres envoyés
+			data: 'action=ajax_display_order_fiche&id=' + item_id,
+			//on precise le type de flux
+			//Traitement en cas de succes
+			success: function(data) {
+				console.log("flux : " + data);
+				traiterFlux(data);
+			},
+			error: function(jqXHR, textStatus, errorThrown) {
+				console.log(textStatus + " " + errorThrown);
+				console.log("Erreur execution requete ajax");
+			}
 		});
+
 	});
 </script>
 <?php include_once(_APP_PATH . 'views/includes_admin/modal_supp.inc.php') ?>
