@@ -133,14 +133,15 @@ class ClassOrders extends CoreModels {
      */
 	public function getList() {
 		$this->query = "SELECT 
-		O.order_id, 
-		DATE_FORMAT(O.order_creation, '%d %M %Y %T') AS DateCrea,
-		O.order_status, 
+		O.order_id, O.order_delivery, O.order_payment_mode, O.order_price,
+		DATE_FORMAT(O.order_creation, '%d %M %Y %k:%i') AS DateCrea,
 		SUM(P.product_order_quantity) as nbProduit,  
-		U.user_username
-		FROM " . _TABLE__ORDER . " as O,  " . _TABLE__PRODUCT_ORDER . " as P, " . _TABLE__USERS . " as U
+		U.user_username, S.nom
+		FROM " . _TABLE__ORDER . " as O,  " . _TABLE__PRODUCT_ORDER . " as P, " . _TABLE__USERS . " as U, " . _TABLE__STATUTS . " as S
 		WHERE O.order_id = P.order_id
 		AND O.user_id_order = U.user_id
+		AND O.order_status = S.statut
+		AND S.type = 'order'
 		GROUP BY O.order_id";
 			
 		$list = $this->select_no_param();
@@ -153,7 +154,7 @@ class ClassOrders extends CoreModels {
 	 * @return mixed
      */
 	public function getOneArray() {
-		$query = "SELECT O.order_hash, DATE_FORMAT(O.order_creation, '%d %M %Y %T') AS DateCrea, O.order_status, O.order_delivery, O.order_payment_mode, O.order_price,
+		$query = "SELECT O.order_hash, DATE_FORMAT(O.order_creation, '%d %M %Y %k:%i') AS DateCrea, O.order_status, O.order_delivery, O.order_payment_mode, O.order_price,
 			U.user_name, U.user_firstname, S.nom
 			FROM " . _TABLE__ORDER . " as O, " . _TABLE__USERS . " as U, " . _TABLE__STATUTS . " as S
 			WHERE O.user_id_order = U.user_id

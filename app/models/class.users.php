@@ -188,7 +188,7 @@ class ClassUsers extends CoreModels {
 			U.user_mail,
 			DATE_FORMAT(U.user_birthday, '%d %M %Y') AS DateBirth,
 			U.user_phone,
-			DATE_FORMAT(U.user_creation, '%d %M %Y %T') AS DateCrea,
+			DATE_FORMAT(U.user_creation, '%d %M %Y') AS DateCrea,
 			U.user_img_url,
 			S.nom
 			FROM " . _TABLE__USERS . " as U," . _TABLE__STATUTS . " as S
@@ -285,7 +285,11 @@ class ClassUsers extends CoreModels {
      */
 	public function getList() {
 		$orderby = 'user_id asc';
-		$this->query = "SELECT user_id, user_firstname, user_name, user_mail FROM " . _TABLE__USERS . " ORDER BY " . $orderby;
+		$this->query = "SELECT U.user_id, U.user_firstname, U.user_name, U.user_mail, DATE_FORMAT(U.user_creation, '%d %M %Y') AS user_creation, S.nom
+				FROM " . _TABLE__USERS . " as U, " . _TABLE__STATUTS . " as S
+				WHERE S.type = 'user'
+				AND S.statut = U.user_status
+				ORDER BY " . $orderby;
 			
 		$list = $this->select_no_param();
 		
