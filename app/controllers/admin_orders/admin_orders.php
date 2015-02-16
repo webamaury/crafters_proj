@@ -117,24 +117,66 @@
 			}
 			else if ($_GET['action'] == "send" ) {
 				$orders->order_hash = $_GET['order'];
+				$orderInfos = $orders->getOrderWithHash();
+				$user = $orders->getUserOfOrder();
+
 				$orders->statutSend();
+
+				$tpl = file_get_contents(_APP_PATH . 'mail_templates/mails.send.htm');
+				// On remplace les infos personnelles
+				if ($orderInfos->order_delivery == 0) {
+					$tpl = str_replace("%DELIVERY%", '10 days with a maximum of 28 days', $tpl);
+				} else {
+					$tpl = str_replace("%DELIVERY%", '3 days with a maximum of 10 days', $tpl);
+				}
+				$tpl = str_replace("%ORDER_HASH%", $_GET['order'], $tpl);
+
+				$return = $this->send_mail($tpl,
+					"Crafters",
+					'amaury.gilbon@gmail.com',
+					$user->user_mail,
+					'Order [' . $_GET['order'] . '] confirmation');
+
 				$notices->createNotice('success', 'Status changed to sent');
 				header ('location:index.php?module=orders');
 			}
 			else if ($_GET['action'] == "paid" ) {
 				$orders->order_hash = $_GET['order'];
+				$orderInfos = $orders->getOrderWithHash();
 				$orders->statutPaid();
-				$user_mail = $orders->getUserMail();
+				$orders->order_id = $orderInfos->order_id;
+				$address = $orders->getOneArrayAddress();
+				$user = $orders->getUserOfOrder();
+
+
 				$tpl = file_get_contents(_APP_PATH . 'mail_templates/mails.payment.htm');
 				// On remplace les infos personnelles
 				$tpl = str_replace("%PAY_MODE%", 'Check', $tpl);
 				$tpl = str_replace("%ORDER_HASH%", $_GET['order'], $tpl);
 
+				$infosclient = array(
+					"name" => $user->user_firstname . " " . $user->user_name ,
+					"adr1" => $address[0]['address_numberstreet'],
+					"adr2" => $address[0]['address_zipcode'] . " " . $address[0]['address_town']
+				);
+				$infospanier = unserialize($orderInfos->order_custom);
+				/*foreach ($infospanier as $key => $infospanierOne) {
+					$infospanier[$key] = (array) $infospanierOne;
+					unset($infospanierOne);
+
+
+				}*/
+
+				$infoscommande = $orderInfos;
+
+
+				$return = $this->generateFacture($infosclient, $infospanier, $infoscommande);
+
 
 				$this->send_mail($tpl,
-					_SITE_NAME,
+					"Crafters",
 					'amaury.gilbon@gmail.com',
-					$user_mail->user_mail,
+					$user->user_mail,
 					'Order [' . $orders->order_hash . '] confirmation',
 					"",
 					$orders->order_hash);

@@ -210,7 +210,7 @@ class CoreControlers {
 						<?php echo $infosclient["adr2"]; ?>
 					</td>
 					<td style="width: 28%">
-						<img style="margin-left: -3mm;" src="img/logo.png" alt="logo"/><br/>
+						<img style="margin-left: -3mm;" src="<?php echo _PATH_FOLDER; ?>img/logo.png" alt="logo"/><br/>
 						<strong>Crafters</strong><br/>
 						28 Place de la Bourse<br/>
 						75002 Paris<br/>

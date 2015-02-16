@@ -103,18 +103,18 @@ class commandeController extends CoreControlers
 			}
 		}
 
-
-		$ClassCommandes->user_id = $_SESSION[_SES_NAME]['id'];
-		$ClassCommandes->order_hash = substr(strtoupper(md5(time() . session_id())), 0, 8);
-		$ClassCommandes->order_delivery = $_SESSION[_SES_NAME]['Delivery'];
-		$ClassCommandes->ad_firstname = $_POST['firstname'];
-		$ClassCommandes->ad_name = $_POST['name'];
-		$ClassCommandes->ad_numberstreet = $_POST['address'];
-		$ClassCommandes->ad_zipcode = $_POST['zipcode'];
-		$ClassCommandes->ad_city = $_POST['city'];
-		$ClassCommandes->ad_more = $_POST['more'];
-		$ClassCommandes->ad_status = 1;
-		$ClassCommandes->products = $_SESSION[_SES_NAME]['Cart'];
+		$ClassCommandes->order_custom 			= serialize($_SESSION[_SES_NAME]['Cart']);
+		$ClassCommandes->user_id 			= $_SESSION[_SES_NAME]['id'];
+		$ClassCommandes->order_hash 		= substr(strtoupper(md5(time() . session_id())), 0, 8);
+		$ClassCommandes->order_delivery 	= $_SESSION[_SES_NAME]['Delivery'];
+		$ClassCommandes->ad_firstname 		= $_POST['firstname'];
+		$ClassCommandes->ad_name 			= $_POST['name'];
+		$ClassCommandes->ad_numberstreet 	= $_POST['address'];
+		$ClassCommandes->ad_zipcode 		= $_POST['zipcode'];
+		$ClassCommandes->ad_city 			= $_POST['city'];
+		$ClassCommandes->ad_more 			= $_POST['more'];
+		$ClassCommandes->ad_status 			= 1;
+		$ClassCommandes->products 			= $_SESSION[_SES_NAME]['Cart'];
 
 
 		$return = $ClassCommandes->insertCommande();
@@ -332,8 +332,6 @@ class commandeController extends CoreControlers
 		unset($_SESSION[_SES_NAME]['order']);
 		unset($_SESSION[_SES_NAME]['Cart']);
 		unset($_SESSION[_SES_NAME]['Delivery']);
-
-		//comment
 
 		/*$tpl = file_get_contents(_APP_PATH . 'mail_templates/mails.payment.htm');
 

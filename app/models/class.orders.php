@@ -128,6 +128,28 @@ class ClassOrders extends CoreModels {
 	}
 
 	/**
+	 * Permet d'avoir l'id d'une commande à partir de son hash
+	 *
+	 */
+	public function getOrderWithHash() {
+		$query = "SELECT * FROM " . _TABLE__COMMANDES . "
+		WHERE order_hash = :order_hash";
+
+		$cursor = $this->connexion->prepare($query);
+
+		$cursor->bindValue(':order_hash', $this->order_hash, PDO::PARAM_STR);
+
+		$cursor->execute();
+
+		$cursor->setFetchMode(PDO::FETCH_OBJ);
+
+		$return = $cursor->fetch();
+		$cursor->closeCursor();
+
+		return $return;
+	}
+
+	/**
 	 * Permet d'avoir une liste avec toutes les commandes
 	 * @return array
      */
@@ -229,9 +251,9 @@ class ClassOrders extends CoreModels {
 	 * Permet le mail d'un user
 	 * @return array
 	 */
-	function getUserMail()
+	function getUserOfOrder()
 	{
-		$query = "SELECT U.user_mail
+		$query = "SELECT U.user_firstname, U.user_name, U.user_mail
 			FROM " . _TABLE__ORDER . " as O, " . _TABLE__USERS . " as U
 			WHERE U.user_id = O.user_id_order
 			AND O.order_hash = :order_hash";
@@ -242,7 +264,7 @@ class ClassOrders extends CoreModels {
 
 		$cursor->execute();
 
-		//$cursor->setFetchMode(PDO::FETCH_ARR);
+		$cursor->setFetchMode(PDO::FETCH_OBJ);
 		$return = $cursor->fetch();
 		$cursor->closeCursor();
 

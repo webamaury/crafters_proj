@@ -7,14 +7,15 @@ class ClassCommandes extends CoreModels
 {
 	public function insertCommande() {
 		$query = "INSERT INTO " . _TABLE__COMMANDES . "
-		(user_id_order, order_hash, order_price, order_delivery)
+		(user_id_order, order_hash, order_price, order_custom, order_delivery)
 		VALUES
-		(:user_id, :order_hash, :price, :order_delivery)";
+		(:user_id, :order_hash, :price, :order_custom, :order_delivery)";
 		$cursor = $this->connexion->prepare($query);
 
 		$cursor->bindValue(':user_id', $this->user_id, PDO::PARAM_INT);
 		$cursor->bindValue(':price', $this->price, PDO::PARAM_STR);
 		$cursor->bindValue(':order_hash', $this->order_hash, PDO::PARAM_STR);
+		$cursor->bindValue(':order_custom', $this->order_custom, PDO::PARAM_STR);
 		$cursor->bindValue(':order_delivery', $this->order_delivery, PDO::PARAM_INT);
 
 		$return = $cursor->execute();
