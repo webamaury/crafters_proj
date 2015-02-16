@@ -124,6 +124,21 @@
 			else if ($_GET['action'] == "paid" ) {
 				$orders->order_hash = $_GET['order'];
 				$orders->statutPaid();
+				$user_mail = $orders->getUserMail();
+				$tpl = file_get_contents(_APP_PATH . 'mail_templates/mails.payment.htm');
+				// On remplace les infos personnelles
+				$tpl = str_replace("%PAY_MODE%", 'Check', $tpl);
+				$tpl = str_replace("%ORDER_HASH%", $_GET['order'], $tpl);
+
+
+				$this->send_mail($tpl,
+					_SITE_NAME,
+					'amaury.gilbon@gmail.com',
+					$user_mail->user_mail,
+					'Order [' . $orders->order_hash . '] confirmation',
+					"",
+					$orders->order_hash);
+
 				$notices->createNotice('success', 'Status changed to paid');
 				header ('location:index.php?module=orders');
 			}

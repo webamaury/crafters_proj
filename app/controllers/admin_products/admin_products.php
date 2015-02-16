@@ -19,20 +19,21 @@
 				}
 			} else if (isset($_POST['action']) && $_POST['action'] === 'ajouter') {
 
-			$adminUsers->mail = $_POST['mail'];
-			$adminUsers->password = md5($_POST['password']);
-			$adminUsers->firstname = $_POST['firstname'];
-			$adminUsers->name = $_POST['name'];
-			$adminUsers->phone = $_POST['phone'];
-			$adminUsers->statut = $_POST['statut'];
+				/*$adminUsers->mail = $_POST['mail'];
+				$adminUsers->password = md5($_POST['password']);
+				$adminUsers->firstname = $_POST['firstname'];
+				$adminUsers->name = $_POST['name'];
+				$adminUsers->phone = $_POST['phone'];
+				$adminUsers->statut = $_POST['statut'];
 
-			if ($adminUsers->create_admin()) {
-				$notices->createNotice('success', 'Admin added');
-				header('location:index.php?module=adminUsers');
-				exit();
-			} else {
-				$notices->createNotice("danger", "error while adding new admin");
-				header("location:index.php?module=adminUsers");
+				if ($adminUsers->create_admin()) {
+					$notices->createNotice('success', 'Admin added');
+					header('location:index.php?module=adminUsers');
+					exit();
+				} else {
+					$notices->createNotice("danger", "error while adding new admin");
+					header("location:index.php?module=adminUsers");
+				}*/
 			}
 			else if(isset($_POST['action']) && $_POST['action'] == 'modifier') {
 

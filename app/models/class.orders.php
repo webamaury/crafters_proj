@@ -224,6 +224,31 @@ class ClassOrders extends CoreModels {
 
 		return $return;
 	}
+
+	/**
+	 * Permet le mail d'un user
+	 * @return array
+	 */
+	function getUserMail()
+	{
+		$query = "SELECT U.user_mail
+			FROM " . _TABLE__ORDER . " as O, " . _TABLE__USERS . " as U
+			WHERE U.user_id = O.user_id_order
+			AND O.order_hash = :order_hash";
+
+		$cursor = $this->connexion->prepare($query);
+
+		$cursor->bindValue(':order_hash', $this->order_hash, PDO::PARAM_STR);
+
+		$cursor->execute();
+
+		//$cursor->setFetchMode(PDO::FETCH_ARR);
+		$return = $cursor->fetch();
+		$cursor->closeCursor();
+
+		return $return;
+
+	}
 	
 	/**
 	 * Permet d'update l'image d'un user
