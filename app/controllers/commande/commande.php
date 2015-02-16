@@ -333,6 +333,8 @@ class commandeController extends CoreControlers
 		unset($_SESSION[_SES_NAME]['Cart']);
 		unset($_SESSION[_SES_NAME]['Delivery']);
 
+		//comment
+
 		/*$tpl = file_get_contents(_APP_PATH . 'mail_templates/mails.payment.htm');
 
 		// On remplace les infos personnelles
