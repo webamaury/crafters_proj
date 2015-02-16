@@ -90,51 +90,63 @@ class ClassOrders extends CoreModels {
 	}
 
 	/**
+	 * Permet à un admin de changer le statut d'une commande à 2
+	 *
+	 */
+	public function statutSend() {
+		$query = "UPDATE " . _TABLE__COMMANDES . "
+		SET order_status = 2
+		WHERE order_hash = :order_hash";
+		$cursor = $this->connexion->prepare($query);
+
+		$cursor->bindValue(':order_hash', $this->order_hash, PDO::PARAM_STR);
+
+		$return = $cursor->execute();
+
+		$cursor->closeCursor();
+
+		return $return;
+	}
+
+	/**
+	 * Permet à un admin de changer le statut d'une commande à 1
+	 *
+	 */
+	public function statutPaid() {
+		$query = "UPDATE " . _TABLE__COMMANDES . "
+		SET order_status = 1
+		WHERE order_hash = :order_hash";
+		$cursor = $this->connexion->prepare($query);
+
+		$cursor->bindValue(':order_hash', $this->order_hash, PDO::PARAM_STR);
+
+		$return = $cursor->execute();
+
+		$cursor->closeCursor();
+
+		return $return;
+	}
+
+	/**
 	 * Permet d'avoir une liste avec toutes les commandes
 	 * @return array
      */
 	public function getList() {
 		$this->query = "SELECT 
-		O.order_id, 
-		DATE_FORMAT(O.order_creation, '%d %M %Y %T') AS DateCrea,
-		O.order_status, 
+		O.order_id, O.order_delivery, O.order_payment_mode, O.order_price,
+		DATE_FORMAT(O.order_creation, '%d %M %Y %k:%i') AS DateCrea,
 		SUM(P.product_order_quantity) as nbProduit,  
-		U.user_username
-		FROM " . _TABLE__ORDER . " as O,  " . _TABLE__PRODUCT_ORDER . " as P, " . _TABLE__USERS . " as U
+		U.user_username, S.nom
+		FROM " . _TABLE__ORDER . " as O,  " . _TABLE__PRODUCT_ORDER . " as P, " . _TABLE__USERS . " as U, " . _TABLE__STATUTS . " as S
 		WHERE O.order_id = P.order_id
 		AND O.user_id_order = U.user_id
+		AND O.order_status = S.statut
+		AND S.type = 'order'
 		GROUP BY O.order_id";
 			
 		$list = $this->select_no_param();
 		
 		return $list;
-	}
-	
-	/**
-	 * Permet d'avoir les informations d'un utilisateur
-	 * @return mixed
-	     */
-	public function getOne() {
-		$query = "SELECT
-			U.user_id,
-			U.user_firstname,
-			U.user_name,
-			U.user_mail,
-			DATE_FORMAT(U.user_birthday, '%d %M %Y') AS DateBirth,
-			U.user_phone,
-			DATE_FORMAT(U.user_creation, '%d %M %Y %T') AS DateCrea,
-			U.user_img_url,
-			S.nom,
-			S.statut
-			FROM " . _TABLE__USERS . " as U," . _TABLE__STATUTS . " as S
-			WHERE U.user_id = :id AND S.type = 'user' AND S.statut = U.user_status";
-	
-		$champs = ':id';
-		$values = $this->user_id; 
-	
-		$item = $this->select_one_with_one_param($query, $values, $champs);
-	
-		return $item;
 	}
 
 	/**
@@ -142,13 +154,12 @@ class ClassOrders extends CoreModels {
 	 * @return mixed
      */
 	public function getOneArray() {
-		$query = "SELECT DATE_FORMAT(O.order_creation, '%d %M %Y %T') AS DateCrea, O.order_status, 
-			SUM(P.product_order_quantity) AS nbProduit, U.user_name, U.user_firstname,
-			A.address_numberstreet, A.address_town, A.address_zipcode, A.address_country
-			FROM " . _TABLE__ORDER . " as O,  " . _TABLE__PRODUCT_ORDER . " as P, " . _TABLE__USERS . " as U, " . _TABLE__ADDRESS . " as A
-			WHERE O.order_id = P.order_id
-			AND O.user_id_order = U.user_id
-			AND U.user_id = A.user_id_address
+		$query = "SELECT O.order_hash, DATE_FORMAT(O.order_creation, '%d %M %Y %k:%i') AS DateCrea, O.order_status, O.order_delivery, O.order_payment_mode, O.order_price,
+			U.user_name, U.user_firstname, S.nom
+			FROM " . _TABLE__ORDER . " as O, " . _TABLE__USERS . " as U, " . _TABLE__STATUTS . " as S
+			WHERE O.user_id_order = U.user_id
+			AND O.order_status = S.statut
+			AND S.type = 'order'
 			AND O.order_id = :id";
 		
 		$cursor = $this->connexion->prepare($query);
@@ -163,9 +174,35 @@ class ClassOrders extends CoreModels {
 	
 		return $return;
 	}
+
+	/**
+	 * Permet d'avoir les adresses d'un utilisateur de la commande en tableau
+	 * @return mixed
+	 */
+	public function getOneArrayAddress() {
+		$query = "SELECT A.address_numberstreet, A.address_town, A.address_zipcode, A.address_country, A.address_firstname, A.address_name,
+			S.nom, O.order_id
+			FROM " . _TABLE__ADDRESS . " as A, " . _TABLE__ORDER . " as O, " . _TABLE__STATUTS . " as S
+			WHERE O.order_id = A.crafters_order_order_id
+			AND A.address_status = S.statut
+			AND S.type = 'address'
+			AND O.order_id = :id";
+
+		$cursor = $this->connexion->prepare($query);
+
+		$cursor->bindValue(':id', $this->order_id, PDO::PARAM_INT);
+
+		$cursor->execute();
+
+		//$cursor->setFetchMode(PDO::FETCH_ARR);
+		$return = $cursor->fetchAll();
+		$cursor->closeCursor();
+
+		return $return;
+	}
 	
 	/**
-	 * Permet d'avoir l'adresse de facturation d'un utilisateur en tableau
+	 * Permet d'avoir les produits d'une commande en tableau
 	 * @return mixed
      */
 	public function getOneArrayProduct() {

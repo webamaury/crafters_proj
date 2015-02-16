@@ -15,6 +15,8 @@
 					<th>First Name</th>
 					<th>Last Name</th>
 					<th>E-mail</th>
+					<th>Status</th>
+					<th>Creation</th>
 					<th class="colum_action">Actions</th>
 				</tr>
 			</thead>
@@ -27,6 +29,8 @@
 					<td><?php echo $item->user_firstname ; ?></td>
 					<td><?php echo $item->user_name ; ?></td>
 					<td><?php echo $item->user_mail ; ?></td>
+					<td><?php echo $item->nom ; ?></td>
+					<td><?php echo $item->user_creation ; ?></td>
 					<td class="colum_action">
 						<!--
 <a href="#" onclick="return false" class="tips-trigger" data-toggle="tooltip" data-placement="bottom" title="send a mail">
@@ -100,7 +104,9 @@
 	
 	
 	$(document).ready(function(){
-		$('.table').DataTable();
+		$('.table').DataTable({
+			"order": [[5, "asc"]]
+		});
 		$(".modal-fiche-trigger").on("click", function(){
 			var item_id = $(this).attr("data-id");
 			$.ajax({

@@ -15,6 +15,7 @@
 					<th class="table_img">#</th>
 					<th>Name</th>
 					<th>Status</th>
+					<th>Creation</th>
 					<th class="colum_action">Actions</th>
 				</tr>
 			</thead>
@@ -26,6 +27,7 @@
 					<td><img src="../<?php echo $item->product_img_url ; ?>" alt="product image" width="30" height="30"></td>
 					<td><?php echo $item->product_name ; ?></td>
 					<td><?php echo $item->status_name ; ?></td>
+					<td><?php echo $item->product_creation ; ?></td>
 					<td class="colum_action">
 						<a href="#" onclick="return false" class="tips-trigger"  data-toggle="tooltip" data-placement="bottom" title="see details">
 							<span data-toggle="modal" data-target=".modal_fiche_product" data-id="<?php echo $item->product_id ; ?>" class="glyphicon glyphicon-eye-open modal-fiche-product-trigger"></span>
@@ -87,7 +89,9 @@
 	
 	
 	$(document).ready(function(){
-		$('.table').DataTable();
+		$('.table').DataTable({
+			"order": [[3, "asc"]]
+		});
 	});
 	$(document).on("click", ".modal-fiche-product-trigger", function(){
 			var item_id = $(this).attr("data-id");

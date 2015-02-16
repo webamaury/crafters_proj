@@ -49,9 +49,7 @@
 				$orders->user_birthday		= $_POST['birthday'];
 				$orders->user_status 		= $_POST['statut'];
 				
-	//						echo $_POST['statut']."<br>";
-	//						echo $adminUsers->statut ; exit();	
-				
+
 				if($orders->updateUser()) {
 					$notices->createNotice('success', 'User modifié');
 					header('location:index.php?module=users&action=form&id='.$_GET['id']);exit();
@@ -112,9 +110,22 @@
 			else if(isset($_POST['action']) && $_POST['action'] == 'ajax_display_order_fiche') {
 					$orders->order_id = $_POST['id'];
 					$ajaxItem = $orders->getOneArray();
+					$ajaxItem['address'] = $orders->getOneArrayAddress();
 					$ajaxItem['product'] = $orders->getOneArrayProduct();
 					$ajaxItem = json_encode($ajaxItem);
 					echo $ajaxItem;
+			}
+			else if ($_GET['action'] == "send" ) {
+				$orders->order_hash = $_GET['order'];
+				$orders->statutSend();
+				$notices->createNotice('success', 'Status changed to sent');
+				header ('location:index.php?module=orders');
+			}
+			else if ($_GET['action'] == "paid" ) {
+				$orders->order_hash = $_GET['order'];
+				$orders->statutPaid();
+				$notices->createNotice('success', 'Status changed to paid');
+				header ('location:index.php?module=orders');
 			}
 		}
 	}

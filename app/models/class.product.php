@@ -59,6 +59,7 @@ class ClassProducts extends CoreModels
 		$this->query = "SELECT P.product_img_url,
 			P.product_id,
 			P.product_name,
+			DATE_FORMAT(P.product_creation, '%d %M %Y %k:%i') AS product_creation,
 			S.nom as
 			status_name
 			FROM " . _TABLE__PRODUCTS . " P, " . _TABLE__STATUTS . " S

@@ -14,8 +14,11 @@
 					<th>#</th>
 					<th>Username</th>
 					<th>Status</th>
+					<th>Delivery</th>
+					<th>Payment Mode</th>
+					<th>Price</th>
+					<th>NbProduct</th>
 					<th>Creation</th>
-					<th>NbProduit</th>
 					<th class="colum_action">Actions</th>
 				</tr>
 			</thead>
@@ -26,20 +29,25 @@
 				<tr>
 					<td><?php echo $item->order_id ; ?></td>
 					<td><?php echo $item->user_username ; ?></td>
-					<td><?php echo $item->order_status ; ?></td>
-					<td><?php echo $item->DateCrea ; ?></td>
+					<td><?php echo $item->nom ; ?></td>
+					<td><?php if ($item->order_delivery == 0) {
+							echo "Normal";
+						} else {
+							echo "Express";
+						} ?>
+					</td>
+					<td><?php if ($item->order_payment_mode == 0) {
+							echo "Paypal";
+						} else {
+							echo "Cheque";
+						} ?>
+					</td>
+					<td><?php echo $item->order_price ; ?> €</td>
 					<td><?php echo $item->nbProduit ; ?></td>
+					<td><?php echo $item->DateCrea ; ?></td>
 					<td class="colum_action">
-						<!--
-<a href="#" onclick="return false" class="tips-trigger" data-toggle="tooltip" data-placement="bottom" title="send a mail">
-							<span data-toggle="modal" data-target=".modal_mail" data-mail="<?php echo $item->user_mail ; ?>" class="glyphicon glyphicon-send modal-supp-trigger"></span>
-						</a>&nbsp;&nbsp;
--->
 						<a href="#" onclick="return false" class="tips-trigger"  data-toggle="tooltip" data-placement="bottom" title="see details">
 							<span data-toggle="modal" data-target=".modal_fiche_order" data-id="<?php echo $item->order_id ; ?>" class="glyphicon glyphicon-eye-open modal-fiche-trigger"></span>
-						</a>&nbsp;&nbsp;
-						<a href="index.php?module=users&amp;action=form&amp;id=<?php echo $item->order_id ; ?>" class="tips-trigger" data-toggle="tooltip" data-placement="bottom" title="update">
-							<span class="glyphicon glyphicon-pencil"></span>
 						</a>&nbsp;
 						<a href="#" onclick="return false" class="tips-trigger"  data-toggle="tooltip" data-placement="bottom" title="delete">
 							<span data-toggle="modal" data-target=".bs-example-modal-sm" data-href="index.php?module=orders&amp;action=delete&amp;id=<?php echo $item->order_id ; ?>" class="glyphicon glyphicon-trash modal-supp-trigger"></span>
@@ -74,15 +82,22 @@
 		var img_url = '<?php echo _WWW_PATH; ?>' + obj.user_img_url;
 		ImageExist(img_url);
 		
+		$(".ajax_hash").text(obj.order_hash);
 		$(".ajax_datecrea").text(obj.DateCrea);
-		$(".ajax_status").text(obj.order_status);
-		$(".ajax_nbproduit").text(obj.nbProduit);
+		$(".ajax_status").text(obj.nom);
+		if (obj.order_delivery == 0) {
+			$(".ajax_delivery").text('Normal');
+		} else {
+			$(".ajax_delivery").text('Express');
+		}
+		if (obj.order_payment_mode == 0) {
+			$(".ajax_payment_mode").text('Paypal');
+		} else {
+			$(".ajax_payment_mode").text('Cheque');
+		}
+		$(".ajax_price").text(obj.order_price +' €');
 		$(".ajax_name").text(obj.user_name);
 		$(".ajax_firstname").text(obj.user_firstname);
-		$(".ajax_numberstreet").text(obj.address_numberstreet);
-		$(".ajax_town").text(obj.address_town);
-		$(".ajax_zipcode").text(obj.address_zipcode);
-		$(".ajax_country").text(obj.address_country);
 
 		//alert( obj.name );
 		//var obj = jQuery.parseJSON(flux);
@@ -95,6 +110,52 @@
 		});*/
 		//$(affichage).html(contenu);
 
+		var html = " ";
+		for (var key in obj.address) {
+			html += '<h4 class="text-center">' + obj.address[key].nom + ' address</h4>';
+			html += '<form class="form-horizontal address_order" method="post" action="#" role="form">';
+			html += '<div class="display-inline">';
+			html += '<label class="col-md-4 control-label">Street : </label>';
+			html += '<div class="col-md-8">';
+			html += '<p class="form-control-static ajax_numberstreet">' + obj.address[key].address_numberstreet + '</p>';
+			html += '</div>';
+			html += '</div>';
+			html += '<div class="display-inline">';
+			html += '<label class="col-md-4 control-label">Town : </label>';
+			html += '<div class="col-md-8">';
+			html += '<p class="form-control-static ajax_town">' + obj.address[key].address_town + '</p>';
+			html += '</div>';
+			html += '</div>';
+			html += '<div class="display-inline">';
+			html += '<label class="col-md-4 control-label">Zipcode : </label>';
+			html += '<div class="col-md-8">';
+			html += '<p class="form-control-static ajax_zipcode">' + obj.address[key].address_zipcode + '</p>';
+			html += '</div>';
+			html += '</div>';
+			html += '<div class="display-inline">';
+			html += '<label class="col-md-4 control-label">Country : </label>';
+			html += '<div class="col-md-8">';
+			html += '<p class="form-control-static ajax_country">' + obj.address[key].address_country + '</p>';
+			html += '</div>';
+			html += '</div>';
+			if (obj.address[key].address_name != null){
+				html += '<div class="display-inline">';
+				html += '<label class="col-md-4 control-label">Name : </label>';
+				html += '<div class="col-md-8">';
+				html += '<p class="form-control-static ajax_country">' + obj.address[key].address_name + '</p>';
+				html += '</div>';
+				html += '</div>';
+				html += '<div class="display-inline">';
+				html += '<label class="col-md-4 control-label">Firstname : </label>';
+				html += '<div class="col-md-8">';
+				html += '<p class="form-control-static ajax_country">' + obj.address[key].address_firstname + '</p>';
+				html += '</div>';
+				html += '</div>';
+			}
+			html += '</form>';
+
+		}
+		$('.address_order').html(html);
 
 		var html = " ";
 		for (var key in obj.product) {
@@ -109,6 +170,14 @@
 
 		}
 		$('.product_order').html(html);
+
+		if(obj.order_status == '1')
+		{
+			$('.ajax_send').html('<a class="pull-left btn btn-primary" href="index.php?module=orders&action=send&order=' + obj.order_hash + '">Send</a>');
+		} else if (obj.order_status == '0') {
+			$('.ajax_paid').html('<a class="pull-left btn btn-primary" href="index.php?module=orders&action=paid&order=' + obj.order_hash + '">Paid</a>');
+		}
+
 
 	}
 
