@@ -46,6 +46,12 @@
 	<form class="form-horizontal" method="post" enctype="multipart/form-data" action="index.php?module=users&action=form<?php echo (isset($_GET['id'])) ? '&id='.$_GET['id'] : '' ; ?>" role="form">
 		<div class="col-xs-12 col-md-6 margin-top-20">
 			<div class="form-group">
+				<label for="username" class="col-md-2 control-label">Username</label>
+				<div class="col-lg-10 col-md-8">
+					<input type="text" name="username" class="form-control" id="username" value="<?php echo (isset($item->user_username)) ? $item->user_username : '' ; ?>">
+				</div>
+			</div>
+			<div class="form-group">
 				<label for="firstname" class="col-md-2 control-label">Firstname</label>
 				<div class="col-lg-10 col-md-8">
 					<input type="text" name="firstname" class="form-control" id="firstname" value="<?php echo (isset($item->user_firstname)) ? $item->user_firstname : '' ; ?>">
@@ -72,7 +78,7 @@
 			<div class="form-group">
 				<label for="birthday" class="col-md-2 control-label">Birthday</label>
 				<div class="col-lg-10 col-md-8">
-					<input type="text" name="birthday" class="form-control" id="birthday" value="<?php echo (isset($item->DateBirth)) ? $item->DateBirth : '' ; ?>">
+					<input type="date" name="birthday" class="form-control" id="birthday" value="<?php echo (isset($item->user_birthday)) ? $item->user_birthday : '' ; ?>">
 				</div>
 			</div>
 			<div class="form-group">
@@ -109,10 +115,6 @@
 <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
 <script type="text/javascript">
 $(document).ready(function() {
-	$("#birthday").datepicker();
-	$("#birthday").datepicker("option", "dateFormat", "yy-mm-dd");
-
-	
 	var options = { 
 			target: '#output',   // target element(s) to be updated with server response 
 			beforeSubmit: beforeSubmit,  // pre-submit callback 

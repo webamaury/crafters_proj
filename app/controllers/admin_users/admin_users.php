@@ -45,6 +45,7 @@
 				$users->user_mail 			= $_POST['mail'];
 				$users->user_firstname 		= $_POST['firstname'];
 				$users->user_name 			= $_POST['name'];
+				$users->user_username 		= $_POST['username'];
 				$users->user_phone 			= $_POST['phone'];
 				$users->user_birthday		= $_POST['birthday'];
 				$users->user_status 		= $_POST['statut'];
