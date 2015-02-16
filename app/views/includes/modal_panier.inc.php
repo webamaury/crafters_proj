@@ -48,6 +48,19 @@
 								</div>
 							</div>-->
 						</form>
+						<div class="col-xs-12">
+							<smal><br/>
+								Delivery:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								<input type="hidden" name="delivery_ajax" class="delivery_ajax" value="<?php echo (isset($_SESSION[_SES_NAME]['Delivery'])) ? $_SESSION[_SES_NAME]['Delivery'] : "0" ; ?>">
+
+								<label class="radio-inline">
+									<input type="radio" name="delivery" id="inlineRadio1" value="0"<?php echo ((isset($_SESSION[_SES_NAME]['Delivery']) && $_SESSION[_SES_NAME]['Delivery'] == 0) || !isset($_SESSION[_SES_NAME]['Delivery'])) ? "checked" : "" ; ?>> Normal (6€)
+								</label>
+								<label class="radio-inline">
+									<input type="radio" name="delivery" id="inlineRadio2" value="1"<?php echo (isset($_SESSION[_SES_NAME]['Delivery']) && $_SESSION[_SES_NAME]['Delivery'] == 1) ? "checked" : "" ; ?>> Express (10€)
+								</label>
+							</smal>
+						</div>
 					</div>
 				</div>
 			</div>

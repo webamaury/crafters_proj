@@ -138,18 +138,20 @@ class CoreControlers {
 		$message .= 'Content-Type: text/html; charset="iso-8859-1"'."\n";
 		$message .= 'Content-Transfer-Encoding: 8bit'."\n\n";
 		$message .= $message_html."\n\n";
-		/*
+
 		//------------------------------------------------------
 		//PIECE JOINTE
 		//------------------------------------------------------
-		$message .='--'.$frontiere."\n";
+		if ($file != null) {
+			$message .='--'.$frontiere."\n";
 
-		$message .= 'Content-Type: image/jpeg; name="image.jpg"'."\n";
-		$message .= 'Content-Transfer-Encoding: base64'."\n";
-		$message .= 'Content-Disposition:attachement; filename="image.jpg"'."\n\n";
+			$message .= 'Content-Type: application/pdf; name="facture_' . $file . '.pdf"'."\n";
+			$message .= 'Content-Transfer-Encoding: base64'."\n";
+			$message .= 'Content-Disposition:attachement; filename="facture_' . $file . '.pdf"'."\n\n";
 
-		$message .= chunk_split(base64_encode(file_get_contents('image.jpg')))."\n";
-		*/
+			$message .= chunk_split(base64_encode(file_get_contents(_PATH_FOLDER . 'uploads/factures/facture_' . $file . '.pdf')))."\n";
+		}
+
 		//------------------------------------------------------
 		//ENVOI DU MAIL
 		//------------------------------------------------------
@@ -171,7 +173,7 @@ class CoreControlers {
 	 */
 	function cookieRemenberMe($values)
 	{
-		setcookie(_COOKIE_NAME, $values, time()+3600);
+		setcookie(_COOKIE_NAME, $values, time()+3600*24*365);
 	}
 	function removeCookie() {
 		setcookie(_COOKIE_NAME, "", time()+1);
@@ -188,9 +190,10 @@ class CoreControlers {
 			em { font-size: 9pt; }
 			h3 { color: #000; margin: 0; padding: 0; }
 			td.right { text-align: right; }
-			table.border td { border: 1px solid #CFD1D2; padding: 3mm 1mm; }
+				table.border td { border: 1px solid #CFD1D2; padding: 3mm 1mm; }
 			table.border th, td.black { background: #010101; color: #FFF; font-weight: normal; border: 1px solid #FFF; padding: 1mm; }
 			td.noborder { border:none; }
+			tr.smallpad td { padding: 1mm; }
 		</style>
 
 		<page backtop="20mm" backleft="10mm" backright="10mm" bachbottom="30mm">
@@ -219,8 +222,8 @@ class CoreControlers {
 			<br/><br/><br/><br/><br/>
 			<table>
 				<tr>
-					<td style="width:50%;"><h3>Facture N°<?php echo $infoscommande->order_hash; ?></h3></td>
-					<td style="width:50%;" class="right">Emis le <?php echo date('d/m/Y'); ?></td>
+					<td style="width:50%;"><h3>Invoice Order [<?php echo $infoscommande->order_hash; ?>]</h3></td>
+					<td style="width:50%;" class="right">Date :<?php echo date('d/m/Y'); ?></td>
 				</tr>
 			</table>
 			<br/><br/><br/>
@@ -245,6 +248,11 @@ class CoreControlers {
 						$unitprice = 15;
 					}
 					$price = $unitprice * $product['quantity'];
+					if ($infoscommande->order_delivery == 0) {
+						$deliveryPrice = 6;
+					} else {
+						$deliveryPrice = 10;
+					}
 				?>
 				<tr>
 					<td><?php echo $product['name']; ?></td>
@@ -255,12 +263,28 @@ class CoreControlers {
 					<td><?php echo number_format($price,2); ?>€</td>
 				</tr>
 				<?php endforeach; ?>
-				<tr>
+				<tr class="smallpad">
+					<td colspan="4" class="noborder"></td>
+					<td class="black">Delivery:</td>
+					<td><?php echo number_format($deliveryPrice, 2); ?>€</td>
+				</tr>
+				<tr class="smallpad">
 					<td colspan="4" class="noborder"></td>
 					<td class="black">Total:</td>
-					<td><?php echo number_format($infoscommande->order_price, 2); ?>€</td>
+					<td><?php echo number_format($infoscommande->order_price + $deliveryPrice, 2); ?>€</td>
 				</tr>
 				</tbody>
+			</table>
+
+			<table>
+				<tr>
+					<td>
+						<br/><br/>
+						<small>
+							* All prices include TVA (19,6%)
+						</small>
+					</td>
+				</tr>
 			</table>
 
 		</page>

@@ -29,9 +29,10 @@ class ClassNotices {
 
 	/**
 	 * Permet d'afficher un message
-	 * @return string
+	 * @param $clear Pour savoir si on supprime la notice direct ou pas? (true or false)
+	 * @return string retourne Le html de la notice
      */
-	function displayNotice() {
+	function displayNotice($clear = false) {
 		if (isset($_SESSION[_SES_NAME]['notices'])) {
 			$return = '<div class="col-xs-12">';
 			$return .= '<div class="alert alert-' . $_SESSION[_SES_NAME]['notices']['type'] . ' alert-dismissible" role="alert">';
@@ -39,6 +40,10 @@ class ClassNotices {
 			$return .= '<span aria-hidden="true">&times;</span>';
 			$return .= '<span class="sr-only">Close</span>';
 			$return .= '</button>' . $_SESSION[_SES_NAME]['notices']['content'] . '</div></div>';
+
+			if($clear == true) {
+				$this->clearNotice();
+			}
 
 			return $return;
 		}

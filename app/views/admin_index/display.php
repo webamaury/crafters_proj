@@ -126,9 +126,9 @@
 
 				// ** Required if scaleOverride is true **
 				// Number - The number of steps in a hard coded scale
-				scaleSteps: 7,
+				scaleSteps: 5,
 				// Number - The value jump in the hard coded scale
-				scaleStepWidth: 2000,
+				scaleStepWidth: 3000,
 				// Number - The scale starting value
 				scaleStartValue: 0,
 			});

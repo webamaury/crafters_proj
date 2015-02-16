@@ -40,7 +40,7 @@
 					</div>
 					<div class="col-xs-12">
 						<div class="col-md-5 col-sm-3 col-xs-3">
-							<a href="index.php?module=profil&user=<?php echo $crafter_of_month->user_id; ?>">
+							<a href="index.php?module=profile&user=<?php echo $crafter_of_month->user_id; ?>">
 								<img src="<?php echo $crafter_of_month->user_img_url; ?>" class="img-responsive img-circle" style="float: right">
 							</a>
 						</div>
@@ -58,7 +58,7 @@
 							<?php } ?>
 							<br/>
 							<span onclick="ga('send','event','Crafter of the month','Clique');" class="seemore"><a
-									href="index.php?module=profil&user=<?php echo $crafter_of_month->user_id; ?>">See
+									href="index.php?module=profile&user=<?php echo $crafter_of_month->user_id; ?>">See
 									her creations</a></span>
 							<br/>
 							<br/>
@@ -74,13 +74,13 @@
 						?>
 						<div class="col-xs-12">
 							<div class="col-md-3 col-sm-2 col-xs-2">
-								<a href="index.php?module=profil&user=<?php echo $popular_crafter->user_id_product; ?>"><img
+								<a href="index.php?module=profile&user=<?php echo $popular_crafter->user_id_product; ?>"><img
 										src="<?php echo $popular_crafter->user_img_url; ?>"
 										class="img-responsive img-circle" style="float: right"></a>
 							</div>
 							<div class="col-md-9 col-sm-10 col-xs-10">
 								<br/>
-								<a href="index.php?module=profil&user=<?php echo $popular_crafter->user_id_product; ?>">
+								<a href="index.php?module=profile&user=<?php echo $popular_crafter->user_id_product; ?>">
 									<h2><?php echo $popular_crafter->user_username; ?></h2></a>
 								<?php
 								foreach ($popular_crafter->creas as $popular_crafter->crea) {
@@ -93,7 +93,7 @@
 								?>
 								<br/>
 								<span class="seemore">
-									<a href="index.php?module=profil&user=<?php echo $popular_crafter->user_id_product; ?>">See his creations</a>
+									<a href="index.php?module=profile&user=<?php echo $popular_crafter->user_id_product; ?>">See his creations</a>
 								</span>
 								<br/>
 								<br/>

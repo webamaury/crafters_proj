@@ -7,6 +7,8 @@
 
 
 	<div class="container">
+		<?php echo $notices->displayNotice(); $notices->clearNotice(); ?>
+
 		<div class="container big-gallery">
 			<div class="col-sm-5 col-xs-12 pull-right">
 				<form action="index.php" method="get" class="navbar-form navbar-right" role="search">

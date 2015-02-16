@@ -35,6 +35,9 @@ class PanierController extends CoreControlers
 	public function addToCart()
 	{
 		$productId = $_GET['product'];
+		if(!isset($_SESSION[_SES_NAME]['Delivery'])) {
+			$_SESSION[_SES_NAME]['Delivery'] = 0;
+		}
 
 		if(!isset($_SESSION[_SES_NAME]['Cart'][$productId])) {
 			$_SESSION[_SES_NAME]['Cart'][$productId]['quantity'] = 1;
@@ -118,6 +121,14 @@ class PanierController extends CoreControlers
 				$totalPrice += $product['quantity'] * 15;
 			}
 		}
+		if (!isset($_SESSION[_SES_NAME]['Delivery'])) {
+			$_SESSION[_SES_NAME]['Delivery'] = 0;
+		}
+		if ($_SESSION[_SES_NAME]['Delivery'] == 0) {
+			$totalPrice += 6;
+		} else {
+			$totalPrice += 10;
+		}
 		return $totalPrice;
 	}
 	private function nbProduct() {
@@ -141,6 +152,20 @@ class PanierController extends CoreControlers
 		$type = $_GET['type'];
 		$_SESSION[_SES_NAME]['Cart'][$product]['type'] = $type;
 		echo true;
+	}
+	public function changeDelivery()
+	{
+		if(isset($_SESSION[_SES_NAME]['Delivery'])) {
+			if($_SESSION[_SES_NAME]['Delivery'] == 0) {
+				$_SESSION[_SES_NAME]['Delivery'] = 1;
+			} else {
+				$_SESSION[_SES_NAME]['Delivery'] = 0;
+			}
+		} else {
+			$_SESSION[_SES_NAME]['Delivery'] = 0;
+		}
+		$totalPrice = $this->calculateTotalPrice();
+		echo $totalPrice;
 	}
 
 }

@@ -79,13 +79,23 @@ class AutreController extends CoreControlers {
 				'header' => 'Your account is now valid !',
 				'content' => 'You can entirely enjoy Crafters.'
 			),
+			'4' => array(
+				'icon' => '<i class="fa fa-gift"></i>',
+				'header' => 'Your oder has been taken into consideration !',
+				'content' => 'We are waiting for your check to send it to you.'
+			),
+			'5' => array(
+				'icon' => '<i class="fa fa-envelope-o"></i>',
+				'header' => 'Your message has been sent.',
+				'content' => 'We will deal with your request as soon as possible.'
+			),
+
 		);
 
 		$icon = $arrayMessage[$_SESSION[_SES_NAME]['pageMessage']]['icon'];
 		$header = $arrayMessage[$_SESSION[_SES_NAME]['pageMessage']]['header'];
 		$content = $arrayMessage[$_SESSION[_SES_NAME]['pageMessage']]['content'];
 
-		unset($_SESSION[_SES_NAME]['pageMessage']);
 		##############################################################
 		##	APPEL TOOLS												##
 		##############################################################
@@ -95,8 +105,8 @@ class AutreController extends CoreControlers {
 		##############################################################
 		##	VARIABLES LAYOUT										##
 		##############################################################
-		DEFINE("_METATITLE", "Admin 404");
-		DEFINE("_METADESCRIPTION", "Admin 404");
+		DEFINE("_METATITLE", "Crafters | Page Message");
+		DEFINE("_METADESCRIPTION", "Crafters | Page Message");
 
 		##############################################################
 		##	VUE														##

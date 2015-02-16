@@ -8,7 +8,7 @@ class ClassMessages extends CoreModels {
 	 * @return mixed
      */
 	function getOne() {
-		$query = "SELECT M.message_id, M.message_firstname, M.message_name, M.message_mail, M.message_title, M.message_message, M.message_creation, S.nom, S.statut FROM " . _TABLE__MESSAGE . " as M," . _TABLE__STATUTS . " as S WHERE M.message_id = :id AND S.type = 'message' AND S.statut = M.message_status";
+		$query = "SELECT M.message_id, M.message_firstname, M.message_name, M.message_mail, M.message_message, M.message_creation, S.nom, S.statut FROM " . _TABLE__MESSAGE . " as M," . _TABLE__STATUTS . " as S WHERE M.message_id = :id AND S.type = 'message' AND S.statut = M.message_status";
 		
 	
 		$champs = ':id';
@@ -23,7 +23,7 @@ class ClassMessages extends CoreModels {
 	 * @return mixed
      */
 	function get_one_array() {
-		$query = "SELECT M.message_id, M.message_firstname, M.message_name, M.message_mail, M.message_title, M.message_message, DATE_FORMAT(M.message_creation, '%d %M %Y %T') AS DateCrea, S.nom FROM " . _TABLE__MESSAGE . " as M," . _TABLE__STATUTS . " as S WHERE M.message_id = :id AND S.type = 'message' AND S.statut = M.message_status";
+		$query = "SELECT M.message_id, M.message_firstname, M.message_name, M.message_mail, M.message_message, DATE_FORMAT(M.message_creation, '%d %M %Y %T') AS DateCrea, S.nom FROM " . _TABLE__MESSAGE . " as M," . _TABLE__STATUTS . " as S WHERE M.message_id = :id AND S.type = 'message' AND S.statut = M.message_status";
 		
 		$cursor = $this->connexion->prepare($query);
 	
@@ -42,8 +42,16 @@ class ClassMessages extends CoreModels {
 	 * @return array
      */
 	function get_list() {
-		$orderby = 'message_id asc';
-		$this->query = "SELECT message_id, message_firstname, message_name, message_mail, message_title, message_message, message_creation  FROM " . _TABLE__MESSAGE . " ORDER BY " . $orderby;
+		$orderby = 'message_id DESC';
+		$this->query = "SELECT
+					M.message_id,
+					M.message_mail,
+					S.nom as status_name,
+					DATE_FORMAT(M.message_creation, '%d %M %Y %T') as message_creation
+					FROM " . _TABLE__MESSAGE . " M, " . _TABLE__STATUTS . " S
+					WHERE S.type = 'message'
+					AND S.statut = M.message_status
+					ORDER BY " . $orderby;
 		$list = $this->select_no_param();
 				
 		return $list ;
@@ -75,6 +83,43 @@ class ClassMessages extends CoreModels {
 		$list = $this->select_no_param($query);
 	
 		return $list ;
+	}
+
+	function newMessage() {
+
+		$query = "INSERT INTO " . _TABLE__MESSAGE . "
+		(message_firstname, message_name, message_mail, message_message)
+		VALUES (:message_firstname, :message_name, :message_mail, :message_message)";
+
+		$cursor = $this->connexion->prepare($query);
+
+		$cursor->bindValue(':message_firstname', $this->message_firstname, PDO::PARAM_STR);
+		$cursor->bindValue(':message_name', $this->message_name, PDO::PARAM_STR);
+		$cursor->bindValue(':message_mail', $this->message_mail, PDO::PARAM_STR);
+		$cursor->bindValue(':message_message', $this->message_message, PDO::PARAM_STR);
+
+		$return = $cursor->execute();
+
+		$cursor->closeCursor();
+
+		return $return ;
+
+	}
+
+	function readMessage()
+	{
+		$query = "UPDATE " . _TABLE__MESSAGE . "
+		SET message_status = 1
+		WHERE message_id = :message_id";
+		$cursor = $this->connexion->prepare($query);
+
+		$cursor->bindValue(':message_id', $this->message_id, PDO::PARAM_STR);
+
+		$return = $cursor->execute();
+
+		$cursor->closeCursor();
+
+		return $return;
 	}
 
 }

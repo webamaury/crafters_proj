@@ -38,6 +38,14 @@ class commandeController extends CoreControlers
 			header('location:index.php');
 			exit();
 		}
+		$delivery = $_SESSION[_SES_NAME]['Delivery'];
+		if ($delivery == 0) {
+			$deliveryPrice = 6;
+		} else {
+			$deliveryPrice = 10;
+		}
+		//var_dump($_SESSION[_SES_NAME], $delivery);
+
 		$all_quantity = 0;
 		$totalPrice = 0;
 		foreach ($_SESSION[_SES_NAME]['Cart'] as $key => $product) {
@@ -80,6 +88,7 @@ class commandeController extends CoreControlers
 			header('location:index.php?module=commande');
 			exit();
 		}
+		//var_dump($_POST, $_SESSION[_SES_NAME]);exit();
 
 		include_once(_APP_PATH . 'models/class.commande.php');
 		$ClassCommandes = new ClassCommandes();
@@ -97,15 +106,19 @@ class commandeController extends CoreControlers
 
 		$ClassCommandes->user_id = $_SESSION[_SES_NAME]['id'];
 		$ClassCommandes->order_hash = substr(strtoupper(md5(time() . session_id())), 0, 8);
+		$ClassCommandes->order_delivery = $_SESSION[_SES_NAME]['Delivery'];
+		$ClassCommandes->ad_firstname = $_POST['firstname'];
+		$ClassCommandes->ad_name = $_POST['name'];
 		$ClassCommandes->ad_numberstreet = $_POST['address'];
 		$ClassCommandes->ad_zipcode = $_POST['zipcode'];
 		$ClassCommandes->ad_city = $_POST['city'];
 		$ClassCommandes->ad_more = $_POST['more'];
-		$ClassCommandes->ad_status = 0;
+		$ClassCommandes->ad_status = 1;
 		$ClassCommandes->products = $_SESSION[_SES_NAME]['Cart'];
 
-		$return = $ClassCommandes->insertCommande();
 
+		$return = $ClassCommandes->insertCommande();
+		//var_dump($ClassCommandes, $return);exit();
 		if ($return != false) {
 			$_SESSION[_SES_NAME]['order'] = $return;
 			header('location:index.php?module=commande&action=delivery');
@@ -127,9 +140,20 @@ class commandeController extends CoreControlers
 		$ClassCommandes->order_id = $_SESSION[_SES_NAME]['order'];
 		//unset($_SESSION[_SES_NAME]['order']);
 		$commande = $ClassCommandes->get_commande();
+		$adressesCommande = $ClassCommandes->getAdressesCommande($commande->order_id);
+
+		//var_dump($commande,$adressesCommande);
+
 
 		$totalttc = $commande->order_price;
-		$port = 10.0;
+		if ($commande->order_delivery == 0) {
+			$port = 6;
+		} else {
+			$port = 10;
+		}
+
+		//var_dump($commande, $port);exit();
+
 		$paypal = new Paypal();
 		$params = array(
 			'RETURNURL' => _PATH_FOLDER . 'index.php?module=commande&action=success',
@@ -139,6 +163,12 @@ class commandeController extends CoreControlers
 			'PAYMENTREQUEST_0_CURRENCYCODE' => 'EUR',
 			'PAYMENTREQUEST_0_SHIPPINGAMT' => $port,
 			'PAYMENTREQUEST_0_ITEMAMT' => $totalttc,
+
+			'PAYMENTREQUEST_0_SHIPTONAME' => $adressesCommande[0]->address_firstname. " " . $adressesCommande[0]->address_name,
+			'PAYMENTREQUEST_n_SHIPTOSTREET' => $adressesCommande[0]->address_numberstreet,
+			'PAYMENTREQUEST_n_SHIPTOCITY' => $adressesCommande[0]->address_town,
+			'PAYMENTREQUEST_n_SHIPTOZIP' => $adressesCommande[0]->address_zipcode,
+			'PAYMENTREQUEST_n_SHIPTOCOUNTRYCODE' => '33'
 		);
 		$i = 0;
 		foreach($_SESSION[_SES_NAME]['Cart'] as $k => $product){
@@ -255,12 +285,31 @@ class commandeController extends CoreControlers
 			//$response['PAYMENTINFO_0_TRANSACTIONID'];
 			$ClassCommandes->statusPayed();
 
+			$ClassCommandes->order_payment_mode = 0;
+			$ClassCommandes->paymentMode();
+
 
 
 			$this->generateFacture($infosclient, $infospanier, $infoscommande);
 
 			unset($_SESSION[_SES_NAME]['order']);
 			unset($_SESSION[_SES_NAME]['Cart']);
+			unset($_SESSION[_SES_NAME]['Delivery']);
+
+			$tpl = file_get_contents(_APP_PATH . 'mail_templates/mails.payment.htm');
+
+			// On remplace les infos personnelles
+			$tpl = str_replace("%PAY_MODE%", 'Paypal payment', $tpl);
+			$tpl = str_replace("%ORDER_HASH%", $commande->order_hash, $tpl);
+
+
+			$this->send_mail($tpl,
+				_SITE_NAME,
+				'amaury.gilbon@gmail.com',
+				$_SESSION[_SES_NAME]['mail'],
+				'Order [' . $commande->order_hash . '] confirmation',
+				"",
+				$commande->order_hash);
 
 			$_SESSION[_SES_NAME]['pageMessage'] = 0;
 			header('location:index.php?module=autre&action=messagePage');
@@ -269,25 +318,49 @@ class commandeController extends CoreControlers
 			//var_dump($paypal->errors);
 		}
 
-		/*************************************************************
-		 *    APPEL TOOLS                                                **
-		 * **********************************************************/
-		$toolsToLoad = array('bootstrap-css', 'font-awesome');
-
-		/*************************************************************
-		 *    VARIABLES LAYOUT                                        **
-		 * **********************************************************/
-		DEFINE("_METATITLE", "Delivery");
-		DEFINE("_METADESCRIPTION", "Delivery");
-
-		/*************************************************************
-		 *    VUE                                                        **
-		 * **********************************************************/
-		include_once('../app/views/autres/message.php');
-
-
 	}
+	function payCheck()
+	{
+		//var_dump($_SESSION[_SES_NAME]);exit();
+		include_once(_APP_PATH . 'models/class.commande.php');
+		$ClassCommandes = new ClassCommandes();
+		$ClassCommandes->order_id = $_SESSION[_SES_NAME]['order'];
+		$commande = $ClassCommandes->get_commande();
+		$ClassCommandes->order_payment_mode = 1;
+		$ClassCommandes->paymentMode();
 
+		unset($_SESSION[_SES_NAME]['order']);
+		unset($_SESSION[_SES_NAME]['Cart']);
+		unset($_SESSION[_SES_NAME]['Delivery']);
+
+		/*$tpl = file_get_contents(_APP_PATH . 'mail_templates/mails.payment.htm');
+
+		// On remplace les infos personnelles
+		$tpl = str_replace("%PAY_MODE%", 'Check', $tpl);
+		$tpl = str_replace("%ORDER_HASH%", $commande->order_hash, $tpl);
+
+
+		$this->send_mail($tpl,
+			_SITE_NAME,
+			'amaury.gilbon@gmail.com',
+			$_SESSION[_SES_NAME]['mail'],
+			'Order [' . $commande->order_hash . '] confirmation');*/
+
+		$tpl = file_get_contents(_APP_PATH . 'mail_templates/mails.check.htm');
+
+		// On remplace les infos personnelles
+		$tpl = str_replace("%ORDER_HASH%", $commande->order_hash, $tpl);
+
+
+		$this->send_mail($tpl,
+			_SITE_NAME,
+			'amaury.gilbon@gmail.com',
+			$_SESSION[_SES_NAME]['mail'],
+			'Order [' . $commande->order_hash . '] confirmation');
+
+		$_SESSION[_SES_NAME]['pageMessage'] = 4;
+		header('location:index.php?module=autre&action=messagePage');
+	}
 }
 
 ?>

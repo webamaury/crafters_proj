@@ -141,6 +141,25 @@ $(document).on('click', '.ajax_type_trigger', function (e) {
     return false;
 });
 
+$(document).on('change', 'input[name=delivery]', function (e) {
+    e.preventDefault();
+    var delivery = $('.delivery_ajax').val();
+    if(delivery == '0') {
+        var newDelivery = 1;
+    } else if (delivery == '1') {
+        var newDelivery = 0;
+    }
+
+    var urlAjax = 'index.php?module=panier&action=changeDelivery' ;
+    $.get(urlAjax,{},function(data){
+
+        $('.ajax_all_price').text(data);
+        $('.delivery_ajax').val(newDelivery);
+
+    },'json');
+    return false;
+});
+
 
 function traiterFlux2(flux) {
     var html = '';
@@ -212,7 +231,7 @@ function traiterFlux2(flux) {
         html += '<br/>';
         html += '<br/>';
 
-        html += '<p class="price">' + price + '$</p>';
+        html += '<p class="price">' + price + '€</p>';
         html += '</div>';
         html += '<br/>';
         html += '<br/>';
@@ -222,12 +241,18 @@ function traiterFlux2(flux) {
         html += '</div>';
 
         all_quantity += flux[key].quantity;
-        all_price += flux[key].quantity * 10 ;
+        all_price += flux[key].quantity * price ;
     }
     if(all_quantity > 1) {
         all_quantity += ' products';
     } else {
         all_quantity += ' product';
+    }
+    var delivery = $('.delivery_ajax').val();
+    if ( delivery == '0') {
+        all_price += 6;
+    } else if ( delivery == '1') {
+        all_price += 10;
     }
 
     $('.ajax_display_cart_content').html(html);
@@ -236,6 +261,7 @@ function traiterFlux2(flux) {
 
 }
 $(document).ready(function () {
+
     $(document).keypress(function(e){
         var key = e.which;
         if (key == 117) {
@@ -278,16 +304,17 @@ $(document).ready(function () {
     });
     if($('body').scrollTop() > 20){
         $(".header").addClass("min-header");
-        $(".content").css("margin-top", "50px");
+        $(".content").css("margin-top", "75px");
     }
     $(window).scroll(function(){
         if($('body').scrollTop() > 20){
             $(".header").addClass("min-header");
-            $(".content").css("margin-top", "53px");
+            $(".content").css("margin-top", "75px");
+            $(".hr_header").addClass("hide_hr");
         } else {
             $(".header").removeClass("min-header");
             $(".content").css("margin-top", "0px");
-
+            $(".hr_header").removeClass("hide_hr");
         }
     });
 });

@@ -39,6 +39,25 @@ require_once(_CORE_PATH . 'coreControlers.php'); $coreControler = new CoreContro
 require_once(_APP_PATH . 'models/lib.function.php');
 
 require_once(_APP_PATH . 'models/class.users.php'); $user = new ClassUsers();
+//var_dump($_SESSION[_SES_NAME]);
+
+/**
+ * Suppression message page
+ */
+if(isset($_SESSION[_SES_NAME]['pageMessage'])) {
+	if (isset($_GET['module']) && isset($_GET['action']) && $_GET['module'] == 'autre' && $_GET['action'] == 'messagePage') {
+
+	} else {
+		unset($_SESSION[_SES_NAME]['pageMessage']);
+	}
+}
+
+/**
+ * VERIF COOKIE CNIL
+ */
+if (!isset($_COOKIE[_COOKIE_NAME]['Cnil'])) {
+	DEFINE('CNIL', false);
+}
 
 /**
  *  OUVERTURE DE SESSION
@@ -47,7 +66,11 @@ if ((isset($_POST['action']) && $_POST['action'] === 'login')) {
 	
 	$user->mail = $_POST['email'];
 	$user->password = md5($_POST['password']);
-	$user->remember = $_POST['remember'];
+	if (isset($_POST['remember'])) {
+		$user->remember = $_POST['remember'];
+	} else {
+		$user->remember = 0;
+	}
 
 	$return = $user->login();
 	if ($return === 'error0' || $return === 'error1') {
@@ -88,14 +111,14 @@ if (isset($_GET['action']) && $_GET['action'] === 'logout') {
 $pagesAllowedWithoutSession = array(
 	_PATH_FOLDER,
 	_PATH_FOLDER . 'index.php',
-	'index', 'fiche', 'profil', 'contact', 'panier', 'signup', 'gallery', 'autre');
+	'index', 'fiche', 'profile', 'contact', 'panier', 'signup', 'gallery', 'autre');
 if (isset($_GET['module'])) {
 	$var = $_GET['module'];
 } else {
 	$var = $currentPage;
 }
 if (!$user->isAuthed() && !in_array($var, $pagesAllowedWithoutSession)) {
-	$notices->createNotice("danger", "Vous devez posséder un compte pour accéder à ce contenu");
+	$notices->createNotice("danger", "You must be connected to access to this page");
 	header('Location: index.php?module=index');
 	exit();
 }

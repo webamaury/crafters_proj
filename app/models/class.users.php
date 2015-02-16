@@ -159,7 +159,10 @@ class ClassUsers extends CoreModels {
 			U.user_firstname,
 			U.user_name,
 			U.user_mail,
+			U.user_description,
+			U.user_username,
 			DATE_FORMAT(U.user_birthday, '%d %M %Y') AS DateBirth,
+			U.user_birthday,
 			U.user_phone,
 			DATE_FORMAT(U.user_creation, '%d %M %Y %T') AS DateCrea,
 			U.user_img_url,
@@ -316,6 +319,7 @@ class ClassUsers extends CoreModels {
 		SET user_mail = :mail,
 		user_firstname = :firstname,
 		user_name = :name,
+		user_username = :username,
 		user_phone = :phone,
 		user_birthday = :birthday,
 		user_status = :statut 
@@ -326,6 +330,7 @@ class ClassUsers extends CoreModels {
 		$cursor->bindValue(':mail', $this->user_mail, PDO::PARAM_STR);
 		$cursor->bindValue(':firstname', $this->user_firstname, PDO::PARAM_STR);
 		$cursor->bindValue(':name', $this->user_name, PDO::PARAM_STR);
+		$cursor->bindValue(':username', $this->user_username, PDO::PARAM_STR);
 		$cursor->bindValue(':phone', $this->user_phone, PDO::PARAM_STR);
 		$cursor->bindValue(':birthday', $this->user_birthday, PDO::PARAM_STR);
 		$cursor->bindValue(':statut', $this->user_status, PDO::PARAM_INT);
@@ -399,6 +404,35 @@ class ClassUsers extends CoreModels {
 		$cursor->execute();
 	
 		$cursor->setFetchMode(PDO::FETCH_OBJ);		
+		$list = $cursor->fetchAll();
+		$cursor->closeCursor();
+
+		return $list;
+	}
+	/**
+	 * Permet d'avoir les commandes d'un utilisateur
+	 * @param $limit
+	 * @param $user_id
+	 * @return array
+	 */
+	public function getOrdersOfUser($limit, $user_id) {
+		$query = "SELECT order_id,
+			order_price,
+			order_hash,
+			order_delivery,
+			order_payment_mode,
+			order_status,
+			DATE_FORMAT(order_creation, '%d %M %Y %H:%i') as order_creation
+			FROM " . _TABLE__COMMANDES . "
+			WHERE user_id_order = :user_id_order
+			ORDER BY order_id DESC
+			LIMIT 0," . $limit;
+
+		$cursor = $this->connexion->prepare($query);
+		$cursor->bindValue(':user_id_order', $user_id, PDO::PARAM_INT);
+		$cursor->execute();
+
+		$cursor->setFetchMode(PDO::FETCH_OBJ);
 		$list = $cursor->fetchAll();
 		$cursor->closeCursor();
 

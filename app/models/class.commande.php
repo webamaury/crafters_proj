@@ -7,14 +7,15 @@ class ClassCommandes extends CoreModels
 {
 	public function insertCommande() {
 		$query = "INSERT INTO " . _TABLE__COMMANDES . "
-		(user_id_order, order_hash, order_price)
+		(user_id_order, order_hash, order_price, order_delivery)
 		VALUES
-		(:user_id, :order_hash, :price)";
+		(:user_id, :order_hash, :price, :order_delivery)";
 		$cursor = $this->connexion->prepare($query);
 
 		$cursor->bindValue(':user_id', $this->user_id, PDO::PARAM_INT);
 		$cursor->bindValue(':price', $this->price, PDO::PARAM_STR);
 		$cursor->bindValue(':order_hash', $this->order_hash, PDO::PARAM_STR);
+		$cursor->bindValue(':order_delivery', $this->order_delivery, PDO::PARAM_INT);
 
 		$return = $cursor->execute();
 
@@ -25,7 +26,7 @@ class ClassCommandes extends CoreModels
 
 		if($return != false) {
 			$this->insertProductsCommande($this->products, $return);
-			$this->insertAdresseCommande($this->ad_numberstreet,$this->ad_zipcode,$this->ad_city,$this->ad_more,$this->ad_status, $return);
+			$this->insertAdresseCommande($this->ad_numberstreet,$this->ad_zipcode,$this->ad_city,$this->ad_more,$this->ad_firstname,$this->ad_name,$this->ad_status, $return);
 		}
 
 		return $return;
@@ -55,18 +56,21 @@ class ClassCommandes extends CoreModels
 		return $return;
 
 	}
-	private function insertAdresseCommande($address_numberstreet, $address_zipcode, $address_town, $address_more, $address_status, $crafters_order_order_id)
+	private function insertAdresseCommande($address_numberstreet, $address_zipcode, $address_town, $address_more, $address_firstname, $address_name, $address_status, $crafters_order_order_id)
 	{
 		$query = "INSERT INTO " . _TABLE__ADDRESS . "
-		(address_numberstreet, address_town, address_zipcode, address_more, address_status, crafters_order_order_id)
+		(address_numberstreet, address_town, address_zipcode, address_more, address_firstname, address_name, address_status, crafters_order_order_id)
 		VALUES
-		(:address_numberstreet, :address_town, :address_zipcode, :address_more, :address_status, :crafters_order_order_id)";
+		(:address_numberstreet, :address_town, :address_zipcode, :address_more, :address_firstname, :address_name, :address_status, :crafters_order_order_id)";
 		$cursor = $this->connexion->prepare($query);
 
 		$cursor->bindValue(':address_numberstreet', $address_numberstreet, PDO::PARAM_STR);
 		$cursor->bindValue(':address_town', $address_town, PDO::PARAM_STR);
 		$cursor->bindValue(':address_zipcode', $address_zipcode, PDO::PARAM_STR);
 		$cursor->bindValue(':address_more', $address_more, PDO::PARAM_STR);
+		$cursor->bindValue(':address_firstname', $address_firstname, PDO::PARAM_STR);
+		$cursor->bindValue(':address_name', $address_name, PDO::PARAM_STR);
+
 		$cursor->bindValue(':address_status', $address_status, PDO::PARAM_INT);
 		$cursor->bindValue(':crafters_order_order_id', $crafters_order_order_id, PDO::PARAM_INT);
 
@@ -88,7 +92,7 @@ class ClassCommandes extends CoreModels
 	}
 	function getAdressesCommande($order_id)
 	{
-		$query = "SELECT * FROM " . _TABLE__ADDRESS . " WHERE crafters_order_order_id = :order_id";
+		$query = "SELECT * FROM " . _TABLE__ADDRESS . " WHERE crafters_order_order_id = :order_id ORDER BY address_status ASC";
 		$cursor = $this->connexion->prepare($query);
 		$cursor->bindValue(':order_id', $order_id, PDO::PARAM_INT);
 		$cursor->execute();
@@ -154,6 +158,21 @@ class ClassCommandes extends CoreModels
 
 		return $return;
 	}
+	function paymentMode()
+	{
+		$query = "UPDATE " . _TABLE__COMMANDES . "
+		SET order_payment_mode = :order_payment_mode
+		WHERE order_id = :order_id";
+		$cursor = $this->connexion->prepare($query);
 
+		$cursor->bindValue(':order_payment_mode', $this->order_payment_mode, PDO::PARAM_STR);
+		$cursor->bindValue(':order_id', $this->order_id, PDO::PARAM_STR);
+
+		$return = $cursor->execute();
+
+		$cursor->closeCursor();
+
+		return $return;
+	}
 }
 ?>

@@ -76,6 +76,13 @@ class MessagesController {
 		} else if (isset($_POST['action']) && $_POST['action'] === 'ajax_display_message_fiche') {
 			$messages->message_id = $_POST['id'];
 			$ajaxItem = $messages->get_one_array();
+
+			if ($ajaxItem['nom'] == 'unread') {
+				$messages->readMessage();
+				$ajaxItem['nom'] = 'read';
+				$ajaxItem['read'] = true;
+			}
+
 			$ajaxItem = json_encode($ajaxItem);
 			echo $ajaxItem;
 		}

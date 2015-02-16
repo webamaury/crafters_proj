@@ -174,6 +174,30 @@ class IndexController extends CoreControlers
 		}
 	}
 
+	/**
+	 *
+	 */
+	function contact($arrayTools, $notices)
+	{
+		if (!isset($_POST['firstname']) || empty($_POST['firstname']) || !isset($_POST['name']) || empty($_POST['name']) || !isset($_POST['mail']) || empty($_POST['mail']) || !isset($_POST['message']) || empty($_POST['message'])) {
+			$notices->createNotice("danger", "Please complete all required fields!");
+			header('location:index.php');
+			exit();
+		}
+		include_once(_APP_PATH . 'models/class.messages.php');
+		$message = new ClassMessages();
+
+		$message->message_firstname = $_POST['firstname'];
+		$message->message_name = $_POST['name'];
+		$message->message_mail = $_POST['mail'];
+		$message->message_message = $_POST['message'];
+
+		$message->newMessage();
+
+		$_SESSION[_SES_NAME]['pageMessage'] = 5;
+		header('location:index.php?module=autre&action=messagePage');
+
+	}
 }
 
 ?>

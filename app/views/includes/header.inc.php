@@ -14,7 +14,7 @@
                             <li><a href="/home">Home</a></li>
                             <li><a href="index.php?module=gallery">Gallery</a></li>
                             <!--<li><a href="#">Monthly Set</a></li>-->
-                            <li><a href="contact.php" data-toggle="modal" data-target="#modal-contact">Contact</a> </li>
+                            <li><a href="#" data-toggle="modal" data-target="#modal-contact">Contact</a> </li>
                             <?php
                             if (isset($_SESSION[_SES_NAME]["authed"]) && $_SESSION[_SES_NAME]["authed"] == true) {
                             ?>
@@ -39,8 +39,9 @@
                                 <div class="dropdown dropdown_user">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><?php echo $_SESSION[_SES_NAME]['username']; ?><span class="caret"></span></a>
                                     <ul class="dropdown-menu" role="menu">
-                                        <li class="text-right"><a href="index.php?module=profil&user=<?php echo $_SESSION[_SES_NAME]["id"]; ?>">Profil <i class="fa fa-user bs-example-modal-sm"></i></a></li>
-                                        <li class="text-right"><a href="index.php?module=setting">Settings <i class="fa fa-cog"></i></a></li>
+                                        <li class="text-right"><a href="index.php?module=profile">Profile <i class="fa fa-user bs-example-modal-sm"></i></a></li>
+                                        <li class="text-right"><a href="index.php?module=profile&where=orders">My orders <i class="fa fa-cog"></i></a></li>
+                                        <li class="text-right"><a href="index.php?module=profile&where=infos">Settings <i class="fa fa-cog"></i></a></li>
                                         <li class="text-right"><a href="index.php?action=logout">Logout <i class="fa fa-power-off bs-example-modal-sm"></i></a></li>
                                     </ul>
                                 </div>
@@ -87,6 +88,6 @@
     </div>
 
     <div class="row content">
-        <hr>
+        <hr class="hr_header">
     </div>
     <br>
