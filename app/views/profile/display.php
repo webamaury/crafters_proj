@@ -14,11 +14,22 @@
 		<div class="row dashboard_infos">
 			<div class="col-xs-12 col-sm-8 col-sm-offset-1">
 				<div class="col-sm-6 col-sm-offset-4 col-xs-8 col-xs-offset-2 col-md-3 col-md-offset-1 text-center">
-					<img src="<?php echo (isset($user->user_img_url) && file_exists($user->user_img_url)) ? $user->user_img_url : "img/default/defaultprod.png" ;?>" class="img-circle img-responsive" style="float:right;">
+					<div id="output">
+						<img src="<?php echo (isset($user->user_img_url) && file_exists($user->user_img_url)) ? $user->user_img_url : "img/default/defaultprod.png" ;?>" class="img-circle img-responsive" style="float:right;">
+					</div>
 					<?php
 					if ($myprofile == true) {
 						?>
-						<small><i class="fa fa-edit"></i> <a href="#"> Modify </a></small>
+						<form action="index.php?module=profile" method="post" id="form_ajax" enctype="multipart/form-data">
+							<small><i class="fa fa-edit"></i> <a href="#" id="btn_ajax"> Modify </a></small>
+							<input type="file" name="image_file" id="js-upload-files" class="hideinput"/>
+							<input type="hidden" name="action" value="upload_ajax"/>
+						</form>
+						<form action="index.php?module=profile" method="post" class="hideform" id="form_url_ajax">
+							<small><i class="fa fa-edit"></i> <a href="#" id="btn_url_ajax"> Validate </a></small>
+							<input type="hidden" name="img_url" id="img_url"/>
+							<input type="hidden" name="action" value="update_img_url_ajax"/>
+						</form>
 						<?php
 					}
 					?>
@@ -276,6 +287,109 @@
 
 	<script type="text/javascript" src="tools/jQuery/jquery-2.1.1.min.js"></script>
 	<script type="text/javascript" src="tools/bootstrap-3.2.0/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="tools/plugin_jquery/jquery.form.min.js"></script>
+	<script type="text/javascript">
+
+		function afterSuccessSecond()
+		{
+			$("#form_url_ajax").addClass("hideform");
+			$("#form_ajax").removeClass("hideform");
+		}
+		function afterSuccess()
+		{
+			var img_url = $('#img_output').attr('src'); //input type hidden img url
+			$('#img_url').val(img_url);
+
+			$("#form_ajax").addClass("hideform");
+			$("#form_url_ajax").removeClass("hideform");
+
+		}
+
+		//function to check file size before uploading.
+		function beforeSubmit(){
+			//check whether browser fully supports all File API
+			if (window.File && window.FileReader && window.FileList && window.Blob)
+			{
+
+				if( !$('#js-upload-files').val()) //check empty input filed
+				{
+					$("#output").html("Are you kidding me?");
+					return false
+				}
+
+				var fsize = $('#js-upload-files')[0].files[0].size; //get file size
+				var ftype = $('#js-upload-files')[0].files[0].type; // get file type
+
+
+				//allow only valid image file types
+				switch(ftype)
+				{
+					case 'image/png': case 'image/jpeg': case 'image/pjpeg':
+					break;
+					default:
+						$("#output").html("<b>"+ftype+"</b> Unsupported file type!");
+						return false
+				}
+
+				//Allowed file size is less than 1 MB (1048576)
+				if(fsize>1048576)
+				{
+					$("#output").html("<b>"+bytesToSize(fsize) +"</b> Too big Image file! <br />Please reduce the size of your photo using an image editor.");
+					return false
+				}
+
+				$('#js-upload-submit').hide(); //hide submit button
+				$('#loading-img').show(); //hide submit button
+				$("#output").html("");
+			}
+			else
+			{
+				//Output error to older browsers that do not support HTML5 File API
+				$("#output").html("Please upgrade your browser, because your current browser lacks some new features we need!");
+				return false;
+			}
+		}
+
+		//function to format bites bit.ly/19yoIPO
+		function bytesToSize(bytes) {
+			var sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB'];
+			if (bytes == 0) return '0 Bytes';
+			var i = parseInt(Math.floor(Math.log(bytes) / Math.log(1024)));
+			return Math.round(bytes / Math.pow(1024, i), 2) + ' ' + sizes[i];
+		}
+
+		$(document).ready(function(){
+			$("#btn_url_ajax").on("click", function(e){
+				e.preventDefault();
+				var options = {
+					success: afterSuccessSecond,  // post-submit callback
+					resetForm: true        // reset the form after successful submit
+				};
+
+				$("#form_url_ajax").ajaxSubmit(options);
+
+			});
+
+			$("#btn_ajax").on("click", function(e){
+				e.preventDefault();
+				$("#js-upload-files").click();
+			});
+
+			$("#js-upload-files").change(function(){
+
+				var options = {
+					target: '#output',   // target element(s) to be updated with server response
+					beforeSubmit: beforeSubmit,  // pre-submit callback
+					success: afterSuccess,  // post-submit callback
+					resetForm: true        // reset the form after successful submit
+				};
+
+				$("#form_ajax").ajaxSubmit(options);
+
+			});
+		});
+	</script>
+
 	<script>
 		(function (i, s, o, g, r, a, m) {
 			i['GoogleAnalyticsObject'] = r;

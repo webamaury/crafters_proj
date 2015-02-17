@@ -470,5 +470,22 @@ class ClassUsers extends CoreModels {
 
 		return $list;
 	}
+
+	function updateImgUrl()
+	{
+		$query = "UPDATE " . _TABLE__USERS . "
+		SET user_img_url = :img_url
+		WHERE user_id = :id";
+
+		$cursor = $this->connexion->prepare($query);
+
+		$cursor->bindValue(':img_url', $this->img_url, PDO::PARAM_STR);
+		$cursor->bindValue(':id', $this->user_id, PDO::PARAM_INT);
+
+		$return = $cursor->execute();
+
+		$cursor->closeCursor();
+		return $return;
+	}
 }
 ?>

@@ -183,3 +183,9 @@ a:focus, input:focus, textarea:focus, button:focus, a:hover, input:hover, textar
     font-family: "lato";
     color: #666768;
 }
+.hideinput {
+    display: none !important;
+}
+.hideform {
+    display: none;
+}
