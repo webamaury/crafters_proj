@@ -75,10 +75,10 @@ class CoreModels {
 		$cursor->execute();
 	
 		$cursor->setFetchMode(PDO::FETCH_OBJ);		
-		$return=$cursor->fetchAll();
+		$return=$cursor->fetch();
 		$cursor->closeCursor();
 
-		return $return[0] ;	
+		return $return ;
 	}
 }
 ?>

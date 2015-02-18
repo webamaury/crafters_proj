@@ -3,6 +3,8 @@ RewriteRule home index.php [L]
 RewriteRule ^([a-z\-]+)$ index.php?module=$1 [L]
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^([a-z\-]+)/([0-9\-]+)/?$ index.php?module=$1&product=$2 [L]
+RewriteRule ^(product)=>([0-9\-]+)/?$ index.php?module=fiche&product=$2 [L]
+RewriteRule ^(profile)=>([0-9\-]+)/?$ index.php?module=$1&user=$2 [L]
+RewriteRule ^(profile)=>(orders||infos)/?$ index.php?module=$1&where=$2 [L]
 
-ErrorDocument 404 index.php?module=404
+ErrorDocument 404 /index.php?module=404

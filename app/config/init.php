@@ -111,6 +111,9 @@ if (isset($_GET['action']) && $_GET['action'] === 'logout') {
 $pagesAllowedWithoutSession = array(
 	_PATH_FOLDER,
 	_PATH_FOLDER . 'index.php',
+	_PATH_FOLDER . 'gallery',
+	_PATH_FOLDER . 'home',
+	_PATH_FOLDER . 'profile',
 	'index', 'fiche', 'profile', 'contact', 'panier', 'signup', 'gallery', 'autre');
 if (isset($_GET['module'])) {
 	$var = $_GET['module'];

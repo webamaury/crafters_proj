@@ -74,7 +74,7 @@
 						?>
 						<div class="col-xs-12">
 							<div class="col-md-3 col-sm-2 col-xs-2">
-								<a href="index.php?module=profile&user=<?php echo $popular_crafter->user_id_product; ?>"><img
+								<a href="<?php echo (_REW_URL == true) ? "/profile=>" . $popular_crafter->user_id_product : _PATH_FOLDER . "index.php?module=profile&user=" . $popular_crafter->user_id_product ; ?>"><img
 										src="<?php echo $popular_crafter->user_img_url; ?>"
 										class="img-responsive img-circle" style="float: right"></a>
 							</div>
@@ -128,8 +128,8 @@
 						foreach ($products as $product) {
 							?>
 							<div class="col-sm-4 col-md-4 col-xs-6 col-lg-3">
-								<div class="thumbnail">
-									<a href="index.php?module=fiche&product=<?php echo $product->product_id; ?>" class="product-image"><img src="<?php echo $product->product_img_url; ?>" class="img-responsive"></a>
+								<div class="thumbnail parent">
+									<a href="<?php echo (_REW_URL == true) ? "/product=>" . $product->product_id : _PATH_FOLDER . "index.php?module=fiche&product=" . $product->product_id ; ?>" class="product-image"><img src="<?php echo $product->product_img_url; ?>" class="img-responsive prodIMG"></a>
 
 									<div class="caption">
 										<h4><?php echo $product->product_name; ?></h4>
@@ -138,7 +138,7 @@
 											<small><em>By <?php echo $product->user_username; ?></em></small>
 										</p>
 										<div class="btn-group " style="float: left">
-											<a href="index.php?module=fiche&product=<?php echo $product->product_id; ?>" class="btn btn-xs btn-default"><i class="fa fa-search"></i></a>
+											<a href="<?php echo (_REW_URL == true) ? "/product=>" . $product->product_id : _PATH_FOLDER . "index.php?module=fiche&product=" . $product->product_id ; ?>" class="btn btn-xs btn-default"><i class="fa fa-search"></i></a>
 											<a href="index.php?module=panier&action=addToCart&product=<?php echo $product->product_id; ?>&img_url=<?php echo $product->product_img_url; ?>&name=<?php echo $product->product_name; ?>&from=<?php echo $product->user_username; ?>" class="btn btn-xs ajax_cart_trigger btn-default add-to-cart"><i class="fa fa-shopping-cart"></i></a>
 										</div>
 										<div class="text-right"><?php

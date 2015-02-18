@@ -87,6 +87,7 @@ class ClassProducts extends CoreModels
 			P.user_id_product,
 			P.product_status,
 			P.product_img_url,
+			P.product_nblike,
 			S.nom,
 			S.statut
 			FROM " . _TABLE__PRODUCTS . " as P," . _TABLE__STATUTS . " as S

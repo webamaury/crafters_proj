@@ -75,8 +75,8 @@
             ?>
 
                 <div class="col-sm-4 col-md-3 col-xs-6 col-lg-3">
-                    <div class="thumbnail">
-                        <a href="index.php?module=fiche&product=<?php echo $lastUpload->product_id; ?>" class="product-image"><img src="<?php echo $lastUpload->product_img_url; ?>" class="img-responsive"></a>
+                    <div class="thumbnail parent">
+                        <a href="<?php echo (_REW_URL == true) ? "/product=>" . $lastUpload->product_id : _PATH_FOLDER . "index.php?module=fiche&product=" . $product->product_id ; ?>" class="product-image"><img src="<?php echo $lastUpload->product_img_url; ?>" class="img-responsive prodIMG"></a>
 
                         <div class="caption">
                             <h4><?php echo $lastUpload->product_name; ?></h4>
@@ -85,7 +85,7 @@
                                 <small><em>By <?php echo $lastUpload->user_username; ?></em></small>
                             </p>
                             <div class="btn-group " style="float: left">
-                                <a href="index.php?module=fiche&product=<?php echo $lastUpload->product_id; ?>" class="btn btn-xs btn-default"><i class="fa fa-search"></i></a>
+                                <a href="<?php echo (_REW_URL == true) ? "/product=>" . $lastUpload->product_id : _PATH_FOLDER . "index.php?module=fiche&product=" . $product->product_id ; ?>" class="btn btn-xs btn-default"><i class="fa fa-search"></i></a>
                                 <a href="index.php?module=panier&action=addToCart&product=<?php echo $lastUpload->product_id; ?>&img_url=<?php echo $lastUpload->product_img_url; ?>&name=<?php echo $lastUpload->product_name; ?>&from=<?php echo $lastUpload->user_username; ?>" class="btn btn-xs ajax_cart_trigger btn-default add-to-cart"><i class="fa fa-shopping-cart"></i></a>
                             </div>
                             <div class="text-right"><?php

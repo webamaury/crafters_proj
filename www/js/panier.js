@@ -5,7 +5,7 @@
  */
 $(document).on('click', '.add-to-cart', function () {
     var cart = $('.fa-shopping-cart');
-    var imgtofly = $(this).parents('div.thumbnail').find('a.product-image img').eq(0);
+    var imgtofly = $(this).parents('div.parent').find('.prodIMG').eq(0);
     if (imgtofly) {
         var vitesse = 500;
 
@@ -304,12 +304,12 @@ $(document).ready(function () {
     });
     if($('body').scrollTop() > 20){
         $(".header").addClass("min-header");
-        $(".content").css("margin-top", "75px");
+        $(".content").css("margin-top", "78px");
     }
     $(window).scroll(function(){
         if($('body').scrollTop() > 20){
             $(".header").addClass("min-header");
-            $(".content").css("margin-top", "75px");
+            $(".content").css("margin-top", "78px");
             $(".hr_header").addClass("hide_hr");
         } else {
             $(".header").removeClass("min-header");

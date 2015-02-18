@@ -15,7 +15,7 @@
 			<div class="col-xs-12 col-sm-8 col-sm-offset-1">
 				<div class="col-sm-6 col-sm-offset-4 col-xs-8 col-xs-offset-2 col-md-3 col-md-offset-1 text-center">
 					<div id="output">
-						<img src="<?php echo (isset($user->user_img_url) && file_exists($user->user_img_url)) ? $user->user_img_url : "img/default/defaultprod.png" ;?>" class="img-circle img-responsive" style="float:right;">
+						<img src="<?php echo (isset($user->user_img_url) && file_exists($user->user_img_url)) ? _PATH_FOLDER . $user->user_img_url : _PATH_FOLDER . "img/default/defaultprod.png" ;?>" class="img-circle img-responsive" style="float:right;">
 					</div>
 					<?php
 					if ($myprofile == true) {
@@ -91,8 +91,8 @@
 						foreach ($products as $product) {
 							?>
 							<div class="col-sm-4 col-md-3 col-xs-6 col-lg-3">
-								<div class="thumbnail">
-									<a href="index.php?module=fiche&product=<?php echo $product->product_id; ?>" class="product-image"><img src="<?php echo $product->product_img_url; ?>" class="img-responsive"></a>
+								<div class="thumbnail parent">
+									<a href="<?php echo (_REW_URL == true) ? "/product=>" . $product->product_id : _PATH_FOLDER . "index.php?module=fiche&product=" . $product->product_id ; ?>" class="product-image"><img src="<?php echo _PATH_FOLDER . $product->product_img_url; ?>" class="img-responsive prodIMG"></a>
 
 									<div class="caption">
 										<h4><?php echo $product->product_name; ?></h4>
@@ -101,7 +101,7 @@
 											<small><em>By <?php echo $user->user_username; ?></em></small>
 										</p>
 										<div class="btn-group " style="float: left">
-											<a href="index.php?module=fiche&product=<?php echo $product->product_id; ?>" class="btn btn-xs btn-default"><i class="fa fa-search"></i></a>
+											<a href="<?php echo (_REW_URL == true) ? "/product=>" . $product->product_id : _PATH_FOLDER . "index.php?module=fiche&product=" . $product->product_id ; ?>" class="btn btn-xs btn-default"><i class="fa fa-search"></i></a>
 											<a href="#" data-href="index.php?module=profile&action=deleteCraft&product=<?php echo $product->product_id; ?>" data-toggle="modal" data-target=".modal_supprod" class="btn btn-xs btn-default modal_supp_trigger"><i class="fa fa-trash-o"></i></a>
 											<a href="index.php?module=panier&action=addToCart&product=<?php echo $product->product_id; ?>&img_url=<?php echo $product->product_img_url; ?>&name=<?php echo $product->product_name; ?>&from=<?php echo $user->user_username; ?>" class="btn btn-xs ajax_cart_trigger btn-default add-to-cart"><i class="fa fa-shopping-cart"></i></a>
 										</div>

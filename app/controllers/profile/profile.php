@@ -38,6 +38,10 @@ class profileController extends CoreControlers {
 		}
 		$user = $ClassUser->getOne();
 
+		if (empty($user)) {
+			header('location:index.php');
+		}
+
 		$products = $ClassUser->getProductOfUser('100', $ClassUser->user_id);
 		foreach ($products as $product) {
 			$ClassProduct->product_id = $product->product_id;
