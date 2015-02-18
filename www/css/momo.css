@@ -189,3 +189,7 @@ a:focus, input:focus, textarea:focus, button:focus, a:hover, input:hover, textar
 .hideform {
     display: none;
 }
+.questionprofile {
+    font-size: 18px;
+    padding-top: 5px;
+}

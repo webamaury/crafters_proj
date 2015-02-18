@@ -5,9 +5,10 @@ class profileController extends CoreControlers {
 
 		if(!isset($_GET['action']) && !isset($_POST['action'])) {
 			$method = 'main' ;
-		}
-		else if(isset($_POST['action'])) {
+		} else if (isset($_POST['action'])) {
 			$method = $_POST['action'];
+		} else if (isset($_GET['action'])) {
+			$method = $_GET['action'];
 		}
 
 		$this->$method($arrayTools, $notices) ;
@@ -37,7 +38,7 @@ class profileController extends CoreControlers {
 		}
 		$user = $ClassUser->getOne();
 
-		$products = $ClassUser->getProductOfUser('9', $ClassUser->user_id);
+		$products = $ClassUser->getProductOfUser('100', $ClassUser->user_id);
 		foreach ($products as $product) {
 			$ClassProduct->product_id = $product->product_id;
 			$nb_like = $ClassProduct->numberOfLike();
@@ -79,17 +80,38 @@ class profileController extends CoreControlers {
 		} else {
 			//var_dump($_POST);
 			include_once(_APP_PATH . 'models/class.product.php'); $ClassUser = new ClassUsers();
-
 			$ClassUser->user_firstname = $_POST['firstname'];
 			$ClassUser->user_name = $_POST['name'];
 			$ClassUser->user_username = $_POST['username'];
-			$ClassUser->user_mail = $_POST['mail'];
 			$ClassUser->user_phone = $_POST['phone'];
 			$ClassUser->user_birthday = $_POST['birthday'];
 			$ClassUser->user_status = 1;
 			$ClassUser->user_id = $_SESSION[_SES_NAME]['id'];
 
-			$return = $ClassUser->updateUser();
+			if($_POST['mail'] != $_SESSION[_SES_NAME]['mail']) {
+				$ClassUser->user_mail = $_POST['mail'];
+				if (!$ClassUser->mailUnique()) {
+					$notices->createNotice('danger', 'This Mail address is already use!');
+					header("location:index.php?module=profile&where=infos"); exit();
+				}
+				$ClassUser->user_newmail_hash = substr(strtolower(md5(time() . session_id())), 0, 8);;
+				$changeMail = true;
+			} else {
+				$ClassUser->user_mail = "";
+				$ClassUser->user_newmail_hash = "";
+				$changeMail = false;
+
+			}
+			//Si le username est modifié, vérification de l'unicité
+			if($_POST['username'] != $_SESSION[_SES_NAME]['username']) {
+				if (!$ClassUser->usernameUnique()) {
+					$notices->createNotice('danger', 'This username is already use!');
+					header("location:index.php?module=profile&where=infos");
+					exit();
+				}
+			}
+
+			$return = $ClassUser->updateUserFront();
 
 			if ($return == true) {
 				$_SESSION[_SES_NAME]['firstname'] = $_POST['firstname'];
@@ -97,10 +119,43 @@ class profileController extends CoreControlers {
 				$_SESSION[_SES_NAME]['username'] = $_POST['username'];
 				$_SESSION[_SES_NAME]['mail'] = $_POST['mail'];
 
+				if ($changeMail == true) {
+					//SEND MAIL CONFIRMATION
+					$url = _PATH_FOLDER . "index.php?module=profile&action=newmail&hh=" . $ClassUser->user_newmail_hash;
+
+					$tpl = file_get_contents(_APP_PATH . 'mail_templates/mails.confirm.htm');
+
+					// On remplace les infos personnelles
+					$tpl = str_replace("%URL%", $url, $tpl);
+
+					$this->send_mail($tpl,
+						_SITE_NAME,
+						'amaury.gilbon@gmail.com',
+						$_POST['mail'],
+						'Confirm e-mail modification');
+				}
 				$notices->createNotice("success", "Your information has been successfully modified.");
 				header('location:index.php?module=profile'); exit();
 			}
 		}
+	}
+	function newmail($arrayTools, $notices)
+	{
+		include_once(_APP_PATH . 'models/class.product.php'); $ClassUser = new ClassUsers();
+
+		$ClassUser->user_newmail_hash = $_GET['hh'];
+
+		$newmail = $ClassUser->getNewMail();
+		var_dump($newmail);
+		$return = $ClassUser->confirmNewMail();
+
+		if (isset($_SESSION[_SES_NAME]['mail'])) {
+			$_SESSION[_SES_NAME]['mail'] = $newmail->user_newmail;
+		}
+
+		$notices->createNotice("success", "You mail has been succesfully modified.");
+		header('location:index.php?module=profile');exit();
+
 	}
 
 	function upload_ajax($arrayTools, $notices)
@@ -187,6 +242,28 @@ class profileController extends CoreControlers {
 		$return = $ClassUser->updateImgUrl();
 
 		echo $return;
+	}
+	function deleteCraft($arrayTools, $notices)
+	{
+		include_once(_APP_PATH . 'models/class.product.php'); $ClassProduct = new ClassProducts();
+
+		$ClassProduct->product_id = $_GET['product'];
+		$product = $ClassProduct->get0ne();
+
+		if ($product->user_id_product != $_SESSION[_SES_NAME]['id']) {
+			header('location:index.php'); exit();
+		}
+
+
+		$return = $ClassProduct->deleteProduct();
+
+		if ($return == true) {
+			unlink(_WWW_PATH . $product->product_img_url);
+
+			$notices->createNotice("success", "Your craft has been successfully deleted!");
+			header('location: index.php?module=profile'); exit();
+		}
+
 	}
 }
 

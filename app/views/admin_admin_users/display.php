@@ -30,7 +30,7 @@
 					<td><?php echo $item->mail ; ?></td>
 					<td class="colum_action">
 						<a href="#" onclick="return false" class="tips-trigger" data-toggle="tooltip" data-placement="bottom" title="send a mail">
-							<span data-toggle="modal" data-target=".modal_mail" data-mail="<?php echo $item->mail ; ?>" class="glyphicon glyphicon-send modal-supp-trigger"></span>
+							<span data-toggle="modal" data-target=".modal_mail" data-mail="<?php echo $item->mail ; ?>" class="glyphicon glyphicon-send modal-mail-trigger"></span>
 						</a>&nbsp;&nbsp;
 						<a href="#" onclick="return false" class="tips-trigger"  data-toggle="tooltip" data-placement="bottom" title="see details">
 							<span data-toggle="modal" data-target=".modal_fiche" data-id="<?php echo $item->id ; ?>" class="glyphicon glyphicon-eye-open modal-fiche-trigger"></span>

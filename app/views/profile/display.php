@@ -102,6 +102,7 @@
 										</p>
 										<div class="btn-group " style="float: left">
 											<a href="index.php?module=fiche&product=<?php echo $product->product_id; ?>" class="btn btn-xs btn-default"><i class="fa fa-search"></i></a>
+											<a href="#" data-href="index.php?module=profile&action=deleteCraft&product=<?php echo $product->product_id; ?>" data-toggle="modal" data-target=".modal_supprod" class="btn btn-xs btn-default modal_supp_trigger"><i class="fa fa-trash-o"></i></a>
 											<a href="index.php?module=panier&action=addToCart&product=<?php echo $product->product_id; ?>&img_url=<?php echo $product->product_img_url; ?>&name=<?php echo $product->product_name; ?>&from=<?php echo $user->user_username; ?>" class="btn btn-xs ajax_cart_trigger btn-default add-to-cart"><i class="fa fa-shopping-cart"></i></a>
 										</div>
 										<div class="text-right"><?php
@@ -227,42 +228,46 @@
 								<div class="col-xs-12">
 									<div class="form-group">
 										<label for="username" class="col-xs-2 col-sm-4 control-label">Username</label>
-										<div class="col-xs-10 col-sm-6">
+										<div class="col-xs-9 col-sm-5">
 											<input type="text" maxlength="30" name="username" class="form-control" id="username" value="<?php echo (isset($user->user_username)) ? $user->user_username : '' ; ?>" required>
 										</div>
 										<br/><br/>
 									</div>
 									<div class="form-group">
 										<label for="firstname" class="col-xs-2 col-sm-4 control-label">Firstname</label>
-										<div class="col-xs-10 col-sm-6">
+										<div class="col-xs-9 col-sm-5">
 											<input type="text" maxlength="20" name="firstname" class="form-control" id="firstname" value="<?php echo (isset($user->user_firstname)) ? $user->user_firstname : '' ; ?>" required>
 										</div>
 										<br/><br/>
 									</div>
 									<div class="form-group">
 										<label for="name" class="col-xs-2 col-sm-4 control-label">Name</label>
-										<div class="col-xs-10 col-sm-6">
+										<div class="col-xs-9 col-sm-5">
 											<input type="text" maxlength="30" name="name" class="form-control" id="name" value="<?php echo (isset($user->user_name)) ? $user->user_name : '' ; ?>" required>
 										</div>
 										<br/><br/>
 									</div>
 									<div class="form-group">
 										<label for="mail" class="col-xs-2 col-sm-4 control-label">Mail</label>
-										<div class="col-xs-10 col-sm-6">
+										<div class="col-xs-9 col-sm-5">
 											<input type="email" maxlength="100" name="mail" class="form-control" id="mail" value="<?php echo (isset($user->user_mail)) ? $user->user_mail : '' ; ?>" required>
 										</div>
+										<div class="col-xs-1 questionprofile">
+											<i data-toggle="tooltip" data-container="body" data-placement="right" title="Your mail won't change immediately. You will have to confirm it before this change happen." class="fa fa-info-circle"></i>
+										</div>
+
 										<br/><br/>
 									</div>
 									<div class="form-group">
 										<label for="phone" class="col-xs-2 col-sm-4 control-label">Phone</label>
-										<div class="col-xs-10 col-sm-6">
+										<div class="col-xs-9 col-sm-5">
 											<input type="tel" name="phone" class="form-control" id="phone" value="<?php echo (isset($user->user_phone)) ? $user->user_phone : '' ; ?>">
 										</div>
 										<br/><br/>
 									</div>
 									<div class="form-group">
 										<label for="birthday" class="col-xs-2 col-sm-4 control-label">Birthday</label>
-										<div class="col-xs-10 col-sm-6">
+										<div class="col-xs-9 col-sm-5">
 											<input type="date" name="birthday" class="form-control" id="birthday" value="<?php echo (isset($user->user_birthday)) ? $user->user_birthday : '' ; ?>">
 										</div>
 										<br/><br/>
@@ -284,7 +289,7 @@
 
 		</div>
 	</div>
-
+<?php include_once(_APP_PATH . 'views/includes/modal_supprod.inc.php'); ?>
 	<script type="text/javascript" src="tools/jQuery/jquery-2.1.1.min.js"></script>
 	<script type="text/javascript" src="tools/bootstrap-3.2.0/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="tools/plugin_jquery/jquery.form.min.js"></script>
@@ -357,8 +362,15 @@
 			var i = parseInt(Math.floor(Math.log(bytes) / Math.log(1024)));
 			return Math.round(bytes / Math.pow(1024, i), 2) + ' ' + sizes[i];
 		}
-
+		$(function () {
+			$('[data-toggle="tooltip"]').tooltip()
+		});
 		$(document).ready(function(){
+			$('.modal_supp_trigger').on('click', function (e) {
+				var url = $(this).attr("data-href");
+				$('#yes_button').attr("href", url) ;
+			});
+
 			$("#btn_url_ajax").on("click", function(e){
 				e.preventDefault();
 				var options = {

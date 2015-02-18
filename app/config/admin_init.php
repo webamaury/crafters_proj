@@ -66,6 +66,7 @@ if ((isset($_POST['action']) && $_POST['action'] === 'login') || (isset($_POST['
 		exit();
 	} else {
 		create_notice('danger', 'Erreur login / mot de passe');
+		sleep(2);
 		header('Location: index.php?module=login');
 		exit();
 	}

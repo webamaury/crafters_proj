@@ -50,51 +50,53 @@ class SignUpController extends CoreControlers
 		if (empty($_POST['firstname']) || empty($_POST['name']) || empty($_POST['username']) || empty($_POST['mail']) || empty($_POST['password']) || empty($_POST['confirmpassword'])) {
 		
 			$notices->createNotice('danger', 'Veuillez remplir tous les champs.');
-			header("location:index.php?module=signup");
+			header("location:index.php?module=signup"); exit();
 
 		} else if($_POST['password'] != $_POST['confirmpassword']) {
 
 			$notices->createNotice('danger', 'Veuillez entrer deux mots de passe identiques.');
-			header("location:index.php?module=signup");
+			header("location:index.php?module=signup"); exit();
 			
 		} else {
 			include_once(_APP_PATH . 'models/class.users.php');
 			$ClassUser = new ClassUsers();
 		
-			$ClassUser->firstname 	= $_POST['firstname'];
-			$ClassUser->name 		= $_POST['name'];
-			$ClassUser->username 	= $_POST['username'];
-			$ClassUser->mail 		= $_POST['mail'];
-			$ClassUser->password 	= md5($_POST['password']);
+			$ClassUser->user_firstname 	= $_POST['firstname'];
+			$ClassUser->user_name 		= $_POST['name'];
+			$ClassUser->user_username 	= $_POST['username'];
+			$ClassUser->user_mail 		= $_POST['mail'];
+			$ClassUser->user_password 	= md5($_POST['password']);
 			
-			if ($ClassUser->mailUnique() && $ClassUser->usernameUnique()) {
-				$lastid = $ClassUser->signup();
-				if( $lastid == false) {
-					$notices->createNotice('danger', 'Problème d`inscription. Merci de réessayer plus tard');
-					header("location:index.php?module=signup");
-				} else {
-					
-					$tpl = file_get_contents(_APP_PATH . 'mail_templates/mails.header.htm');
-					$tpl .= file_get_contents(_APP_PATH . 'mail_templates/mails.contact.htm');
-					$tpl .= file_get_contents(_APP_PATH . 'mail_templates/mails.footer.htm');
-		
-					// On remplace les infos personnelles
-					$tpl = str_replace("%CONTENT%", 'Pour confirmer votre compte, veuillez cliquer sur <a href="http://ns366377.ovh.net/gilbon/perso/crafters/www/index.php?module=signup&action=verif&user=' . $lastid . '">ce lien</a>  ', $tpl);
-					$tpl = str_replace("%SITE_NAME%", _SITE_NAME, $tpl);
-	
-					$this->send_mail($tpl,
-						'Crafters',
-						'bossxiii@hotmail.fr',
-						$_POST['mail'],
-						'Vérification de votre compte Crafters');
+			if (!$ClassUser->mailUnique()) {
+				$notices->createNotice('danger', 'This Mail address is already use!');
+				header("location:index.php?module=signup"); exit();
+			}
+			if (!$ClassUser->usernameUnique()) {
+				$notices->createNotice('danger', 'This username is already use!');
+				header("location:index.php?module=signup"); exit();
+			}
 
-					$_SESSION[_SES_NAME]['pageMessage'] = 2;
-					header('location:index.php?module=autre&action=messagePage');
-				}
-			} else {
-				$notices->createNotice('danger', 'Cette adresse email possède deja un compte');
+			$lastid = $ClassUser->signup();
+			if( $lastid == false) {
+				$notices->createNotice('danger', 'Signup problem. Please try again later!');
 				header("location:index.php?module=signup");
-			}			
+			} else {
+
+				$tpl = file_get_contents(_APP_PATH . 'mail_templates/mails.signup.htm');
+
+				// On remplace les infos personnelles
+				$url = _PATH_FOLDER . "index.php?module=signup&action=verif&user=" . $lastid;
+				$tpl = str_replace("%URL%", $url, $tpl);
+
+				$this->send_mail($tpl,
+					_SITE_NAME,
+					'amaury.gilbon@gmail.com',
+					$_POST['mail'],
+					'Confirm your account Crafters');
+
+				$_SESSION[_SES_NAME]['pageMessage'] = 2;
+				header('location:index.php?module=autre&action=messagePage');
+			}
 		}
 	}
 	

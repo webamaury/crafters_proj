@@ -4,7 +4,7 @@ $(document).ready(function(){
 
 	$('.tips-trigger').tooltip();
 
-	$('.modal-supp-trigger').on('click', function (e) {
+	$('.modal-mail-trigger').on('click', function (e) {
 	 	var mail = $(this).attr("data-mail");
 	 	$("#mail_space").text(mail);
 	 	$("#input_mail").val(mail);

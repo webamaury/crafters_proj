@@ -32,8 +32,13 @@ class ClassProducts extends CoreModels
 
 		return $return;
 	}
-	
-	function updateImage($image_url, $product) 
+
+	/**
+	 * @param $image_url
+	 * @param $product
+	 * @return bool
+	 */
+	function updateImage($image_url, $product)
 	{
 		$query = "UPDATE " . _TABLE__PRODUCTS . "
 		SET product_img_url = :img_url
@@ -79,6 +84,7 @@ class ClassProducts extends CoreModels
 			P.product_name,
 			P.product_description,
 			DATE_FORMAT(P.product_creation, '%d %M %Y %T') AS DateCrea,
+			P.user_id_product,
 			P.product_status,
 			P.product_img_url,
 			S.nom,
@@ -336,6 +342,9 @@ class ClassProducts extends CoreModels
 		return $list;
 	}
 
+	/**
+	 * @return array
+	 */
 	public function get_search_tag() {
 		$query = "SELECT P.product_name
 			FROM " . _TABLE__PRODUCTS . " P
@@ -352,8 +361,8 @@ class ClassProducts extends CoreModels
 		$list = $cursor->fetchAll();
 		$cursor->closeCursor();
 
-		return $list;	}
-
+		return $list;
+	}
 }
 
 ?>

@@ -47,14 +47,14 @@ class ClassUsers extends CoreModels {
 		$query = "INSERT INTO " . _TABLE__USERS . " 
 		(user_firstname, user_name, user_mail, user_password, user_username) 
 		VALUES 
-		(:firstname, :name, :mail, :password, :username)";
+		(:user_firstname, :user_name, :user_mail, :user_password, :user_username)";
 		$cursor = $this->connexion->prepare($query);
 	
-		$cursor->bindValue(':firstname', $this->firstname, PDO::PARAM_STR);
-		$cursor->bindValue(':name', $this->name, PDO::PARAM_STR);
-		$cursor->bindValue(':mail', $this->mail, PDO::PARAM_STR);
-		$cursor->bindValue(':password', $this->password, PDO::PARAM_STR);
-		$cursor->bindValue(':username', $this->username, PDO::PARAM_STR);
+		$cursor->bindValue(':user_firstname', $this->user_firstname, PDO::PARAM_STR);
+		$cursor->bindValue(':user_name', $this->user_name, PDO::PARAM_STR);
+		$cursor->bindValue(':user_mail', $this->user_mail, PDO::PARAM_STR);
+		$cursor->bindValue(':user_password', $this->user_password, PDO::PARAM_STR);
+		$cursor->bindValue(':user_username', $this->user_username, PDO::PARAM_STR);
 	
 		$cursor->execute();
 		
@@ -80,6 +80,41 @@ class ClassUsers extends CoreModels {
 		$return = $cursor->execute();
 		return $return;
 	}
+
+	function getNewMail()
+	{
+		$query = "SELECT
+			user_newmail
+			FROM " . _TABLE__USERS . "
+			WHERE user_newmail_hash = :user_newmail_hash";
+
+		$cursor = $this->connexion->prepare($query);
+
+		$cursor->bindValue(':user_newmail_hash', $this->user_newmail_hash, PDO::PARAM_STR);
+
+		$cursor->execute();
+
+		$cursor->setFetchMode(PDO::FETCH_OBJ);
+		$return = $cursor->fetch();
+		$cursor->closeCursor();
+
+		return $return;
+	}
+
+	function confirmNewMail()
+	{
+		$query = "UPDATE " . _TABLE__USERS . "
+		SET user_mail = user_newmail,
+		user_newmail = '',
+		user_newmail_hash = ''
+		WHERE user_newmail_hash = :user_newmail_hash";
+
+		$cursor = $this->connexion->prepare($query);
+		$cursor->bindValue(':user_newmail_hash', $this->user_newmail_hash, PDO::PARAM_STR);
+
+		$return = $cursor->execute();
+		return $return;
+	}
 	
 	/**
 	 * Permet de voir si le mail existe deja dans la BD
@@ -88,10 +123,10 @@ class ClassUsers extends CoreModels {
 	public function mailUnique() {
 		$query = "SELECT count(*) AS nbMail
 		FROM  " . _TABLE__USERS . "
-		WHERE user_mail = :mail";
-		
+		WHERE user_mail = :user_mail";
+
 		$cursor = $this->connexion->prepare($query);
-		$cursor->bindValue(':mail', $this->mail, PDO::PARAM_STR);
+		$cursor->bindValue(':user_mail', $this->user_mail, PDO::PARAM_STR);
 		
 		$cursor->execute();
 		$cursor->setFetchMode(PDO::FETCH_OBJ);
@@ -111,10 +146,10 @@ class ClassUsers extends CoreModels {
 	public function usernameUnique() {
 		$query = "SELECT count(*) AS nbUsername
 		FROM  " . _TABLE__USERS . "
-		WHERE user_username = :username";
+		WHERE user_username = :user_username";
 		
 		$cursor = $this->connexion->prepare($query);
-		$cursor->bindValue(':username', $this->username, PDO::PARAM_STR);
+		$cursor->bindValue(':user_username', $this->user_username, PDO::PARAM_STR);
 		
 		$cursor->execute();
 		$cursor->setFetchMode(PDO::FETCH_OBJ);
@@ -346,6 +381,39 @@ class ClassUsers extends CoreModels {
 		return $return;
 	}
 
+	/**
+	 * Permet de modifier les informations d'un utilisateur dans le front
+	 * @return bool
+	 */
+	public function updateUserFront() {
+		$query = "UPDATE " . _TABLE__USERS . "
+		SET user_newmail = :mail,
+		user_newmail_hash = :user_newmail_hash,
+		user_firstname = :firstname,
+		user_name = :name,
+		user_username = :username,
+		user_phone = :phone,
+		user_birthday = :birthday,
+		user_status = :statut
+		WHERE user_id = :id";
+
+		$cursor = $this->connexion->prepare($query);
+
+		$cursor->bindValue(':mail', $this->user_mail, PDO::PARAM_STR);
+		$cursor->bindValue(':user_newmail_hash', $this->user_newmail_hash, PDO::PARAM_STR);
+		$cursor->bindValue(':firstname', $this->user_firstname, PDO::PARAM_STR);
+		$cursor->bindValue(':name', $this->user_name, PDO::PARAM_STR);
+		$cursor->bindValue(':username', $this->user_username, PDO::PARAM_STR);
+		$cursor->bindValue(':phone', $this->user_phone, PDO::PARAM_STR);
+		$cursor->bindValue(':birthday', $this->user_birthday, PDO::PARAM_STR);
+		$cursor->bindValue(':statut', $this->user_status, PDO::PARAM_INT);
+		$cursor->bindValue(':id', $this->user_id, PDO::PARAM_INT);
+
+		$return = $cursor->execute();
+
+		$cursor->closeCursor();
+		return $return;
+	}
 	/**
 	 * Permet de récuperer la liste des statuts des utilisateurs
 	 * @return array
