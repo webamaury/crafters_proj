@@ -1,6 +1,5 @@
 <?php include("../app/views/includes/head.inc.php") ; ?>
 
-<div class="container">
 
 <?php include("../app/views/includes/header.inc.php"); ?>
 

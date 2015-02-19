@@ -2,24 +2,24 @@
 
 <?php include("../app/views/includes/header.inc.php"); ?>
 		
-
-
+    <!--Content-->
+    <div class="container">
         <div class="row">
             <div class="col-md-4 col-md-offset-2">
                 <h3 style="text-align: right" class="title_upload">UPLOAD YOUR AWESOME WORK</h3>
-                    <form action="index.php?module=upload" method="post" class="form_upload_ajax" enctype="multipart/form-data" id="js-upload-form">
-                        <div class="form-inline">
-                                <div class="form-group">
-                                    <input type="file" name="image_file" id="js-upload-files"/>
-                                </div>
-                            <button type="submit" class="btn btn-sm btn-danger" id="js-upload-submit">Preview</button>
+                <form action="index.php?module=upload" method="post" class="form_upload_ajax" enctype="multipart/form-data" id="js-upload-form">
+                    <div class="form-inline">
+                        <div class="form-group">
+                            <input type="file" name="image_file" id="js-upload-files"/>
                         </div>
-                        <input type="hidden" name="action" value="upload_ajax"/>
-                    </form>
-                 <br/>
-                 <br/>
-                 <img src="img/ajax-loader.gif" id="loading-img" style="display:none;" alt="Please Wait"/>
-                 <div id="output"></div>
+                        <button type="submit" class="btn btn-sm btn-danger" id="js-upload-submit">Preview</button>
+                    </div>
+                    <input type="hidden" name="action" value="upload_ajax"/>
+                </form>
+                <br/>
+                <br/>
+                <img src="img/ajax-loader.gif" id="loading-img" style="display:none;" alt="Please Wait"/>
+                <div id="output"></div>
 
             </div>
             <form method="post" action="index.php?module=upload" role="form">
@@ -27,30 +27,30 @@
                 <div class="col-md-4">
                     <h3 class="title_upload">WHAT IS IT ?</h3>
                     <br/>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <input required type="text" maxlength="20" placeholder="Name your work" name="name" class="form-control form-upload">
-                                <br/>
-                                <textarea name="description" maxlength="400" rows="3" placeholder="Description" required class="form-control form-upload textarea_upload"></textarea>
-                            </div>
-                        </div>
-                        <div class="col-md-12">
-                            <span class="modalities">Can anyone can see your upload ?</span>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <input required type="text" maxlength="20" placeholder="Name your work" name="name" class="form-control form-upload">
                             <br/>
-                            <input type="radio" name="radio_public_private" value="1" id="radio4" class="css-checkbox" checked="checked"/>
-                            <label for="radio4" class="css-label radGroup2">Public</label>
-                            <input type="radio" name="radio_public_private" value="0" id="radio5" class="css-checkbox" />
-                            <label for="radio5" class="css-label radGroup2">Private</label>
-                            <br/>
+                            <textarea name="description" maxlength="400" rows="3" placeholder="Description" required class="form-control form-upload textarea_upload"></textarea>
                         </div>
+                    </div>
+                    <div class="col-md-12">
+                        <span class="modalities">Can anyone can see your upload ?</span>
+                        <br/>
+                        <input type="radio" name="radio_public_private" value="1" id="radio4" class="css-checkbox" checked="checked"/>
+                        <label for="radio4" class="css-label radGroup2">Public</label>
+                        <input type="radio" name="radio_public_private" value="0" id="radio5" class="css-checkbox" />
+                        <label for="radio5" class="css-label radGroup2">Private</label>
+                        <br/>
+                    </div>
                     <br><br>
 
-                        <div class="col-md-12">
-                            <br/>
-                            <input type="hidden" name="img" id="img_url" value="" />
-                            <input type="hidden" name="size" id="product_size" value=""/>
-                            <input type="hidden" name="action" id="submit_action" value="submitCraft" />
-                        </div>
+                    <div class="col-md-12">
+                        <br/>
+                        <input type="hidden" name="img" id="img_url" value="" />
+                        <input type="hidden" name="size" id="product_size" value=""/>
+                        <input type="hidden" name="action" id="submit_action" value="submitCraft" />
+                    </div>
                 </div>
                 <br>
                 <div class="col-md-12">
@@ -69,7 +69,7 @@
                 <?php
 
                 foreach ($lastUploads as $lastUpload) {
-                ?>
+                    ?>
 
                     <div class="col-sm-4 col-md-3 col-xs-6 col-lg-3">
                         <div class="thumbnail parent">
@@ -93,8 +93,8 @@
                                                     data-product="<?php echo $lastUpload->product_id; ?>"
                                                     class="btn btn-xs btn-default like ajax_like_trigger"
                                                     data-didilike="1">
-                                                            <span class="nb_like"
-                                                                  id="nb_like<?php echo $lastUpload->product_id; ?>"><?php echo $lastUpload->nb_like; ?></span>
+                                                                <span class="nb_like"
+                                                                      id="nb_like<?php echo $lastUpload->product_id; ?>"><?php echo $lastUpload->nb_like; ?></span>
                                                 <i data-toggle="tooltip" data-placement="top" data-html="true"
                                                    title="<?php
                                                    if (isset($lastUpload->name_likes)) {
@@ -115,8 +115,8 @@
                                                     data-product="<?php echo $lastUpload->product_id; ?>"
                                                     class="btn btn-xs btn-default like ajax_like_trigger"
                                                     data-didilike="0">
-                                                            <span class="nb_like"
-                                                                  id="nb_like<?php echo $lastUpload->product_id; ?>"><?php echo $lastUpload->nb_like; ?></span>
+                                                                <span class="nb_like"
+                                                                      id="nb_like<?php echo $lastUpload->product_id; ?>"><?php echo $lastUpload->nb_like; ?></span>
                                                 <i data-toggle="tooltip" data-placement="top" data-html="true"
                                                    title="<?php
                                                    if (isset($lastUpload->name_likes)) {
@@ -137,8 +137,8 @@
                                         <button data-toggle="modal" data-target="#modal-login" type="button"
                                                 data-product="<?php echo $lastUpload->product_id; ?>"
                                                 class="btn btn-xs btn-default like">
-                                                        <span class="nb_like"
-                                                              id="nb_like<?php echo $lastUpload->product_id; ?>"><?php echo $lastUpload->nb_like; ?></span>
+                                                            <span class="nb_like"
+                                                                  id="nb_like<?php echo $lastUpload->product_id; ?>"><?php echo $lastUpload->nb_like; ?></span>
                                             <i data-toggle="tooltip" data-placement="top" data-html="true"
                                                title="<?php
                                                if (isset($lastUpload->name_likes)) {
@@ -159,8 +159,8 @@
 
 
                                     <!--<button type="button" class="btn btn-xs btn-default like">
-                                                <span class="nb_like" id="nb_like<?php echo $lastUpload->product_id; ?>"><?php echo $lastUpload->nb_like; ?></span> <i data-toggle="tooltip" data-placement="top" data-html="true" title="Alie S.<br/>omom<br/>mehdi<br/>marius<br/>Lisa<br/>and 6 others" class="fa fa-heart" style="color: tomato"></i>
-                                            </button>-->
+                                                    <span class="nb_like" id="nb_like<?php echo $lastUpload->product_id; ?>"><?php echo $lastUpload->nb_like; ?></span> <i data-toggle="tooltip" data-placement="top" data-html="true" title="Alie S.<br/>omom<br/>mehdi<br/>marius<br/>Lisa<br/>and 6 others" class="fa fa-heart" style="color: tomato"></i>
+                                                </button>-->
                                 </div>
                             </div>
                         </div>
@@ -174,6 +174,7 @@
 
             </div>
         </div>
+    </div>
 
 
     <script type="text/javascript" src="tools/plugin_jquery/jquery.form.min.js"></script>
