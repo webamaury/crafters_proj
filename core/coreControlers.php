@@ -4,22 +4,21 @@ class CoreControlers {
 	function get_extension($filename) {
 		return strtolower(substr($filename, strrpos($filename, ".") + 1, strlen($filename)));
 	}
-	
-	function load_css($stylesToLoad) {
-		$html_style = '';
-		foreach ($stylesToLoad as $style_to_load) {
-			$html_style .= '
-		<link href="css/'.$style_to_load.'.css" rel="stylesheet" type="text/css" media="screen" id="css" />';
+
+	function load_css($CssToLoad, $arrayCss) {
+		$html_css = '';
+		foreach ($CssToLoad as $css) {
+			$html_css .= '
+		'.$arrayCss[$css];
 		}
-		return $html_style ;
+		return $html_css;
 	}
 	
-	function load_tools($toolsToLoad, $arrayTools) {
-		//var_dump($arrayTools);
+	function load_js($JsToLoad, $arrayJs) {
 		$html_tools = '';
-		foreach ($toolsToLoad as $tool_to_load) {
+		foreach ($JsToLoad as $js) {
 			$html_tools .= '
-		'.$arrayTools[$tool_to_load];
+		'.$arrayJs[$js];
 		}
 		return $html_tools;
 	}

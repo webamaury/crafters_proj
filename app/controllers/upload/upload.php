@@ -1,7 +1,7 @@
 <?php
 class uploadController extends CoreControlers {
 	
-	function __construct($arrayTools, $notices) {
+	function __construct($arrayCss, $arrayJs, $notices) {
 		if(!isset($_GET['action']) && !isset($_POST['action'])) {
 			$method = 'main' ;
 		}
@@ -9,10 +9,10 @@ class uploadController extends CoreControlers {
 			$method = $_POST['action'];
 		}
 
-		$this->$method($arrayTools, $notices) ;
+		$this->$method($arrayCss, $arrayJs, $notices) ;
 	}
 	
-	function main($arrayTools, $notices) {
+	function main($arrayCss, $arrayJs, $notices) {
 	
 		##############################################################
 		##	TRAITEMENT PHP											##
@@ -42,7 +42,8 @@ class uploadController extends CoreControlers {
 		##############################################################
 		##	APPEL TOOLS												##
 		##############################################################
-		$toolsToLoad = array('bootstrap-css', 'font-awesome');
+		$CssToLoad = array('bootstrap-css', 'font-awesome', 'momo', 'custom2');
+		$JsToLoad = array('jquery', 'bootstrap-js', 'list.js', 'panier.js');
 		
 		##############################################################
 		##	VARIABLES LAYOUT										##
@@ -57,7 +58,7 @@ class uploadController extends CoreControlers {
 		include('../app/views/upload/display.php');
 	}
 	
-	function upload_ajax($arrayTools, $notices) {
+	function upload_ajax($arrayCss, $arrayJs, $notices) {
 	
 		############ Configuration ##############
 		$thumb_square_size 		= 360; //Thumbnails will be cropped to 360x360 pixels

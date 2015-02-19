@@ -1,7 +1,7 @@
 <?php
 class AutreController extends CoreControlers {
 	
-	function __construct($arrayTools, $notices) {
+	function __construct($arrayCss, $arrayJs, $notices) {
 
 		if(!isset($_GET['action']) && !isset($_POST['action'])) {
 			$method = 'main' ;
@@ -12,16 +12,16 @@ class AutreController extends CoreControlers {
 			$method = $_GET['action'];
 		}
 
-		$this->$method($arrayTools, $notices) ;
+		$this->$method($arrayCss, $arrayJs, $notices) ;
 
 	}
 
 	/**
 	 * 404
-	 * @param $arrayTools
+	 * @param $arrayCss, $arrayJs
 	 * @param $notices
 	 */
-	function main($arrayTools, $notices)
+	function main($arrayCss, $arrayJs, $notices)
 	{
 		##############################################################
 		##	TRAITEMENT PHP											##
@@ -30,8 +30,8 @@ class AutreController extends CoreControlers {
 		##############################################################
 		##	APPEL TOOLS												##
 		##############################################################
-		$toolsToLoad = array("bootstrap-css", 'font-awesome');
-		$stylesToLoad = array("style");
+		$CssToLoad = array('bootstrap-css', 'font-awesome', 'momo', 'custom2');
+		$JsToLoad = array('jquery', 'bootstrap-js', 'list.js', 'panier.js');
 		
 		##############################################################
 		##	VARIABLES LAYOUT										##
@@ -48,7 +48,7 @@ class AutreController extends CoreControlers {
 	/**
 	 *
 	 */
-	function messagePage($arrayTools, $notices)
+	function messagePage($arrayCss, $arrayJs, $notices)
 	{
 		##############################################################
 		##	TRAITEMENT PHP											##
@@ -99,8 +99,8 @@ class AutreController extends CoreControlers {
 		##############################################################
 		##	APPEL TOOLS												##
 		##############################################################
-		$toolsToLoad = array("bootstrap-css", 'font-awesome');
-		$stylesToLoad = array("style");
+		$CssToLoad = array('bootstrap-css', 'font-awesome', 'momo', 'custom2');
+		$JsToLoad = array('jquery', 'bootstrap-js', 'list.js', 'panier.js');
 
 		##############################################################
 		##	VARIABLES LAYOUT										##

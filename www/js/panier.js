@@ -292,7 +292,7 @@ $(document).ready(function () {
 
 
         //alert(key);
-    })
+    });
 
     $('.ajax_display_cart').on('click', function (e) {
         //e.preventDefault();

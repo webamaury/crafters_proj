@@ -7,10 +7,10 @@ class commandeController extends CoreControlers
 {
 
 	/**
-	 * @param $arrayTools
+	 * @param $arrayCss, $arrayJs
 	 * @param $notices
 	 */
-	function __construct($arrayTools, $notices)
+	function __construct($arrayCss, $arrayJs, $notices)
 	{
 
 		if (!isset($_GET['action']) && !isset($_POST['action'])) {
@@ -21,14 +21,14 @@ class commandeController extends CoreControlers
 			$method = $_GET['action'];
 		}
 
-		$this->$method($arrayTools, $notices);
+		$this->$method($arrayCss, $arrayJs, $notices);
 	}
 
 	/**
-	 * @param $arrayTools
+	 * @param $arrayCss, $arrayJs
 	 * @param $notices
 	 */
-	function main($arrayTools, $notices)
+	function main($arrayCss, $arrayJs, $notices)
 	{
 		/*************************************************************
 		 *    TRAITEMENT PHP                                            **
@@ -61,7 +61,8 @@ class commandeController extends CoreControlers
 		/*************************************************************
 		 *    APPEL TOOLS                                                **
 		 * **********************************************************/
-		$toolsToLoad = array('bootstrap-css', 'font-awesome');
+		$CssToLoad = array('bootstrap-css', 'font-awesome', 'momo', 'custom2');
+		$JsToLoad = array('jquery', 'bootstrap-js', 'list.js', 'panier.js');
 
 		/*************************************************************
 		 *    VARIABLES LAYOUT                                        **
@@ -77,7 +78,7 @@ class commandeController extends CoreControlers
 		include_once('../app/views/commande/display.php');
 	}
 
-	public function payWithPaypal($arrayTools, $notices)
+	public function payWithPaypal($arrayCss, $arrayJs, $notices)
 	{
 		if (!isset($_POST['address']) || !isset($_POST['zipcode']) || !isset($_POST['city']) || !isset($_POST['more'])) {
 			$notices->createNotice("danger", "Veuillez remplir tous les champs!");
@@ -126,10 +127,10 @@ class commandeController extends CoreControlers
 	}
 
 	/**
-	 * @param $arrayTools
+	 * @param $arrayCss, $arrayJs
 	 * @param $notices
 	 */
-	function delivery($arrayTools, $notices)
+	function delivery($arrayCss, $arrayJs, $notices)
 	{
 		/*************************************************************
 		 *    TRAITEMENT PHP                                            **
@@ -196,7 +197,8 @@ class commandeController extends CoreControlers
 		/*************************************************************
 		 *    APPEL TOOLS                                                **
 		 * **********************************************************/
-		$toolsToLoad = array('bootstrap-css', 'font-awesome');
+		$CssToLoad = array('bootstrap-css', 'font-awesome', 'momo', 'custom2');
+		$JsToLoad = array('jquery', 'bootstrap-js', 'jquery.ui', 'list.js', 'loadmore.js', 'panier.js');
 
 		/*************************************************************
 		 *    VARIABLES LAYOUT                                        **
@@ -210,7 +212,7 @@ class commandeController extends CoreControlers
 		include_once('../app/views/delivery/display.php');
 	}
 
-	function success($arrayTools, $notices)
+	function success($arrayCss, $arrayJs, $notices)
 	{
 		include_once(_APP_PATH . 'models/class.commande.php'); $ClassCommandes = new ClassCommandes();
 

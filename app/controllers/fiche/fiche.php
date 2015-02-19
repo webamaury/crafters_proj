@@ -1,7 +1,7 @@
 <?php
 class ficheController extends CoreControlers {
 		
-	function __construct($arrayTools, $notices) {
+	function __construct($arrayCss, $arrayJs, $notices) {
 
 		if(!isset($_GET['action']) && !isset($_POST['action'])) {
 			$method = 'main' ;
@@ -10,11 +10,11 @@ class ficheController extends CoreControlers {
 			$method = $_POST['action'];
 		}
 
-		$this->$method($arrayTools, $notices) ;
+		$this->$method($arrayCss, $arrayJs, $notices) ;
 
 	}
 
-	function main($arrayTools, $notices) {
+	function main($arrayCss, $arrayJs, $notices) {
 
 		##############################################################
 		##	TRAITEMENT PHP											##
@@ -62,8 +62,9 @@ class ficheController extends CoreControlers {
 		##############################################################
 		##	APPEL TOOLS												##
 		##############################################################
-		$toolsToLoad = array('bootstrap-css', 'font-awesome');
-		
+		$CssToLoad = array('bootstrap-css', 'font-awesome', 'momo', 'custom2');
+		$JsToLoad = array('jquery', 'bootstrap-js', 'list.js', 'loadmore.js', 'panier.js');
+
 		##############################################################
 		##	VARIABLES LAYOUT										##
 		##############################################################

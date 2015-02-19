@@ -10,7 +10,7 @@ class IndexController extends CoreControlers
 	 * @param $arrayTools
 	 * @param $notices
 	 */
-	function __construct($arrayTools, $notices)
+	function __construct($arrayCss, $arrayJs, $notices)
 	{
 
 		if (!isset($_GET['action']) && !isset($_POST['action'])) {
@@ -21,14 +21,14 @@ class IndexController extends CoreControlers
 		$this->nb_by_page = 12;
 		//if(isset($_SESSION[_SES_NAME]))var_dump($_SESSION[_SES_NAME]);
 
-		$this->$method($arrayTools, $notices);
+		$this->$method($arrayCss, $arrayJs, $notices);
 	}
 
 	/**
 	 * @param $arrayTools
 	 * @param $notices
 	 */
-	function main($arrayTools, $notices)
+	function main($arrayCss, $arrayJs, $notices)
 	{
 		/*************************************************************
 		 * 	TRAITEMENT PHP											**
@@ -69,7 +69,8 @@ class IndexController extends CoreControlers
 		/*************************************************************
 		 * 	APPEL TOOLS												**
 		 * **********************************************************/
-		$toolsToLoad = array('bootstrap-css', 'font-awesome');
+		$CssToLoad = array('bootstrap-css', 'font-awesome', 'momo', 'custom2');
+		$JsToLoad = array('jquery', 'bootstrap-js', 'list.js', 'panier.js');
 
 		/*************************************************************
 		 * 	VARIABLES LAYOUT										**
@@ -87,7 +88,7 @@ class IndexController extends CoreControlers
 	 * @param $arrayTools
 	 * @param $notices
 	 */
-	function ajax_more($arrayTools, $notices)
+	function ajax_more($arrayCss, $arrayJs, $notices)
 	{
 		include_once(_APP_PATH . 'models/class.product.php');
 		$ClassProduct = new ClassProducts();
@@ -177,7 +178,7 @@ class IndexController extends CoreControlers
 	/**
 	 *
 	 */
-	function contact($arrayTools, $notices)
+	function contact($arrayCss, $arrayJs, $notices)
 	{
 		if (!isset($_POST['firstname']) || empty($_POST['firstname']) || !isset($_POST['name']) || empty($_POST['name']) || !isset($_POST['mail']) || empty($_POST['mail']) || !isset($_POST['message']) || empty($_POST['message'])) {
 			$notices->createNotice("danger", "Please complete all required fields!");

@@ -5,7 +5,7 @@
  */
 class SignUpController extends CoreControlers
 {
-	function __construct($arrayTools, $notices) {
+	function __construct($arrayCss, $arrayJs, $notices) {
 		if (!isset($_GET['action']) && !isset($_POST['action'])) {
 			$method = 'main' ;
 		} else if (isset($_POST['action'])) {
@@ -14,13 +14,13 @@ class SignUpController extends CoreControlers
 			$method = $_GET['action'];
 		}
 		
-		$this->$method($arrayTools, $notices) ;
+		$this->$method($arrayCss, $arrayJs, $notices) ;
 	}
 	/**
-	 * @param $arrayTools
+	 * @param $arrayCss, $arrayJs
 	 * @param $notices
 	 */
-	function main($arrayTools, $notices)
+	function main($arrayCss, $arrayJs, $notices)
 	{
 		/*************************************************************
 		 * 	TRAITEMENT PHP											**
@@ -30,7 +30,8 @@ class SignUpController extends CoreControlers
 		/*************************************************************
 		 * 	APPEL TOOLS												**
 		 * **********************************************************/
-		$toolsToLoad = array('bootstrap-css', 'font-awesome');
+		$CssToLoad = array('bootstrap-css', 'font-awesome', 'momo', 'custom2');
+		$JsToLoad = array('jquery', 'bootstrap-js', 'panier.js');
 
 		/*************************************************************
 		 * 	VARIABLES LAYOUT										**
@@ -44,7 +45,7 @@ class SignUpController extends CoreControlers
 		include_once('../app/views/signup/display.php');
 	}
 	
-	public function signup($arrayTools, $notices)
+	public function signup($arrayCss, $arrayJs, $notices)
 	{
 		//Add Crafters
 		if (empty($_POST['firstname']) || empty($_POST['name']) || empty($_POST['username']) || empty($_POST['mail']) || empty($_POST['password']) || empty($_POST['confirmpassword'])) {
@@ -100,7 +101,7 @@ class SignUpController extends CoreControlers
 		}
 	}
 	
-	public function verif($arrayTools, $notices) {
+	public function verif($arrayCss, $arrayJs, $notices) {
 		
 		if (isset($_GET['user']) && !empty($_GET['user'])) {
 			include_once(_APP_PATH . 'models/class.users.php');

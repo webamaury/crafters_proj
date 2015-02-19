@@ -1,7 +1,7 @@
 <?php
 class galleryController extends CoreControlers {
 
-	function __construct($arrayTools, $notices) {
+	function __construct($arrayCss, $arrayJs, $notices) {
 		if(!isset($_GET['action']) && !isset($_POST['action'])) {
 			$method = 'main' ;
 		} else if(isset($_POST['action'])) {
@@ -10,10 +10,10 @@ class galleryController extends CoreControlers {
 			$method = $_GET['action'];
 		}
 		$this->nb_by_page = 12;
-		$this->$method($arrayTools, $notices) ;
+		$this->$method($arrayCss, $arrayJs, $notices) ;
 	}
 
-	function main($arrayTools, $notices) {
+	function main($arrayCss, $arrayJs, $notices) {
 
 		##############################################################
 		##	TRAITEMENT PHP											##
@@ -58,7 +58,8 @@ class galleryController extends CoreControlers {
 		##############################################################
 		##	APPEL TOOLS												##
 		##############################################################
-		$toolsToLoad = array('bootstrap-css', 'font-awesome');
+		$CssToLoad = array('bootstrap-css', 'font-awesome', 'momo', 'custom2');
+		$JsToLoad = array('jquery', 'bootstrap-js', 'list.js', 'loadmore.js', 'panier.js');
 
 		##############################################################
 		##	VARIABLES LAYOUT										##
@@ -74,10 +75,10 @@ class galleryController extends CoreControlers {
 
 	}
 	/**
-	 * @param $arrayTools
+	 * @param $arrayCss, $arrayJs
 	 * @param $notices
 	 */
-	function ajax_more($arrayTools, $notices)
+	function ajax_more($arrayCss, $arrayJs, $notices)
 	{
 		include_once(_APP_PATH . 'models/class.product.php');
 		$ClassProduct = new ClassProducts();

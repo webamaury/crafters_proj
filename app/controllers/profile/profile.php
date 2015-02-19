@@ -1,7 +1,7 @@
 <?php
 class profileController extends CoreControlers {
 		
-	function __construct($arrayTools, $notices) {
+	function __construct($arrayCss, $arrayJs, $notices) {
 
 		if(!isset($_GET['action']) && !isset($_POST['action'])) {
 			$method = 'main' ;
@@ -11,11 +11,11 @@ class profileController extends CoreControlers {
 			$method = $_GET['action'];
 		}
 
-		$this->$method($arrayTools, $notices) ;
+		$this->$method($arrayCss, $arrayJs, $notices) ;
 
 	}
 
-	function main($arrayTools, $notices) {
+	function main($arrayCss, $arrayJs, $notices) {
 
 		##############################################################
 		##	TRAITEMENT PHP											##
@@ -60,7 +60,8 @@ class profileController extends CoreControlers {
 		##############################################################
 		##	APPEL TOOLS												##
 		##############################################################
-		$toolsToLoad = array('bootstrap-css', 'font-awesome');
+		$CssToLoad = array('bootstrap-css', 'font-awesome', 'momo', 'custom2');
+		$JsToLoad = array('jquery', 'bootstrap-js', 'list.js', 'loadmore.js', 'panier.js');
 		
 		##############################################################
 		##	VARIABLES LAYOUT										##
@@ -74,7 +75,7 @@ class profileController extends CoreControlers {
 		include_once('../app/views/profile/display.php');
 	}
 
-	function update($arrayTools, $notices)
+	function update($arrayCss, $arrayJs, $notices)
 	{
 		if (!isset($_POST) || !isset($_SESSION[_SES_NAME]['id'])) {
 			header('location:index.php'); exit();
@@ -143,7 +144,7 @@ class profileController extends CoreControlers {
 			}
 		}
 	}
-	function newmail($arrayTools, $notices)
+	function newmail($arrayCss, $arrayJs, $notices)
 	{
 		include_once(_APP_PATH . 'models/class.product.php'); $ClassUser = new ClassUsers();
 
@@ -162,7 +163,7 @@ class profileController extends CoreControlers {
 
 	}
 
-	function upload_ajax($arrayTools, $notices)
+	function upload_ajax($arrayCss, $arrayJs, $notices)
 	{
 		############ Configuration ##############
 		$thumb_square_size 		= 360; //Thumbnails will be cropped to 360x360 pixels
@@ -247,7 +248,7 @@ class profileController extends CoreControlers {
 
 		echo $return;
 	}
-	function deleteCraft($arrayTools, $notices)
+	function deleteCraft($arrayCss, $arrayJs, $notices)
 	{
 		include_once(_APP_PATH . 'models/class.product.php'); $ClassProduct = new ClassProducts();
 
@@ -270,7 +271,7 @@ class profileController extends CoreControlers {
 
 	}
 
-	function updatePassword($arrayTools, $notices)
+	function updatePassword($arrayCss, $arrayJs, $notices)
 	{
 		if (!isset($_POST) || !isset($_SESSION[_SES_NAME])) {
 			header('location:index.php');
@@ -335,7 +336,7 @@ class profileController extends CoreControlers {
 			'Forgot your password on ' . _SITE_NAME);
 
 	}
-	function forgotpwdsecond($arrayTools, $notices)
+	function forgotpwdsecond($arrayCss, $arrayJs, $notices)
 	{
 		##############################################################
 		##	TRAITEMENT PHP											##
@@ -358,7 +359,8 @@ class profileController extends CoreControlers {
 		##############################################################
 		##	APPEL TOOLS												##
 		##############################################################
-		$toolsToLoad = array('bootstrap-css', 'font-awesome');
+		$CssToLoad = array('bootstrap-css', 'font-awesome', 'momo', 'custom2');
+		$JsToLoad = array('jquery', 'bootstrap-js', 'list.js', 'loadmore.js', 'panier.js');
 
 		##############################################################
 		##	VARIABLES LAYOUT										##
@@ -371,7 +373,7 @@ class profileController extends CoreControlers {
 		##############################################################
 		include_once('../app/views/autres/forgot.php');
 	}
-	function newPassword($arrayTools, $notices)
+	function newPassword($arrayCss, $arrayJs, $notices)
 	{
 		if (!isset($_POST) || !isset($_POST['hash']) || empty($_POST['hash'])) {
 			header('location:index.php');

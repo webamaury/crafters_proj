@@ -9,7 +9,7 @@ class PanierController extends CoreControlers
 	/**
 	 *
 	 */
-	function __construct($arrayTools, $notices)
+	function __construct($arrayCss, $arrayJs, $notices)
 	{
 		if (!isset($_GET['action']) && !isset($_POST['action'])) {
 			$method = 'main';
@@ -18,7 +18,7 @@ class PanierController extends CoreControlers
 		} else if (isset($_GET['action'])) {
 			$method = $_GET['action'];
 		}
-		$this->$method($arrayTools, $notices);
+		$this->$method($arrayCss, $arrayJs, $notices);
 	}
 
 	/**

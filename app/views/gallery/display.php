@@ -1,15 +1,16 @@
 <?php include(_APP_PATH . "views/includes/head.inc.php"); ?>
 
-	<!-- container -->
-<div class="container">
 
 <?php include(_APP_PATH . "views/includes/header.inc.php"); ?>
 
 
 	<div class="container">
-		<?php echo $notices->displayNotice(); $notices->clearNotice(); ?>
 
-		<div class="container big-gallery">
+		<div class="row">
+			<?php echo $notices->displayNotice(); $notices->clearNotice(); ?>
+		</div>
+
+		<div class="row big-gallery">
 			<div class="col-sm-5 col-xs-12 pull-right">
 				<form action="index.php" method="get" class="navbar-form navbar-right" role="search">
 					<div class="input-group input-group-sm">
@@ -146,29 +147,8 @@
 
 			</div>
 		</div>
+
 	</div>
-</div>
-<!-- /container -->
 
-<script type="text/javascript" src="tools/jQuery/jquery-2.1.1.min.js"></script>
-<script type="text/javascript" src="tools/bootstrap-3.2.0/js/bootstrap.min.js"></script>
-<script>
-(function (i, s, o, g, r, a, m) {
-i['GoogleAnalyticsObject'] = r;
-i[r] = i[r] || function () {
-	(i[r].q = i[r].q || []).push(arguments)
-}, i[r].l = 1 * new Date();
-a = s.createElement(o),
-	m = s.getElementsByTagName(o)[0];
-a.async = 1;
-a.src = g;
-m.parentNode.insertBefore(a, m)
-})(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
 
-ga('create', 'UA-56403954-1', 'auto');
-ga('send', 'pageview');
-
-</script>
-<script type="text/javascript" src="js/list.js"></script>
-	<script type="text/javascript" src="js/loadmore.js"></script>
 <?php include(_APP_PATH . "views/includes/footer.inc.php"); ?>
