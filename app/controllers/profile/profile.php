@@ -269,6 +269,152 @@ class profileController extends CoreControlers {
 		}
 
 	}
+
+	function updatePassword($arrayTools, $notices)
+	{
+		if (!isset($_POST) || !isset($_SESSION[_SES_NAME])) {
+			header('location:index.php');
+		}
+		//var_dump($_POST);
+		if (md5($_POST['current_password']) != $_SESSION[_SES_NAME]['password']) {
+			sleep(1);
+			$notices->createNotice("danger", "Your current password is wrong!");
+			header('location:index.php?module=profile&where=infos');
+			exit();
+		}
+		if ($_POST['new_password'] != $_POST['confirm_password']) {
+			$notices->createNotice("danger", "New password doesn't match with its confirmation!");
+			header('location:index.php?module=profile&where=infos');
+			exit();
+		}
+		if (md5($_POST['new_password']) == $_SESSION[_SES_NAME]['password']) {
+			$notices->createNotice("danger", "Your new password is identical to the old one.");
+			header('location:index.php?module=profile&where=infos');
+			exit();
+		}
+		include_once(_APP_PATH . 'models/class.product.php'); $ClassUser = new ClassUsers();
+		$ClassUser->user_password = md5($_POST['new_password']);
+		$ClassUser->user_id = $_SESSION[_SES_NAME]['id'];
+
+		$return = $ClassUser->updatePassword();
+
+		if (!$return) {
+			$notices->createNotice("danger", "Problem while updating your password. Please try again later.");
+			header('location:index.php?module=profile&where=infos');
+			exit();
+		}
+
+		$_SESSION[_SES_NAME]['password'] = md5($_POST['new_password']);
+		$notices->createNotice("success", "Your password has been succesfully updated!");
+		header('location:index.php?module=profile&where=infos');
+		exit();
+	}
+
+	function forgotpwd()
+	{
+		if (!isset($_POST) || !isset($_POST['email']) || empty($_POST['email'])) {
+			header('location:index.php');
+			exit();
+		}
+		include_once(_APP_PATH . 'models/class.product.php'); $ClassUser = new ClassUsers();
+
+		$ClassUser->user_forgot_hash = md5(time() . session_id());
+		$ClassUser->user_mail = $_POST['email'];
+		$return = $ClassUser->forgotInputHash();
+
+		$tpl = file_get_contents(_APP_PATH . 'mail_templates/mails.forgot.htm');
+
+		$url = _PATH_FOLDER . 'index.php?module=profile&action=forgotpwdsecond&hash=' . $ClassUser->user_forgot_hash;
+		// On remplace les infos personnelles
+		$tpl = str_replace("%URL%", $url, $tpl);
+
+		$this->send_mail($tpl,
+			_SITE_NAME,
+			'amaury.gilbon@gmail.com',
+			$_POST['email'],
+			'Forgot your password on ' . _SITE_NAME);
+
+	}
+	function forgotpwdsecond($arrayTools, $notices)
+	{
+		##############################################################
+		##	TRAITEMENT PHP											##
+		##############################################################
+		if (!isset($_GET['hash']) || empty($_GET['hash'])) {
+			header('location:index.php');exit();
+		}
+		include_once(_APP_PATH . 'models/class.product.php'); $ClassUser = new ClassUsers();
+
+		$ClassUser->user_forgot_hash = $_GET['hash'];
+		$return = $ClassUser->hashExist();
+
+		if ($return == false) {
+			sleep(2);
+			header('location:index.php');exit();
+		}
+
+		//var_dump($return);
+
+		##############################################################
+		##	APPEL TOOLS												##
+		##############################################################
+		$toolsToLoad = array('bootstrap-css', 'font-awesome');
+
+		##############################################################
+		##	VARIABLES LAYOUT										##
+		##############################################################
+		DEFINE("_METATITLE", "Crafters | Forgot password");
+		DEFINE("_METADESCRIPTION", "Crafters, Tattoo and stickers designer");
+
+		##############################################################
+		##	VUE														##
+		##############################################################
+		include_once('../app/views/autres/forgot.php');
+	}
+	function newPassword($arrayTools, $notices)
+	{
+		if (!isset($_POST) || !isset($_POST['hash']) || empty($_POST['hash'])) {
+			header('location:index.php');
+			exit();
+		}
+		//var_dump($_POST);
+		include_once(_APP_PATH . 'models/class.product.php'); $ClassUser = new ClassUsers();
+
+		$ClassUser->user_forgot_hash = $_POST['hash'];
+		$return = $ClassUser->hashExist();
+
+		if ($return == false) {
+			sleep(2);
+			header('location:index.php');exit();
+		}
+
+		if (!isset($_POST['new_password']) || !isset($_POST['confirm_password'])) {
+			$notices->createNotice("danger", "Complete all required field!");
+			header('location:index.php?module=profile&action=forgotpwdsecond&hash' . $_POST['hash']);
+			exit();
+		}
+		if ($_POST['new_password'] != $_POST['confirm_password']) {
+			$notices->createNotice("danger", "Passwords are not identical!");
+			header('location:index.php?module=profile&action=forgotpwdsecond&hash' . $_POST['hash']);
+			exit();
+		}
+
+		$ClassUser->user_password = md5($_POST['new_password']);
+		$return = $ClassUser->updatePasswordWithHash();
+
+		if ($return == false) {
+			$notices->createNotice("danger", "Problem while changing your password. Please try again later.");
+			header('location:index.php?module=profile&action=forgotpwdsecond&hash' . $_POST['hash']);
+			exit();
+		}
+
+		$ClassUser->cleanHash();
+
+		$notices->createNotice("success", "You password has been successfully updated. You can now sing in.");
+		header('location:index.php');
+		exit();
+
+	}
 }
 
 ?>

@@ -191,7 +191,7 @@ class CoreControlers {
 			h3 { color: #000; margin: 0; padding: 0; }
 			td.right { text-align: right; }
 				table.border td { border: 1px solid #CFD1D2; padding: 3mm 1mm; }
-			table.border th, td.black { background: #010101; color: #FFF; font-weight: normal; border: 1px solid #FFF; padding: 1mm; }
+			table.border th, td.black { background: #333333; color: #FFF; font-weight: normal; padding: 1mm; }
 			td.noborder { border:none; }
 			tr.smallpad td { padding: 1mm; }
 		</style>

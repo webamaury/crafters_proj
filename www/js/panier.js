@@ -302,14 +302,14 @@ $(document).ready(function () {
         }, 'json');
         //return false;
     });
-    if($('body').scrollTop() > 20){
+    if($('body').scrollTop() > 60){
         $(".header").addClass("min-header");
-        $(".content").css("margin-top", "78px");
+        $(".content").css("margin-top", "115px");
     }
     $(window).scroll(function(){
-        if($('body').scrollTop() > 20){
+        if($('body').scrollTop() > 60){
             $(".header").addClass("min-header");
-            $(".content").css("margin-top", "78px");
+            $(".content").css("margin-top", "115px");
             $(".hr_header").addClass("hide_hr");
         } else {
             $(".header").removeClass("min-header");
@@ -317,4 +317,10 @@ $(document).ready(function () {
             $(".hr_header").removeClass("hide_hr");
         }
     });
+    $('.forgot_btn').on("click", function(e){
+        e.preventDefault();
+        $('#modal-login').modal('hide');
+        $('#modal-forgotpwd').modal('show');
+    });
+
 });

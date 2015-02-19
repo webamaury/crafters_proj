@@ -253,7 +253,7 @@
 											<input type="email" maxlength="100" name="mail" class="form-control" id="mail" value="<?php echo (isset($user->user_mail)) ? $user->user_mail : '' ; ?>" required>
 										</div>
 										<div class="col-xs-1 questionprofile">
-											<i data-toggle="tooltip" data-container="body" data-placement="right" title="Your mail won't change immediately. You will have to confirm it before this change happen." class="fa fa-info-circle"></i>
+											<i data-toggle="tooltip" data-container="body" data-placement="right" title="Your mail won't change immediately. You will receive an e-mail on your new address to confirm it before this change happen." class="fa fa-info-circle"></i>
 										</div>
 
 										<br/><br/>
@@ -272,15 +272,21 @@
 										</div>
 										<br/><br/>
 									</div>
-
-								</div>
-								<div class="col-xs-12 margin-top-20">
+									<div class="form-group">
+										<label for="birthday" class="col-xs-2 col-sm-4 control-label">Password</label>
+										<div class="col-xs-9 col-sm-5">
+											<button type="button" data-toggle="modal" data-target=".modal-update-password" class="btn btn-default btn-block">Change password</button>
+										</div>
+										<br/><br/>
+									</div>								</div>
+								<div class="col-xs-10 margin-top-20">
 									<input type="hidden" name="action" value="update">
 									<button type="submit" class="btn btn-danger pull-right">Update</button>
 								</div>
 							</form>
 						</div>
 					<?php
+						include_once(_APP_PATH . 'views/includes/modal_password.inc.php');
 					}
 					?>
 				</div>

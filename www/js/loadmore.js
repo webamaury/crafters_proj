@@ -4,9 +4,9 @@ function traiterFlux(flux) {
     var html = " ";
     for (var key in obj) {
         html += '<div class="col-sm-6 col-md-4 col-xs-6 col-lg-3">';
-        html += '<div class="thumbnail">';
+        html += '<div class="thumbnail parent">';
         html += '<a href="index.php?module=fiche&product=' + obj[key].product_id + '" class="product-image">';
-        html += '<img src="' + obj[key].product_img_url + '" class="img-responsive"></a>';
+        html += '<img src="' + obj[key].product_img_url + '" class="img-responsive prodIMG"></a>';
         html += '<div class="caption"><h4>' + obj[key].product_name + '</h4>';
         html += '<p><small><em>By ' + obj[key].user_username + '</em></small></p>';
         html += '<div class="btn-group " style="float: left">';

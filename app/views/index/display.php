@@ -40,21 +40,21 @@
 					</div>
 					<div class="col-xs-12">
 						<div class="col-md-5 col-sm-3 col-xs-3">
-							<a href="index.php?module=profile&user=<?php echo $crafter_of_month->user_id; ?>">
-								<img src="<?php echo $crafter_of_month->user_img_url; ?>" class="img-responsive img-circle" style="float: right">
+							<a href="<?php echo (_REW_URL == true) ? "/profile=>" . $crafter_of_month->user_id : _PATH_FOLDER . "index.php?module=profile&user=" . $crafter_of_month->user_id ; ?>">
+								<img src="<?php echo $crafter_of_month->user_img_url; ?>" class="img-responsive img-circle" alt="Avatar <?php echo $crafter_of_month->user_username; ?> | Crafters" style="float: right">
 							</a>
 						</div>
 
 						<div class="col-md-7 col-sm-9 col-xs-9">
 							<br/>
-							<a onclick="ga('send','event','Crafter of the month','Clique');" href="#"></a>
-
-							<h2><?php echo $crafter_of_month->user_username; ?></h2></a>
+							<a href="<?php echo (_REW_URL == true) ? "/profile=>" . $crafter_of_month->user_id : _PATH_FOLDER . "index.php?module=profile&user=" . $crafter_of_month->user_id ; ?>">
+								<h2><?php echo $crafter_of_month->user_username; ?></h2>
+							</a>
 							<p><?php echo $crafter_of_month->user_description; ?></p>
 							<?php foreach ($user_month_products as $user_month_product) { ?>
 								<img src="<?php echo $user_month_product->product_img_url; ?>"
-								     alt="<?php echo $user_month_product->product_name; ?>"
-								     title="<?php echo $user_month_product->product_name; ?>" width="40px">
+								     alt="Temporary Tattoo <?php echo $user_month_product->product_name; ?> | Crafters"
+								     title="<?php echo $user_month_product->product_name; ?>" width="40">
 							<?php } ?>
 							<br/>
 							<span onclick="ga('send','event','Crafter of the month','Clique');" class="seemore"><a
@@ -74,20 +74,20 @@
 						?>
 						<div class="col-xs-12">
 							<div class="col-md-3 col-sm-2 col-xs-2">
-								<a href="<?php echo (_REW_URL == true) ? "/profile=>" . $popular_crafter->user_id_product : _PATH_FOLDER . "index.php?module=profile&user=" . $popular_crafter->user_id_product ; ?>"><img
-										src="<?php echo $popular_crafter->user_img_url; ?>"
-										class="img-responsive img-circle" style="float: right"></a>
+								<a href="<?php echo (_REW_URL == true) ? "/profile=>" . $popular_crafter->user_id_product : _PATH_FOLDER . "index.php?module=profile&user=" . $popular_crafter->user_id_product ; ?>">
+									<img src="<?php echo $popular_crafter->user_img_url; ?>" alt="Avatar <?php echo $popular_crafter->user_username; ?> | Crafters" class="img-responsive img-circle" style="float: right"></a>
 							</div>
 							<div class="col-md-9 col-sm-10 col-xs-10">
 								<br/>
 								<a href="index.php?module=profile&user=<?php echo $popular_crafter->user_id_product; ?>">
-									<h2><?php echo $popular_crafter->user_username; ?></h2></a>
+									<h2><?php echo $popular_crafter->user_username; ?></h2>
+								</a>
 								<?php
 								foreach ($popular_crafter->creas as $popular_crafter->crea) {
 									?>
 									<img src="<?php echo $popular_crafter->crea->product_img_url; ?>"
-									     alt="<?php echo $popular_crafter->crea->product_name; ?>"
-									     title="<?php echo $popular_crafter->crea->product_name; ?>" width="30px">
+									     alt="Temporary Tattoo <?php echo $popular_crafter->crea->product_name; ?> | Crafters"
+									     title="<?php echo $popular_crafter->crea->product_name; ?>" width="30">
 								<?php
 								}
 								?>
@@ -112,7 +112,7 @@
 					<form action="index.php" method="get" class="navbar-form navbar-right" role="search">
 						<div class="input-group input-group-sm">
 							<input type="hidden" name="module" value="gallery">
-							<input type="text" minlength="3" maxlength="20" class="form-control" name="search" placeholder="Search for..." required>
+							<input type="text"  pattern=".{3,20}" required title="3 to 20 characters" class="form-control" name="search" placeholder="Search for...">
 							<span class="input-group-btn">
 
 								<button class="btn btn-default" type="submit"><i class="fa fa-search"></i></button>
@@ -129,7 +129,9 @@
 							?>
 							<div class="col-sm-4 col-md-4 col-xs-6 col-lg-3">
 								<div class="thumbnail parent">
-									<a href="<?php echo (_REW_URL == true) ? "/product=>" . $product->product_id : _PATH_FOLDER . "index.php?module=fiche&product=" . $product->product_id ; ?>" class="product-image"><img src="<?php echo $product->product_img_url; ?>" class="img-responsive prodIMG"></a>
+									<a href="<?php echo (_REW_URL == true) ? "/product=>" . $product->product_id : _PATH_FOLDER . "index.php?module=fiche&product=" . $product->product_id ; ?>" class="product-image">
+										<img src="<?php echo $product->product_img_url; ?>" class="img-responsive prodIMG" alt="Temporary Tattoo <?php echo $product->product_name; ?> | Crafters">
+									</a>
 
 									<div class="caption">
 										<h4><?php echo $product->product_name; ?></h4>
@@ -238,7 +240,7 @@
 
 	</div>
 	<!-- /container -->
-
+</div>
 	<script type="text/javascript" src="tools/jQuery/jquery-2.1.1.min.js"></script>
 	<script type="text/javascript" src="tools/bootstrap-3.2.0/js/bootstrap.min.js"></script>
 	<script>

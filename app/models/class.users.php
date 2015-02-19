@@ -555,5 +555,90 @@ class ClassUsers extends CoreModels {
 		$cursor->closeCursor();
 		return $return;
 	}
+	function updatePassword()
+	{
+		$query = "UPDATE " . _TABLE__USERS . "
+		SET user_password = :user_password
+		WHERE user_id = :user_id";
+
+		$cursor = $this->connexion->prepare($query);
+
+		$cursor->bindValue(':user_password', $this->user_password, PDO::PARAM_STR);
+		$cursor->bindValue(':user_id', $this->user_id, PDO::PARAM_INT);
+
+		$return = $cursor->execute();
+
+		$cursor->closeCursor();
+		return $return;
+	}
+	function updatePasswordWithHash()
+	{
+		$query = "UPDATE " . _TABLE__USERS . "
+		SET user_password = :user_password
+		WHERE user_forgot_hash = :user_forgot_hash";
+
+		$cursor = $this->connexion->prepare($query);
+
+		$cursor->bindValue(':user_password', $this->user_password, PDO::PARAM_STR);
+		$cursor->bindValue(':user_forgot_hash', $this->user_forgot_hash, PDO::PARAM_STR);
+
+		$return = $cursor->execute();
+
+		$cursor->closeCursor();
+		return $return;
+	}
+	function forgotInputHash()
+	{
+		$query = "UPDATE " . _TABLE__USERS . "
+		SET user_forgot_hash = :user_forgot_hash
+		WHERE user_mail = :user_mail";
+
+		$cursor = $this->connexion->prepare($query);
+
+		$cursor->bindValue(':user_forgot_hash', $this->user_forgot_hash, PDO::PARAM_STR);
+		$cursor->bindValue(':user_mail', $this->user_mail, PDO::PARAM_STR);
+
+		$return = $cursor->execute();
+
+		$cursor->closeCursor();
+		return $return;
+	}
+	function hashExist()
+	{
+		$query = "SELECT user_id, user_mail
+			FROM " . _TABLE__USERS . "
+			WHERE user_forgot_hash = :user_forgot_hash";
+
+		$cursor = $this->connexion->prepare($query);
+
+		$cursor->bindValue(':user_forgot_hash', $this->user_forgot_hash, PDO::PARAM_STR);
+
+		$return = $cursor->execute();
+
+		$cursor->setFetchMode(PDO::FETCH_OBJ);
+		$return = $cursor->fetch();
+		$cursor->closeCursor();
+
+		if (count($return) == 1) {
+			return $return;
+		} else {
+			return false;
+		}
+	}
+	function cleanHash()
+	{
+		$query = "UPDATE " . _TABLE__USERS . "
+		SET user_forgot_hash = ''
+		WHERE user_forgot_hash = :user_forgot_hash";
+
+		$cursor = $this->connexion->prepare($query);
+
+		$cursor->bindValue(':user_forgot_hash', $this->user_forgot_hash, PDO::PARAM_STR);
+
+		$return = $cursor->execute();
+
+		$cursor->closeCursor();
+		return $return;
+	}
 }
 ?>

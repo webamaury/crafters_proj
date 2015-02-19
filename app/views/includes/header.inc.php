@@ -3,35 +3,13 @@
         <div class="container">
             <div class="container">
 
-                <div class="col-md-4 col-sm-4 col-xs-12">
+                <div class="col-lg-4 col-md-3 col-xs-6">
                     <h1><a href="<?php echo (_REW_URL == true) ? "/home" : "index.php" ; ?>">CR<span class="logo-mini">a</span>FTERS</a></h1>
                     <h2>Tattoos and Stickers designers</h2>
                 </div>
-                <div class="col-md-8 col-xs-12">
-                    <div class="col-xs-8 menu">
-                        <br>
-                        <ul class="nav nav-pills">
-                            <li><a href="<?php echo (_REW_URL == true) ? "/home" : "index.php" ; ?>">Home</a></li>
-                            <li><a href="<?php echo (_REW_URL == true) ? "/gallery" : "index.php?module=gallery" ; ?>">Gallery</a></li>
-                            <!--<li><a href="#">Monthly Set</a></li>-->
-                            <li><a href="#" data-toggle="modal" data-target="#modal-contact">Contact</a> </li>
-                            <?php
-                            if (isset($_SESSION[_SES_NAME]["authed"]) && $_SESSION[_SES_NAME]["authed"] == true) {
-                            ?>
-                            <li><a href="<?php echo (_REW_URL == true) ? "/upload" : "index.php?module=upload" ; ?>" class="btn upload-2 upload-2c star upload_header">Upload</a>
-                                <?php
-                                } else {
-                                ?>
-                            <li><a href="#" data-toggle="modal"data-target="#modal-login" class="btn upload-2 upload-2c star upload_header">Upload</a>
-                                <?php
-                                }
-                                ?>
-                            </li>
-                        </ul>
-                    </div>
-
-                    <div class="col-xs-4">
-                        <div class="col-xs-2 col-md-7 pull-right text-right">
+                <div class="col-lg-3 col-md-3 col-xs-6 pull-right">
+                    <div class="col-xs-7 pull-right text-right">
+                        <div class="row">
                             <br>
                             <?php
                             if(isset($_SESSION[_SES_NAME]["authed"]) && $_SESSION[_SES_NAME]["authed"] == true){
@@ -45,7 +23,7 @@
                                         <li class="text-right"><a href="index.php?action=logout">Logout <i class="fa fa-power-off bs-example-modal-sm"></i></a></li>
                                     </ul>
                                 </div>
-                                  <!--<span class="badge" data-toggle="modal" data-target="#login" style="background-color: darkred;">1</span>-->
+                                <!--<span class="badge" data-toggle="modal" data-target="#login" style="background-color: darkred;">1</span>-->
                             <?php
                             } else {
                                 ?>
@@ -54,34 +32,55 @@
                             }
                             ?>
                         </div>
-                            <?php
-                            if (!isset($_GET['module']) || $_GET['module'] != 'commande') {
-                            ?>
-                        <div class="col-xs-2 col-md-5 pull-right text-right">
-                                <br>
-                                <a href="#" data-ajax="index.php?module=panier&action=displayCart" class="ajax_display_cart" data-toggle="modal" data-target="#modal-shoppingbag">
-                                    <i class="fa fa-shopping-cart"></i>
-                                <span class="badge" style="background-color: white; color: black;">
-                                (<span class="nb_product_ajax"><?php
-                                        if(isset($_SESSION[_SES_NAME]['Cart'])){
-                                            $nb_prod = 0;
-                                            foreach ($_SESSION[_SES_NAME]['Cart'] as $obj) {
-                                                $nb_prod += $obj['quantity'];
+                    </div>
+                    <?php
+                    if (!isset($_GET['module']) || $_GET['module'] != 'commande') {
+                        ?>
+                        <div class="col-xs-5 pull-right text-right">
+                            <br>
+                            <a href="#" data-ajax="index.php?module=panier&action=displayCart" class="ajax_display_cart" data-toggle="modal" data-target="#modal-shoppingbag">
+                                <i class="fa fa-shopping-cart"></i>
+                            <span class="badge" style="background-color: white; color: black;">
+                            (<span class="nb_product_ajax"><?php
+                                    if(isset($_SESSION[_SES_NAME]['Cart'])){
+                                        $nb_prod = 0;
+                                        foreach ($_SESSION[_SES_NAME]['Cart'] as $obj) {
+                                            $nb_prod += $obj['quantity'];
 
-                                            }
-                                            echo $nb_prod;
-                                        } else {
-                                            echo 0;
                                         }
+                                        echo $nb_prod;
+                                    } else {
+                                        echo 0;
+                                    }
 
-                                        ?></span>)</span>
-                                </a>
-                            </div>
+                                    ?></span>)</span>
+                            </a>
+                        </div>
+                    <?php
+                    }
+                    ?>
+
+                </div>
+                <div class="col-lg-5 col-md-6 col-xs-12 menu">
+                    <br>
+                    <ul class="nav nav-pills">
+                        <li><a href="<?php echo (_REW_URL == true) ? "/home" : "index.php" ; ?>">Home</a></li>
+                        <li><a href="<?php echo (_REW_URL == true) ? "/gallery" : "index.php?module=gallery" ; ?>">Gallery</a></li>
+                        <!--<li><a href="#">Monthly Set</a></li>-->
+                        <li><a href="#" data-toggle="modal" data-target="#modal-contact">Contact</a> </li>
+                        <?php
+                        if (isset($_SESSION[_SES_NAME]["authed"]) && $_SESSION[_SES_NAME]["authed"] == true) {
+                        ?>
+                        <li><a href="<?php echo (_REW_URL == true) ? "/upload" : "index.php?module=upload" ; ?>" class="btn upload-2 upload-2c star upload_header">Upload</a>
+                            <?php
+                            } else {
+                            ?>
+                        <li><a href="#" data-toggle="modal"data-target="#modal-login" class="btn upload-2 upload-2c star upload_header">Upload</a>
                             <?php
                             }
                             ?>
-
-                    </div>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>

@@ -14,9 +14,9 @@
 				<form action="index.php" method="get" class="navbar-form navbar-right" role="search">
 					<div class="input-group input-group-sm">
 						<input type="hidden" name="module" value="gallery">
-						<input type="text" minlength="3" maxlength="20" name="search" class="form-control searchval" value="<?php echo (isset($_GET['search'])) ? $_GET['search'] : "" ; ?>" placeholder="Search for...">
+						<input type="text" name="search" pattern=".{3,20}" required title="3 to 20 characters" class="form-control searchval" value="<?php echo (isset($_GET['search'])) ? $_GET['search'] : "" ; ?>" placeholder="Search for...">
 							<span class="input-group-btn">
-								<button class="btn btn-default" type="button"><i class="fa fa-search"></i></button>
+								<button class="btn btn-default" type="submit"><i class="fa fa-search"></i></button>
 							</span>
 					</div>
 				</form>
@@ -38,7 +38,9 @@
 						?>
 						<div class="col-sm-4 col-md-3 col-xs-6 col-lg-3">
 							<div class="thumbnail parent">
-								<a href="<?php echo (_REW_URL == true) ? "/product=>" . $product->product_id : _PATH_FOLDER . "index.php?module=fiche&product=" . $product->product_id ; ?>" class="product-image"><img src="<?php echo $product->product_img_url; ?>" class="img-responsive prodIMG"></a>
+								<a href="<?php echo (_REW_URL == true) ? "/product=>" . $product->product_id : _PATH_FOLDER . "index.php?module=fiche&product=" . $product->product_id ; ?>" class="product-image">
+									<img src="<?php echo $product->product_img_url; ?>" class="img-responsive prodIMG" alt="Temporary Tattoo <?php echo $product->product_name; ?> | Crafters">
+								</a>
 
 								<div class="caption">
 									<h4><?php echo $product->product_name; ?></h4>
