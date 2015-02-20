@@ -200,6 +200,8 @@ class ClassUsers extends CoreModels {
 			U.user_birthday,
 			U.user_phone,
 			DATE_FORMAT(U.user_creation, '%d %M %Y %T') AS DateCrea,
+			U.user_description,
+			U.user_month,
 			U.user_img_url,
 			S.nom,
 			S.statut
@@ -361,7 +363,9 @@ class ClassUsers extends CoreModels {
 		user_username = :username,
 		user_phone = :phone,
 		user_birthday = :birthday,
-		user_status = :statut 
+		user_status = :statut,
+		user_month = :checkbox_month,
+		user_description = :descr_month
 		WHERE user_id = :id";
 		
 		$cursor = $this->connexion->prepare($query);
@@ -373,7 +377,25 @@ class ClassUsers extends CoreModels {
 		$cursor->bindValue(':phone', $this->user_phone, PDO::PARAM_STR);
 		$cursor->bindValue(':birthday', $this->user_birthday, PDO::PARAM_STR);
 		$cursor->bindValue(':statut', $this->user_status, PDO::PARAM_INT);
+		$cursor->bindValue(':checkbox_month', $this->user_month, PDO::PARAM_INT);
+		$cursor->bindValue(':descr_month', $this->user_description, PDO::PARAM_STR);
 		$cursor->bindValue(':id', $this->user_id, PDO::PARAM_INT);
+
+		$return = $cursor->execute();
+
+		$cursor->closeCursor();
+		return $return;
+	}
+
+	/**
+	 * Permet de passer tout les user_month à 0
+	 * @return bool
+	 */
+	public function clearUserMonth() {
+		$query = "UPDATE " . _TABLE__USERS . "
+		SET user_month = 0";
+
+		$cursor = $this->connexion->prepare($query);
 
 		$return = $cursor->execute();
 

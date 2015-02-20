@@ -16,6 +16,7 @@
 					<th>Name</th>
 					<th>Status</th>
 					<th>Creation</th>
+					<th>Username</th>
 					<th class="colum_action">Actions</th>
 				</tr>
 			</thead>
@@ -28,6 +29,7 @@
 					<td><?php echo $item->product_name ; ?></td>
 					<td><?php echo $item->status_name ; ?></td>
 					<td><?php echo $item->product_creation ; ?></td>
+					<td><?php echo $item->user_username ; ?></td>
 					<td class="colum_action">
 						<a href="#" onclick="return false" class="tips-trigger"  data-toggle="tooltip" data-placement="bottom" title="see details">
 							<span data-toggle="modal" data-target=".modal_fiche_product" data-id="<?php echo $item->product_id ; ?>" class="glyphicon glyphicon-eye-open modal-fiche-product-trigger"></span>
@@ -72,6 +74,8 @@
 		$(".ajax_description").text(obj.product_description);
 		$(".ajax_creation").text(obj.DateCrea);
 		$(".ajax_status").text(obj.nom);
+		$(".ajax_username").text(obj.user_username);
+		$(".ajax_mail").text(obj.user_mail);
 
 		//alert( obj.name );
 		//var obj = jQuery.parseJSON(flux);
@@ -90,7 +94,7 @@
 	
 	$(document).ready(function(){
 		$('.table').DataTable({
-			"order": [[3, "asc"]]
+			"order": [[2, "asc"]]
 		});
 	});
 	$(document).on("click", ".modal-fiche-product-trigger", function(){

@@ -65,10 +65,12 @@ class ClassProducts extends CoreModels
 			P.product_id,
 			P.product_name,
 			DATE_FORMAT(P.product_creation, '%d %M %Y %k:%i') AS product_creation,
-			S.nom as
-			status_name
-			FROM " . _TABLE__PRODUCTS . " P, " . _TABLE__STATUTS . " S
-			WHERE S.statut = P.product_status and S.type = 'product'
+			S.nom as status_name,
+			U.user_username
+			FROM " . _TABLE__PRODUCTS . " P, " . _TABLE__STATUTS . " S, " . _TABLE__USERS . " U
+			WHERE S.statut = P.product_status
+			AND S.type = 'product'
+			AND P.user_id_product = U.user_id
 			ORDER BY " . $orderby;
 		$list = $this->select_no_param();
 
@@ -113,9 +115,14 @@ class ClassProducts extends CoreModels
 			DATE_FORMAT(P.product_creation, '%d %M %Y %T') AS DateCrea,
 			P.product_status,
 			P.product_img_url,
-			S.nom
-			FROM " . _TABLE__PRODUCTS . " as P," . _TABLE__STATUTS . " as S
-			WHERE P.product_id = :id AND S.type = 'product' AND S.statut = P.product_status";
+			S.nom,
+			U.user_username,
+			U.user_mail
+			FROM " . _TABLE__PRODUCTS . " as P," . _TABLE__STATUTS . " as S, " . _TABLE__USERS . " U
+			WHERE P.product_id = :id
+			AND S.type = 'product'
+			AND S.statut = P.product_status
+			AND P.user_id_product = U.user_id";
 
 		$cursor = $this->connexion->prepare($query);
 	

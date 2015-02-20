@@ -56,6 +56,12 @@
 								<p class="form-control-static ajax_name"></p>
 							</div>
 						</div>
+						<div class="display-inline">
+							<label class="col-md-4 control-label">eMail : </label>
+							<div class="col-md-8">
+								<p class="form-control-static ajax_mail"></p>
+							</div>
+						</div>
 					</form>
 				</div>
 				<div class="col-md-12 address_order">

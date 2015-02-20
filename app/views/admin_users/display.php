@@ -24,7 +24,7 @@
 				<?php
 				foreach($items as $item) {
 					?>
-				<tr>
+				<tr <?php echo ($item->nom == 'disable') ? 'class="warning"' : '' ; ?>>
 					<td><?php echo $item->user_id ; ?></td>
 					<td><?php echo $item->user_firstname ; ?></td>
 					<td><?php echo $item->user_name ; ?></td>
@@ -105,7 +105,7 @@
 	
 	$(document).ready(function(){
 		$('.table').DataTable({
-			"order": [[5, "asc"]]
+			"order": [[4, "asc"]]
 		});
 		$(".modal-fiche-trigger").on("click", function(){
 			var item_id = $(this).attr("data-id");

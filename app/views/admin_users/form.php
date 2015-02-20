@@ -101,7 +101,21 @@
 					</select>
 				</div>
 			</div>
-
+			<div class="form-group">
+				<div class="col-sm-offset-2 col-sm-10">
+					<div class="checkbox">
+						<label>
+							<input type="checkbox" name="checkbox_month" value="1"<?php echo (isset($item->user_month) && $item->user_month == 1) ? " checked" : "" ; ?>> Crafter of the month
+						</label>
+					</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="creation" class="col-md-2 control-label">Description</label>
+				<div class="col-lg-10 col-md-8">
+					<textarea class="form-control" name="descr_month" rows="3"><?php echo (isset($item->user_description)) ? $item->user_description : '' ; ?></textarea>
+				</div>
+			</div>
 		</div>
 		<div class="col-xs-12 margin-top-20">
 				<input type="hidden" name="action" value="<?php echo (isset($_GET['id'])) ? 'modifier' : 'ajouter' ; ?>">

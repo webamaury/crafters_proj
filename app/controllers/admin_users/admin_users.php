@@ -40,8 +40,7 @@
 				}
 			}
 			else if(isset($_POST['action']) && $_POST['action'] == 'modifier') {
-
-				$users->user_id 			= $_GET['id'];				
+				$users->user_id 			= $_GET['id'];
 				$users->user_mail 			= $_POST['mail'];
 				$users->user_firstname 		= $_POST['firstname'];
 				$users->user_name 			= $_POST['name'];
@@ -49,10 +48,16 @@
 				$users->user_phone 			= $_POST['phone'];
 				$users->user_birthday		= $_POST['birthday'];
 				$users->user_status 		= $_POST['statut'];
+				$users->user_description	= $_POST['descr_month'];
+				if (isset($_POST['checkbox_month']) && $_POST['checkbox_month'] == 1) {
+					$users->user_month = $_POST['checkbox_month'];
+					$users->clearUserMonth();
+				} else {
+					$users->user_month = 0;
+				}
 				
 	//						echo $_POST['statut']."<br>";
 	//						echo $adminUsers->statut ; exit();	
-				
 				if($users->updateUser()) {
 					$notices->createNotice('success', 'User modifié');
 					header('location:index.php?module=users&action=form&id='.$_GET['id']);exit();

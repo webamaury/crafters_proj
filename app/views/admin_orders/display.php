@@ -98,6 +98,7 @@
 		$(".ajax_price").text(obj.order_price +' €');
 		$(".ajax_name").text(obj.user_name);
 		$(".ajax_firstname").text(obj.user_firstname);
+		$(".ajax_mail").text(obj.user_mail);
 
 		//alert( obj.name );
 		//var obj = jQuery.parseJSON(flux);
