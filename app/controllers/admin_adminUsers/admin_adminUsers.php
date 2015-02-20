@@ -160,7 +160,7 @@ class adminUsersController extends CoreControlers {
 				echo false;
 			}
 		} else if (isset($_POST['action']) && $_POST['action'] === 'ajax_update_password') {
-			if ($_SESSION['ADMIN-USER']['id'] === $_POST['admin°id']) {
+			if ($_SESSION['ADMIN-USER']['id'] === $_POST['admin_id']) {
 				if ($_POST['new_password'] === $_POST['confirm_password']) {
 					if ($_SESSION['ADMIN-USER']['password'] === md5($_POST['current_password'])) {
 						$adminUsers->id = $_POST['admin_id'];
