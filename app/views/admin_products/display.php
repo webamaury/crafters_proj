@@ -4,7 +4,6 @@
 <div class="container" id="admin_users">
 	<div class="col-xs-12">
 	<h1 class="pull-left">Product</h1>
-	<a href="index.php?module=products&amp;action=form" class="btn btn-primary pull-right margin-top-20"><span class="glyphicon glyphicon-plus font-09em"></span> Add new</a>
 	</div>
 
 	<?php echo $notices->displayNotice(); $notices->clearNotice(); ?>
