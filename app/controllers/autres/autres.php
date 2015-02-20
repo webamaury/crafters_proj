@@ -113,6 +113,75 @@ class AutreController extends CoreControlers {
 		##############################################################
 		include_once( _APP_PATH . 'views/autres/message.php');
 	}
+	function whoweare($arrayCss, $arrayJs, $notices)
+	{
+		/* **********************************************************
+		 * TRAITEMENT PHP
+		 ********************************************************** */
+
+		/* **********************************************************
+		 * APPEL TOOLS
+		 ********************************************************** */
+		$CssToLoad = array('bootstrap-css', 'font-awesome', 'momo', 'custom2');
+		$JsToLoad = array('jquery', 'bootstrap-js', 'list.js', 'panier.js');
+
+		/* **********************************************************
+		 * VARIABLES LAYOUT
+		 ********************************************************** */
+		DEFINE("_METATITLE", "Whe wo are | Crafters");
+		DEFINE("_METADESCRIPTION", "Crafters | Tattoo and stickers designers | Who we are");
+
+		/* **********************************************************
+		 * VUE
+		 ********************************************************** */
+		include_once( _APP_PATH . 'views/autres/whoweare.php');
+	}
+	function terms($arrayCss, $arrayJs, $notices)
+	{
+		/* **********************************************************
+		 * TRAITEMENT PHP
+		 ********************************************************** */
+
+		/* **********************************************************
+		 * APPEL TOOLS
+		 ********************************************************** */
+		$CssToLoad = array('bootstrap-css', 'font-awesome', 'momo', 'custom2');
+		$JsToLoad = array('jquery', 'bootstrap-js', 'list.js', 'panier.js');
+
+		/* **********************************************************
+		 * VARIABLES LAYOUT
+		 ********************************************************** */
+		DEFINE("_METATITLE", "Whe wo are | Crafters");
+		DEFINE("_METADESCRIPTION", "Crafters | Tattoo and stickers designers | Who we are");
+
+		/* **********************************************************
+		 * VUE
+		 ********************************************************** */
+		include_once( _APP_PATH . 'views/autres/terms.php');
+	}
+	function privacy($arrayCss, $arrayJs, $notices)
+	{
+		/* **********************************************************
+		 * TRAITEMENT PHP
+		 ********************************************************** */
+
+		/* **********************************************************
+		 * APPEL TOOLS
+		 ********************************************************** */
+		$CssToLoad = array('bootstrap-css', 'font-awesome', 'momo', 'custom2');
+		$JsToLoad = array('jquery', 'bootstrap-js', 'list.js', 'panier.js');
+
+		/* **********************************************************
+		 * VARIABLES LAYOUT
+		 ********************************************************** */
+		DEFINE("_METATITLE", "Whe wo are | Crafters");
+		DEFINE("_METADESCRIPTION", "Crafters | Tattoo and stickers designers | Who we are");
+
+		/* **********************************************************
+		 * VUE
+		 ********************************************************** */
+		include_once( _APP_PATH . 'views/autres/privacy.php');
+	}
 }
 
 ?>

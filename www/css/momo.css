@@ -1,5 +1,4 @@
 body {
-	margin-bottom: 40px;
     min-width: 420px;
 }
 h1 {
@@ -171,7 +170,7 @@ a:focus, input:focus, textarea:focus, button:focus, a:hover, input:hover, textar
     font-size: 100px;
 }
 .dashboard_infos {
-    margin-top: 5px;
+    margin-top: 5px !important;
 }
 .profileInfos {
     font-family: "lato";
@@ -193,4 +192,27 @@ a:focus, input:focus, textarea:focus, button:focus, a:hover, input:hover, textar
 .questionprofile {
     font-size: 18px !important;
     padding-top: 5px !important;
+}
+footer li a, footer li {
+    color: #717375;
+}
+.cnil {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+.cnil .container {
+    padding: 10px 0px 0px 0px;
+    border: 1px solid #EEE;
+    background: #FFF;
+}
+.cnil .container p {
+    font-size: 86%;
+}
+.cnil .container i {
+    cursor: pointer;
+    color: #777;
+}
+.cnil .container i:hover {
+    color: #222;
 }

@@ -1,7 +1,7 @@
 
     <div class="row header">
         <div class="container">
-            <div class="container">
+            <div class="row">
 
                 <div class="col-lg-4 col-md-3 col-xs-6">
                     <h1><a href="<?php echo (_REW_URL == true) ? "/home" : "index.php" ; ?>">CR<span class="logo-mini">a</span>FTERS</a></h1>
@@ -86,7 +86,7 @@
         </div>
     </div>
 
-    <div class="row content">
+    <div class="row">
         <hr class="hr_header">
     </div>
     <br>

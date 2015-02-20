@@ -1,16 +1,15 @@
 <?php include(_APP_PATH . "views/includes/head.inc.php"); ?>
 
-
 <?php include(_APP_PATH . "views/includes/header.inc.php"); ?>
 
+	<!--Content-->
+	<div class="row content">
+		<div class="container">
 
-	<div class="container">
+			<div class="row">
+				<?php echo $notices->displayNotice(); $notices->clearNotice(); ?>
+			</div>
 
-		<div class="row">
-			<?php echo $notices->displayNotice(); $notices->clearNotice(); ?>
-		</div>
-
-		<div class="row big-gallery">
 			<div class="col-sm-5 col-xs-12 pull-right">
 				<form action="index.php" method="get" class="navbar-form navbar-right" role="search">
 					<div class="input-group input-group-sm">
@@ -33,7 +32,7 @@
 
 
 				<div id="display_load_more" class="row">
-				<span data-order="<?php echo (isset($_GET['order'])) ? $_GET['order'] : 'newest' ; ?>" class="orderby"></span>
+					<span data-order="<?php echo (isset($_GET['order'])) ? $_GET['order'] : 'newest' ; ?>" class="orderby"></span>
 					<?php
 					foreach ($products as $product) {
 						?>
@@ -146,9 +145,9 @@
 
 
 			</div>
+
 		</div>
-
 	</div>
-
+	<!--/Content-->
 
 <?php include(_APP_PATH . "views/includes/footer.inc.php"); ?>

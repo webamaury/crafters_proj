@@ -1,8 +1,11 @@
 <?php include(_APP_PATH . "views/includes/head.inc.php"); ?>
 
 <?php include(_APP_PATH . "views/includes/header.inc.php"); ?>
-	<!-- /content -->
-	<div class="container">
+
+	<!--Content-->
+	<div class="row content">
+
+		<div class="container">
 
 		<div class="row">
 			<?php echo $notices->displayNotice(); $notices->clearNotice(); ?>
@@ -54,5 +57,8 @@
 		</div>
 
 	</div>
-	<!-- /content -->
+
+	</div>
+	<!--/Content-->
+
 <?php include(_APP_PATH . "views/includes/footer.inc.php"); ?>

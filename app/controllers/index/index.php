@@ -17,6 +17,8 @@ class IndexController extends CoreControlers
 			$method = 'main';
 		} else if (isset($_POST['action'])) {
 			$method = $_POST['action'];
+		} else if (isset($_GET['action'])) {
+			$method = $_GET['action'];
 		}
 		$this->nb_by_page = 12;
 		//if(isset($_SESSION[_SES_NAME]))var_dump($_SESSION[_SES_NAME]);
@@ -198,6 +200,11 @@ class IndexController extends CoreControlers
 		$_SESSION[_SES_NAME]['pageMessage'] = 5;
 		header('location:index.php?module=autre&action=messagePage');
 
+	}
+
+	function cookieCnil() {
+		setcookie('CraftersCnil', true, time()+3600*24*365);
+		echo true;
 	}
 }
 

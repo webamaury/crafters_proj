@@ -43,7 +43,7 @@ class uploadController extends CoreControlers {
 		##	APPEL TOOLS												##
 		##############################################################
 		$CssToLoad = array('bootstrap-css', 'font-awesome', 'momo', 'custom2');
-		$JsToLoad = array('jquery', 'bootstrap-js', 'list.js', 'panier.js');
+		$JsToLoad = array('jquery', 'bootstrap-js', 'jquery.form', 'list.js', 'panier.js', 'addproduct.js');
 		
 		##############################################################
 		##	VARIABLES LAYOUT										##

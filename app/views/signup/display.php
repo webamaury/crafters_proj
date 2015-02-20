@@ -2,8 +2,10 @@
 
 <?php include(_APP_PATH . "views/includes/header.inc.php"); ?>
 
+	<!--Content-->
+	<div class="row content">
 
-	<div class="container">
+		<div class="container">
 
 		<div class="row">
 			<?php echo $notices->displayNotice(); $notices->clearNotice(); ?>	
@@ -82,6 +84,7 @@
 
 	</div>
 
-
+	</div>
+	<!--/Content-->
 
 <?php include(_APP_PATH . "views/includes/footer.inc.php"); ?>

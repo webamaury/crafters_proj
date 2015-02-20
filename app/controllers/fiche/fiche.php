@@ -31,6 +31,11 @@ class ficheController extends CoreControlers {
 		if (empty($craft)) {
 			header('location:index.php');
 		}
+		if ($craft->product_status == 0 || $craft->product_status == 1) {
+			if (!isset($_SESSION[_SES_NAME]['id']) || $craft->user_id_product != $_SESSION[_SES_NAME]['id']) {
+				header('location:index.php');
+			}
+		}
 		$ClassProduct->product_id = $craft->product_id;
 		$nb_like = $ClassProduct->numberOfLike();
 		$craft->nb_like = $nb_like->nb_like;

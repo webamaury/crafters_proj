@@ -3,7 +3,7 @@
 <?php include(_APP_PATH . "views/includes/header.inc.php"); ?>
 
 
-	<div class="container">
+	<div class="container content">
 
 		<div class="row">
 			<?php echo $notices->displayNotice(); $notices->clearNotice(); ?>

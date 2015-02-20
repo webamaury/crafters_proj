@@ -468,14 +468,40 @@ class ClassUsers extends CoreModels {
 			product_img_url
 			FROM " . _TABLE__PRODUCTS . "
 			WHERE user_id_product = :user_id_product
+			AND product_status = 2
 			ORDER BY product_id DESC
-			LIMIT 0," . $limit;
+			LIMIT " . $limit;
 	
 		$cursor = $this->connexion->prepare($query);
 		$cursor->bindValue(':user_id_product', $user_id, PDO::PARAM_INT);
 		$cursor->execute();
 	
 		$cursor->setFetchMode(PDO::FETCH_OBJ);		
+		$list = $cursor->fetchAll();
+		$cursor->closeCursor();
+
+		return $list;
+	}
+	/**
+	 * Permet d'avoir les produits d'un utilisateur
+	 * @param $limit
+	 * @param $user_id
+	 * @return array
+     */
+	public function getMyProducts($limit, $user_id) {
+		$query = "SELECT product_id,
+			product_name,
+			product_img_url
+			FROM " . _TABLE__PRODUCTS . "
+			WHERE user_id_product = :user_id_product
+			ORDER BY product_id DESC
+			LIMIT " . $limit;
+
+		$cursor = $this->connexion->prepare($query);
+		$cursor->bindValue(':user_id_product', $user_id, PDO::PARAM_INT);
+		$cursor->execute();
+
+		$cursor->setFetchMode(PDO::FETCH_OBJ);
 		$list = $cursor->fetchAll();
 		$cursor->closeCursor();
 

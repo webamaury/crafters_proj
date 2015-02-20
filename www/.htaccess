@@ -1,5 +1,10 @@
 RewriteEngine On
 RewriteRule ^home$ index.php [L]
+RewriteRule ^whoweare$ index.php?module=autre&action=whoweare [L]
+RewriteRule ^legal$ index.php?module=autre&action=legalnote [L]
+RewriteRule ^termsofservice$ index.php?module=autre&action=terms [L]
+RewriteRule ^privacy$ index.php?module=autre&action=privacy [L]
+
 RewriteRule ^([a-z\-]+)$ index.php?module=$1 [L]
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d

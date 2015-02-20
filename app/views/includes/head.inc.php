@@ -8,8 +8,7 @@
         <meta name="description" content="<?php echo _METADESCRIPTION ; ?>">
         <title><?php echo _METATITLE ; ?></title>
 
-        <link rel="icon" href="../../favicon.ico">
-        <link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
+        <link rel="icon" href="img/favicon.ico">
         <?php echo $this->load_css($CssToLoad, $arrayCss) ; ?>
 
         <!-- Bootstrap core CSS -->

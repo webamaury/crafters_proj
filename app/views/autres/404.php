@@ -3,7 +3,7 @@
 
 		<?php include("../app/views/includes/header.inc.php"); ?>
 		
-		<div class="container">
+		<div class="container content">
 			<h3>404 NOT FOUND</h3>
 		</div>
 

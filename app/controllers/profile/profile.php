@@ -10,6 +10,7 @@ class profileController extends CoreControlers {
 		} else if (isset($_GET['action'])) {
 			$method = $_GET['action'];
 		}
+		$this->nb_by_page = 8;
 
 		$this->$method($arrayCss, $arrayJs, $notices) ;
 
@@ -41,8 +42,12 @@ class profileController extends CoreControlers {
 		if (empty($user)) {
 			header('location:index.php');
 		}
-
-		$products = $ClassUser->getProductOfUser('100', $ClassUser->user_id);
+		$limit = '0, ' . $this->nb_by_page;
+		if ($myprofile == true) {
+			$products = $ClassUser->getMyProducts($limit, $ClassUser->user_id);
+		} else {
+			$products = $ClassUser->getProductOfUser($limit, $ClassUser->user_id);
+		}
 		foreach ($products as $product) {
 			$ClassProduct->product_id = $product->product_id;
 			$nb_like = $ClassProduct->numberOfLike();
@@ -61,8 +66,7 @@ class profileController extends CoreControlers {
 		##	APPEL TOOLS												##
 		##############################################################
 		$CssToLoad = array('bootstrap-css', 'font-awesome', 'momo', 'custom2');
-		$JsToLoad = array('jquery', 'bootstrap-js', 'list.js', 'loadmore.js', 'panier.js');
-		
+		$JsToLoad = array('jquery', 'bootstrap-js', 'jquery.form', 'list.js', 'loadmore.js', 'panier.js', 'addavatar.js');
 		##############################################################
 		##	VARIABLES LAYOUT										##
 		##############################################################
@@ -360,7 +364,7 @@ class profileController extends CoreControlers {
 		##	APPEL TOOLS												##
 		##############################################################
 		$CssToLoad = array('bootstrap-css', 'font-awesome', 'momo', 'custom2');
-		$JsToLoad = array('jquery', 'bootstrap-js', 'list.js', 'loadmore.js', 'panier.js');
+		$JsToLoad = array('jquery', 'bootstrap-js', 'jquery.form', 'list.js', 'loadmore.js', 'panier.js', 'addavatar.js');
 
 		##############################################################
 		##	VARIABLES LAYOUT										##
@@ -380,7 +384,7 @@ class profileController extends CoreControlers {
 			exit();
 		}
 		//var_dump($_POST);
-		include_once(_APP_PATH . 'models/class.product.php'); $ClassUser = new ClassUsers();
+		include_once(_APP_PATH . 'models/class.users.php'); $ClassUser = new ClassUsers();
 
 		$ClassUser->user_forgot_hash = $_POST['hash'];
 		$return = $ClassUser->hashExist();
@@ -416,6 +420,50 @@ class profileController extends CoreControlers {
 		header('location:index.php');
 		exit();
 
+	}
+
+	/**
+	 * @param $arrayCss
+	 * @param $arrayJs
+	 * @param $notices
+	 */
+	function ajax_more($arrayCss, $arrayJs, $notices)
+	{
+		include_once(_APP_PATH . 'models/class.product.php'); $ClassProduct = new ClassProducts();
+		include_once(_APP_PATH . 'models/class.users.php'); $ClassUser = new ClassUsers();
+
+		$min = ($_POST['page'] - 1) * $this->nb_by_page;
+		$limit = $min . ',' . $this->nb_by_page;
+
+
+		if(!isset($_POST['user']) || empty($_POST['user'])) {
+			echo false; exit();
+		} else if (isset($_SESSION[_SES_NAME]['id']) && $_POST['user'] == $_SESSION[_SES_NAME]['id']) {
+			$products = $ClassUser->getMyProducts($limit, $_POST['user']);
+		} else {
+			$products = $ClassUser->getProductOfUser($limit, $_POST['user']);
+		}
+
+		if (!empty($products)) {
+			foreach ($products as $product) {
+				$ClassProduct->product_id = $product->product_id;
+				$nb_like = $ClassProduct->numberOfLike();
+				$product->nb_like = $nb_like->nb_like;
+				if (isset($_SESSION[_SES_NAME]["authed"]) && $_SESSION[_SES_NAME]["authed"] == true) {
+					$ClassProduct->user_id = $_SESSION[_SES_NAME]["id"];
+					$product->did_i_like = $ClassProduct->didILike();
+				} else {
+					$product->did_i_like = 2;
+				}
+
+			}
+
+			$json = json_encode($products);
+			echo $json;
+			exit();
+		} else {
+			echo 'no more'; exit();
+		}
 	}
 }
 

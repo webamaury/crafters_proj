@@ -55,8 +55,10 @@ if(isset($_SESSION[_SES_NAME]['pageMessage'])) {
 /**
  * VERIF COOKIE CNIL
  */
-if (!isset($_COOKIE[_COOKIE_NAME]['Cnil'])) {
-	DEFINE('CNIL', false);
+if (!isset($_COOKIE['CraftersCnil']) || $_COOKIE['CraftersCnil'] != 1) {
+	DEFINE('_CNIL', false);
+} else {
+	DEFINE('_CNIL', true);
 }
 
 /**

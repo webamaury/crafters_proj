@@ -4,7 +4,7 @@ $(document).ready(function () {
     u: upload,
     h:home,
     g:gallery,
-    c:order summary
+
      */
     $(document).keypress(function(e){
         var key = e.which;
@@ -62,6 +62,13 @@ $(document).ready(function () {
         e.preventDefault();
         $('#modal-login').modal('hide');
         $('#modal-forgotpwd').modal('show');
+    });
+
+    $(".cnil_ajax_trigger").on("click", function(){
+        $.get('index.php?module=index&action=cookieCnil', {}, function (data) {
+            $(".hide_cnil").fadeOut();
+        }, 'json');
+
     });
 
 });

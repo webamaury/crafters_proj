@@ -3,7 +3,10 @@
 <?php include("../app/views/includes/header.inc.php"); ?>
 		
     <!--Content-->
-    <div class="container">
+    <div class="row content">
+
+        <div class="container">
+
         <div class="row">
             <div class="col-md-4 col-md-offset-2">
                 <h3 style="text-align: right" class="title_upload">UPLOAD YOUR AWESOME WORK</h3>
@@ -63,7 +66,7 @@
         <div class="row">
             <br>
             <div class="col-md-12">
-                <h4>Latest work updated</h4>
+                <h4>Latest uploaded crafts</h4>
                 <hr/>
 
                 <?php
@@ -174,10 +177,10 @@
 
             </div>
         </div>
+
     </div>
 
-
-    <script type="text/javascript" src="tools/plugin_jquery/jquery.form.min.js"></script>
-    <script type="text/javascript" src="js/addproduct.js"></script>
+    </div>
+    <!--/Content-->
 
 <?php include(_APP_PATH . "views/includes/footer.inc.php"); ?>

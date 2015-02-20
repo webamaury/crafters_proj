@@ -66,4 +66,36 @@ $(document).ready(function () {
             }
         });
     });
+
+    $("#load_more_profile").on("click", function (e) {
+        e.preventDefault();
+        $(this).append('<img id="ajax_loader" src="img/ajax-loader.gif" alt="ajax loader"/>');
+        var user = $(this).attr('data-user');
+        var page = $(this).attr("data-num");
+        page++;
+        $(this).attr("data-num", page);
+        $.ajax({
+            // URL du traitement sur le serveur
+            url: 'index.php?module=profile',
+            //Type de requête
+            type: 'post',
+            //parametres envoyés
+            data: 'action=ajax_more&page=' + page + '&user=' + user ,
+            //on precise le type de flux
+            //Traitement en cas de succes
+            success: function (data) {
+                if (data == 'no more') {
+                    $('#load_more_profile').html('no more product');
+                }
+                else {
+                    traiterFlux(data);
+                }
+                $('#ajax_loader').remove();
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                console.log(textStatus + " " + errorThrown);
+                console.log("Erreur execution requete ajax");
+            }
+        });
+    });
 });
