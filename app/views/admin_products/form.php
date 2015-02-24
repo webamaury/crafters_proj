@@ -22,7 +22,7 @@
 	<form class="form-horizontal" method="post" enctype="multipart/form-data" class="form_upload_ajax" id="js-upload-form" action="index.php?module=products&action=uploadAjax&product=<?php echo (isset($item->product_id)) ? $item->product_id : '' ; ?>" role="form">
 		<div class="col-xs-12 col-md-6 margin-top-20 text-center">
 			<div class="col-xs-12"  id="img_output">
-				<div id="output"><img class="img_avatar" src="<?php echo (isset($item->product_img_url) && file_exists(_WWW_PATH . $item->product_img_url)) ? _WWW_PATH . $item->product_img_url : _ADMIN_PATH . 'img/avatar.jpg' ; ?>" alt="avatar"/></div>
+				<div id="output"><img class="img_avatar img-responsive center-block" src="<?php echo (isset($item->product_img_url) && file_exists(_WWW_PATH . $item->product_img_url)) ? _WWW_PATH . $item->product_img_url : _ADMIN_PATH . 'img/avatar.jpg' ; ?>" alt="avatar"/></div>
 				<?php
 					if(isset($item->product_img_url) && file_exists(_WWW_PATH . $item->product_img_url)){
 				?>

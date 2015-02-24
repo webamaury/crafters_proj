@@ -16,30 +16,35 @@
 			<span class="ajax_alert_content"></span>
 		</div>
 	</div>
-	
-	
-	
-	
-	<form class="form-horizontal" method="post" enctype="multipart/form-data" action="index.php?module=adminUsers&action=form<?php echo (isset($_GET['id'])) ? '&id='.$_GET['id'] : '' ; ?>" role="form">
+
+
+
+	<form class="form-horizontal" method="post" enctype="multipart/form-data" class="form_upload_ajax" id="js-upload-form" action="index.php?module=adminUsers&action=uploadAjax&product=<?php echo (isset($_GET['id'])) ? '&id='.$_GET['id'] : '' ; ?>" role="form">
 		<div class="col-xs-12 col-md-6 margin-top-20 text-center">
-			<div class="col-xs-12">
-				<img class="img_avatar" src="<?php echo (isset($item->id) && file_exists(_ADMIN_PATH . 'img/photo_' . $item->id . '.jpg')) ? _ADMIN_PATH . 'img/photo_' . $item->id . '.jpg' : _ADMIN_PATH . 'img/avatar.jpg' ; ?>" alt="avatar"/>
+			<div class="col-xs-12"  id="img_output">
+				<div id="output"><img class="img_avatar img-responsive img-circle center-block" src="<?php echo (isset($item->id) && file_exists(_ADMIN_PATH . 'img/photo_' . $item->id . '.jpg')) ? _ADMIN_PATH . 'img/photo_' . $item->id . '.jpg' : _ADMIN_PATH . 'img/avatar.jpg' ; ?>" alt="avatar"/></div>
 				<?php
-					if(isset($item->id) && file_exists(_ADMIN_PATH . 'img/photo_' . $item->id . '.jpg')){
-				?>
-				<div class="col-xs-12 ajax-delete-info">
-					<a href="#" class="ajax-delete-trigger">Delete image<span class="ajax-delete-loader"></span></a>
-				</div>
+				if(isset($item->id) && file_exists(_ADMIN_PATH . 'img/photo_' . $item->id . '.jpg')){
+					?>
+					<div class="col-xs-12 ajax-delete-info">
+						<a href="#" class="ajax-delete-trigger">Delete image<span class="ajax-delete-loader"></span></a>
+					</div>
 				<?php
-					}
+				}
 				?>
 				<div class="form-group margin-top-20">
-				    <label for="exampleInputFile">Image</label>
-				    <input class="center-block" type="file" id="exampleInputFile">
-				    <p class="help-block">( dimensions conseillées : 200 * 200 pixels )</p>
-				  </div>
+					<label for="exampleInputFile">Image</label>
+					<input type="file" class="center-block" name="image_file" id="js-upload-files"/><br>
+					<input type="submit" class="ajax_img_trigger btn btn-info" value="Upload">
+					<input type="hidden" name="action" value="uploadAjax"/>
+
+					<p class="help-block">( dimensions conseillées : 200 * 200 pixels )</p>
+				</div>
 			</div>
 		</div>
+	</form>
+	<form class="form-horizontal" method="post" enctype="multipart/form-data" action="index.php?module=adminUsers&action=form<?php echo (isset($_GET['id'])) ? '&id='.$_GET['id'] : '' ; ?>" role="form">
+
 		<div class="col-xs-12 col-md-6 margin-top-20">
 			<div class="form-group">
 				<label for="firstname" class="col-md-2 control-label">Firstname</label>
@@ -123,6 +128,88 @@
 	</form>
 
 </div>
+<script type="text/javascript" src="../tools/plugin_jquery/jquery.form.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function() {
+
+
+		var options = {
+			target: '#output',   // target element(s) to be updated with server response
+			beforeSubmit: beforeSubmit,  // pre-submit callback
+			success: afterSuccess,  // post-submit callback
+			resetForm: true        // reset the form after successful submit
+		};
+
+		$('#js-upload-form').submit(function(e) {
+			e.preventDefault();
+			$(this).ajaxSubmit(options);
+			// always return false to prevent standard browser submit and page navigation
+			return false;
+		});
+	});
+
+	function afterSuccess()
+	{
+		$('#js-upload-submit').show(); //hide submit button
+		$('#loading-img').hide(); //hide submit button
+		var img_url = $('#img_output').attr('src'); //input type hidden img url
+		$('#img_url').val(img_url);
+	}
+
+	//function to check file size before uploading.
+	function beforeSubmit(){
+		//check whether browser fully supports all File API
+		if (window.File && window.FileReader && window.FileList && window.Blob)
+		{
+
+			if( !$('#js-upload-files').val()) //check empty input filed
+			{
+				$("#output").html("Are you kidding me?");
+				return false
+			}
+
+			var fsize = $('#js-upload-files')[0].files[0].size; //get file size
+			var ftype = $('#js-upload-files')[0].files[0].type; // get file type
+
+
+			//allow only valid image file types
+			switch(ftype)
+			{
+				case 'image/png': case 'image/jpeg': case 'image/pjpeg':
+				break;
+				default:
+					$("#output").html("<b>"+ftype+"</b> Unsupported file type!");
+					return false
+			}
+
+			//Allowed file size is less than 1 MB (1048576)
+			if(fsize>1048576)
+			{
+				$("#output").html("<b>"+bytesToSize(fsize) +"</b> Too big Image file! <br />Please reduce the size of your photo using an image editor.");
+				return false
+			}
+
+			$('#js-upload-submit').hide(); //hide submit button
+			$('#loading-img').show(); //hide submit button
+			$("#output").html("");
+		}
+		else
+		{
+			//Output error to older browsers that do not support HTML5 File API
+			$("#output").html("Please upgrade your browser, because your current browser lacks some new features we need!");
+			return false;
+		}
+	}
+
+	//function to format bites bit.ly/19yoIPO
+	function bytesToSize(bytes) {
+		var sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB'];
+		if (bytes == 0) return '0 Bytes';
+		var i = parseInt(Math.floor(Math.log(bytes) / Math.log(1024)));
+		return Math.round(bytes / Math.pow(1024, i), 2) + ' ' + sizes[i];
+	}
+
+</script>
 <script type="text/javascript">
 	$(document).ready(function(){
 		$("#ajax_alert").hide();

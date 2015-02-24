@@ -474,7 +474,7 @@ class ClassUsers extends CoreModels {
 		$cursor->setFetchMode(PDO::FETCH_OBJ);		
 		$return = $cursor->fetch();
 		$cursor->closeCursor();
-	
+
 		return $return;
 	}
 
@@ -583,7 +583,7 @@ class ClassUsers extends CoreModels {
 		$cursor->setFetchMode(PDO::FETCH_OBJ);		
 		$list = $cursor->fetchAll();
 		$cursor->closeCursor();
-
+		//var_dump($list);
 		return $list;
 	}
 

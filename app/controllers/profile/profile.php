@@ -42,6 +42,9 @@ class profileController extends CoreControlers {
 		if (empty($user)) {
 			header('location:index.php');
 		}
+		if ($user->statut == 0) {
+			header('location:index.php');
+		}
 		$limit = '0, ' . $this->nb_by_page;
 		if ($myprofile == true) {
 			$products = $ClassUser->getMyProducts($limit, $ClassUser->user_id);
@@ -259,7 +262,7 @@ class profileController extends CoreControlers {
 		$ClassProduct->product_id = $_GET['product'];
 		$product = $ClassProduct->get0ne();
 
-		if ($product->user_id_product != $_SESSION[_SES_NAME]['id']) {
+		if (!isset($_SESSION[_SES_NAME]['id']) || $product->user_id_product != $_SESSION[_SES_NAME]['id']) {
 			header('location:index.php'); exit();
 		}
 

@@ -16,6 +16,7 @@
 					<th>First Name</th>
 					<th>Last Name</th>
 					<th>E-mail</th>
+					<th>Status</th>
 					<th class="colum_action">Actions</th>
 				</tr>
 			</thead>
@@ -23,11 +24,12 @@
 				<?php
 				foreach($items as $item) {
 					?>
-				<tr>
+				<tr <?php echo ($item->nom == 'disable') ? 'class="warning"' : '' ; ?>>
 					<td><?php echo $item->id ; ?></td>
 					<td><?php echo $item->firstname ; ?></td>
 					<td><?php echo $item->name ; ?></td>
 					<td><?php echo $item->mail ; ?></td>
+					<td><?php echo $item->nom ; ?></td>
 					<td class="colum_action">
 						<a href="#" onclick="return false" class="tips-trigger" data-toggle="tooltip" data-placement="bottom" title="send a mail">
 							<span data-toggle="modal" data-target=".modal_mail" data-mail="<?php echo $item->mail ; ?>" class="glyphicon glyphicon-send modal-mail-trigger"></span>
@@ -35,9 +37,20 @@
 						<a href="#" onclick="return false" class="tips-trigger"  data-toggle="tooltip" data-placement="bottom" title="see details">
 							<span data-toggle="modal" data-target=".modal_fiche" data-id="<?php echo $item->id ; ?>" class="glyphicon glyphicon-eye-open modal-fiche-trigger"></span>
 						</a>&nbsp;&nbsp;
-						<a href="index.php?module=adminUsers&amp;action=form&amp;id=<?php echo $item->id ; ?>" class="tips-trigger" data-toggle="tooltip" data-placement="bottom" title="update">
-							<span class="glyphicon glyphicon-pencil"></span>
-						</a>&nbsp;
+						<?php
+						if ( $item->id == $_SESSION['ADMIN-USER']['id'] || $_SESSION['ADMIN-USER']['statut'] == 1) {
+							?>
+							<a href="index.php?module=adminUsers&amp;action=form&amp;id=<?php echo $item->id ; ?>" class="tips-trigger" data-toggle="tooltip" data-placement="bottom" title="update">
+								<span class="glyphicon glyphicon-pencil"></span>
+							</a>&nbsp;
+
+						<?php
+						} else {
+							?>
+							<span class="glyphicon glyphicon-pencil text-muted"></span>&nbsp;
+							<?php
+						}
+						?>
 						<a href="#" onclick="return false" class="tips-trigger"  data-toggle="tooltip" data-placement="bottom" title="delete">
 							<span data-toggle="modal" data-target=".bs-example-modal-sm" data-href="index.php?module=adminUsers&amp;action=delete&amp;id=<?php echo $item->id ; ?>" class="glyphicon glyphicon-trash modal-supp-trigger"></span>
 						</a>

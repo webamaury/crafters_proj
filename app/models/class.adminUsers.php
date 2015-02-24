@@ -93,7 +93,11 @@ class classAdminUsers extends CoreModels {
 	}
 	function get_list() {
 		$orderby = 'id asc';
-		$this->query = "SELECT id, firstname, name, mail FROM " . _TABLE__ADMIN_USERS . " ORDER BY " . $orderby;
+		$this->query = "SELECT U.id, U.firstname, U.name, U.mail, S.nom
+			FROM " . _TABLE__ADMIN_USERS . " as U, " . _TABLE__STATUTS . " as S
+			WHERE S.statut = U.statut
+			AND S.type = 'admin'
+			ORDER BY " . $orderby;
 			
 		$list = $this->select_no_param();
 		
@@ -105,8 +109,8 @@ class classAdminUsers extends CoreModels {
 		(mail, password, firstname, name, phone, statut) 
 		VALUES 
 		(:mail, :password, :firstname, :name, :phone, :statut)";
-		
-		$cursor = $this->connexion->prepare($this->query);
+
+		$cursor = $this->connexion->prepare($query);
 	
 		$cursor->bindValue(':mail', $this->mail, PDO::PARAM_STR);
 		$cursor->bindValue(':password', $this->password, PDO::PARAM_STR);
@@ -117,6 +121,7 @@ class classAdminUsers extends CoreModels {
 	
 		$return = $cursor->execute();
 		$cursor->closeCursor();
+
 		return $return ;
 	}
 	
@@ -180,10 +185,16 @@ class classAdminUsers extends CoreModels {
 
 	function get_statuts() {
 		$query = "SELECT * FROM " . _TABLE__STATUTS . " WHERE type = 'admin'";
-	
-		$list = $this->select_no_param($query);
-	
-		return $list ;
+
+		$cursor = $this->connexion->prepare($query);
+
+		$cursor->execute();
+
+		$cursor->setFetchMode(PDO::FETCH_OBJ);
+		$list = $cursor->fetchAll();
+		$cursor->closeCursor();
+
+		return $list;
 	}
 
 }

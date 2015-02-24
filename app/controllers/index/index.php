@@ -42,6 +42,7 @@ class IndexController extends CoreControlers
 
 		//CRAFTERS OF THE MONTH
 		$crafter_of_month = $ClassUser->getCraftersOfMonth();
+		//var_dump($crafter_of_month);
 		$ClassUser->user_id_product = $crafter_of_month->user_id;
 		$user_month_products = $ClassUser->getProductOfUser(4, $ClassUser->user_id_product);
 

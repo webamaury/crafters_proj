@@ -104,7 +104,15 @@
 												</p>
 												<div class="btn-group " style="float: left">
 													<a href="<?php echo (_REW_URL == true) ? "/product=>" . $product->product_id : _PATH_FOLDER . "index.php?module=fiche&product=" . $product->product_id ; ?>" class="btn btn-xs btn-default"><i class="fa fa-search"></i></a>
-													<a href="#" data-href="index.php?module=profile&action=deleteCraft&product=<?php echo $product->product_id; ?>" data-toggle="modal" data-target=".modal_supprod" class="btn btn-xs btn-default modal_supp_trigger"><i class="fa fa-trash-o"></i></a>
+													<?php
+													if ($myprofile == true) {
+														?>
+														<a href="#" data-href="index.php?module=profile&action=deleteCraft&product=<?php echo $product->product_id; ?>" data-toggle="modal" data-target=".modal_supprod" class="btn btn-xs btn-default modal_supp_trigger">
+															<i class="fa fa-trash-o"></i>
+														</a>
+													<?php
+													}
+													?>
 													<a href="index.php?module=panier&action=addToCart&product=<?php echo $product->product_id; ?>&img_url=<?php echo $product->product_img_url; ?>&name=<?php echo $product->product_name; ?>&from=<?php echo $user->user_username; ?>" class="btn btn-xs ajax_cart_trigger btn-default add-to-cart"><i class="fa fa-shopping-cart"></i></a>
 												</div>
 												<div class="text-right"><?php
@@ -191,14 +199,21 @@
 								}
 								?>
 							</div>
-
-							<div class="col-xs-12">
-								<div class="btn-group btn-group-justified" role="group" aria-label="...">
-									<div class="btn-group" role="group">
-										<a href="#" id="load_more_profile" data-num="1" data-user="<?php echo (isset($user->user_id)) ? $user->user_id : ""; ?>" class="btn btn-default">load more...</a>
+							<?php
+							if (count($products) == 8) {
+							?>
+								<div class="col-xs-12">
+									<div class="btn-group btn-group-justified" role="group" aria-label="...">
+										<div class="btn-group" role="group">
+											<a href="#" id="load_more_profile" data-num="1"
+											   data-user="<?php echo (isset($user->user_id)) ? $user->user_id : ""; ?>"
+											   class="btn btn-default">load more...</a>
+										</div>
 									</div>
 								</div>
-							</div>
+							<?php
+							}
+							?>
 						</div>
 						<?php
 						if ($myprofile == true) {
