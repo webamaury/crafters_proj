@@ -38,7 +38,41 @@
 	</div>
 	<div class="col-xs-12 col-md-3">
 		<div class="col-xs-12 col-lg-12">
-			<div class="thumbnail" style="height:408px;"></div>
+			<div class="thumbnail sidebaromom">
+				<div class="row">
+					<div class="col-xs-12">
+						<h5 class="text-center">Last Month</h5>
+						<div class="col-xs-12">
+							<div class="col-xs-12 text-center unitcount">
+								<span class="glyphicon glyphicon-book"></span> Orders : 10
+							</div>
+							<br/>
+							<br/>
+							<div class="col-xs-12 text-center unitcount">
+								<span class="glyphicon glyphicon-fire"></span> Products : 10
+							</div>
+							<br/>
+							<br/>
+							<div class="col-xs-12 text-center unitcount">
+								<span class="glyphicon glyphicon-user"></span> Users : 10
+							</div>
+							<br/>
+							<br/>
+							<div class="col-xs-12 text-center unitcount">
+								<span class="glyphicon glyphicon-envelope"></span> Messages : 10
+							</div>
+						</div>
+						<div class="col-xs-12">
+							<hr/>
+						</div>
+						<div class="col-xs-12">
+							<a href="index.php?module=adminUsers"><span class="glyphicon glyphicon-star"></span> Admins</a>
+							<br/>
+							<a href="#"><span class="glyphicon glyphicon-cog"></span> Config</a>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
 

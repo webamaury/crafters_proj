@@ -24,10 +24,9 @@
                     }
                       ?>
                 <li class="divider"></li>
-                <li class="dropdown-header">Nav header</li>
-                <li><a href="index.php?module=adminUsers">Admin</a></li>
-                <li><a href="#">Config</a></li>
-                <li><a href="#">settings</a></li>
+                <li class="dropdown-header">Settings</li>
+                <li><a href="index.php?module=adminUsers"><span class="glyphicon glyphicon-star"></span> Admin</a></li>
+                <li><a href="#"><span class="glyphicon glyphicon-cog"></span> Config</a></li>
               </ul>
             </li>
             <?php echo (_DEBUG == true) ? '<li><a href="index.php?module=traces" target="_blank"><span class="glyphicon glyphicon-file"></span> Trace</a></li>' : '' ; ?>
