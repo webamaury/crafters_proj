@@ -209,7 +209,7 @@ class ClassOrders extends CoreModels {
 	public function getNewOrder() {
 		$query = "SELECT count(order_id) as nbOrder
 			FROM " . _TABLE__ORDER . "
-			WHERE order_creation > DATE_ADD(NOW(),INTERVAL -32 DAY)";
+			WHERE order_creation > DATE_ADD(NOW(),INTERVAL -30 DAY)";
 
 		$cursor = $this->connexion->prepare($query);
 

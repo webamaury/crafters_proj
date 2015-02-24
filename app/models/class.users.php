@@ -695,7 +695,7 @@ class ClassUsers extends CoreModels {
 	public function getNewUser() {
 		$query = "SELECT count(user_id) as nbUser
 			FROM " . _TABLE__USERS . "
-			WHERE user_creation > DATE_ADD(NOW(),INTERVAL -32 DAY)";
+			WHERE user_creation > DATE_ADD(NOW(),INTERVAL -30 DAY)";
 
 		$cursor = $this->connexion->prepare($query);
 

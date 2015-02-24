@@ -68,18 +68,22 @@ a, a:hover {
 	max-height: 500px;
 	overflow: scroll;
 }
-.sidebaromom {
+.sidebaromom hr {
+	margin-top: 5px;
 	margin-bottom: 10px;
 }
 .sidebaromom h5 {
-	margin-top: 5px;
-	margin-bottom: 15px;
+	cursor: default;
+	margin-top: 8px;
+	margin-bottom: 20px;
 	font-weight: normal;
 }
 .sidebaromom .unitcount {
+	cursor: default;
 	padding-top: 5px;
 	padding-bottom: 5px;
-	border-radius: 6px;
+	margin-bottom: 15px;
+	border-radius: 2px;
 	color: #FFF;
 	background: #428bca;
 }

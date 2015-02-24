@@ -72,7 +72,7 @@
 
 		include_once(_APP_PATH . 'models/class.messages.php'); $ClassMessage = new ClassMessages();
 		$new_message = $ClassMessage->getNewMessage();
-
+//var_dump($new_prod, $new_user, $new_order, $new_message);
 		##############################################################
 		##	APPEL TOOLS												##
 		##############################################################

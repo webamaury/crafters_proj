@@ -155,8 +155,7 @@
 													        data-didilike="1">
 														<span class="nb_like"
 														      id="nb_like<?php echo $product->product_id; ?>"><?php echo $product->nb_like; ?></span>
-														<i data-toggle="tooltip" data-placement="top" data-html="true"
-														   title="<?php
+														<i data-toggle="tooltip" data-placement="top" data-html="true" data-title="<?php
 														   if (isset($product->name_likes)) {
 															   foreach ($product->name_likes as $product->name_like) {
 																   echo $product->name_like->user_username . '<br/>';
@@ -178,7 +177,7 @@
 														<span class="nb_like"
 														      id="nb_like<?php echo $product->product_id; ?>"><?php echo $product->nb_like; ?></span>
 														<i data-toggle="tooltip" data-placement="top" data-html="true"
-														   title="<?php
+														   data-title="<?php
 														   if (isset($product->name_likes)) {
 															   foreach ($product->name_likes as $product->name_like) {
 																   echo $product->name_like->user_username . '<br/>';
@@ -200,7 +199,7 @@
 													<span class="nb_like"
 													      id="nb_like<?php echo $product->product_id; ?>"><?php echo $product->nb_like; ?></span>
 													<i data-toggle="tooltip" data-placement="top" data-html="true"
-													   title="<?php
+													   data-title="<?php
 													   if (isset($product->name_likes)) {
 														   foreach ($product->name_likes as $product->name_like) {
 															   echo $product->name_like->user_username . '<br/>';

@@ -41,34 +41,30 @@
 			<div class="thumbnail sidebaromom">
 				<div class="row">
 					<div class="col-xs-12">
-						<h5 class="text-center">Last Month</h5>
+						<h5 class="text-center">Last 30 days</h5>
 						<div class="col-xs-12">
 							<div class="col-xs-12 text-center unitcount">
-								<span class="glyphicon glyphicon-book"></span> Orders : 10
+								<span class="glyphicon glyphicon-book"></span> Orders : <?php echo $new_order->nbOrder; ?>
 							</div>
-							<br/>
-							<br/>
 							<div class="col-xs-12 text-center unitcount">
-								<span class="glyphicon glyphicon-fire"></span> Products : 10
+								<span class="glyphicon glyphicon-fire"></span> Products : <?php echo $new_prod->nbProduct; ?>
 							</div>
-							<br/>
-							<br/>
 							<div class="col-xs-12 text-center unitcount">
-								<span class="glyphicon glyphicon-user"></span> Users : 10
+								<span class="glyphicon glyphicon-user"></span> Users : <?php echo $new_user->nbUser; ?>
 							</div>
-							<br/>
-							<br/>
 							<div class="col-xs-12 text-center unitcount">
-								<span class="glyphicon glyphicon-envelope"></span> Messages : 10
+								<span class="glyphicon glyphicon-envelope"></span> Messages : <?php echo $new_message->nbMessage; ?>
 							</div>
 						</div>
 						<div class="col-xs-12">
 							<hr/>
 						</div>
 						<div class="col-xs-12">
+							<h5 class="text-center">Settings</h5>
 							<a href="index.php?module=adminUsers"><span class="glyphicon glyphicon-star"></span> Admins</a>
 							<br/>
-							<a href="#"><span class="glyphicon glyphicon-cog"></span> Config</a>
+							<a href="index.php?module=config"><span class="glyphicon glyphicon-cog"></span> Config</a>
+							<br/><br/>
 						</div>
 					</div>
 				</div>

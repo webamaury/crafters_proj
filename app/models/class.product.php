@@ -378,7 +378,7 @@ class ClassProducts extends CoreModels
 	public function getNewProduct() {
 		$query = "SELECT count(product_id) as nbProduct
 			FROM " . _TABLE__PRODUCTS . "
-			WHERE product_creation > DATE_ADD(NOW(),INTERVAL -32 DAY)";
+			WHERE product_creation > DATE_ADD(NOW(),INTERVAL -30 DAY)";
 
 		$cursor = $this->connexion->prepare($query);
 
