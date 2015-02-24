@@ -122,6 +122,7 @@ if (isset($_GET['module'])) {
 } else {
 	$var = $currentPage;
 }
+
 if (!$user->isAuthed() && !in_array($var, $pagesAllowedWithoutSession)) {
 	$notices->createNotice("danger", "You must be connected to access to this page");
 	header('Location: index.php?module=index');

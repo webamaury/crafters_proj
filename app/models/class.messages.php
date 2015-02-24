@@ -122,5 +122,24 @@ class ClassMessages extends CoreModels {
 		return $return;
 	}
 
+	/**
+	 * Calcule le nombre de message ajouté il y a 1 mois
+	 */
+	public function getNewMessage() {
+		$query = "SELECT count(message_id) as nbMessage
+			FROM " . _TABLE__MESSAGE . "
+			WHERE message_creation > DATE_ADD(NOW(),INTERVAL -32 DAY)";
+
+		$cursor = $this->connexion->prepare($query);
+
+		$cursor->execute();
+
+		$cursor->setFetchMode(PDO::FETCH_OBJ);
+		$return = $cursor->fetch();
+		$cursor->closeCursor();
+
+		return $return;
+	}
+
 }
 ?>
