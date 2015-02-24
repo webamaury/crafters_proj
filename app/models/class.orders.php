@@ -204,7 +204,7 @@ class ClassOrders extends CoreModels {
 	}
 
 	/**
-	 * Calcule le nombre de commande ajouté il y a 1 mois
+	 * Calcule et affiche le nombre de commande ajouté il y a 1 mois
 	 */
 	public function getNewOrder() {
 		$query = "SELECT count(order_id) as nbOrder
