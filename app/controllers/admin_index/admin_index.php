@@ -61,8 +61,17 @@
 		{ label: "Safari", data: '.$dataset_browsers['Safari'].', color: "#ab65cc" }
 		]';
 
+		include_once(_APP_PATH . 'models/class.product.php'); $ClassProduct = new ClassProducts();
+		$new_prod = $ClassProduct->getNewProduct();
 
+		include_once(_APP_PATH . 'models/class.users.php'); $ClassUser = new ClassUsers();
+		$new_user = $ClassUser->getNewUser();
 
+		include_once(_APP_PATH . 'models/class.orders.php'); $ClassOrder = new ClassOrders();
+		$new_order = $ClassOrder->getNewOrder();
+
+		include_once(_APP_PATH . 'models/class.messages.php'); $ClassMessage = new ClassMessages();
+		$new_message = $ClassMessage->getNewMessage();
 
 		##############################################################
 		##	APPEL TOOLS												##

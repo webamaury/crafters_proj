@@ -202,5 +202,24 @@ class ClassOrders extends CoreModels {
 			$cursor->closeCursor();
 			return true;
 	}
+
+	/**
+	 * Calcule le nombre de commande ajouté il y a 1 mois
+	 */
+	public function getNewOrder() {
+		$query = "SELECT count(order_id) as nbOrder
+			FROM " . _TABLE__ORDER . "
+			WHERE order_creation > DATE_ADD(NOW(),INTERVAL -32 DAY)";
+
+		$cursor = $this->connexion->prepare($query);
+
+		$cursor->execute();
+
+		$cursor->setFetchMode(PDO::FETCH_OBJ);
+		$return = $cursor->fetch();
+		$cursor->closeCursor();
+
+		return $return;
+	}
 }
 ?>

@@ -688,5 +688,24 @@ class ClassUsers extends CoreModels {
 		$cursor->closeCursor();
 		return $return;
 	}
+
+	/**
+	 * Calcule le nombre de user ajouté il y a 1 mois
+	 */
+	public function getNewUser() {
+		$query = "SELECT count(user_id) as nbUser
+			FROM " . _TABLE__USERS . "
+			WHERE user_creation > DATE_ADD(NOW(),INTERVAL -32 DAY)";
+
+		$cursor = $this->connexion->prepare($query);
+
+		$cursor->execute();
+
+		$cursor->setFetchMode(PDO::FETCH_OBJ);
+		$return = $cursor->fetch();
+		$cursor->closeCursor();
+
+		return $return;
+	}
 }
 ?>
