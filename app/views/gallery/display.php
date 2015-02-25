@@ -38,7 +38,7 @@
 						?>
 						<div class="col-sm-4 col-md-3 col-xs-6 col-lg-3">
 							<div class="thumbnail parent">
-								<a href="<?php echo (_REW_URL == true) ? "/product=>" . $product->product_id : _PATH_FOLDER . "index.php?module=fiche&product=" . $product->product_id ; ?>" class="product-image">
+								<a href="<?php echo (_REW_URL == 'true') ? "/product=>" . $product->product_id : _PATH_FOLDER . "index.php?module=fiche&product=" . $product->product_id ; ?>" class="product-image">
 									<img src="<?php echo $product->product_img_url; ?>" class="img-responsive prodIMG" alt="Temporary Tattoo <?php echo $product->product_name; ?> | Crafters">
 								</a>
 
@@ -49,75 +49,31 @@
 										<small><em>By <?php echo $product->user_username; ?></em></small>
 									</p>
 									<div class="btn-group " style="float: left">
-										<a href="<?php echo (_REW_URL == true) ? "/product=>" . $product->product_id : _PATH_FOLDER . "index.php?module=fiche&product=" . $product->product_id ; ?>" class="btn btn-xs btn-default"><i class="fa fa-search"></i></a>
+										<a href="<?php echo (_REW_URL == 'true') ? "/product=>" . $product->product_id : _PATH_FOLDER . "index.php?module=fiche&product=" . $product->product_id ; ?>" class="btn btn-xs btn-default"><i class="fa fa-search"></i></a>
 										<a href="index.php?module=panier&action=addToCart&product=<?php echo $product->product_id; ?>&img_url=<?php echo $product->product_img_url; ?>&name=<?php echo $product->product_name; ?>&from=<?php echo $product->user_username; ?>" class="btn btn-xs ajax_cart_trigger btn-default add-to-cart"><i class="fa fa-shopping-cart"></i></a>
 									</div>
 									<div class="text-right"><?php
 										if (isset($_SESSION[_SES_NAME]["authed"]) && $_SESSION[_SES_NAME]["authed"] == true) {
 											if (isset($product->did_i_like) && $product->did_i_like == true) {
 												?>
-												<button type="button"
-												        data-product="<?php echo $product->product_id; ?>"
-												        class="btn btn-xs btn-default like ajax_like_trigger"
-												        data-didilike="1">
-														<span class="nb_like"
-														      id="nb_like<?php echo $product->product_id; ?>"><?php echo $product->nb_like; ?></span>
-													<i data-toggle="tooltip" data-placement="top" data-html="true"
-													   title="<?php
-													   if (isset($product->name_likes)) {
-														   foreach ($product->name_likes as $product->name_like) {
-															   echo $product->name_like->user_username . '<br/>';
-														   }
-														   if ($product->nb_like > 5) {
-															   $others = $product->nb_like - 5;
-															   echo 'and ' . $others . ' others';
-														   }
-													   }
-													   ?>" class="fa fa-heart" style="color: tomato"></i>
+												<button type="button" data-product="<?php echo $product->product_id; ?>" class="btn btn-xs btn-default like ajax_like_trigger" data-didilike="1">
+													<span class="nb_like" id="nb_like<?php echo $product->product_id; ?>"><?php echo $product->nb_like; ?></span>
+													<i class="fa fa-heart" style="color: tomato"></i>
 												</button>
 											<?php
 											} else {
 												?>
-												<button type="button"
-												        data-product="<?php echo $product->product_id; ?>"
-												        class="btn btn-xs btn-default like ajax_like_trigger"
-												        data-didilike="0">
-														<span class="nb_like"
-														      id="nb_like<?php echo $product->product_id; ?>"><?php echo $product->nb_like; ?></span>
-													<i data-toggle="tooltip" data-placement="top" data-html="true"
-													   title="<?php
-													   if (isset($product->name_likes)) {
-														   foreach ($product->name_likes as $product->name_like) {
-															   echo $product->name_like->user_username . '<br/>';
-														   }
-														   if ($product->nb_like > 5) {
-															   $others = $product->nb_like - 5;
-															   echo 'and ' . $others . ' others';
-														   }
-													   }
-													   ?>" class="fa fa-heart-o" style="color: tomato"></i>
+												<button type="button" data-product="<?php echo $product->product_id; ?>" class="btn btn-xs btn-default like ajax_like_trigger" data-didilike="0">
+													<span class="nb_like" id="nb_like<?php echo $product->product_id; ?>"><?php echo $product->nb_like; ?></span>
+													<i class="fa fa-heart-o" style="color: tomato"></i>
 												</button>
 											<?php
 											}
 										} else {
 											?>
-											<button data-toggle="modal" data-target="#modal-login" type="button"
-											        data-product="<?php echo $product->product_id; ?>"
-											        class="btn btn-xs btn-default like">
-													<span class="nb_like"
-													      id="nb_like<?php echo $product->product_id; ?>"><?php echo $product->nb_like; ?></span>
-												<i data-toggle="tooltip" data-placement="top" data-html="true"
-												   title="<?php
-												   if (isset($product->name_likes)) {
-													   foreach ($product->name_likes as $product->name_like) {
-														   echo $product->name_like->user_username . '<br/>';
-													   }
-													   if ($product->nb_like > 5) {
-														   $others = $product->nb_like - 5;
-														   echo 'and ' . $others . ' others';
-													   }
-												   }
-												   ?>" class="fa fa-heart-o" style="color: tomato"></i>
+											<button data-toggle="modal" data-target="#modal-login" type="button" data-product="<?php echo $product->product_id; ?>" class="btn btn-xs btn-default like">
+													<span class="nb_like" id="nb_like<?php echo $product->product_id; ?>"><?php echo $product->nb_like; ?></span>
+													<i class="fa fa-heart-o" style="color: tomato"></i>
 											</button>
 										<?php
 										}

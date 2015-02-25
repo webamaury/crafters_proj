@@ -6,7 +6,7 @@ function traiterFlux(flux) {
         html += '<div class="col-sm-6 col-md-4 col-xs-6 col-lg-3">';
         html += '<div class="thumbnail parent">';
         html += '<a href="index.php?module=fiche&product=' + obj[key].product_id + '" class="product-image">';
-        html += '<img src="' + obj[key].product_img_url + '" class="img-responsive prodIMG"></a>';
+        html += '<img src="' + obj[key].product_img_url + '" class="img-responsive prodIMG" alt="Temporary Tattoo ' + obj[key].product_name + ' | Crafters"></a>';
         html += '<div class="caption"><h4>' + obj[key].product_name + '</h4>';
         html += '<p><small><em>By ' + obj[key].user_username + '</em></small></p>';
         html += '<div class="btn-group " style="float: left">';
@@ -16,13 +16,13 @@ function traiterFlux(flux) {
         if (obj[key].did_i_like == true) {
             html += '<button type="button" data-product="' + obj[key].product_id + '" class="btn btn-xs btn-default like ajax_like_trigger" data-didilike="1">';
             html += '<span class="nb_like" id="nb_like' + obj[key].product_id + '">' + obj[key].nb_like + '</span> ';
-            html += '<i data-toggle="tooltip" data-placement="top" data-html="true" title="Alie S.<br/>omom<br/>mehdi<br/>marius<br/>Lisa<br/>and 6 others" class="fa fa-heart" style="color: tomato"></i></button>';
+            html += '<i class="fa fa-heart" style="color: tomato"></i></button>';
         }
         else if (obj[key].did_i_like == false) {
-            html += '<button type="button" data-product="' + obj[key].product_id + '" class="btn btn-xs btn-default like ajax_like_trigger" data-didilike="0"><span class="nb_like" id="nb_like' + obj[key].product_id + '">' + obj[key].nb_like + '</span> <i data-toggle="tooltip" data-placement="top" data-html="true" title="Alie S.<br/>omom<br/>mehdi<br/>marius<br/>Lisa<br/>and 6 others" class="fa fa-heart-o" style="color: tomato"></i></button>';
+            html += '<button type="button" data-product="' + obj[key].product_id + '" class="btn btn-xs btn-default like ajax_like_trigger" data-didilike="0"><span class="nb_like" id="nb_like' + obj[key].product_id + '">' + obj[key].nb_like + '</span> <i class="fa fa-heart-o" style="color: tomato"></i></button>';
         }
         else {
-            html += '<button type="button" data-product="' + obj[key].product_id + '" class="btn btn-xs btn-default like"><span class="nb_like" id="nb_like' + obj[key].product_id + '">' + obj[key].nb_like + '</span> <i data-toggle="tooltip" data-placement="top" data-html="true" title="Alie S.<br/>omom<br/>mehdi<br/>marius<br/>Lisa<br/>and 6 others" class="fa fa-heart-o" style="color: tomato"></i></button>';
+            html += '<button type="button" data-product="' + obj[key].product_id + '" class="btn btn-xs btn-default like"><span class="nb_like" id="nb_like' + obj[key].product_id + '">' + obj[key].nb_like + '</span> <i class="fa fa-heart-o" style="color: tomato"></i></button>';
         }
         html += '</div></div></div></div>';
     }

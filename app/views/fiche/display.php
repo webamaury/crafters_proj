@@ -108,7 +108,7 @@
 
 		<div class="row">
 			<div class="col-md-12">
-				<h3>Other creation from <?php echo $crafter->user_username; ?> <a href="<?php echo (_REW_URL == true) ? "/profile=>" . $craft->user_id_product : _PATH_FOLDER . "index.php?module=profile&user=" . $craft->user_id_product ; ?>"><small>(see all)</small></a></h3>
+				<h3>Other creation from <?php echo $crafter->user_username; ?> <a href="<?php echo (_REW_URL == 'true') ? "/profile=>" . $craft->user_id_product : _PATH_FOLDER . "index.php?module=profile&user=" . $craft->user_id_product ; ?>"><small>(see all)</small></a></h3>
 			</div>
 			<?php
 			$i = 1;
@@ -119,7 +119,7 @@
 
 					<div class="col-sm-4 col-md-3 col-xs-6 col-lg-3">
 						<div class="thumbnail parent">
-							<a href="<?php echo (_REW_URL == true) ? "/product=>" . $product->product_id : _PATH_FOLDER . "index.php?module=fiche&product=" . $product->product_id ; ?>"
+							<a href="<?php echo (_REW_URL == 'true') ? "/product=>" . $product->product_id : _PATH_FOLDER . "index.php?module=fiche&product=" . $product->product_id ; ?>"
 							   class="product-image"><img src="<?php echo _PATH_FOLDER . $product->product_img_url; ?>"
 							                              class="img-responsive prodIMG"></a>
 
@@ -130,7 +130,7 @@
 									<small><em>By <?php echo $crafter->user_username; ?></em></small>
 								</p>
 								<div class="btn-group " style="float: left">
-									<a href="<?php echo (_REW_URL == true) ? "/product=>" . $product->product_id : _PATH_FOLDER . "index.php?module=fiche&product=" . $product->product_id ; ?>"
+									<a href="<?php echo (_REW_URL == 'true') ? "/product=>" . $product->product_id : _PATH_FOLDER . "index.php?module=fiche&product=" . $product->product_id ; ?>"
 									   class="btn btn-xs btn-default"><i class="fa fa-search"></i></a>
 									<a href="index.php?module=panier&action=addToCart&product=<?php echo $product->product_id; ?>&img_url=<?php echo $product->product_img_url; ?>&name=<?php echo $product->product_name; ?>&from=<?php echo $crafter->user_username; ?>"
 									   class="btn btn-xs ajax_cart_trigger btn-default add-to-cart"><i

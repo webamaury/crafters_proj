@@ -87,3 +87,6 @@ a, a:hover {
 	color: #FFF;
 	background: #428bca;
 }
+.sidebaromom a {
+	margin-bottom: 15px;
+}

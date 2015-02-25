@@ -1,4 +1,12 @@
+
+
 RewriteEngine On
+
+# Force redirection vers www
+RewriteCond %{http_host} ^crafters.fr [nc]
+RewriteRule ^(.*)$ http://www.crafters.fr/$1 [r=301,nc]
+
+
 RewriteRule ^home$ index.php [L]
 RewriteRule ^whoweare$ index.php?module=autre&action=whoweare [L]
 RewriteRule ^legal$ index.php?module=autre&action=legalnote [L]

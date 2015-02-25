@@ -1,8 +1,8 @@
 <?php
-class loginController
-{
 
-	function __construct($arrayTools, $notices)
+class bddmailController extends CoreControlers
+{
+	function __construct($arrayTools, $notices, $modules)
 	{
 		if (!isset($_GET['action']) && !isset($_POST['action'])) {
 			$method = 'main';
@@ -12,37 +12,36 @@ class loginController
 			$method = $_GET['action'];
 		}
 
-		$this->$method($arrayTools, $notices);
+		$this->$method($arrayTools, $notices, $modules);
 	}
 
 
-	function main($arrayTools, $notices)
+	function main($arrayTools, $notices, $modules)
 	{
-		
+
 		##############################################################
 		##	TRAITEMENT PHP											##
 		##############################################################
-
+		$items = array();
 
 		##############################################################
 		##	APPEL TOOLS												##
 		##############################################################
-		$toolsToLoad = array("bootstrap-css", "jquery", "bootstrap-js");
-		$stylesToLoad = array("style", 'signin');
-		
+		$toolsToLoad = array("bootstrap-css", "jquery" , "bootstrap-js");
+		$stylesToLoad = array("style");
+
 		##############################################################
 		##	VARIABLES LAYOUT										##
 		##############################################################
-		DEFINE("_METATITLE", "Login Admin");
-		DEFINE("_METADESCRIPTION", "Login Admin");
-		
-		
+		DEFINE("_METATITLE", "Bdd mail Admin");
+		DEFINE("_METADESCRIPTION", "Bdd mmail Admin");
+
 		##############################################################
 		##	VUE														##
 		##############################################################
-		include_once( _APP_PATH . 'views/admin_login/display.php');
-	
+		include_once( _APP_PATH . 'views/admin_bddmail/display.php');
 	}
+
 }
 
 ?>

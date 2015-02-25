@@ -56,19 +56,15 @@
 								<span class="glyphicon glyphicon-envelope"></span> Messages : <?php echo $new_message->nbMessage; ?>
 							</div>
 						</div>
-						<div class="col-xs-12">
-							<hr/>
-						</div>
-						<div class="col-xs-12">
-							<h5 class="text-center">Settings</h5>
-							<a href="index.php?module=adminUsers"><span class="glyphicon glyphicon-star"></span> Admins</a>
-							<br/>
-							<a href="index.php?module=config"><span class="glyphicon glyphicon-cog"></span> Config</a>
-							<br/><br/>
-						</div>
 					</div>
 				</div>
 			</div>
+			<ul class="list-group">
+				<li class="list-group-item"><a href="index.php?module=bddmail"><span class="glyphicon glyphicon-screenshot"></span> Bdd mails</a></li>
+				<li class="list-group-item"><a href="index.php?module=adminUsers"><span class="glyphicon glyphicon-star"></span> Admins</a></li>
+				<li class="list-group-item"><a href="index.php?module=config"><span class="glyphicon glyphicon-cog"></span> Config</a></li>
+			</ul>
+
 		</div>
 	</div>
 

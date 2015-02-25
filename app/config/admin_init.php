@@ -2,14 +2,17 @@
 /**
  *	CHARGEMENT DES FICHIERS DE CONF
  */
+$jsonConfig = file_get_contents(_APP_PATH . 'controllers/admin_config/file.json');
+$config = json_decode($jsonConfig);
+
 require_once(_APP_PATH . 'models/connect.php');
 require_once(_APP_PATH . 'models/config.php');
 
 /**
  *	NOM DE SESSION
  */
-DEFINE('_SES_NAME', 'nomduprojet_admin');
-DEFINE('_SITE_NAME', 'Nom du site');
+DEFINE('_SES_NAME', 'Crafters_Admin');
+DEFINE('_SITE_NAME', 'Crafters Admin');
 
 /**
  *	RECUPERATION DE LA PAGE ACTUELLE
@@ -30,7 +33,7 @@ require_once(_APP_PATH . 'models/class.session.php'); $session = new Session();
 require_once(_CORE_PATH . 'coreControlers.php'); new CoreControlers();
 require_once(_CORE_PATH . 'coreModels.php');
 require_once(_APP_PATH . 'models/lib.function.php');
-
+require_once (_APP_PATH . 'models/class.notices.php'); $notices = new ClassNotices();
 require_once(_APP_PATH . 'models/class.adminUsers.php'); $user = new classAdminUsers();
 //var_dump($_COOKIE);
 
@@ -65,7 +68,8 @@ if ((isset($_POST['action']) && $_POST['action'] === 'login') || (isset($_POST['
 		header('Location: index.php');
 		exit();
 	} else {
-		create_notice('danger', 'Erreur login / mot de passe');
+		$notices->createNotice('danger', 'Erreur login / mot de passe');
+
 		sleep(2);
 		header('Location: index.php?module=login');
 		exit();

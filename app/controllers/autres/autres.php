@@ -182,6 +182,43 @@ class AutreController extends CoreControlers {
 		 ********************************************************** */
 		include_once( _APP_PATH . 'views/autres/privacy.php');
 	}
+
+	function wait()
+	{
+		/* **********************************************************
+		 * TRAITEMENT PHP
+		 ********************************************************** */
+		if (isset($_POST['mail_notif']) && !empty($_POST['mail_notif'])) {
+			include_once(_APP_PATH . 'models/class.users.php');
+			$ClassUsers = new ClassUsers();
+
+
+			$ClassUsers->mail = $_POST['mail_notif'];
+			if ($ClassUsers->BDDmailUnique()) {
+				$ClassUsers->insertMailNotif();
+				header('location:index.php?mess=good');
+			} else {
+				header('location:index.php?mess=already');
+			}
+
+		}
+
+		/* **********************************************************
+		 * VUE
+		 ********************************************************** */
+		include_once( _APP_PATH . 'views/autres/wait.php');
+	}
+
+	function standby()
+	{
+		/* **********************************************************
+		 * TRAITEMENT PHP
+		 ********************************************************** */
+		/* **********************************************************
+		 * VUE
+		 ********************************************************** */
+		include_once( _APP_PATH . 'views/autres/standby.php');
+	}
 }
 
 ?>
