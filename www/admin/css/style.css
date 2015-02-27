@@ -75,13 +75,13 @@ a, a:hover {
 .sidebaromom h5 {
 	cursor: default;
 	margin-top: 8px;
-	margin-bottom: 20px;
+	margin-bottom: 19px;
 	font-weight: normal;
 }
 .sidebaromom .unitcount {
 	cursor: default;
-	padding-top: 5px;
-	padding-bottom: 5px;
+	padding-top: 7px;
+	padding-bottom: 7px;
 	margin-bottom: 15px;
 	border-radius: 2px;
 	color: #FFF;
@@ -89,4 +89,9 @@ a, a:hover {
 }
 .sidebaromom a {
 	margin-bottom: 15px;
+}
+
+.ajaxLoader {
+	position: absolute;
+	padding-top: 75px;
 }

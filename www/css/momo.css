@@ -59,6 +59,8 @@ a:focus, input:focus, textarea:focus, button:focus, a:hover, input:hover, textar
     cursor: pointer;
     margin-top: 5px;
     margin-left: 3px;
+    font-size: 12px;
+    padding: 1px 1px 0px 0px;
     float: left;
     text-align: center;
     width: 17px;
@@ -215,4 +217,7 @@ footer li a, footer li {
 }
 .cnil .container i:hover {
     color: #222;
+}
+.searchval {
+    width: 200px !important;
 }

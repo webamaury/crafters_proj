@@ -14,7 +14,7 @@
 							<span class="ajax_all_quantity">0 product</span>
 						</div>
 						<div class="col-md-6 text-right">
-							Total : <span class="ajax_all_price">0</span> €
+								Total : <strong><span class=" text-danger"><span class="ajax_all_price">0</span> €</span></strong>
 						</div>
 						<br/>
 

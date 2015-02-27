@@ -116,7 +116,7 @@
 
 			$json = array(
 				"results" => $arrayResults,
-				"continent_donnee" => $continent_donnee
+				"continent_donnee" => $dataset_browsers
 			);
 
 			echo json_encode($json);

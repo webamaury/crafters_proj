@@ -194,19 +194,19 @@ function traiterFlux2(flux) {
         } else {
             html += ' ajax_size_trigger';
         }
-        html +='">s</span> <span data-id="' + key + '" data-size="m" class="size_m' + key + ' size_cart';
+        html +='">S</span> <span data-id="' + key + '" data-size="m" class="size_m' + key + ' size_cart';
         if (flux[key].size == 'm') {
             html += ' size_cart_select';
         } else {
             html += ' ajax_size_trigger';
         }
-        html+= '">m</span> <span data-id="' + key + '" data-size="l" class="size_l' + key + ' size_cart';
+        html+= '">M</span> <span data-id="' + key + '" data-size="l" class="size_l' + key + ' size_cart';
         if (flux[key].size == 'l') {
             html += ' size_cart_select';
         } else {
             html += ' ajax_size_trigger';
         }
-        html+='">l</span></small>';
+        html+='">L</span></small>';
         html += '</p>';
 
 

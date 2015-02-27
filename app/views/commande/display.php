@@ -52,7 +52,7 @@
 														} else {
 															echo ' ajax_size_trigger';
 														}
-														?>">s</span>
+														?>">S</span>
 														<span data-id="<?php echo $key; ?>" data-size="m" class="size_m<?php echo $key; ?> size_cart<?php
 														if ($product['size'] == 'm') {
 															$prodprice = '10€';
@@ -60,7 +60,7 @@
 														} else {
 															echo ' ajax_size_trigger';
 														}
-														?>">m</span>
+														?>">M</span>
 														<span data-id="<?php echo $key; ?>" data-size="l" class="size_l<?php echo $key; ?> size_cart<?php
 														if ($product['size'] == 'l') {
 															$prodprice = '15€';
@@ -68,7 +68,7 @@
 														} else {
 															echo ' ajax_size_trigger';
 														}
-														?>">l</span>
+														?>">L</span>
 													</small>
 												</p>
 												<p class="col-xs-12 type_cart_content">
@@ -122,7 +122,7 @@
 										<span class="ajax_all_quantity"><?php echo $all_quantity; ?> products</span>
 									</div>
 									<div class="col-xs-6 text-right">
-										Total : <span class="ajax_all_price"><?php echo $totalPrice + $deliveryPrice; ?></span> €
+										Total : <span class="text-danger"><strong><span class="ajax_all_price"><?php echo $totalPrice + $deliveryPrice; ?></span> €</strong></span>
 									</div>
 								</div>
 							</div>

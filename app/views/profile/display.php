@@ -67,7 +67,7 @@
 								&nbsp;&nbsp;&nbsp;|
 							</li>
 							<li role="presentation"<?php echo (isset($_GET['where']) && $_GET['where'] == 'orders') ? ' class="active"' : ""; ?>>
-								<a href="#orders" aria-controls="orders" role="tab" data-toggle="tab">My Oders</a>
+								<a href="#orders" aria-controls="orders" role="tab" data-toggle="tab">My Orders</a>
 								&nbsp;&nbsp;&nbsp;|
 							</li>
 							<li role="presentation"<?php echo (isset($_GET['where']) && $_GET['where'] == 'infos') ? ' class="active"' : ""; ?>>
@@ -202,7 +202,7 @@
 												foreach ($orders as $order) {
 													?>
 													<tr>
-														<td>Order <?php echo $order->order_hash; ?> - <?php if($order->order_status == 0) { echo "waiting for payment"; } else if ($order->order_status == 1) { echo "In progess"; } else { echo "Send"; } ; ?></td>
+														<td>Order <?php echo $order->order_hash; ?> - <?php if($order->order_status == 0) { echo "waiting for payment"; } else if ($order->order_status == 1) { echo "In progress"; } else { echo "Send"; } ; ?></td>
 														<td><?php echo ($order->order_delivery == 0) ? "Normal" : "Express"; ?></td>
 														<td><?php echo $order->order_creation; ?></td>
 														<td><?php echo ($order->order_payment_mode == 0) ? "Paypal" : "Check" ; ?></td>

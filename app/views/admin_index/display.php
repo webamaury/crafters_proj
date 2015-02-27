@@ -5,13 +5,16 @@
 	<div class="col-xs-12 col-md-9 modules_button">
 		<div class="col-xs-12">
 			<div class="col-xs-12 thumbnail">
-				<div class="col-xs-12 col-sm-8">
+				<div class="col-xs-12 ajaxLoader text-center">
+					<img src="img/ajax-loader3.gif" alt="loader"/>
+				</div>
+				<div class="col-xs-12 col-sm-8 showAjax">
 					<div class="col-xs-12 text-center"><h6>Visits on last 15 days</h6></div>
 					<div class="col-xs-12">
 						<canvas id="canvas" height="200" width="500"></canvas>
 					</div>
 				</div>
-				<div class="col-xs-6 col-sm-4">
+				<div class="col-xs-6 col-sm-4 showAjax">
 					<div class="col-xs-12 text-center"><h6>% / browsers</h6></div>
 					<div class="col-xs-12 center-block">
 						<canvas id="chart-area" width="220" height="180"/>
@@ -103,39 +106,45 @@
 
 			}
 
+			var varbrowser = [];
+			$.each(continent_donnee, function(key, value) {
+				varbrowser.push(value);
+			});
+
+
 			var pieData = [
 				{
-					value: <?php echo $dataset_browsers['Opera']; ?>,
+					value: varbrowser[0],
 					color:"#e74c3c",
 					highlight: "#c0392b",
 					label: "Opera"
 				},
 				{
-					value: <?php echo $dataset_browsers['Internet Explorer']; ?>,
+					value: varbrowser[1],
 					color: "#95a5a6",
 					highlight: "#7f8c8d",
 					label: "Internet Explorer"
 				},
 				{
-					value: <?php echo $dataset_browsers['Firefox']; ?>,
+					value: varbrowser[2],
 					color: "#f39c12",
 					highlight: "#e67e22",
 					label: "Firefox"
 				},
 				{
-					value: <?php echo $dataset_browsers['Chrome']; ?>,
+					value: varbrowser[3],
 					color: "#2ecc71",
 					highlight: "#27ae60",
 					label: "Chrome"
 				},
 				{
-					value: <?php echo $dataset_browsers['Safari']; ?>,
+					value: varbrowser[4],
 					color: "#3498db",
 					highlight: "#2980b9",
 					label: "Safari"
 				}
 
-			];*/
+			];
 
 				var ctx = document.getElementById("canvas").getContext("2d");
 				window.myLine = new Chart(ctx).Line(lineChartData, {
@@ -155,11 +164,12 @@
 					scaleStartValue: 0,
 				});
 
-				/*var ctx = document.getElementById("chart-area").getContext("2d");
+				var ctx = document.getElementById("chart-area").getContext("2d");
 				window.myPie = new Chart(ctx).Pie(pieData, {
 					responsive: true,
+					animationEasing : "easeOutExpo",
 					tooltipTemplate: "<%if (label){%><%=label%>: <%}%><%= value %>%"
-				});*/
+				});
 
 		}
 
@@ -169,7 +179,11 @@
 					alert(data.message);
 				}else{
 					//SI C BON
+					$('.ajaxLoader').hide();
+					$('.showAjax').css("margin-bottom", "3px");
+
 					displayGraph(data);
+
 
 				}
 			},'json');
