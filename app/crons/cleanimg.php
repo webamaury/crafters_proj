@@ -1,6 +1,6 @@
 <?php
 
-$connexion = new PDO ();
+$connexion = new PDO ('mysql:host=mysql51-154.perso;port=3306;dbname=craftersse_', 'craftersse_', 'sretfarc51');
 $connexion->exec("SET CHARACTER SET utf8");
 
 $path_to_modules = '../../www/uploads/products';

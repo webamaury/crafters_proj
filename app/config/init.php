@@ -48,7 +48,7 @@ require_once(_APP_PATH . 'models/class.users.php'); $user = new ClassUsers();
 /**
  * TEST DE WAITING PAGE
  */
-if (date('Y-m-d H:i:s') < '2015-03-01 23:59:59' ) {
+if (date('Y-m-d H:i:s') < '2015-02-01 23:59:59' ) {
 	include_once(_APP_PATH . 'controllers/autres/autres.php');
 	$_POST['action'] = 'wait';
 	$autresController = new AutreController($arrayCss, $arrayJs, $notices);

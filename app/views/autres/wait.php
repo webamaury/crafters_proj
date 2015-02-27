@@ -57,9 +57,13 @@
 				<button class="button" type="submit">Notify Me</button>
 			</form>
 			<?php if (isset($_GET['mess']) && $_GET['mess'] == 'good') {
-				echo '<br/><small>Your email has been recorded! You will be notify when Crafters will launch.</small>';
-			} else if (isset($_GET['mess']) && $_GET['mess'] == 'already') {
-				echo '<br/><small>This email is already recorded! You will be notify when Crafters will launch.</small>';
+				echo '<br/><small>Your email has been recorded! Check your e-mail to confirm.</small>';
+			} else if (isset($_GET['mess']) && $_GET['mess'] == 'error') {
+				echo '<br/><small>An issue occurred while registering your e-mail. Please, try again later.</small>';
+			} else if (isset($_GET['mess']) && $_GET['mess'] == 'nomail') {
+				echo '<br/><small>No email address provided.</small>';
+			} else if (isset($_GET['mess']) && $_GET['mess'] == 'invalidmail') {
+				echo '<br/><small>Email address is invalid.</small>';
 			} ?>
 		</div>
 

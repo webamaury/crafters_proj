@@ -25,7 +25,6 @@
                       ?>
                 <li class="divider"></li>
                 <li class="dropdown-header">Settings</li>
-                <li><a href="index.php?module=bddmail"><span class="glyphicon glyphicon-screenshot"></span> Bdd mails</a></li>
                 <li><a href="index.php?module=adminUsers"><span class="glyphicon glyphicon-star"></span> Admin</a></li>
                 <li><a href="index.php?module=config"><span class="glyphicon glyphicon-cog"></span> Config</a></li>
               </ul>

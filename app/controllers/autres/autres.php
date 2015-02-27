@@ -188,19 +188,31 @@ class AutreController extends CoreController {
 		/* **********************************************************
 		 * TRAITEMENT PHP
 		 ********************************************************** */
-		if (isset($_POST['mail_notif']) && !empty($_POST['mail_notif'])) {
-			include_once(_APP_PATH . 'models/class.users.php');
-			$ClassUsers = new ClassUsers();
-
-
-			$ClassUsers->mail = $_POST['mail_notif'];
-			if ($ClassUsers->BDDmailUnique()) {
-				$ClassUsers->insertMailNotif();
-				header('location:index.php?mess=good');
-			} else {
-				header('location:index.php?mess=already');
+		if (isset($_POST) && isset($_POST['mail_notif'])) {
+			// Validation
+			if (!$_POST['mail_notif']) {
+				header('location:index.php?mess=nomail');exit();
 			}
 
+			if (!preg_match("/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*$/i", $_POST['mail_notif'])) {
+				header('location:index.php?mess=invalidmail');exit();
+			}
+
+			require_once(_APP_PATH . 'ext_lib/mailchimp/MCAPI.class.php');
+			// grab an API Key from http://admin.mailchimp.com/account/api/
+			$api = new MCAPI('406d79f17589244927a3c69117fc8cd1-us10');
+
+			// grab your List's Unique Id by going to http://admin.mailchimp.com/lists/
+			// Click the "settings" link for the list - the Unique Id is at the bottom of that page.
+			$list_id = "cc62fed7c7";
+
+			if ($api->listSubscribe($list_id, $_POST['mail_notif'], '') == true) {
+				// It worked!
+				header('location:index.php?mess=good');exit();
+			} else {
+				// An error ocurred, return error message
+				header('location:index.php?mess=error');exit();
+			}
 		}
 
 		/* **********************************************************
