@@ -14,6 +14,7 @@
 					<th>#</th>
 					<th>First Name</th>
 					<th>Last Name</th>
+					<th>Username</th>
 					<th>E-mail</th>
 					<th>Status</th>
 					<th>Creation</th>
@@ -28,6 +29,7 @@
 					<td><?php echo $item->user_id ; ?></td>
 					<td><?php echo $item->user_firstname ; ?></td>
 					<td><?php echo $item->user_name ; ?></td>
+					<td><?php echo $item->user_username ; ?></td>
 					<td><?php echo $item->user_mail ; ?></td>
 					<td><?php echo $item->nom ; ?></td>
 					<td><?php echo $item->user_creation ; ?></td>
@@ -78,6 +80,7 @@
 		
 		$(".ajax_firstname").text(obj.user_firstname);
 		$(".ajax_name").text(obj.user_name);
+		$(".ajax_username").text(obj.user_username);
 		$(".ajax_mail").text(obj.user_mail);
 		$(".ajax_phone").text(obj.user_phone);
 		$(".ajax_birthday").text(obj.DateBirth);
@@ -105,7 +108,7 @@
 	
 	$(document).ready(function(){
 		$('.table').DataTable({
-			"order": [[4, "asc"]]
+			"order": [[5, "asc"]]
 		});
 		$(".modal-fiche-trigger").on("click", function(){
 			var item_id = $(this).attr("data-id");
