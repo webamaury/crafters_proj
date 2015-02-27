@@ -3,7 +3,7 @@
 /**
  * Class PanierController
  */
-class PanierController extends CoreControlers
+class PanierController extends CoreController
 {
 
 	/**

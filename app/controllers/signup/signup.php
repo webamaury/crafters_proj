@@ -3,7 +3,7 @@
 /**
  * Class SignUpController
  */
-class SignUpController extends CoreControlers
+class SignUpController extends CoreController
 {
 	function __construct($arrayCss, $arrayJs, $notices) {
 		if (!isset($_GET['action']) && !isset($_POST['action'])) {

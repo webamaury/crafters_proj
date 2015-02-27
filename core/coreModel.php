@@ -1,7 +1,7 @@
 <?php
-class CoreModels {
+class CoreModel {
 	
-	protected $connexion ;
+	public $connexion ;
 	protected $query;
 
 	function __construct($bdd_host = _DB_HOST, $bdd_port = _DB_PORT, $bdd_name = _DB_NAME, $bdd_user = _DB_USER, $bdd_pass = _DB_PASS) {

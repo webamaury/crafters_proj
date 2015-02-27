@@ -2,7 +2,7 @@
 /**
  * Class classMessages
  */
-class ClassMessages extends CoreModels {
+class ClassMessages extends CoreModel {
 
 	/**
 	 * @return mixed

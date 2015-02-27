@@ -1,6 +1,6 @@
 <?php
 
-class configController extends CoreControlers
+class configController extends CoreController
 {
 	function __construct($arrayTools, $notices, $modules)
 	{

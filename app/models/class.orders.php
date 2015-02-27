@@ -3,7 +3,7 @@
 /**
  * Class ClassOrders
  */
-class ClassOrders extends CoreModels {
+class ClassOrders extends CoreModel {
 
 	/**
 	 * Permet à un admin de changer le statut d'une commande à 2

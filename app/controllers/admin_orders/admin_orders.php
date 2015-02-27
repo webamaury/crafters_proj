@@ -1,6 +1,6 @@
 <?php
 	
-	class ordersController extends CoreControlers {
+	class ordersController extends CoreController {
 		
 		function __construct($arrayTools, $notices, $modules) {
 			//include_once(_APP_PATH . 'models/lib.admin_users.php');

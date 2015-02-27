@@ -1,6 +1,6 @@
 <?php
 
-class bddmailController extends CoreControlers
+class bddmailController extends CoreController
 {
 	function __construct($arrayTools, $notices, $modules)
 	{

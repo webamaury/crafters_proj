@@ -3,7 +3,7 @@
 /**
  * Class IndexController
  */
-class IndexController extends CoreControlers
+class IndexController extends CoreController
 {
 
 	/**

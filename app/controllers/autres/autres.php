@@ -1,5 +1,5 @@
 <?php
-class AutreController extends CoreControlers {
+class AutreController extends CoreController {
 	
 	function __construct($arrayCss, $arrayJs, $notices) {
 

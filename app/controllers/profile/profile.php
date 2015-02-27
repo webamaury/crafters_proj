@@ -1,5 +1,5 @@
 <?php
-class profileController extends CoreControlers {
+class profileController extends CoreController {
 		
 	function __construct($arrayCss, $arrayJs, $notices) {
 

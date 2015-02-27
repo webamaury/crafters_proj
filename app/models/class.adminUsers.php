@@ -1,6 +1,6 @@
 <?php
 //parent::__construct()
-class classAdminUsers extends CoreModels {
+class classAdminUsers extends CoreModel {
 		
 	function login() {
 

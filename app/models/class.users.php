@@ -3,7 +3,7 @@
 /**
  * Class ClassUsers
  */
-class ClassUsers extends CoreModels {
+class ClassUsers extends CoreModel {
 	/**
 	 * Permet de logger un utilisateur
 	 * @return bool

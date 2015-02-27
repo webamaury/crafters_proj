@@ -3,7 +3,7 @@
 /**
  * Class AdminUsersController
  */
-class adminUsersController extends CoreControlers {
+class adminUsersController extends CoreController {
 
 	/**
 	 * @param $arrayTools

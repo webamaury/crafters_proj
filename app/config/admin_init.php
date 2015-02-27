@@ -30,8 +30,8 @@ require_once(_WWW_PATH . 'tools/array/array.tools.php');
 
 //require_once(_APP_PATH . 'models/lib.sql.php'); //connection(_DB_HOST, _DB_PORT, _DB_NAME, _DB_USER, _DB_PASS); 
 require_once(_APP_PATH . 'models/class.session.php'); $session = new Session();
-require_once(_CORE_PATH . 'coreControlers.php'); new CoreControlers();
-require_once(_CORE_PATH . 'coreModels.php');
+require_once(_CORE_PATH . 'coreController.php'); new CoreController();
+require_once(_CORE_PATH . 'coreModel.php');
 require_once(_APP_PATH . 'models/lib.function.php');
 require_once (_APP_PATH . 'models/class.notices.php'); $notices = new ClassNotices();
 require_once(_APP_PATH . 'models/class.adminUsers.php'); $user = new classAdminUsers();

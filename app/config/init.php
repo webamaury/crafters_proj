@@ -37,8 +37,8 @@ require_once(_APP_PATH . 'models/class.session.php'); $session = new Session();
 require_once (_APP_PATH . 'models/class.notices.php'); $notices = new ClassNotices();
 
 require_once(_CORE_PATH . 'coreViews.php');
-require_once(_CORE_PATH . 'coreModels.php');
-require_once(_CORE_PATH . 'coreControlers.php'); $coreControler = new CoreControlers();
+require_once(_CORE_PATH . 'coreModel.php');
+require_once(_CORE_PATH . 'coreController.php'); $coreControler = new CoreController();
 
 require_once(_APP_PATH . 'models/lib.function.php');
 

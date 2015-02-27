@@ -3,7 +3,7 @@
 /**
  * Class ClassProducts
  */
-class ClassProducts extends CoreModels 
+class ClassProducts extends CoreModel
 {
 
 	/**
