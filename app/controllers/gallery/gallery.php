@@ -1,5 +1,5 @@
 <?php
-class galleryController extends CoreControlers {
+class galleryController extends CoreController {
 
 	function __construct($arrayCss, $arrayJs, $notices) {
 		if(!isset($_GET['action']) && !isset($_POST['action'])) {

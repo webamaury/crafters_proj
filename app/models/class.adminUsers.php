@@ -1,6 +1,6 @@
 <?php
 //parent::__construct()
-class classAdminUsers extends CoreModels {
+class classAdminUsers extends CoreModel {
 		
 	function login() {
 
@@ -64,6 +64,7 @@ class classAdminUsers extends CoreModels {
 			U.name,
 			U.mail,
 			U.phone,
+			U.admin_img_url,
 			S.nom,
 			S.statut
 			FROM " . _TABLE__ADMIN_USERS . " as U," . _TABLE__STATUTS . " as S
@@ -77,7 +78,7 @@ class classAdminUsers extends CoreModels {
 		return $item;
 	}
 	function get_one_array() {
-		$query = "SELECT U.id, U.firstname, U.name, U.mail, U.phone, S.nom FROM " . _TABLE__ADMIN_USERS . " as U," . _TABLE__STATUTS . " as S WHERE U.id = :id AND S.type = 'admin' AND S.statut = U.statut";
+		$query = "SELECT U.id, U.firstname, U.name, U.mail, U.phone, U.admin_img_url, S.nom FROM " . _TABLE__ADMIN_USERS . " as U," . _TABLE__STATUTS . " as S WHERE U.id = :id AND S.type = 'admin' AND S.statut = U.statut";
 		
 		$cursor = $this->connexion->prepare($query);
 	
@@ -103,7 +104,29 @@ class classAdminUsers extends CoreModels {
 		
 		return $list;
 	}
-	
+	/**
+	 * @param $image_url
+	 * @param $admin
+	 * @return bool
+	 */
+	function updateImage($image_url, $admin)
+	{
+		$query = "UPDATE " . _TABLE__ADMIN_USERS . "
+		SET admin_img_url = :admin_img_url
+		WHERE id = :id";
+
+		$cursor = $this->connexion->prepare($query);
+
+		$cursor->bindValue(':admin_img_url', $image_url, PDO::PARAM_STR);
+		$cursor->bindValue(':id', $admin, PDO::PARAM_INT);
+
+		$return = $cursor->execute();
+
+		$cursor->closeCursor();
+
+		return $return;
+	}
+
 	function create_admin() {
 		$query = "INSERT INTO " . _TABLE__ADMIN_USERS . " 
 		(mail, password, firstname, name, phone, statut) 

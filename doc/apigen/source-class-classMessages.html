@@ -28,7 +28,7 @@
 				<li><a href="class-classAdminUsers.html">classAdminUsers</a></li>
 				<li class="active"><a href="class-classMessages.html">classMessages</a></li>
 				<li><a href="class-classNotices.html">classNotices</a></li>
-				<li><a href="class-CoreModels.html">CoreModels</a></li>
+				<li><a href="class-CoreModels.html">CoreModel</a></li>
 				<li><a href="class-indexController.html">indexController</a></li>
 				<li><a href="class-loginController.html">loginController</a></li>
 				<li><a href="class-messagesController.html">messagesController</a></li>
@@ -85,7 +85,7 @@
 
 <pre><code><span id="1" class="l"><a class="l" href="#1"> 1: </a><span class="xlang">&lt;?php</span>
 </span><span id="2" class="l"><a class="l" href="#2"> 2: </a><span class="php-comment">//parent::__construct()</span>
-</span><span id="3" class="l"><a class="l" href="#3"> 3: </a><span class="php-keyword1">class</span> <a id="classMessages" href="#classMessages">classMessages</a> <span class="php-keyword1">extends</span> CoreModels {
+</span><span id="3" class="l"><a class="l" href="#3"> 3: </a><span class="php-keyword1">class</span> <a id="classMessages" href="#classMessages">classMessages</a> <span class="php-keyword1">extends</span> CoreModel {
 </span><span id="4" class="l"><a class="l" href="#4"> 4: </a>        
 </span><span id="5" class="l"><a class="l" href="#5"> 5: </a>    <span class="php-keyword1">function</span> <a id="_get_one" href="#_get_one">get_one</a>() {
 </span><span id="6" class="l"><a class="l" href="#6"> 6: </a>        <span class="php-var">$query</span> = <span class="php-quote">&quot;SELECT M.message_id, M.message_firstname, M.message_name, M.message_mail, M.message_title, M.message_message, M.message_creation, S.nom, S.statut FROM &quot;</span> . _TABLE__MESSAGE . <span class="php-quote">&quot; as M,&quot;</span> . _TABLE__ADMIN_STATUTS . <span class="php-quote">&quot; as S WHERE M.message_id = :id AND S.type = 'message' AND S.statut = M.message_status&quot;</span>;

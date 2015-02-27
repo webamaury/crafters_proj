@@ -76,7 +76,7 @@
 
                     <div class="col-sm-4 col-md-3 col-xs-6 col-lg-3">
                         <div class="thumbnail parent">
-                            <a href="<?php echo (_REW_URL == true) ? "/product=>" . $lastUpload->product_id : _PATH_FOLDER . "index.php?module=fiche&product=" . $lastUpload->product_id ; ?>" class="product-image"><img src="<?php echo $lastUpload->product_img_url; ?>" class="img-responsive prodIMG"></a>
+                            <a href="<?php echo (_REW_URL == 'true') ? "/product=>" . $lastUpload->product_id : _PATH_FOLDER . "index.php?module=fiche&product=" . $lastUpload->product_id ; ?>" class="product-image"><img src="<?php echo $lastUpload->product_img_url; ?>" class="img-responsive prodIMG"></a>
 
                             <div class="caption">
                                 <h4><?php echo $lastUpload->product_name; ?></h4>
@@ -85,7 +85,7 @@
                                     <small><em>By <?php echo $lastUpload->user_username; ?></em></small>
                                 </p>
                                 <div class="btn-group " style="float: left">
-                                    <a href="<?php echo (_REW_URL == true) ? "/product=>" . $lastUpload->product_id : _PATH_FOLDER . "index.php?module=fiche&product=" . $lastUpload->product_id ; ?>" class="btn btn-xs btn-default"><i class="fa fa-search"></i></a>
+                                    <a href="<?php echo (_REW_URL == 'true') ? "/product=>" . $lastUpload->product_id : _PATH_FOLDER . "index.php?module=fiche&product=" . $lastUpload->product_id ; ?>" class="btn btn-xs btn-default"><i class="fa fa-search"></i></a>
                                     <a href="index.php?module=panier&action=addToCart&product=<?php echo $lastUpload->product_id; ?>&img_url=<?php echo $lastUpload->product_img_url; ?>&name=<?php echo $lastUpload->product_name; ?>&from=<?php echo $lastUpload->user_username; ?>" class="btn btn-xs ajax_cart_trigger btn-default add-to-cart"><i class="fa fa-shopping-cart"></i></a>
                                 </div>
                                 <div class="text-right"><?php
@@ -98,18 +98,7 @@
                                                     data-didilike="1">
                                                                 <span class="nb_like"
                                                                       id="nb_like<?php echo $lastUpload->product_id; ?>"><?php echo $lastUpload->nb_like; ?></span>
-                                                <i data-toggle="tooltip" data-placement="top" data-html="true"
-                                                   title="<?php
-                                                   if (isset($lastUpload->name_likes)) {
-                                                       foreach ($lastUpload->name_likes as $lastUpload->name_like) {
-                                                           echo $lastUpload->name_like->user_username . '<br/>';
-                                                       }
-                                                       if ($lastUpload->nb_like > 5) {
-                                                           $others = $lastUpload->nb_like - 5;
-                                                           echo 'and ' . $others . ' others';
-                                                       }
-                                                   }
-                                                   ?>" class="fa fa-heart" style="color: tomato"></i>
+                                                <i class="fa fa-heart" style="color: tomato"></i>
                                             </button>
                                         <?php
                                         } else {
@@ -120,18 +109,7 @@
                                                     data-didilike="0">
                                                                 <span class="nb_like"
                                                                       id="nb_like<?php echo $lastUpload->product_id; ?>"><?php echo $lastUpload->nb_like; ?></span>
-                                                <i data-toggle="tooltip" data-placement="top" data-html="true"
-                                                   title="<?php
-                                                   if (isset($lastUpload->name_likes)) {
-                                                       foreach ($lastUpload->name_likes as $lastUpload->name_like) {
-                                                           echo $lastUpload->name_like->user_username . '<br/>';
-                                                       }
-                                                       if ($lastUpload->nb_like > 5) {
-                                                           $others = $lastUpload->nb_like - 5;
-                                                           echo 'and ' . $others . ' others';
-                                                       }
-                                                   }
-                                                   ?>" class="fa fa-heart-o" style="color: tomato"></i>
+                                                <i class="fa fa-heart-o" style="color: tomato"></i>
                                             </button>
                                         <?php
                                         }
@@ -142,18 +120,7 @@
                                                 class="btn btn-xs btn-default like">
                                                             <span class="nb_like"
                                                                   id="nb_like<?php echo $lastUpload->product_id; ?>"><?php echo $lastUpload->nb_like; ?></span>
-                                            <i data-toggle="tooltip" data-placement="top" data-html="true"
-                                               title="<?php
-                                               if (isset($lastUpload->name_likes)) {
-                                                   foreach ($lastUpload->name_likes as $lastUpload->name_like) {
-                                                       echo $lastUpload->name_like->user_username . '<br/>';
-                                                   }
-                                                   if ($lastUpload->nb_like > 5) {
-                                                       $others = $lastUpload->nb_like - 5;
-                                                       echo 'and ' . $others . ' others';
-                                                   }
-                                               }
-                                               ?>" class="fa fa-heart-o" style="color: tomato"></i>
+                                            <i class="fa fa-heart-o" style="color: tomato"></i>
                                         </button>
                                     <?php
                                     }

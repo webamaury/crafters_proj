@@ -3,8 +3,12 @@
  *	CHARGEMENT DES FICHIERS DE CONF
  */
 
+$jsonConfig = file_get_contents(_APP_PATH . 'controllers/admin_config/file.json');
+$config = json_decode($jsonConfig);
+
 require_once(_APP_PATH . 'models/connect.php');
 require_once(_APP_PATH . 'models/config.php');
+
 
 /**
  *	NOM DE SESSION
@@ -33,13 +37,35 @@ require_once(_APP_PATH . 'models/class.session.php'); $session = new Session();
 require_once (_APP_PATH . 'models/class.notices.php'); $notices = new ClassNotices();
 
 require_once(_CORE_PATH . 'coreViews.php');
-require_once(_CORE_PATH . 'coreModels.php');
-require_once(_CORE_PATH . 'coreControlers.php'); $coreControler = new CoreControlers();
+require_once(_CORE_PATH . 'coreModel.php');
+require_once(_CORE_PATH . 'coreController.php'); $coreControler = new CoreController();
 
 require_once(_APP_PATH . 'models/lib.function.php');
 
 require_once(_APP_PATH . 'models/class.users.php'); $user = new ClassUsers();
 //var_dump($_SESSION[_SES_NAME]);
+
+/**
+ * TEST DE WAITING PAGE
+ */
+if (date('Y-m-d H:i:s') < '2015-02-01 23:59:59' ) {
+	include_once(_APP_PATH . 'controllers/autres/autres.php');
+	$_POST['action'] = 'wait';
+	$autresController = new AutreController($arrayCss, $arrayJs, $notices);
+
+	exit();
+}
+
+/**
+ * TEST STANDBY
+ */
+if (isset($config) && !empty($config) && $config->standby == 'true') {
+	include_once(_APP_PATH . 'controllers/autres/autres.php');
+	$_POST['action'] = 'standby';
+	$autresController = new AutreController($arrayCss, $arrayJs, $notices);
+
+	exit();
+}
 
 /**
  * Suppression message page

@@ -17,32 +17,43 @@
 		</div>
 	</div>
 
+	<?php
+	if (isset($_GET['id'])) {
+		?>
 
-
-	<form class="form-horizontal" method="post" enctype="multipart/form-data" class="form_upload_ajax" id="js-upload-form" action="index.php?module=adminUsers&action=uploadAjax&product=<?php echo (isset($_GET['id'])) ? '&id='.$_GET['id'] : '' ; ?>" role="form">
-		<div class="col-xs-12 col-md-6 margin-top-20 text-center">
-			<div class="col-xs-12"  id="img_output">
-				<div id="output"><img class="img_avatar img-responsive img-circle center-block" src="<?php echo (isset($item->id) && file_exists(_ADMIN_PATH . 'img/photo_' . $item->id . '.jpg')) ? _ADMIN_PATH . 'img/photo_' . $item->id . '.jpg' : _ADMIN_PATH . 'img/avatar.jpg' ; ?>" alt="avatar"/></div>
-				<?php
-				if(isset($item->id) && file_exists(_ADMIN_PATH . 'img/photo_' . $item->id . '.jpg')){
+		<form class="form-horizontal" method="post" enctype="multipart/form-data" class="form_upload_ajax"
+		      id="js-upload-form"
+		      action="index.php?module=adminUsers&action=uploadAjax&admin=<?php echo (isset($_GET['id'])) ? $_GET['id'] : ''; ?>"
+		      role="form">
+			<div class="col-xs-12 col-md-6 margin-top-20 text-center">
+				<div class="col-xs-12" id="img_output">
+					<div id="output"><img class="img_avatar img-responsive img-circle center-block"
+					                      src="<?php echo (isset($item->admin_img_url) && file_exists(_WWW_PATH . $item->admin_img_url)) ? _WWW_PATH . $item->admin_img_url : _ADMIN_PATH . 'img/avatar.jpg'; ?>"
+					                      alt="avatar"/></div>
+					<?php
+					if (isset($item->id) && file_exists(_ADMIN_PATH . 'img/photo_' . $item->id . '.jpg')) {
+						?>
+						<div class="col-xs-12 ajax-delete-info">
+							<a href="#" class="ajax-delete-trigger">Delete image<span class="ajax-delete-loader"></span></a>
+						</div>
+					<?php
+					}
 					?>
-					<div class="col-xs-12 ajax-delete-info">
-						<a href="#" class="ajax-delete-trigger">Delete image<span class="ajax-delete-loader"></span></a>
-					</div>
-				<?php
-				}
-				?>
-				<div class="form-group margin-top-20">
-					<label for="exampleInputFile">Image</label>
-					<input type="file" class="center-block" name="image_file" id="js-upload-files"/><br>
-					<input type="submit" class="ajax_img_trigger btn btn-info" value="Upload">
-					<input type="hidden" name="action" value="uploadAjax"/>
+					<div class="form-group margin-top-20">
+						<label for="exampleInputFile">Image</label>
+						<input type="file" class="center-block" name="image_file" id="js-upload-files"/><br>
+						<input type="submit" class="ajax_img_trigger btn btn-info" value="Upload">
+						<input type="hidden" name="action" value="uploadAjax"/>
 
-					<p class="help-block">( dimensions conseillées : 200 * 200 pixels )</p>
+						<p class="help-block">( dimensions conseillées : 200 * 200 pixels )</p>
+					</div>
 				</div>
 			</div>
-		</div>
-	</form>
+		</form>
+	<?php
+	}
+	?>
+
 	<form class="form-horizontal" method="post" enctype="multipart/form-data" action="index.php?module=adminUsers&action=form<?php echo (isset($_GET['id'])) ? '&id='.$_GET['id'] : '' ; ?>" role="form">
 
 		<div class="col-xs-12 col-md-6 margin-top-20">

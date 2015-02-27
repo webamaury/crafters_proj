@@ -1,5 +1,5 @@
 <?php
-class ficheController extends CoreControlers {
+class ficheController extends CoreController {
 		
 	function __construct($arrayCss, $arrayJs, $notices) {
 

@@ -7,7 +7,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="index.php">Crafters Admin</a>
+          <a class="navbar-brand" href="index.php"><?php echo _SITE_NAME; ?></a>
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
@@ -24,10 +24,9 @@
                     }
                       ?>
                 <li class="divider"></li>
-                <li class="dropdown-header">Nav header</li>
-                <li><a href="index.php?module=adminUsers">Admin</a></li>
-                <li><a href="#">Config</a></li>
-                <li><a href="#">settings</a></li>
+                <li class="dropdown-header">Settings</li>
+                <li><a href="index.php?module=adminUsers"><span class="glyphicon glyphicon-star"></span> Admin</a></li>
+                <li><a href="index.php?module=config"><span class="glyphicon glyphicon-cog"></span> Config</a></li>
               </ul>
             </li>
             <?php echo (_DEBUG == true) ? '<li><a href="index.php?module=traces" target="_blank"><span class="glyphicon glyphicon-file"></span> Trace</a></li>' : '' ; ?>

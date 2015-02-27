@@ -1,5 +1,6 @@
 *.tmp
 app/models/connect.php
+app/crons/
 www/uploads/
 www/illu/
 doc/PHPCheckStyle/

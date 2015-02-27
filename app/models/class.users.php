@@ -3,7 +3,7 @@
 /**
  * Class ClassUsers
  */
-class ClassUsers extends CoreModels {
+class ClassUsers extends CoreModel {
 	/**
 	 * Permet de logger un utilisateur
 	 * @return bool
@@ -696,7 +696,7 @@ class ClassUsers extends CoreModels {
 	public function getNewUser() {
 		$query = "SELECT count(user_id) as nbUser
 			FROM " . _TABLE__USERS . "
-			WHERE user_creation > DATE_ADD(NOW(),INTERVAL -32 DAY)";
+			WHERE user_creation > DATE_ADD(NOW(),INTERVAL -30 DAY)";
 
 		$cursor = $this->connexion->prepare($query);
 
@@ -708,5 +708,46 @@ class ClassUsers extends CoreModels {
 
 		return $return;
 	}
+
+	function insertMailNotif()
+	{
+		$query = "INSERT INTO crafters_BDDmail
+		(mail)
+		VALUES
+		(:mail)";
+
+		$cursor = $this->connexion->prepare($query);
+
+		$cursor->bindValue(':mail', $this->mail, PDO::PARAM_STR);
+
+		$return = $cursor->execute();
+
+		$cursor->closeCursor();
+
+		return $return;
+	}
+	/**
+	 * Permet de voir si le mail existe deja dans la BD
+	 *
+	 */
+	public function BDDmailUnique() {
+		$query = "SELECT count(*) AS nbMail
+		FROM  crafters_BDDmail
+		WHERE mail = :mail";
+
+		$cursor = $this->connexion->prepare($query);
+		$cursor->bindValue(':mail', $this->mail, PDO::PARAM_STR);
+
+		$cursor->execute();
+		$cursor->setFetchMode(PDO::FETCH_OBJ);
+		$return = $cursor->fetch();
+		if ($return->nbMail == 0){
+			return true;
+		} else {
+			return false;
+		}
+
+	}
+
 }
 ?>

@@ -2,7 +2,7 @@
 /**
  * Class classMessages
  */
-class ClassMessages extends CoreModels {
+class ClassMessages extends CoreModel {
 
 	/**
 	 * @return mixed
@@ -128,7 +128,7 @@ class ClassMessages extends CoreModels {
 	public function getNewMessage() {
 		$query = "SELECT count(message_id) as nbMessage
 			FROM " . _TABLE__MESSAGE . "
-			WHERE message_creation > DATE_ADD(NOW(),INTERVAL -32 DAY)";
+			WHERE message_creation > DATE_ADD(NOW(),INTERVAL -30 DAY)";
 
 		$cursor = $this->connexion->prepare($query);
 

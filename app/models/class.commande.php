@@ -3,7 +3,7 @@
 /**
  * Class ClassCommandes
  */
-class ClassCommandes extends CoreModels
+class ClassCommandes extends CoreModel
 {
 	public function insertCommande() {
 		$query = "INSERT INTO " . _TABLE__COMMANDES . "

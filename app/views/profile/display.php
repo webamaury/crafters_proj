@@ -94,7 +94,7 @@
 									?>
 									<div class="col-sm-4 col-md-3 col-xs-6 col-lg-3">
 										<div class="thumbnail parent">
-											<a href="<?php echo (_REW_URL == true) ? "/product=>" . $product->product_id : _PATH_FOLDER . "index.php?module=fiche&product=" . $product->product_id ; ?>" class="product-image"><img src="<?php echo _PATH_FOLDER . $product->product_img_url; ?>" class="img-responsive prodIMG"></a>
+											<a href="<?php echo (_REW_URL == 'true') ? "/product=>" . $product->product_id : _PATH_FOLDER . "index.php?module=fiche&product=" . $product->product_id ; ?>" class="product-image"><img src="<?php echo _PATH_FOLDER . $product->product_img_url; ?>" class="img-responsive prodIMG"></a>
 
 											<div class="caption">
 												<h4><?php echo $product->product_name; ?></h4>
@@ -103,9 +103,9 @@
 													<small><em>By <?php echo $user->user_username; ?></em></small>
 												</p>
 												<div class="btn-group " style="float: left">
-													<a href="<?php echo (_REW_URL == true) ? "/product=>" . $product->product_id : _PATH_FOLDER . "index.php?module=fiche&product=" . $product->product_id ; ?>" class="btn btn-xs btn-default"><i class="fa fa-search"></i></a>
+													<a href="<?php echo (_REW_URL == 'true') ? "/product=>" . $product->product_id : _PATH_FOLDER . "index.php?module=fiche&product=" . $product->product_id ; ?>" class="btn btn-xs btn-default"><i class="fa fa-search"></i></a>
 													<?php
-													if ($myprofile == true) {
+													if ($myprofile == true && 1 == 2) {
 														?>
 														<a href="#" data-href="index.php?module=profile&action=deleteCraft&product=<?php echo $product->product_id; ?>" data-toggle="modal" data-target=".modal_supprod" class="btn btn-xs btn-default modal_supp_trigger">
 															<i class="fa fa-trash-o"></i>
@@ -125,18 +125,7 @@
 															        data-didilike="1">
 															<span class="nb_like"
 															      id="nb_like<?php echo $product->product_id; ?>"><?php echo $product->nb_like; ?></span>
-																<i data-toggle="tooltip" data-placement="top" data-html="true"
-																   title="<?php
-																   if (isset($product->name_likes)) {
-																	   foreach ($product->name_likes as $product->name_like) {
-																		   echo $product->name_like->user_username . '<br/>';
-																	   }
-																	   if ($product->nb_like > 5) {
-																		   $others = $product->nb_like - 5;
-																		   echo 'and ' . $others . ' others';
-																	   }
-																   }
-																   ?>" class="fa fa-heart" style="color: tomato"></i>
+																<i class="fa fa-heart" style="color: tomato"></i>
 															</button>
 														<?php
 														} else {
@@ -147,18 +136,7 @@
 															        data-didilike="0">
 															<span class="nb_like"
 															      id="nb_like<?php echo $product->product_id; ?>"><?php echo $product->nb_like; ?></span>
-																<i data-toggle="tooltip" data-placement="top" data-html="true"
-																   title="<?php
-																   if (isset($product->name_likes)) {
-																	   foreach ($product->name_likes as $product->name_like) {
-																		   echo $product->name_like->user_username . '<br/>';
-																	   }
-																	   if ($product->nb_like > 5) {
-																		   $others = $product->nb_like - 5;
-																		   echo 'and ' . $others . ' others';
-																	   }
-																   }
-																   ?>" class="fa fa-heart-o" style="color: tomato"></i>
+																<i class="fa fa-heart-o" style="color: tomato"></i>
 															</button>
 														<?php
 														}
@@ -169,18 +147,7 @@
 														        class="btn btn-xs btn-default like">
 														<span class="nb_like"
 														      id="nb_like<?php echo $product->product_id; ?>"><?php echo $product->nb_like; ?></span>
-															<i data-toggle="tooltip" data-placement="top" data-html="true"
-															   title="<?php
-															   if (isset($product->name_likes)) {
-																   foreach ($product->name_likes as $product->name_like) {
-																	   echo $product->name_like->user_username . '<br/>';
-																   }
-																   if ($product->nb_like > 5) {
-																	   $others = $product->nb_like - 5;
-																	   echo 'and ' . $others . ' others';
-																   }
-															   }
-															   ?>" class="fa fa-heart-o" style="color: tomato"></i>
+															<i class="fa fa-heart-o" style="color: tomato"></i>
 														</button>
 													<?php
 													}
