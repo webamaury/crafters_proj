@@ -225,6 +225,7 @@ class ClassUsers extends CoreModel {
 			U.user_id,
 			U.user_firstname,
 			U.user_name,
+			U.user_username,
 			U.user_mail,
 			DATE_FORMAT(U.user_birthday, '%d %M %Y') AS DateBirth,
 			U.user_phone,
@@ -325,7 +326,7 @@ class ClassUsers extends CoreModel {
      */
 	public function getList() {
 		$orderby = 'user_id asc';
-		$this->query = "SELECT U.user_id, U.user_firstname, U.user_name, U.user_mail, DATE_FORMAT(U.user_creation, '%d %M %Y') AS user_creation, S.nom
+		$this->query = "SELECT U.user_id, U.user_firstname, U.user_name, U.user_username, U.user_mail, DATE_FORMAT(U.user_creation, '%d %M %Y') AS user_creation, S.nom
 				FROM " . _TABLE__USERS . " as U, " . _TABLE__STATUTS . " as S
 				WHERE S.type = 'user'
 				AND S.statut = U.user_status

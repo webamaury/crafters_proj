@@ -24,6 +24,12 @@
 							</div>
 						</div>
 						<div class="display-inline">
+							<label class="col-md-4 control-label">Username : </label>
+							<div class="col-md-8">
+								<p class="form-control-static ajax_username"></p>
+							</div>
+						</div>
+						<div class="display-inline">
 							<label class="col-md-4 control-label">E-mail : </label>
 							<div class="col-md-8">
 								<p class="form-control-static ajax_mail"></p>
