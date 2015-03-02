@@ -107,7 +107,6 @@ a:focus, input:focus, textarea:focus, button:focus, a:hover, input:hover, textar
 .textarea_upload {
     margin: -10px -51px 0px 0px !important;
     height: 207px !important;
-    width: 202px !important;
     resize: none !important;
 }
 .min-header {
@@ -191,9 +190,9 @@ a:focus, input:focus, textarea:focus, button:focus, a:hover, input:hover, textar
 .hideform {
     display: none;
 }
-.questionprofile {
-    font-size: 18px !important;
-    padding-top: 5px !important;
+.questionprofile, .infoForm {
+    font-size: 17px !important;
+    margin-top: 9px !important;
 }
 footer li a, footer li {
     color: #717375;
@@ -220,4 +219,9 @@ footer li a, footer li {
 }
 .searchval {
     width: 200px !important;
+}
+.infosUpload {
+    font-size: 16px;
+    position: relative;
+    top: -1px;
 }

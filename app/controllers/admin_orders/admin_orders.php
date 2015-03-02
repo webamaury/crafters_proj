@@ -20,7 +20,7 @@
 			}
 			else if((!isset($_GET['action']) && !isset($_POST['action'])) || (isset($_GET['action']) && $_GET['action'] == 'list')) {
 				$items = $orders->getList();
-				
+
 				//$items = $adminUsers;
 				##############################################################
 				##	APPEL TOOLS												##

@@ -6,10 +6,11 @@
 				<h4 class="modal-title" id="myModalLabel">Details about <span class="ajax_firstname"></span></h4>
 			</div>
 			<div class="modal-body display-inline">
-				<div class="col-md-4 text-center">
-					<img src="#" class="ajax_img" alt="img" height="250" width="250">
+				<div class="col-md-4 col-md-offset-1 text-center">
+					<br/><br/>
+					<img src="#" class="ajax_img img-circle img-responsive center-block" alt="img">
 				</div>
-				<div class="col-md-8">
+				<div class="col-md-7">
 					<form class="form-horizontal" method="post" action="#" role="form">
 						<div class="display-inline">
 							<label class="col-md-4 control-label">Firstname : </label>

@@ -9,13 +9,13 @@
 					<img src="img/ajax-loader3.gif" alt="loader"/>
 				</div>
 				<div class="col-xs-12 col-sm-8 showAjax">
-					<div class="col-xs-12 text-center"><h6>Visits on last 15 days</h6></div>
+					<div class="col-xs-12 text-center"><h5>Visits on last 15 days</h5></div>
 					<div class="col-xs-12">
 						<canvas id="canvas" height="200" width="500"></canvas>
 					</div>
 				</div>
 				<div class="col-xs-6 col-sm-4 showAjax">
-					<div class="col-xs-12 text-center"><h6>% / browsers</h6></div>
+					<div class="col-xs-12 text-center"><h5>% / browsers</h5></div>
 					<div class="col-xs-12 center-block">
 						<canvas id="chart-area" width="220" height="180"/>
 					</div>
@@ -32,6 +32,7 @@
 					<span class="glyphicon <?php echo $module['icon'] ; ?>"></span>
 					<br/><h3><?php echo $module['name'] ; ?></h3>
 					<p><?php echo $module['description'] ; ?></p>
+					<span class="badge badge-omom badge-<?php echo $module['path'] ; ?>"></span>
 				</div>
 			</a>
 		</div>
@@ -174,7 +175,21 @@
 		}
 
 		$(document).ready(function(){
-			$.get("index.php?module=index&action=ajaxGapi",{},function(data){
+			var badgeProducts = <?php echo $notif_prod->nbProduct; ?>;
+			if (badgeProducts > 0) {
+				$(".badge-products").text(badgeProducts);
+			}
+			var badge0rders = <?php echo $notif_order->nbOrder; ?>;
+			if (badge0rders > 0) {
+				$(".badge-orders").text(badge0rders);
+			}
+			var badgeMessages = <?php echo $notif_mess->nbMessage; ?>;
+			if (badgeMessages > 0) {
+				$(".badge-messages").text(badgeMessages);
+			}
+
+
+			/*$.get("index.php?module=index&action=ajaxGapi",{},function(data){
 				if(data.error){
 					alert(data.message);
 				}else{
@@ -186,7 +201,39 @@
 
 
 				}
-			},'json');
+			},'json');*/
+
+			$.ajax({
+				// URL du traitement sur le serveur
+				url : 'index.php?module=index&action=ajaxGapi',
+				//on precise le type de flux
+				dataType : 'json',
+				//Traitement en cas de succes
+				success: function(data) {
+					if(data.error){
+						alert(data.message);
+					}else{
+						//SI C BON
+						$('.ajaxLoader').hide();
+						$('.showAjax').css("margin-bottom", "3px");
+
+						displayGraph(data);
+
+					}
+				},
+				error: function() {
+					setTimeout(function(){
+						$('.ajaxLoader img').hide();
+						$(".ajaxLoader").css("padding-top", "125px");
+						$('.ajaxLoader').html("<div class='text-danger'>Error while contacting Google Api...(</div>");
+					}, 2000);
+
+					/*$('.showAjax').css("margin-bottom", "3px");
+
+					$('.showAjax').text("Problem while contacting Google Api!");*/
+				}
+			});
+
 		});
 
 

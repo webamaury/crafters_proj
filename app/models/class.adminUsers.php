@@ -31,6 +31,7 @@ class classAdminUsers extends CoreModel {
 				$_SESSION["ADMIN-USER"]["password"] 	= $accounts[0]->password;
 				$_SESSION["ADMIN-USER"]["firstname"] 	= $accounts[0]->firstname;
 				$_SESSION["ADMIN-USER"]["name"] 		= $accounts[0]->name;
+				$_SESSION["ADMIN-USER"]["img_url"] 		= $accounts[0]->admin_img_url;
 				$_SESSION["ADMIN-USER"]["statut"] 		= $accounts[0]->statut;
 	
 				return true;

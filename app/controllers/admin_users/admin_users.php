@@ -125,6 +125,11 @@
 						$ajaxItem['address']['address_zipcode'] = '';
 						$ajaxItem['address']['address_country'] = '';
 					}
+				if (!isset($ajaxItem['user_img_url']) || empty($ajaxItem['user_img_url'])) {
+					$ajaxItem['user_img_url'] = "http://www.gravatar.com/avatar/" . md5($ajaxItem['user_mail']) . "?s=360";
+				} else {
+					$ajaxItem['user_img_url'] = _WWW_PATH . $ajaxItem['user_img_url'];
+				}
 					$ajaxItem = json_encode($ajaxItem);
 					echo $ajaxItem;
 			}

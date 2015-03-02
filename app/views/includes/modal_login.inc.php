@@ -41,7 +41,7 @@
 								<br/>
 								<a class="forgot_btn" href="#">Forgot password?</a>
 								<br/>
-								<a href="index.php?module=signup" class="new-signup text-danger"><strong>New on Crafters ? Sign up</strong></a>
+								<a href="index.php?module=signup" class="new-signup text-danger"><strong>New on Crafters ? Sign up!</strong></a>
 							</div>
 						</div>
 

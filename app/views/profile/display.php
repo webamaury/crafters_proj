@@ -14,7 +14,7 @@
 				<div class="col-xs-12 col-sm-8 col-sm-offset-1">
 					<div class="col-sm-6 col-sm-offset-4 col-xs-8 col-xs-offset-2 col-md-3 col-md-offset-1 text-center">
 						<div id="output">
-							<img src="<?php echo (isset($user->user_img_url) && file_exists($user->user_img_url)) ? _PATH_FOLDER . $user->user_img_url : _PATH_FOLDER . "img/default/defaultprod.png" ;?>" class="img-circle img-responsive" style="float:right;">
+							<img src="<?php echo (isset($user->user_img_url) && file_exists($user->user_img_url)) ? _PATH_FOLDER . $user->user_img_url : "http://www.gravatar.com/avatar/" . md5($user->user_mail) . "?s=360" ;?>" class="img-circle img-responsive" style="float:right;">
 						</div>
 						<?php
 						if ($myprofile == true) {
@@ -25,7 +25,7 @@
 								<input type="hidden" name="action" value="upload_ajax"/>
 							</form>
 							<form action="index.php?module=profile" method="post" class="hideform" id="form_url_ajax">
-								<small><i class="fa fa-edit"></i> <a href="#" id="btn_url_ajax"> Validate </a></small>
+								<small><i class="fa fa-check text-success"></i> <a href="#" class="text-success" id="btn_url_ajax" title="Click to confirm the change!"> Validate </a></small>
 								<input type="hidden" name="img_url" id="img_url"/>
 								<input type="hidden" name="action" value="update_img_url_ajax"/>
 							</form>
@@ -245,8 +245,8 @@
 											<div class="col-xs-9 col-sm-5">
 												<input type="email" maxlength="100" name="mail" class="form-control" id="mail" value="<?php echo (isset($user->user_mail)) ? $user->user_mail : '' ; ?>" required>
 											</div>
-											<div class="col-xs-1 questionprofile">
-												<i data-toggle="tooltip" data-container="body" data-placement="right" title="Your mail won't change immediately. You will receive an e-mail on your new address to confirm it before this change happen." class="fa fa-info-circle"></i>
+											<div class="col-xs-1">
+												<i data-toggle="tooltip" data-container="body" data-placement="right" title="Your mail won't change immediately. You will receive an e-mail on your new address to confirm it before this change happen." class="fa fa-info-circle infoForm"></i>
 											</div>
 
 											<br/><br/>
@@ -271,7 +271,8 @@
 												<button type="button" data-toggle="modal" data-target=".modal-update-password" class="btn btn-default btn-block">Change password</button>
 											</div>
 											<br/><br/>
-										</div>								</div>
+										</div>
+									</div>
 									<div class="col-xs-10 margin-top-20">
 										<input type="hidden" name="action" value="update">
 										<button type="submit" class="btn btn-danger pull-right">Update</button>
@@ -293,8 +294,5 @@
 	<!--/Content-->
 
 	<?php include_once(_APP_PATH . 'views/includes/modal_supprod.inc.php'); ?>
-
-	<script type="text/javascript" src="js/addavatar.js"></script>
-
 
 <?php include(_APP_PATH . "views/includes/footer.inc.php"); ?>

@@ -75,7 +75,7 @@
 	
 	function traiterFlux(flux) {
 		var obj = jQuery.parseJSON( flux );
-		var img_url = '<?php echo _WWW_PATH; ?>' + obj.user_img_url;
+		var img_url = obj.user_img_url;
 		ImageExist(img_url);
 		
 		$(".ajax_firstname").text(obj.user_firstname);

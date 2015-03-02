@@ -16,40 +16,38 @@
 			
 			<!-- Form Name -->
 			<legend id="legend">Register</legend>
-			
 			<!-- Text input-->
 			<div class="form-group">
-			  <label class="col-md-4 control-label" for="Name">Name</label>  
-			  <div class="col-md-4">
-			  <input id="Name" name="name" type="text" placeholder="John" class="form-control input-md"  maxlength="30" required>
-			    
-			  </div>
+				<label class="col-md-4 control-label" for="Firstname">Firstname</label>
+				<div class="col-md-4">
+					<input id="Firstname" name="firstname" type="text" placeholder="John" class="form-control input-md" maxlength="20" required>
+
+				</div>
+			</div>
+			<!-- Text input-->
+			<div class="form-group">
+				<label class="col-md-4 control-label" for="Name">Name</label>
+				<div class="col-md-4">
+					<input id="Name" name="name" type="text" placeholder="Doe" class="form-control input-md"  maxlength="30" required>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label class="col-md-4 control-label" for="Username">Username</label>
+				<div class="col-md-4">
+					<input id="Username" name="username" type="text" placeholder="JDoe" class="form-control input-md" maxlength="15" required>
+				</div>
 			</div>
 			
 			<!-- Text input-->
 			<div class="form-group">
-			  <label class="col-md-4 control-label" for="Firstname">Firstname</label>  
-			  <div class="col-md-4">
-			  <input id="Firstname" name="firstname" type="text" placeholder="Doe" class="form-control input-md" maxlength="20" required>
-			    
-			  </div>
-			</div>
-			
-			<div class="form-group">
-			  <label class="col-md-4 control-label" for="Username">Username</label>  
-			  <div class="col-md-4">
-			  <input id="Username" name="username" type="text" placeholder="JDoe" class="form-control input-md" maxlength="15" required>
-			    
-			  </div>
-			</div>
-			
-			<!-- Text input-->
-			<div class="form-group">
-			  <label class="col-md-4 control-label" for="Mail">Mail</label>  
-			  <div class="col-md-5">
-			  <input id="Mail" name="mail" type="email" placeholder="johndoe@gmail.com" class="form-control input-md" maxlength="100" required>
-			    
-			  </div>
+				<label class="col-md-4 control-label" for="Mail">Mail</label>
+				<div class="col-md-4">
+					<input id="Mail" name="mail" type="email" placeholder="johndoe@gmail.com" class="form-control input-md" maxlength="100" required>
+				</div>
+				<div class="col-xs-1">
+					<i data-toggle="tooltip" data-container="body" data-placement="right" title="" class="fa fa-info-circle infoForm" data-original-title="Your account will be verified by mail."></i>
+				</div>
 			</div>
 			
 			<!-- Text input-->
@@ -73,8 +71,8 @@
 			<div class="form-group">
 			  <label class="col-md-4 control-label" for=""></label>
 			  <input type="hidden" name="action" value="signup">
-			  <div class="col-md-4-">
-			    <button id="" name="" class="btnconfirm">Confirm</button>
+			  <div class="col-md-4">
+			    <button type="submit" class="btn btn-block btn-danger">Confirm</button>
 			  </div>
 			</div>
 			

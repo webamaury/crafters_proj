@@ -1,11 +1,10 @@
 $(document).ready(function () {
-    /*
-    Keyboard shortcuts
-    u: upload,
-    h:home,
-    g:gallery,
-
-     */
+    /**
+     * Keyboard shortcuts
+     * u: upload,
+     * h:home,
+     * g:gallery,
+    */
     $(document).keypress(function(e){
         var key = e.which;
         if (key == 117) {
@@ -36,8 +35,8 @@ $(document).ready(function () {
     });
 
 
-    /*
-    Minimalize header
+    /**
+     * Minimalize header
      */
     if($('body').scrollTop() > 60){
         $(".header").addClass("min-header");
@@ -55,8 +54,8 @@ $(document).ready(function () {
         }
     });
 
-    /*
-    Close login modal for forgot modal
+    /**
+     * Close login modal for forgot modal
      */
     $('.forgot_btn').on("click", function(e){
         e.preventDefault();
@@ -69,6 +68,21 @@ $(document).ready(function () {
             $(".hide_cnil").fadeOut();
         }, 'json');
 
+    });
+    /**
+     * Tooltips
+     */
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip();
+    });
+
+
+    $("#username").on("keyup", function(){
+        alert('hehe');
+        $.get('index.php?module=profile', {}, function (data) {
+
+        }, 'json');
+        alert($(this).value());
     });
 
 });

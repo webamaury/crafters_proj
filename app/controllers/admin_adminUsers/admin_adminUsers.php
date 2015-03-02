@@ -255,10 +255,12 @@ class adminUsersController extends CoreController {
 
 						if ($adminUsers->updateImage($image_url, $_GET["admin"])) {
 
+							$_SESSION["ADMIN-USER"]["img_url"] = $image_url;
+
 							/* We have succesfully resized and created thumbnail image
 							We can now output image to user's browser or store information in the database*/
 							echo '<div align="center">';
-							echo '<img id="img_output" class="img_avatar img-responsive img-circle center-block" src="../uploads/admins/' . $thumb_prefix . $new_file_name . '" alt="Thumbnail">';
+							echo '<img id="img_output" class="img_avatar img-responsive img-circle center-block" src="' . _WWW_PATH . $image_url . '" alt="Thumbnail">';
 							echo '</div>';
 						}
 

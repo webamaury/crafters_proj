@@ -22,7 +22,7 @@
 	<form class="form-horizontal" method="post" enctype="multipart/form-data" class="form_upload_ajax" id="js-upload-form" action="index.php?module=users&action=uploadAjax&user=<?php echo (isset($item->user_id)) ? $item->user_id : '' ; ?>" role="form">
 		<div class="col-xs-12 col-md-6 margin-top-20 text-center">
 			<div class="col-xs-12"  id="img_output">
-				<div id="output"><img class="img_avatar" src="<?php echo (isset($item->user_img_url) && file_exists(_WWW_PATH . $item->user_img_url)) ? _WWW_PATH . $item->user_img_url : _ADMIN_PATH . 'img/avatar.jpg' ; ?>" alt="avatar"/></div>
+				<div id="output"><img class="img_avatar img-responsive img-circle center-block" src="<?php echo (isset($item->user_img_url) && !empty($item->user_img_url) && file_exists(_WWW_PATH . $item->user_img_url)) ? _WWW_PATH . $item->user_img_url : "http://www.gravatar.com/avatar/" . md5($item->user_mail) . "?s=360" ;?>" alt="avatar"/></div>
 				<?php
 					if(isset($item->user_img_url) && file_exists(_WWW_PATH . $item->user_img_url)){
 				?>

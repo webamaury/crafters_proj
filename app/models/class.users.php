@@ -464,6 +464,7 @@ class ClassUsers extends CoreModel {
 	public function getCraftersOfMonth() {
 		$query = "SELECT user_id,
 			user_username,
+			user_mail,
 			user_description,
 			user_img_url
 			FROM " . _TABLE__USERS . "
@@ -567,6 +568,7 @@ class ClassUsers extends CoreModel {
 	public function getPopularCrafters() {
 		$query = "SELECT P.user_id_product,
 			U.user_username,
+			U.user_mail,
 			U.user_img_url,
 			count(L.like_id) as nb_like
 			FROM crafters_like L, crafters_product P, crafters_user U

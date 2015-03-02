@@ -140,6 +140,21 @@ class ClassMessages extends CoreModel {
 
 		return $return;
 	}
+	public function getNotifMessage() {
+		$query = "SELECT count(message_id) as nbMessage
+			FROM " . _TABLE__MESSAGE . "
+			WHERE message_status = 0";
+
+		$cursor = $this->connexion->prepare($query);
+
+		$cursor->execute();
+
+		$cursor->setFetchMode(PDO::FETCH_OBJ);
+		$return = $cursor->fetch();
+		$cursor->closeCursor();
+
+		return $return;
+	}
 
 }
 ?>

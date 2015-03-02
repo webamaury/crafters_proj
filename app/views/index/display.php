@@ -43,7 +43,7 @@
 					<div class="col-xs-12">
 						<div class="col-md-5 col-sm-3 col-xs-3">
 							<a href="<?php echo (_REW_URL == 'true') ? "/profile=>" . $crafter_of_month->user_id : _PATH_FOLDER . "index.php?module=profile&user=" . $crafter_of_month->user_id ; ?>">
-								<img src="<?php echo $crafter_of_month->user_img_url; ?>" class="img-responsive img-circle" alt="Avatar <?php echo $crafter_of_month->user_username; ?> | Crafters" style="float: right">
+								<img src="<?php echo (isset($crafter_of_month->user_img_url) && file_exists($crafter_of_month->user_img_url)) ? _PATH_FOLDER . $crafter_of_month->user_img_url : "http://www.gravatar.com/avatar/" . md5($crafter_of_month->user_mail) . "?s=360" ;?>" class="img-responsive img-circle" alt="Avatar <?php echo $crafter_of_month->user_username; ?> | Crafters" style="float: right">
 							</a>
 						</div>
 
@@ -77,7 +77,7 @@
 						<div class="col-xs-12">
 							<div class="col-md-3 col-sm-2 col-xs-2">
 								<a href="<?php echo (_REW_URL == 'true') ? "/profile=>" . $popular_crafter->user_id_product : _PATH_FOLDER . "index.php?module=profile&user=" . $popular_crafter->user_id_product ; ?>">
-									<img src="<?php echo $popular_crafter->user_img_url; ?>" alt="Avatar <?php echo $popular_crafter->user_username; ?> | Crafters" class="img-responsive img-circle" style="float: right"></a>
+									<img src="<?php echo (isset($popular_crafter->user_img_url) && file_exists($popular_crafter->user_img_url)) ? _PATH_FOLDER . $popular_crafter->user_img_url : "http://www.gravatar.com/avatar/" . md5($popular_crafter->user_mail) . "?s=360" ;?>" alt="Avatar <?php echo $popular_crafter->user_username; ?> | Crafters" class="img-responsive img-circle" style="float: right"></a>
 							</div>
 							<div class="col-md-9 col-sm-10 col-xs-10">
 								<br/>

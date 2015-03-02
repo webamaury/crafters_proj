@@ -16,37 +16,41 @@
 
 		function main($arrayTools, $notices, $modules)
 		{
-		##############################################################
-		##	TRAITEMENT PHP											##
-		##############################################################
-		include_once(_APP_PATH . 'models/class.product.php'); $ClassProduct = new ClassProducts();
-		$new_prod = $ClassProduct->getNewProduct();
+			##############################################################
+			##	TRAITEMENT PHP											##
+			##############################################################
+			include_once(_APP_PATH . 'models/class.product.php'); $ClassProduct = new ClassProducts();
+			$new_prod = $ClassProduct->getNewProduct();
+			$notif_prod = $ClassProduct->getNotifProduct();
 
-		include_once(_APP_PATH . 'models/class.users.php'); $ClassUser = new ClassUsers();
-		$new_user = $ClassUser->getNewUser();
+			include_once(_APP_PATH . 'models/class.users.php'); $ClassUser = new ClassUsers();
+			$new_user = $ClassUser->getNewUser();
 
-		include_once(_APP_PATH . 'models/class.orders.php'); $ClassOrder = new ClassOrders();
-		$new_order = $ClassOrder->getNewOrder();
+			include_once(_APP_PATH . 'models/class.orders.php'); $ClassOrder = new ClassOrders();
+			$new_order = $ClassOrder->getNewOrder();
+			$notif_order = $ClassOrder->getNotifOrder();
 
-		include_once(_APP_PATH . 'models/class.messages.php'); $ClassMessage = new ClassMessages();
-		$new_message = $ClassMessage->getNewMessage();
-//var_dump($new_prod, $new_user, $new_order, $new_message);
-		##############################################################
-		##	APPEL TOOLS												##
-		##############################################################
-		$toolsToLoad = array("bootstrap-css", "jquery" , "bootstrap-js");
-		$stylesToLoad = array("style");
-		
-		##############################################################
-		##	VARIABLES LAYOUT										##
-		##############################################################
-		DEFINE("_METATITLE", "Accueil Admin");
-		DEFINE("_METADESCRIPTION", "Accueil Admin");
-		
-		##############################################################
-		##	VUE														##
-		##############################################################
-		include_once( _APP_PATH . 'views/admin_index/display.php');
+			include_once(_APP_PATH . 'models/class.messages.php'); $ClassMessage = new ClassMessages();
+			$new_message = $ClassMessage->getNewMessage();
+			$notif_mess = $ClassMessage->getNotifMessage();
+
+			//var_dump($new_prod, $new_user, $new_order, $new_message);
+			##############################################################
+			##	APPEL TOOLS												##
+			##############################################################
+			$toolsToLoad = array("bootstrap-css", "jquery" , "bootstrap-js");
+			$stylesToLoad = array("style");
+
+			##############################################################
+			##	VARIABLES LAYOUT										##
+			##############################################################
+			DEFINE("_METATITLE", "Accueil Admin");
+			DEFINE("_METADESCRIPTION", "Accueil Admin");
+
+			##############################################################
+			##	VUE														##
+			##############################################################
+			include_once( _APP_PATH . 'views/admin_index/display.php');
 				
 		}
 

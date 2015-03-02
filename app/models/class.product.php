@@ -390,6 +390,24 @@ class ClassProducts extends CoreModel
 
 		return $return;
 	}
+	/**
+	 * Retourne le nombre pour la notif du BO
+	 */
+	public function getNotifProduct() {
+		$query = "SELECT count(product_id) as nbProduct
+			FROM " . _TABLE__PRODUCTS . "
+			WHERE product_status = 1";
+
+		$cursor = $this->connexion->prepare($query);
+
+		$cursor->execute();
+
+		$cursor->setFetchMode(PDO::FETCH_OBJ);
+		$return = $cursor->fetch();
+		$cursor->closeCursor();
+
+		return $return;
+	}
 }
 
 ?>

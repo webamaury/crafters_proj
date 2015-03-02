@@ -74,16 +74,23 @@ class ClassOrders extends CoreModel {
 		O.order_id, O.order_delivery, O.order_payment_mode, O.order_price,
 		DATE_FORMAT(O.order_creation, '%d %M %Y %k:%i') AS DateCrea,
 		SUM(P.product_order_quantity) as nbProduit,  
-		U.user_username, S.nom
+		U.user_username,
+		S.nom
 		FROM " . _TABLE__ORDER . " as O,  " . _TABLE__PRODUCT_ORDER . " as P, " . _TABLE__USERS . " as U, " . _TABLE__STATUTS . " as S
 		WHERE O.order_id = P.order_id
 		AND O.user_id_order = U.user_id
 		AND O.order_status = S.statut
 		AND S.type = 'order'
 		GROUP BY O.order_id";
-			
-		$list = $this->select_no_param();
-		
+
+		$cursor = $this->connexion->prepare($this->query);
+
+		$cursor->execute();
+
+		$cursor->setFetchMode(PDO::FETCH_OBJ);
+		$list = $cursor->fetchAll();
+		$cursor->closeCursor();
+
 		return $list;
 	}
 
@@ -210,6 +217,21 @@ class ClassOrders extends CoreModel {
 		$query = "SELECT count(order_id) as nbOrder
 			FROM " . _TABLE__ORDER . "
 			WHERE order_creation > DATE_ADD(NOW(),INTERVAL -30 DAY)";
+
+		$cursor = $this->connexion->prepare($query);
+
+		$cursor->execute();
+
+		$cursor->setFetchMode(PDO::FETCH_OBJ);
+		$return = $cursor->fetch();
+		$cursor->closeCursor();
+
+		return $return;
+	}
+	public function getNotifOrder() {
+		$query = "SELECT count(order_id) as nbOrder
+			FROM " . _TABLE__ORDER . "
+			WHERE order_status = 1";
 
 		$cursor = $this->connexion->prepare($query);
 

@@ -20,11 +20,10 @@
               <label class="control-label" for="confirm_password">Confirm password</label>
               <input name="confirm_password" type="password" required maxlength="30" class="form-control" id="confirm_password">
             </div>
-
-            <input type="hidden" name="action" value="updatePassword">
         </div>
         <div class="modal-footer">
-          <button type="submit" class="btn btn-danger"><i class="fa fa-key"></i> Change Password</button>
+            <input type="hidden" name="action" value="updatePassword">
+            <button type="submit" class="btn btn-danger"><i class="fa fa-key"></i> Change Password</button>
         </div>
       </form>      
 		</div>  

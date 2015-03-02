@@ -32,7 +32,7 @@
             <?php echo (_DEBUG == true) ? '<li><a href="index.php?module=traces" target="_blank"><span class="glyphicon glyphicon-file"></span> Trace</a></li>' : '' ; ?>
             <li>
             	<a href="index.php?module=adminUsers&amp;action=form&amp;id=<?php echo $_SESSION['ADMIN-USER']['id'] ; ?>">
-	            	<img class="avatar_header" src="<?php echo (file_exists(_ADMIN_PATH . 'img/photo_' . $_SESSION['ADMIN-USER']['id'] . '.jpg')) ? _ADMIN_PATH . 'img/photo_' . $_SESSION['ADMIN-USER']['id'] . '.jpg' : _ADMIN_PATH . 'img/avatar.jpg' ; ?>" alt="avatar"/> <?php echo $_SESSION['ADMIN-USER']['firstname'] ; ?>
+	            	<img class="avatar_header" src="<?php echo (isset($_SESSION["ADMIN-USER"]["img_url"]) && file_exists(_WWW_PATH . $_SESSION["ADMIN-USER"]["img_url"])) ? _WWW_PATH . $_SESSION["ADMIN-USER"]["img_url"] : _ADMIN_PATH . 'img/avatar.jpg'; ?>" alt="avatar"/> <?php echo $_SESSION['ADMIN-USER']['firstname'] ; ?>
 	            </a>
 	        </li>
             <li><a href="index.php?action=logout"><span class="glyphicon glyphicon-off"></span> Logout</a></li>

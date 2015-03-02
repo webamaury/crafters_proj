@@ -12,6 +12,10 @@ $(document).ready(function() {
         var val = $(this).attr('id');
         //$('#submit_action').val(val)
     });
+    $("#btn_ajax").on("click", function(e){
+        e.preventDefault();
+        $("#js-upload-files").click();
+    });
 
 
     var options = {
@@ -21,9 +25,9 @@ $(document).ready(function() {
         resetForm: true        // reset the form after successful submit
     };
 
-    $('#js-upload-form').submit(function(e) {
+    $('#js-upload-files').on("change", function(e) {
         e.preventDefault();
-        $(this).ajaxSubmit(options);
+        $(this).parents('form').ajaxSubmit(options);
         // always return false to prevent standard browser submit and page navigation
         return false;
     });

@@ -1,8 +1,3 @@
-$(document).ready(function () {
-    $(function () {
-        $('[data-toggle="tooltip"]').tooltip();
-    });
-});
 $(document).on('click', '.ajax_like_trigger', function () {
     if ($(this).attr("data-didilike") == 1) {
         var product = $(this).attr("data-product");

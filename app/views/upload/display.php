@@ -8,18 +8,17 @@
         <div class="container">
 
         <div class="row">
-            <div class="col-md-4 col-md-offset-2">
-                <h3 style="text-align: right" class="title_upload">UPLOAD YOUR AWESOME WORK</h3>
+            <div class="col-md-4 col-md-offset-1">
+                <h3 style="text-align: right" class="title_upload">UPLOAD YOUR AWESOME WORK <i data-toggle="tooltip" data-container="body" data-placement="right" title="First choose your image. It must be a png (or jpg) file. The correct size is 400x400." class="fa fa-info-circle infosUpload"></i></h3>
                 <form action="index.php?module=upload" method="post" class="form_upload_ajax" enctype="multipart/form-data" id="js-upload-form">
-                    <div class="form-inline">
+                    <div class="form-inline text-center">
                         <div class="form-group">
-                            <input type="file" name="image_file" id="js-upload-files"/>
+                            <input type="file" name="image_file" id="js-upload-files" style="display: none;"/>
+                            <span class="btn btn-danger btn-sm" id="btn_ajax">Upload File&nbsp;&nbsp;<i class="fa fa-file-image-o"></i></span>
                         </div>
-                        <button type="submit" class="btn btn-sm btn-danger" id="js-upload-submit">Preview</button>
                     </div>
                     <input type="hidden" name="action" value="upload_ajax"/>
                 </form>
-                <br/>
                 <br/>
                 <img src="img/ajax-loader.gif" id="loading-img" style="display:none;" alt="Please Wait"/>
                 <div id="output"></div>
@@ -27,13 +26,14 @@
             </div>
             <form method="post" action="index.php?module=upload" role="form">
 
-                <div class="col-md-4">
-                    <h3 class="title_upload">WHAT IS IT ?</h3>
+                <div class="col-md-6 col-sm-10 col-sm-offset-1 col-xs-12">
+                    <h3 class="title_upload">WHAT IS IT ? <i data-toggle="tooltip" data-container="body" data-placement="right" title="Then name your work, and describe it. You must also choose who will see your Craft. Private: only you, Public (after moderation): all Crafters." class="fa fa-info-circle infosUpload"></i></h3>
                     <br/>
                     <div class="col-md-6">
                         <div class="form-group">
                             <input required type="text" maxlength="20" placeholder="Name your work" name="name" class="form-control form-upload">
-                            <br/>
+                        </div>
+                        <div class="form-group">
                             <textarea name="description" maxlength="400" rows="3" placeholder="Description" required class="form-control form-upload textarea_upload"></textarea>
                         </div>
                     </div>
