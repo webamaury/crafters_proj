@@ -36,7 +36,7 @@
 
 					</div>
 					<div class="col-xs-12 col-md-7 col-md-offset-1">
-						<h3 class="dashboard_name"><?php  echo (isset($user->user_username)) ? $user->user_username : "" ; ?> (<?php  echo (isset($user->user_firstname) && isset($user->user_firstname)) ? $user->user_firstname . " " . $user->user_name : "" ; ?>)</h3>
+						<h3 class="dashboard_name text-danger"><?php  echo (isset($user->user_username)) ? $user->user_username : "" ; ?> (<?php  echo (isset($user->user_firstname) && isset($user->user_firstname)) ? $user->user_firstname . " " . $user->user_name : "" ; ?>)</h3>
 						<p class="profileInfos">
 							<?php  echo (isset($user->DateBirth) && !empty($user->DateBirth)) ? "Birthday: " . $user->DateBirth . "<br><br>" : "" ; ?>
 							<?php  echo (isset($user->user_mail) && !empty($user->user_mail)) ? "Mail: " . $user->user_mail . "<br>" : "" ; ?>

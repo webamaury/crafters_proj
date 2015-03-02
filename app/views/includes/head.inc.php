@@ -8,7 +8,7 @@
         <meta name="description" content="<?php echo _METADESCRIPTION ; ?>">
         <title><?php echo _METATITLE ; ?></title>
 
-        <link rel="icon" href="img/favicon.ico">
+        <link rel="icon" type="image/png" href="img/favicon.ico" />
         <?php echo $this->load_css($CssToLoad, $arrayCss) ; ?>
 
         <!-- Bootstrap core CSS -->
