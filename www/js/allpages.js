@@ -76,13 +76,4 @@ $(document).ready(function () {
         $('[data-toggle="tooltip"]').tooltip();
     });
 
-
-    $("#username").on("keyup", function(){
-        alert('hehe');
-        $.get('index.php?module=profile', {}, function (data) {
-
-        }, 'json');
-        alert($(this).value());
-    });
-
 });

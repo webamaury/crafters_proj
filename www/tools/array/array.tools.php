@@ -22,6 +22,7 @@ $arrayJs = array(
 	'addproduct.js' => '<script type="text/javascript" src="' . _PATH_FOLDER . 'js/addproduct.js"></script>',
 	'valid.form.js' => '<script type="text/javascript" src="' . _PATH_FOLDER . 'js/valid.form.js"></script>',
 	'addavatar.js' => '<script type="text/javascript" src="' . _PATH_FOLDER . 'js/addavatar.js"></script>',
+	'signup' => '<script type="text/javascript" src="' . _PATH_FOLDER . 'js/signup.js"></script>',
 	);
 
 $arrayTools = array(

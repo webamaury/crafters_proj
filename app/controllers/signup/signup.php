@@ -31,7 +31,7 @@ class SignUpController extends CoreController
 		 * 	APPEL TOOLS												**
 		 * **********************************************************/
 		$CssToLoad = array('bootstrap-css', 'font-awesome', 'momo', 'custom2');
-		$JsToLoad = array('jquery', 'bootstrap-js', 'panier.js');
+		$JsToLoad = array('jquery', 'bootstrap-js', 'panier.js', 'signup');
 
 		/*************************************************************
 		 * 	VARIABLES LAYOUT										**
@@ -116,5 +116,34 @@ class SignUpController extends CoreController
 			}
 		}
 	}
+	function usernameUniqueAjax()
+	{
+		if (!isset($_GET['username']) || empty($_GET['username'])) {
+			echo 'error1'; exit();
+		}
+
+		include_once(_APP_PATH . 'models/class.users.php'); $ClassUser = new ClassUsers();
+		$ClassUser->user_username = $_GET['username'];
+		$return = $ClassUser->usernameUnique();
+
+		echo $return; exit();
+
+	}
+
+	function mailUniqueAjax()
+	{
+		if (!isset($_GET['mail']) || empty($_GET['mail'])) {
+			echo 'error1'; exit();
+		}
+
+		include_once(_APP_PATH . 'models/class.users.php'); $ClassUser = new ClassUsers();
+		$ClassUser->user_mail = $_GET['mail'];
+		$return = $ClassUser->mailUnique();
+
+		echo $return; exit();
+
+	}
+
+
 }
 ?>
