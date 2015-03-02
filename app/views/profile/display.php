@@ -11,8 +11,8 @@
 			</div>
 
 			<div class="row dashboard_infos">
-				<div class="col-xs-12 col-sm-8 col-sm-offset-1">
-					<div class="col-sm-6 col-sm-offset-4 col-xs-8 col-xs-offset-2 col-md-3 col-md-offset-1 text-center">
+				<div class="col-xs-12">
+					<div class="col-sm-6 col-sm-offset-4 col-xs-8 col-xs-offset-2 col-md-2 col-md-offset-1 text-center">
 						<div id="output">
 							<img src="<?php echo (isset($user->user_img_url) && file_exists($user->user_img_url)) ? _PATH_FOLDER . $user->user_img_url : "http://www.gravatar.com/avatar/" . md5($user->user_mail) . "?s=360" ;?>" class="img-circle img-responsive" style="float:right;">
 						</div>
@@ -35,7 +35,19 @@
 						<br>
 
 					</div>
-					<div class="col-xs-12 col-md-7 col-md-offset-1">
+					<div class="col-xs-12 col-md-3 pull-right">
+						<div class="thumbnail text-center profileInfos col-xs-12 col-md-7">
+							<small><br/>
+								<div class="col-md-12 col-xs-6">
+									Crafts : <?php echo $stats->nbProducts; ?>&nbsp;&nbsp;<i class="fa fa-image"></i><br/><br/>
+								</div>
+								<div class="col-md-12 col-xs-6">
+									Likes : <?php echo $stats->nbLikes; ?>&nbsp;&nbsp;<i class="fa fa-heart"></i><br/><br/>
+								</div>
+							</small>
+						</div>
+					</div>
+					<div class="col-xs-12 col-md-5 col-md-offset-1">
 						<h3 class="dashboard_name text-danger"><?php  echo (isset($user->user_username)) ? $user->user_username : "" ; ?> (<?php  echo (isset($user->user_firstname) && isset($user->user_firstname)) ? $user->user_firstname . " " . $user->user_name : "" ; ?>)</h3>
 						<p class="profileInfos">
 							<?php  echo (isset($user->DateBirth) && !empty($user->DateBirth)) ? "Birthday: " . $user->DateBirth . "<br><br>" : "" ; ?>

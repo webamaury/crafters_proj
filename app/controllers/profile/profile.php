@@ -39,6 +39,8 @@ class profileController extends CoreController {
 		}
 		$user = $ClassUser->getOne();
 
+		$stats = $ClassUser->getStats();
+
 		if (empty($user)) {
 			header('location:index.php');
 		}

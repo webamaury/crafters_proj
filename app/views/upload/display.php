@@ -27,8 +27,10 @@
             <form method="post" action="index.php?module=upload" role="form">
 
                 <div class="col-md-6 col-sm-10 col-sm-offset-1 col-xs-12">
-                    <h3 class="title_upload">WHAT IS IT ? <i data-toggle="tooltip" data-container="body" data-placement="right" title="Then name your work, and describe it. You must also choose who will see your Craft. Private: only you, Public (after moderation): all Crafters." class="fa fa-info-circle infosUpload"></i></h3>
-                    <br/>
+                    <div class="col-xs-12">
+                        <h3 class="title_upload">WHAT IS IT ? <i data-toggle="tooltip" data-container="body" data-placement="right" title="Then name your work, and describe it. You must also choose who will see your Craft. Private: only you, Public (after moderation): all Crafters." class="fa fa-info-circle infosUpload"></i></h3>
+                    </div>
+                    <br/><br/><br/>
                     <div class="col-md-6">
                         <div class="form-group">
                             <input required type="text" maxlength="20" placeholder="Name your work" name="name" class="form-control form-upload">
@@ -57,7 +59,7 @@
                 </div>
                 <br>
                 <div class="col-md-12">
-                    <button type="submit" id="submit_save" class="btn btn-lg submit_form btn-another-work">Add your craft</button>
+                    <button type="submit" id="submit_save" class="btn btn-lg submit_form btn-another-work text-danger">Add your craft</button>
                 </div>
             </form>
 

@@ -743,10 +743,51 @@ class ClassUsers extends CoreModel {
 		$cursor->execute();
 		$cursor->setFetchMode(PDO::FETCH_OBJ);
 		$return = $cursor->fetch();
+		$cursor->closeCursor();
+
 		if ($return->nbMail == 0){
 			return true;
 		} else {
 			return false;
+		}
+
+	}
+
+	function getStats()
+	{
+		$query = "SELECT SUM(product_nblike) as nbLikes, COUNT(product_id) as nbProducts FROM " . _TABLE__PRODUCTS . " WHERE user_id_product = :user_id";
+
+		$cursor = $this->connexion->prepare($query);
+		$cursor->bindValue(':user_id', $this->user_id, PDO::PARAM_STR);
+
+		$cursor->execute();
+
+		$cursor->setFetchMode(PDO::FETCH_OBJ);
+		$return = $cursor->fetch();
+		$cursor->closeCursor();
+
+		return $return;
+	}
+	function getNbproducts()
+	{
+		try {
+			$query = "SELECT COUNT(product_id) as nbProducts FROM " . _TABLE__PRODUCTS . "WHERE user_id_product = :user_id";
+
+			$cursor = $this->connexion->prepare($query);
+			$cursor->bindValue(':user_id', $this->user_id, PDO::PARAM_STR);
+
+			$cursor->execute();
+
+			$cursor->setFetchMode(PDO::FETCH_OBJ);
+			$return = $cursor->fetch();
+			$cursor->closeCursor();
+
+			return $return;
+		}
+		catch(Exeption $e)
+		{
+		echo 'Erreur : '.$e->getMessage().'<br />';
+		echo 'N° : '.$e->getCode();
 		}
 
 	}
