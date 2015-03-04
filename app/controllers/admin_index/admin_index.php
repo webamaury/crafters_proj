@@ -70,10 +70,12 @@
 			$date = date('d');
 			foreach($results as $key => $result)
 			{
-				$arrayResults[$date] = $result->getVisits();
+				$arrayResults[$key]['result'] = $result->getVisits();
+				$arrayResults[$key]['date'] = $date;
 
 				$date = date('d', time() - 3600 * 24 * ($key+1));
 			}
+			$arrayResults = array_reverse($arrayResults);
 
 			/*
 			* Exemple avec les continents
