@@ -77,16 +77,18 @@
 
 		function displayGraph(flux) {
 
+			var obj = jQuery.parseJSON(flux);
 
-			var results = flux.results;
-			var continent_donnee = flux.continent_donnee;
+
+			var results = obj.results;
+			var continent_donnee = obj.continent_donnee;
 
 			var varlabel = [];
 			var varvalue = [];
 
 			$.each(results, function(key, value) {
-				varlabel.push(key);
-				varvalue.push(value);
+				varlabel.push(value.date);
+				varvalue.push(value.result);
 			});
 
 			var randomScalingFactor = function(){ return Math.round(Math.random()*100)};
@@ -206,10 +208,9 @@
 			$.ajax({
 				// URL du traitement sur le serveur
 				url : 'index.php?module=index&action=ajaxGapi',
-				//on precise le type de flux
-				dataType : 'json',
 				//Traitement en cas de succes
 				success: function(data) {
+					console.log(data);
 					if(data.error){
 						alert(data.message);
 					}else{
