@@ -26,7 +26,7 @@ class adminUsersController extends CoreController {
 				header('location:index.php?module=adminUsers');
 				exit();
 			}
-		} else if (isset($_POST['action']) && $_POST['action'] === "send_mail") {
+		} else if (isset($_POST['action']) && $_POST['action'] === 'send_mail') {
 
 			$tpl = file_get_contents(_APP_PATH . 'mail_templates/mails.header.htm');
 			$tpl .= file_get_contents(_APP_PATH . 'mail_templates/mails.contact.htm');
